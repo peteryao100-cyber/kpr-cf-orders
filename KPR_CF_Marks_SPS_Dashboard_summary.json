@@ -1,0 +1,256 @@
+{
+ "total_pos": 101,
+ "dedup": {
+  "sps_order_rows": 148,
+  "distinct_pos": 101,
+  "multi_version_pos": 37,
+  "exact_duplicate_order_rows": 0,
+  "asn_rows": 90,
+  "distinct_asns": 90,
+  "invoice_rows": 89,
+  "distinct_invoices": 89,
+  "invoiced_pos": 89,
+  "pos_with_multiple_asns": {
+   "14860421": 2
+  },
+  "asns_with_multiple_invoices": {}
+ },
+ "special": [],
+ "housekeeping_invoiced_open_in_sps": [
+  "14899175",
+  "14911566",
+  "14899174",
+  "14911565",
+  "14880440",
+  "14880441",
+  "14884280",
+  "14877927",
+  "14877928",
+  "14860421",
+  "14865140",
+  "14871897",
+  "14871898",
+  "14865141",
+  "14884281",
+  "14869342",
+  "14869341",
+  "14854103",
+  "14860420",
+  "14860418",
+  "14762737",
+  "14767745",
+  "14762739",
+  "14767743",
+  "14850829",
+  "14850827",
+  "14850828",
+  "14850825",
+  "14850824",
+  "14850826",
+  "14744347",
+  "14744344",
+  "14744348",
+  "14744345",
+  "14686936"
+ ],
+ "action_items": 12,
+ "order_rows": 148,
+ "asns": 90,
+ "invoices": 89,
+ "counts": {
+  "OPEN ORDER": 12,
+  "Invoiced": 89
+ },
+ "close": [],
+ "check": [],
+ "date_flags": [
+  [
+   "14925449",
+   "due",
+   "Due in 7d (10-21), no ASN sent / 7天内到期"
+  ],
+  [
+   "14925450",
+   "due",
+   "Due in 7d (10-21), no ASN sent / 7天内到期"
+  ],
+  [
+   "14934993",
+   "due",
+   "Due in 1d (10-15), no ASN sent / 1天内到期"
+  ],
+  [
+   "14934990",
+   "due",
+   "Due in 1d (10-15), no ASN sent / 1天内到期"
+  ]
+ ],
+ "need_invoice": [],
+ "bucket_counts": {
+  "OPEN ORDER": 12,
+  "ASN OPENED": 0,
+  "NEED INVOICE": 0,
+  "Special attention": 0,
+  "Invoiced": 89
+ },
+ "bucket_sum": "12 + 0 + 0 + 0 + 89 = 101 POs",
+ "unmatched_records": 0,
+ "tile_counts": {
+  "OPEN ORDER": 12,
+  "ASN OPENED": 0,
+  "NEED INVOICE": 0,
+  "Due within 7 days": 4,
+  "Late": 0,
+  "Special attention": 0,
+  "Invoiced (header)": 89
+ },
+ "po_dates": {
+  "14960565": {
+   "dc": "000155 Brampton",
+   "qty": 635,
+   "style": "Dakota",
+   "original": "2026-12-13",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-12-13",
+   "newest_src": "SPS",
+   "sps_newest": "2026-12-13",
+   "cancel": "2027-01-12"
+  },
+  "14960566": {
+   "dc": "000350 Calgary DC",
+   "qty": 450,
+   "style": "Dakota",
+   "original": "2026-12-13",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-12-13",
+   "newest_src": "SPS",
+   "sps_newest": "2026-12-13",
+   "cancel": "2027-01-12"
+  },
+  "14925449": {
+   "dc": "000155 Brampton",
+   "qty": 520,
+   "style": "Dakota",
+   "original": "2026-09-20",
+   "amended": "2026-09-21",
+   "changes": "ship 09-20→10-21, cancel 10-20→11-20, qty unchanged",
+   "newest": "2026-10-21",
+   "newest_src": "SPS amendment",
+   "sps_newest": "2026-10-21",
+   "cancel": "2026-11-20"
+  },
+  "14925450": {
+   "dc": "000350 Calgary DC",
+   "qty": 245,
+   "style": "Dakota",
+   "original": "2026-09-20",
+   "amended": "2026-09-21",
+   "changes": "ship 09-20→10-21, cancel 10-20→11-20, qty unchanged",
+   "newest": "2026-10-21",
+   "newest_src": "SPS amendment",
+   "sps_newest": "2026-10-21",
+   "cancel": "2026-11-20"
+  },
+  "14950926": {
+   "dc": "000155 Brampton",
+   "qty": 360,
+   "style": "Dakota",
+   "original": "2026-11-15",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-11-30",
+   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+   "sps_newest": "2026-11-15",
+   "cancel": "2026-12-15"
+  },
+  "14950927": {
+   "dc": "000350 Calgary DC",
+   "qty": 200,
+   "style": "Dakota",
+   "original": "2026-11-15",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-11-30",
+   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+   "sps_newest": "2026-11-15",
+   "cancel": "2026-12-15"
+  },
+  "14946928": {
+   "dc": "000350 Calgary DC",
+   "qty": 235,
+   "style": "Dakota",
+   "original": "2026-11-01",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-11-01",
+   "newest_src": "SPS",
+   "sps_newest": "2026-11-01",
+   "cancel": "2026-12-01"
+  },
+  "14946927": {
+   "dc": "000155 Brampton",
+   "qty": 415,
+   "style": "Dakota",
+   "original": "2026-11-01",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-11-01",
+   "newest_src": "SPS",
+   "sps_newest": "2026-11-01",
+   "cancel": "2026-12-01"
+  },
+  "14934993": {
+   "dc": "000350 Calgary DC",
+   "qty": 1160,
+   "style": "Helly Hansen",
+   "original": "2026-09-30",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-10-15",
+   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+   "sps_newest": "2026-09-30",
+   "cancel": "2026-10-30"
+  },
+  "14934994": {
+   "dc": "000350 Calgary DC",
+   "qty": 1618,
+   "style": "Helly Hansen",
+   "original": "2026-10-30",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-11-12",
+   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+   "sps_newest": "2026-10-30",
+   "cancel": "2026-11-29"
+  },
+  "14934990": {
+   "dc": "000155 Brampton",
+   "qty": 2040,
+   "style": "Helly Hansen",
+   "original": "2026-09-30",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-10-15",
+   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+   "sps_newest": "2026-09-30",
+   "cancel": "2026-10-30"
+  },
+  "14934991": {
+   "dc": "000155 Brampton",
+   "qty": 2272,
+   "style": "Helly Hansen",
+   "original": "2026-10-30",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-11-12",
+   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+   "sps_newest": "2026-10-30",
+   "cancel": "2026-11-29"
+  }
+ },
+ "pending_v1": [],
+ "missing_sps_dates": [],
+ "issues": []
+}
