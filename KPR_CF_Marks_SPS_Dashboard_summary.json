@@ -77,12 +77,12 @@
   [
    "14934993",
    "due",
-   "Due in 1d (10-15), no ASN sent / 1天内到期"
+   "Due in 7d (10-21), no ASN sent / 7天内到期"
   ],
   [
    "14934990",
    "due",
-   "Due in 1d (10-15), no ASN sent / 1天内到期"
+   "Due in 7d (10-21), no ASN sent / 7天内到期"
   ]
  ],
  "need_invoice": [],
@@ -208,7 +208,7 @@
    "original": "2026-09-30",
    "amended": "",
    "changes": "",
-   "newest": "2026-10-15",
+   "newest": "2026-10-21",
    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
    "sps_newest": "2026-09-30",
    "cancel": "2026-10-30"
@@ -232,7 +232,7 @@
    "original": "2026-09-30",
    "amended": "",
    "changes": "",
-   "newest": "2026-10-15",
+   "newest": "2026-10-21",
    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
    "sps_newest": "2026-09-30",
    "cancel": "2026-10-30"
