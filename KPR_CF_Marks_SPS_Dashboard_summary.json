@@ -1,15 +1,15 @@
 {
- "total_pos": 101,
+ "total_pos": 98,
  "dedup": {
-  "sps_order_rows": 148,
-  "distinct_pos": 101,
-  "multi_version_pos": 37,
+  "sps_order_rows": 147,
+  "distinct_pos": 98,
+  "multi_version_pos": 39,
   "exact_duplicate_order_rows": 0,
-  "asn_rows": 90,
-  "distinct_asns": 90,
-  "invoice_rows": 89,
-  "distinct_invoices": 89,
-  "invoiced_pos": 89,
+  "asn_rows": 87,
+  "distinct_asns": 87,
+  "invoice_rows": 86,
+  "distinct_invoices": 86,
+  "invoiced_pos": 86,
   "pos_with_multiple_asns": {
    "14860421": 2
   },
@@ -54,35 +54,35 @@
   "14686936"
  ],
  "action_items": 12,
- "order_rows": 148,
- "asns": 90,
- "invoices": 89,
+ "order_rows": 147,
+ "asns": 87,
+ "invoices": 86,
  "counts": {
   "OPEN ORDER": 12,
-  "Invoiced": 89
+  "Invoiced": 86
  },
  "close": [],
  "check": [],
  "date_flags": [
   [
-   "14925449",
+   "14934990",
    "due",
-   "Due in 2d (10-21), no ASN sent / 2天内到期"
-  ],
-  [
-   "14925450",
-   "due",
-   "Due in 2d (10-21), no ASN sent / 2天内到期"
+   "Due in 1d (10-21), no ASN sent / 1天内到期"
   ],
   [
    "14934993",
    "due",
-   "Due in 2d (10-21), no ASN sent / 2天内到期"
+   "Due in 1d (10-21), no ASN sent / 1天内到期"
   ],
   [
-   "14934990",
+   "14925449",
    "due",
-   "Due in 2d (10-21), no ASN sent / 2天内到期"
+   "Due in 1d (10-21), no ASN sent / 1天内到期"
+  ],
+  [
+   "14925450",
+   "due",
+   "Due in 1d (10-21), no ASN sent / 1天内到期"
   ]
  ],
  "need_invoice": [],
@@ -91,9 +91,9 @@
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
   "Special attention": 0,
-  "Invoiced": 89
+  "Invoiced": 86
  },
- "bucket_sum": "12 + 0 + 0 + 0 + 89 = 101 POs",
+ "bucket_sum": "12 + 0 + 0 + 0 + 86 = 98 POs",
  "unmatched_records": 0,
  "tile_counts": {
   "OPEN ORDER": 12,
@@ -102,9 +102,33 @@
   "Due within 7 days": 4,
   "Late": 0,
   "Special attention": 0,
-  "Invoiced (header)": 89
+  "Invoiced (header)": 86
  },
  "po_dates": {
+  "14934990": {
+   "dc": "000155 Brampton",
+   "qty": 2040,
+   "style": "Helly Hansen",
+   "original": "2026-09-30",
+   "amended": "2026-10-19",
+   "changes": "ship 09-30→10-21, cancel 10-30→11-20, qty unchanged",
+   "newest": "2026-10-21",
+   "newest_src": "SPS amendment",
+   "sps_newest": "2026-10-21",
+   "cancel": "2026-11-20"
+  },
+  "14934993": {
+   "dc": "000350 Calgary DC",
+   "qty": 1160,
+   "style": "Helly Hansen",
+   "original": "2026-09-30",
+   "amended": "2026-10-19",
+   "changes": "ship 09-30→10-21, cancel 10-30→11-20, qty unchanged",
+   "newest": "2026-10-21",
+   "newest_src": "SPS amendment",
+   "sps_newest": "2026-10-21",
+   "cancel": "2026-11-20"
+  },
   "14960565": {
    "dc": "000155 Brampton",
    "qty": 635,
@@ -201,18 +225,6 @@
    "sps_newest": "2026-11-01",
    "cancel": "2026-12-01"
   },
-  "14934993": {
-   "dc": "000350 Calgary DC",
-   "qty": 1160,
-   "style": "Helly Hansen",
-   "original": "2026-09-30",
-   "amended": "",
-   "changes": "",
-   "newest": "2026-10-21",
-   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
-   "sps_newest": "2026-09-30",
-   "cancel": "2026-10-30"
-  },
   "14934994": {
    "dc": "000350 Calgary DC",
    "qty": 1618,
@@ -224,18 +236,6 @@
    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
    "sps_newest": "2026-10-30",
    "cancel": "2026-11-29"
-  },
-  "14934990": {
-   "dc": "000155 Brampton",
-   "qty": 2040,
-   "style": "Helly Hansen",
-   "original": "2026-09-30",
-   "amended": "",
-   "changes": "",
-   "newest": "2026-10-21",
-   "newest_src": "Revised (Max→Curtis, not yet in SPS)",
-   "sps_newest": "2026-09-30",
-   "cancel": "2026-10-30"
   },
   "14934991": {
    "dc": "000155 Brampton",
