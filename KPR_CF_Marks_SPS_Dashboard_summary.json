@@ -1,15 +1,15 @@
 {
- "total_pos": 98,
+ "total_pos": 97,
  "dedup": {
-  "sps_order_rows": 149,
-  "distinct_pos": 98,
+  "sps_order_rows": 148,
+  "distinct_pos": 97,
   "multi_version_pos": 39,
   "exact_duplicate_order_rows": 0,
-  "asn_rows": 89,
-  "distinct_asns": 89,
-  "invoice_rows": 86,
-  "distinct_invoices": 86,
-  "invoiced_pos": 86,
+  "asn_rows": 90,
+  "distinct_asns": 90,
+  "invoice_rows": 85,
+  "distinct_invoices": 85,
+  "invoiced_pos": 85,
   "pos_with_multiple_asns": {
    "14860421": 2
   },
@@ -54,29 +54,28 @@
   "14686936"
  ],
  "action_items": 12,
- "order_rows": 149,
- "asns": 89,
- "invoices": 86,
+ "order_rows": 148,
+ "asns": 90,
+ "invoices": 85,
  "counts": {
-  "OPEN ORDER": 10,
-  "NEED INVOICE": 2,
-  "Invoiced": 86
+  "NEED INVOICE": 4,
+  "OPEN ORDER": 8,
+  "Invoiced": 85
  },
  "close": [],
  "check": [],
- "date_flags": [
+ "date_flags": [],
+ "need_invoice": [
   [
    "14934990",
-   "due",
-   "Due in 6d (10-27), no ASN sent / 6天内到期"
+   "328284448",
+   "2026-10-21 17:34"
   ],
   [
    "14934993",
-   "due",
-   "Due in 6d (10-27), no ASN sent / 6天内到期"
-  ]
- ],
- "need_invoice": [
+   "329284448",
+   "2026-10-21 17:46"
+  ],
   [
    "14925449",
    "326284448",
@@ -89,22 +88,22 @@
   ]
  ],
  "bucket_counts": {
-  "OPEN ORDER": 10,
+  "OPEN ORDER": 8,
   "ASN OPENED": 0,
-  "NEED INVOICE": 2,
+  "NEED INVOICE": 4,
   "Special attention": 0,
-  "Invoiced": 86
+  "Invoiced": 85
  },
- "bucket_sum": "10 + 0 + 2 + 0 + 86 = 98 POs",
+ "bucket_sum": "8 + 0 + 4 + 0 + 85 = 97 POs",
  "unmatched_records": 0,
  "tile_counts": {
-  "OPEN ORDER": 10,
+  "OPEN ORDER": 8,
   "ASN OPENED": 0,
-  "NEED INVOICE": 2,
-  "Due within 7 days": 2,
+  "NEED INVOICE": 4,
+  "Due within 7 days": 0,
   "Late": 0,
   "Special attention": 0,
-  "Invoiced (header)": 86
+  "Invoiced (header)": 85
  },
  "po_dates": {
   "14934990": {
