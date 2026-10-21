@@ -59,8 +59,7 @@
  "invoices": 86,
  "counts": {
   "OPEN ORDER": 10,
-  "NEED INVOICE": 1,
-  "ASN OPENED": 1,
+  "NEED INVOICE": 2,
   "Invoiced": 86
  },
  "close": [],
@@ -75,11 +74,6 @@
    "14934993",
    "due",
    "Due in 6d (10-27), no ASN sent / 6天内到期"
-  ],
-  [
-   "14925450",
-   "due",
-   "Due in 0d (10-21), no ASN sent / 0天内到期"
   ]
  ],
  "need_invoice": [
@@ -87,22 +81,27 @@
    "14925449",
    "326284448",
    "2026-10-20 16:52"
+  ],
+  [
+   "14925450",
+   "327284448",
+   "2026-10-20 21:51"
   ]
  ],
  "bucket_counts": {
   "OPEN ORDER": 10,
-  "ASN OPENED": 1,
-  "NEED INVOICE": 1,
+  "ASN OPENED": 0,
+  "NEED INVOICE": 2,
   "Special attention": 0,
   "Invoiced": 86
  },
- "bucket_sum": "10 + 1 + 1 + 0 + 86 = 98 POs",
+ "bucket_sum": "10 + 0 + 2 + 0 + 86 = 98 POs",
  "unmatched_records": 0,
  "tile_counts": {
   "OPEN ORDER": 10,
-  "ASN OPENED": 1,
-  "NEED INVOICE": 1,
-  "Due within 7 days": 3,
+  "ASN OPENED": 0,
+  "NEED INVOICE": 2,
+  "Due within 7 days": 2,
   "Late": 0,
   "Special attention": 0,
   "Invoiced (header)": 86
