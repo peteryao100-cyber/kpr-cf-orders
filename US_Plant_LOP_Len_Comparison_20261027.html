@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPR 美国射出厂 (Las Vegas) 费用预估对标看板 — LEN 月度预估 vs 基准模型 vs CF 实绩</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card-alt: #26334d;
+    --border: #334155;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --green: #22c55e;
+    --green-bg: rgba(34, 197, 94, 0.12);
+    --amber: #f59e0b;
+    --amber-bg: rgba(245, 158, 11, 0.14);
+    --red: #ef4444;
+    --red-bg: rgba(239, 68, 68, 0.14);
+    --purple: #a855f7;
+    --purple-bg: rgba(168, 85, 247, 0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    padding: 24px;
+  }
+  .container { max-width: 1480px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+    border: 1px solid #3b82f6;
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header h1 {
+    font-size: 23px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header .sub {
+    color: #cbd5e1;
+    font-size: 13.5px;
+  }
+  .badge-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(56, 189, 248, 0.15);
+    color: #7dd3fc;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+  }
+  .badge.gold {
+    background: rgba(245, 158, 11, 0.18);
+    color: #fcd34d;
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+  .badge.green {
+    background: rgba(34, 197, 94, 0.18);
+    color: #86efac;
+    border-color: rgba(34, 197, 94, 0.4);
+  }
+
+  /* KPI Grid */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card.highlight-len {
+    border-color: #f59e0b;
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.10) 0%, var(--card) 100%);
+  }
+  .kpi-card.highlight-base {
+    border-color: #38bdf8;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.10) 0%, var(--card) 100%);
+  }
+  .kpi-card.highlight-diff {
+    border-color: #a855f7;
+    background: linear-gradient(180deg, rgba(168, 85, 247, 0.10) 0%, var(--card) 100%);
+  }
+  .kpi-title {
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .kpi-val {
+    font-size: 27px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .kpi-sub {
+    font-size: 13px;
+    color: #cbd5e1;
+  }
+  .kpi-pill {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 9px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* Interactive Controls */
+  .controls-bar {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .tab-group, .filter-group, .shift-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: #0f172a;
+    color: #cbd5e1;
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover { border-color: var(--accent); color: #fff; }
+  .btn.active {
+    background: #2563eb;
+    color: #fff;
+    border-color: #3b82f6;
+  }
+  .btn.active-amber {
+    background: #d97706;
+    color: #fff;
+    border-color: #f59e0b;
+  }
+
+  /* Tables */
+  .table-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .table-header {
+    padding: 16px 20px;
+    background: #172033;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .table-header h2 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .table-wrap {
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: #0f172a;
+    color: #cbd5e1;
+    font-weight: 700;
+    text-align: left;
+    padding: 11px 12px;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  th.center, td.center { text-align: center; }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.65);
+    color: #e2e8f0;
+    vertical-align: middle;
+  }
+  tr:hover td { background: rgba(56, 189, 248, 0.05); }
+  
+  tr.section-row td {
+    background: #1e3a8a;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 9px 12px;
+  }
+  tr.subtotal-row td {
+    background: rgba(30, 58, 138, 0.45);
+    color: #93c5fd;
+    font-weight: 700;
+    border-top: 1.5px solid #3b82f6;
+    border-bottom: 1.5px solid #3b82f6;
+  }
+  tr.total-cash-row td {
+    background: rgba(20, 83, 45, 0.55);
+    color: #86efac;
+    font-weight: 800;
+    font-size: 14px;
+    border-top: 2px solid #22c55e;
+  }
+  tr.total-all-row td {
+    background: rgba(120, 53, 15, 0.6);
+    color: #fde68a;
+    font-weight: 800;
+    font-size: 14px;
+    border-top: 2px solid #f59e0b;
+    border-bottom: 2px solid #f59e0b;
+  }
+
+  .len-col {
+    background: rgba(245, 158, 11, 0.08);
+    font-weight: 700;
+    color: #fde68a !important;
+  }
+  th.len-col-head {
+    background: #78350f !important;
+    color: #fef3c7 !important;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 11.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .tag-same { background: var(--green-bg); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+  .tag-cut { background: var(--amber-bg); color: #fbbf24; border: 1px solid rgba(245,158,11,0.35); }
+  .tag-zero { background: var(--red-bg); color: #f87171; border: 1px solid rgba(239,68,68,0.35); }
+  .tag-excl { background: var(--purple-bg); color: #c084fc; border: 1px solid rgba(168,85,247,0.35); }
+
+  /* Audit / Risk Cards */
+  .audit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+  .audit-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .audit-card.purple { border-left-color: var(--purple); }
+  .audit-card.red { border-left-color: var(--red); }
+  .audit-card.green { border-left-color: var(--green); }
+  .audit-card h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .audit-card p {
+    font-size: 13.2px;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+  }
+  .audit-card .formula-box {
+    background: #0f172a;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+    color: #93c5fd;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  .hidden { display: none !important; }
+  
+  @media print {
+    body { background: #fff; color: #000; padding: 0; }
+    .controls-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>KPR 美国射出厂 (Las Vegas, NV) 费用预估对标看板 — LEN 填回版 vs 基准模型 vs CF 实绩</h1>
+      <div class="sub">
+        厂址：3750 E Dale Ave, Henderson, NV 89074 (8,994 sq ft | 480V 3-Phase 600A) &nbsp;|&nbsp;
+        对标基准：加拿大厂 (CF) 2025-08 ~ 2026-07 12个月实绩 (`1 USD = 1.42482 CAD`)
+      </div>
+      <div class="badge-bar">
+        <span class="badge gold">LEN 填回时间：2026-10-27</span>
+        <span class="badge">单班月产能基准：720双/天 × 22天 = 15,840 双/月 (190,080 双/年)</span>
+        <span class="badge green">已投基建 Capex：$513,524 (按60个月摊销 = $8,558.73/月)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top KPI Summary Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card highlight-len">
+      <div class="kpi-title">LEN 预估 — 纯工厂付现 LOP (Cash)</div>
+      <div class="kpi-val" id="kpi-len-cash">$73,531.33 <span style="font-size:15px;font-weight:500;color:#cbd5e1">/月</span></div>
+      <div class="kpi-sub">年度付现：<strong>$882,376 /年</strong>（不含头程海运清关）</div>
+      <div class="kpi-pill" style="background:rgba(245,158,11,0.2);color:#fcd34d;" id="kpi-len-cash-pair">
+        单双付现 LOP：US$4.64 / 双
+      </div>
+    </div>
+
+    <div class="kpi-card highlight-len">
+      <div class="kpi-title">LEN 预估 — 含折旧全口径 LOP (Full)</div>
+      <div class="kpi-val" id="kpi-len-full">$82,090.06 <span style="font-size:15px;font-weight:500;color:#cbd5e1">/月</span></div>
+      <div class="kpi-sub">年度全口径：<strong>$985,081 /年</strong>（含装修设备折旧 $8,559/月）</div>
+      <div class="kpi-pill" style="background:rgba(245,158,11,0.25);color:#fef08a;" id="kpi-len-full-pair">
+        单双全口径 LOP：US$5.18 / 双
+      </div>
+    </div>
+
+    <div class="kpi-card highlight-base">
+      <div class="kpi-title">我们原预估 — 含到岸运费全成本基准</div>
+      <div class="kpi-val">$95,991.06 <span style="font-size:15px;font-weight:500;color:#cbd5e1">/月</span></div>
+      <div class="kpi-sub">其中付现：<strong>$87,432.33 /月</strong>（含进料海运拖车 $7,800/月）</div>
+      <div class="kpi-pill" style="background:rgba(56,189,248,0.2);color:#7dd3fc;" id="kpi-base-pair">
+        单双全口径：$6.06 / 双（付现 $5.52 / 双）
+      </div>
+    </div>
+
+    <div class="kpi-card highlight-diff">
+      <div class="kpi-title">LEN vs 原预估 总差异拆解</div>
+      <div class="kpi-val" style="color:#c084fc">-$13,901.00 <span style="font-size:15px;font-weight:500;color:#cbd5e1">/月</span></div>
+      <div class="kpi-sub">全年差额：<strong>-$166,812 /年</strong>（其中 $96,000/年 为运费划出 LOP）</div>
+      <div class="kpi-pill" style="background:rgba(168,85,247,0.22);color:#e9d5ff;" id="kpi-diff-pair">
+        单双差额：-$0.88 / 双（运费边界 $0.51 + 费用下调 $0.37）
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Bar: Tabs + Filter + Capacity Shift Simulator -->
+  <div class="controls-bar">
+    <div class="tab-group">
+      <span style="font-size:13px;color:var(--muted);font-weight:600;">切换工作表：</span>
+      <button class="btn active" id="tab-btn-2" onclick="switchTab('tab2')">表2：美国新厂费用预估对标表 (含 LEN 填回)</button>
+      <button class="btn" id="tab-btn-1" onclick="switchTab('tab1')">表1：CF 12个月实绩与月均基准 (40项全明细)</button>
+    </div>
+
+    <div class="filter-group" id="filter-box">
+      <span style="font-size:13px;color:var(--muted);font-weight:600;">筛选行项：</span>
+      <button class="btn active-amber" id="flt-all" onclick="filterRows('all')">全部 17 项</button>
+      <button class="btn" id="flt-diff" onclick="filterRows('diff')">仅看有差异项 (8项)</button>
+      <button class="btn" id="flt-same" onclick="filterRows('same')">双方完全一致项 (9项)</button>
+      <button class="btn" id="flt-excl" onclick="filterRows('excl')">划出LOP/暂无项 (5项)</button>
+    </div>
+
+    <div class="shift-group">
+      <span style="font-size:13px;color:var(--muted);font-weight:600;">产能模拟摊薄：</span>
+      <button class="btn active" id="sh-1" onclick="setCapacity(15840, '单班 15,840双/月', 1)">单班 (15,840双/月)</button>
+      <button class="btn" id="sh-15" onclick="setCapacity(23760, '1.5班 23,760双/月', 1.5)">1.5班 (23,760双/月)</button>
+      <button class="btn" id="sh-2" onclick="setCapacity(31680, '双班 31,680双/月', 2)">双班 (31,680双/月)</button>
+    </div>
+  </div>
+
+  <!-- TAB 2: US Plant Expense Comparison Table -->
+  <div id="view-tab2">
+    <div class="table-card">
+      <div class="table-header">
+        <h2>表 2：美国拉斯维加斯厂 (Henderson, NV) 月度运营与制造费用预估对标表（含 LEN 月度/年度预估）</h2>
+        <span style="font-size:12.5px;color:#94a3b8;" id="cap-label">当前模拟月产量：单班 15,840 双/月（720双/天 × 22天）</span>
+      </div>
+      <div class="table-wrap">
+        <table id="us-table">
+          <thead>
+            <tr>
+              <th class="center">序号</th>
+              <th>科目代码</th>
+              <th>美国厂费用项目 (中英文对照)</th>
+              <th class="num">CF 全年实绩<br>(CAD/年)</th>
+              <th class="num">CF 月均<br>(USD/月)</th>
+              <th class="num">我们原预估<br>(USD/月)</th>
+              <th class="num len-col-head">LEN 月度预估<br>(USD/月)</th>
+              <th class="num len-col-head">LEN 年度预估<br>(USD/年)</th>
+              <th class="num">月度差异<br>(LEN - 原预估)</th>
+              <th class="num">LEN 单双分摊<br>(USD/双)</th>
+              <th class="center">状态标签</th>
+              <th>差异拆解与 Boss 审核要点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Section 1 -->
+            <tr class="section-row">
+              <td colspan="12">一、固定营业与行政管理费用 (Fixed SG&A / Operating Expenses)</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">1</td>
+              <td><code>605000</code></td>
+              <td><strong>厂房租金与物业管理费 (Rent + CAM)</strong><br><span style="font-size:11.5px;color:#94a3b8">8,994 sq ft @ $1.71/sqft + CAM $2,781/月</span></td>
+              <td class="num">C$266,491.56</td>
+              <td class="num">$15,586.05</td>
+              <td class="num">$18,161.00</td>
+              <td class="num len-col">$18,161.00</td>
+              <td class="num len-col">$217,932.00</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="18161.00">$1.15</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>2026年租约真实合同价（每年递增 3.5%）</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">2</td>
+              <td><code>613100</code></td>
+              <td><strong>厂房财产与综合商业保险 (Property & Liability Insurance)</strong></td>
+              <td class="num">C$0.00</td>
+              <td class="num">$0.00</td>
+              <td class="num">$703.33</td>
+              <td class="num len-col">$703.33</td>
+              <td class="num len-col">$8,439.96</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="703.33">$0.04</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>拉斯维加斯厂全年保单实数 $8,440/年</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">3</td>
+              <td><code>603000</code></td>
+              <td><strong>固定管理人员薪资含雇主税 (Fixed Management Salaries)</strong><br><span style="font-size:11.5px;color:#94a3b8">2名固定管理 @ $25/hr (底薪 $8,667 + 雇主税 ~12.5%)</span></td>
+              <td class="num">C$136,327.36</td>
+              <td class="num">$7,973.38</td>
+              <td class="num">$9,750.00</td>
+              <td class="num len-col">$9,750.00</td>
+              <td class="num len-col">$117,000.00</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="9750.00">$0.62</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>双方确认 2 名驻厂管理全包人工成本</td>
+            </tr>
+            <tr class="item-row" data-status="diff">
+              <td class="center">4</td>
+              <td><code>606000</code></td>
+              <td><strong>跨国与本地差旅费 (Travel & Lodging — 机票/酒店/加油/餐饮)</strong></td>
+              <td class="num">C$101,663.33</td>
+              <td class="num">$5,945.98</td>
+              <td class="num">$3,500.00</td>
+              <td class="num len-col">$800.00</td>
+              <td class="num len-col">$9,600.00</td>
+              <td class="num" style="color:#fbbf24">-$2,700.00</td>
+              <td class="num pair-calc" data-mo="800.00">$0.05</td>
+              <td class="center"><span class="tag tag-cut">下调 77%</span></td>
+              <td>⚠️ <strong>$800/月仅够本地加油跑腿</strong>；若中/加技术员与高管赴美机票酒店入美国厂账，需增补 $1,500~$2,000/月</td>
+            </tr>
+            <tr class="item-row" data-status="diff excl">
+              <td class="center">5</td>
+              <td><code>616000</code></td>
+              <td><strong>质量体系维护、ASTM/CSA检测与实验室仪器校正</strong><br><span style="font-size:11.5px;color:#94a3b8">108 Testing Room 拉力/冲击/耐折仪器年度外校与产品送检</span></td>
+              <td class="num">C$26,704.58</td>
+              <td class="num">$1,561.87</td>
+              <td class="num">$1,600.00</td>
+              <td class="num len-col">暂无 ($0.00)</td>
+              <td class="num len-col">$0.00</td>
+              <td class="num" style="color:#f87171">-$1,600.00</td>
+              <td class="num pair-calc" data-mo="0.00">$0.00</td>
+              <td class="center"><span class="tag tag-zero">填“暂无”</span></td>
+              <td>⚠️ <strong>量产必发生项</strong>：108检测室仪器每年外校($200/月)及ASTM/CSA认证年费($1,000+/月)，需明确由集团或工厂承担</td>
+            </tr>
+            <tr class="item-row" data-status="diff">
+              <td class="center">6</td>
+              <td><code>613000</code></td>
+              <td><strong>行政管理费 (Admin — 招待/审计报税/银行手续费/保洁/专业服务)</strong></td>
+              <td class="num">C$25,086.67</td>
+              <td class="num">$1,467.24</td>
+              <td class="num">$1,500.00</td>
+              <td class="num len-col">$1,000.00</td>
+              <td class="num len-col">$12,000.00</td>
+              <td class="num" style="color:#fbbf24">-$500.00</td>
+              <td class="num pair-calc" data-mo="1000.00">$0.06</td>
+              <td class="center"><span class="tag tag-cut">下调 33%</span></td>
+              <td>Len 按精简标准预留 $1,000/月（含美国 CPA 报税、垃圾清运与银行费用）</td>
+            </tr>
+            <tr class="item-row" data-status="diff">
+              <td class="center">7</td>
+              <td><code>608000</code></td>
+              <td><strong>办公室网络与电话通讯费 (Office Internet & Telecom)</strong></td>
+              <td class="num">C$2,429.74</td>
+              <td class="num">$142.11</td>
+              <td class="num">$180.00</td>
+              <td class="num len-col">$129.00</td>
+              <td class="num len-col">$1,548.00</td>
+              <td class="num" style="color:#4ade80">-$51.00</td>
+              <td class="num pair-calc" data-mo="129.00">$0.01</td>
+              <td class="center"><span class="tag tag-same">实数校准</span></td>
+              <td>✅ Len 填入 Henderson 厂房当前真实宽带账单 $129.00/月</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">8</td>
+              <td><code>604000</code></td>
+              <td><strong>办公用品及耗材 (Office Supplies, Printing, Postage)</strong></td>
+              <td class="num">C$2,202.07</td>
+              <td class="num">$128.79</td>
+              <td class="num">$150.00</td>
+              <td class="num len-col">$150.00</td>
+              <td class="num len-col">$1,800.00</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="150.00">$0.01</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>双方完全一致</td>
+            </tr>
+            <tr class="item-row" data-status="diff excl">
+              <td class="center">9</td>
+              <td><code>610000</code></td>
+              <td><strong>厂房与办公区日常小修缮 (Building & Office Minor Repairs)</strong></td>
+              <td class="num">C$1,148.03</td>
+              <td class="num">$67.14</td>
+              <td class="num">$100.00</td>
+              <td class="num len-col">新厂房暂无 ($0)</td>
+              <td class="num len-col">$0.00</td>
+              <td class="num" style="color:#fbbf24">-$100.00</td>
+              <td class="num pair-calc" data-mo="0.00">$0.00</td>
+              <td class="center"><span class="tag tag-zero">填“暂无”</span></td>
+              <td>新装修厂房首年暂不预留日常修缮费</td>
+            </tr>
+            <tr class="item-row" data-status="diff excl">
+              <td class="center">10</td>
+              <td><code>601000</code></td>
+              <td><strong>销售推广、样品赠送与客诉预留 (Marketing, Free Samples & Claims)</strong></td>
+              <td class="num">C$16,317.75</td>
+              <td class="num">$954.38</td>
+              <td class="num">$950.00</td>
+              <td class="num len-col">暂无 ($0.00)</td>
+              <td class="num len-col">$0.00</td>
+              <td class="num" style="color:#fbbf24">-$950.00</td>
+              <td class="num pair-calc" data-mo="0.00">$0.00</td>
+              <td class="center"><span class="tag tag-zero">填“暂无”</span></td>
+              <td>定位纯制造中心，销售样品与客诉归销售公司承担</td>
+            </tr>
+            <tr class="item-row" data-status="diff excl">
+              <td class="center">11</td>
+              <td><code>607000</code></td>
+              <td><strong>报关杂费与内华达州/市营业执照合规年费 (Customs & State/City Licenses)</strong></td>
+              <td class="num">C$1,249.68</td>
+              <td class="num">$73.09</td>
+              <td class="num">$200.00</td>
+              <td class="num len-col">未包含在LOP内 ($0)</td>
+              <td class="num len-col">$0.00</td>
+              <td class="num" style="color:#c084fc">-$200.00</td>
+              <td class="num pair-calc" data-mo="0.00">$0.00</td>
+              <td class="center"><span class="tag tag-excl">划出 LOP</span></td>
+              <td>📌 <strong>成本边界转移</strong>：报关费不入车间 LOP，必须计入进口鞋面/底料 BOM 到岸价</td>
+            </tr>
+            <tr class="subtotal-row">
+              <td class="center">—</td>
+              <td><code>SUB_SGA</code></td>
+              <td><strong>【小计一】固定营业与管理费用合计 (Fixed SG&A Subtotal)</strong></td>
+              <td class="num">C$579,620.77</td>
+              <td class="num">$33,900.03</td>
+              <td class="num">$36,794.33</td>
+              <td class="num len-col">$30,693.33</td>
+              <td class="num len-col">$368,319.96</td>
+              <td class="num" style="color:#fbbf24">-$6,101.00</td>
+              <td class="num pair-calc" data-mo="30693.33">$1.94</td>
+              <td class="center">—</td>
+              <td>LEN 固定管理费折合 <strong>$1.94/双</strong>（原预估 $2.32/双）</td>
+            </tr>
+
+            <!-- Section 2 -->
+            <tr class="section-row">
+              <td colspan="12">二、制造端人工与车间制造费用 (Manufacturing Labor & Factory Overhead)</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">12</td>
+              <td><code>503000</code></td>
+              <td><strong>车间直接人工 (Direct Labor — 1台DESMA单班11名劳务派遣工)</strong><br><span style="font-size:11.5px;color:#94a3b8">11人 (拉帮2+射出4+后整包装5) × $20.50/hr × 8h × 22天</span></td>
+              <td class="num">C$217,887.64</td>
+              <td class="num">$12,743.52</td>
+              <td class="num" id="base-dl">$39,688.00</td>
+              <td class="num len-col" id="len-dl">$39,688.00</td>
+              <td class="num len-col" id="len-dl-yr">$476,256.00</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num" id="dl-pair">$2.51</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>按 720双/天 计，单双直接人工恒定为 <strong>$2.51/双</strong></td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">13</td>
+              <td><code>505000</code></td>
+              <td><strong>生产与车间空调电费 (Factory Electricity @ $0.0955/kWh)</strong><br><span style="font-size:11.5px;color:#94a3b8">DESMA 24/30工位 + 空压机 + 车间大功率制冷空调</span></td>
+              <td class="num">C$33,268.31</td>
+              <td class="num">$1,945.73</td>
+              <td class="num">$2,500.00</td>
+              <td class="num len-col">$2,500.00</td>
+              <td class="num len-col">$30,000.00</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="2500.00">$0.16</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>双方完全一致（夏季满载约 $2,800~$3,200，全年均值 $2,500/月）</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">14</td>
+              <td><code>508000</code></td>
+              <td><strong>生产设备维修保养费 (Equipment Maintenance & Spare Parts)</strong></td>
+              <td class="num">C$4,565.61</td>
+              <td class="num">$267.02</td>
+              <td class="num">$350.00</td>
+              <td class="num len-col">$350.00</td>
+              <td class="num len-col">$4,200.00</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="350.00">$0.02</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>双方完全一致（DESMA 混料头易损件与空压机保养）</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">15</td>
+              <td><code>509000</code></td>
+              <td><strong>制造用消耗品 (Manufacturing Consumables — 脱模剂/清洗剂/砂带等)</strong></td>
+              <td class="num">C$4,020.19</td>
+              <td class="num">$235.12</td>
+              <td class="num">$300.00</td>
+              <td class="num len-col">$300.00</td>
+              <td class="num len-col">$3,600.00</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="300.00">$0.02</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>双方完全一致</td>
+            </tr>
+            <tr class="item-row" data-status="diff excl">
+              <td class="center">16</td>
+              <td><code>511101</code></td>
+              <td><strong>进料海运与美西内陆拖车费 (Inbound Ocean Freight & LA→Vegas Drayage)</strong><br><span style="font-size:11.5px;color:#94a3b8">印度/印尼鞋面及PU原料海运至长滩港 + 拖车至拉斯维加斯</span></td>
+              <td class="num">C$132,900.28</td>
+              <td class="num">$7,772.89</td>
+              <td class="num">$7,800.00</td>
+              <td class="num len-col">未包含在LOP内 ($0)</td>
+              <td class="num len-col">$0.00</td>
+              <td class="num" style="color:#c084fc">-$7,800.00</td>
+              <td class="num pair-calc" data-mo="0.00">$0.00</td>
+              <td class="center"><span class="tag tag-excl">划出 LOP</span></td>
+              <td>📌 <strong>最大单项差异 (-$7,800/月 = -$0.49/双)</strong>：必须加进 BOM 原材料到岸价 (DDP Vegas)！</td>
+            </tr>
+            <tr class="item-row" data-status="same">
+              <td class="center">17</td>
+              <td><code>517000</code></td>
+              <td><strong>装修与已投设备折旧摊销 (Depreciation — 已投 $513,524 按5年60个月摊销)</strong></td>
+              <td class="num">C$242,538.48</td>
+              <td class="num">$14,185.33</td>
+              <td class="num">$8,558.73</td>
+              <td class="num len-col">$8,558.73</td>
+              <td class="num len-col">$102,704.76</td>
+              <td class="num" style="color:#4ade80">$0.00</td>
+              <td class="num pair-calc" data-mo="8558.73">$0.54</td>
+              <td class="center"><span class="tag tag-same">完全一致</span></td>
+              <td>双方一致（注：尚未含新购 DESMA 射出机本体的新增折旧）</td>
+            </tr>
+            <tr class="subtotal-row">
+              <td class="center">—</td>
+              <td><code>SUB_MFG</code></td>
+              <td><strong>【小计二】制造端人工与制造费用合计 (Manufacturing Subtotal)</strong></td>
+              <td class="num">C$635,180.51</td>
+              <td class="num">$37,149.61</td>
+              <td class="num" id="sub-mfg-base">$59,196.73</td>
+              <td class="num len-col" id="sub-mfg-len">$51,396.73</td>
+              <td class="num len-col" id="sub-mfg-len-yr">$616,760.76</td>
+              <td class="num" style="color:#c084fc">-$7,800.00</td>
+              <td class="num" id="sub-mfg-pair">$3.24</td>
+              <td class="center">—</td>
+              <td>其中付现制造费：LEN <strong>$42,838/月 ($2.70/双)</strong> + 折旧 $8,558.73/月 ($0.54/双)</td>
+            </tr>
+
+            <!-- Grand Totals -->
+            <tr class="total-cash-row">
+              <td class="center">★</td>
+              <td><code>TOTAL_CASH</code></td>
+              <td><strong>【总计 - 付现口径】每月付现运营+制造总成本 (Total Monthly Cash LOP)</strong></td>
+              <td class="num">C$972,262.80</td>
+              <td class="num">$56,864.31</td>
+              <td class="num" id="tot-cash-base">$87,432.33</td>
+              <td class="num len-col" id="tot-cash-len">$73,531.33</td>
+              <td class="num len-col" id="tot-cash-len-yr">$882,375.96</td>
+              <td class="num" style="color:#fde047">-$13,901.00</td>
+              <td class="num" id="tot-cash-pair">$4.64</td>
+              <td class="center"><span class="tag tag-cut">-$0.88/双</span></td>
+              <td><strong>LEN 付现 LOP = $4.64/双</strong>（若加回运费报关 $0.51/双 = $5.15/双；我们全包基准 = $5.52/双）</td>
+            </tr>
+            <tr class="total-all-row">
+              <td class="center">★★</td>
+              <td><code>TOTAL_ALL</code></td>
+              <td><strong>【总计 - 含折旧全口径】每月总成本 (Total Monthly Full LOP incl. Dep.)</strong></td>
+              <td class="num">C$1,214,801.28</td>
+              <td class="num">$71,049.64</td>
+              <td class="num" id="tot-all-base">$95,991.06</td>
+              <td class="num len-col" id="tot-all-len">$82,090.06</td>
+              <td class="num len-col" id="tot-all-len-yr">$985,080.72</td>
+              <td class="num" style="color:#fde047">-$13,901.00</td>
+              <td class="num" id="tot-all-pair">$5.18</td>
+              <td class="center"><span class="tag tag-cut">-$0.88/双</span></td>
+              <td><strong>LEN 全口径 LOP = $5.18/双</strong>（若加回运费报关 $0.51/双 = $5.69/双；我们全包基准 = $6.06/双）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3 Key Audit Cards for Boss -->
+    <div class="audit-grid">
+      <div class="audit-card purple">
+        <h3>
+          <span>1. 边界防漏预警：被划出 LOP 的「头程海运与清关费」</span>
+          <span class="tag tag-excl">-$8,000/月 (-$0.51/双)</span>
+        </h3>
+        <p>
+          Len 在 <strong>#11 报关杂费 ($200/月)</strong> 和 <strong>#16 进料海运与美西内陆拖车 ($7,800/月)</strong> 填入 <code>未包含在LOP内</code>。
+          参考加拿大厂 (CF) 实绩，全年进料海运清关高达 <strong>C$13.41万 (US$7,846/月)</strong>。
+        </p>
+        <div class="formula-box">
+          ✅ <strong>Boss 拍板铁律</strong>：允许车间 LOP 不含头程运费（考核 Len 按 $4.64/双 付现 LOP），但<strong>核定美国厂 BOM 材料成本时，印度/印尼开口鞋面与底料必须在 FOB 价上强制加计 +US$0.51/双 的海运清关与 LA→Vegas 拖车费</strong>，严防采购与工厂两头漏算（全年 $96,000 现金成本）！
+        </div>
+      </div>
+
+      <div class="audit-card">
+        <h3>
+          <span>2. 低估纠偏预警：跨国与本地差旅费仅留 $800/月</span>
+          <span class="tag tag-cut">-$2,700/月 (-$0.17/双)</span>
+        </h3>
+        <p>
+          CF 过去 12 个月差旅实绩为 <strong>US$5,946/月</strong>（其中跨国机票 C$8.37万 = US$4,895/月）。Len 将美国厂差旅砍到 <strong>$800/月 ($9,600/年)</strong>，仅够拉斯维加斯本地员工加油与市内跑腿。
+        </p>
+        <div class="formula-box">
+          ⚠️ <strong>Boss 拍板铁律</strong>：引进 DESMA 射出机与拉帮机期间，中国/加拿大工程师赴美装机调试及管理层巡厂机票酒店，<strong>若规定由集团总部承担，则美国厂按 $800/月 执行；若需入美国厂账，建议至少预留 $2,000~$2,500/月 (+$0.10/双)</strong>。
+        </div>
+      </div>
+
+      <div class="audit-card red">
+        <h3>
+          <span>3. 量产盲区预警：108 检测室仪器校正与 ASTM/CSA 认证</span>
+          <span class="tag tag-zero">-$1,600/月 (-$0.10/双)</span>
+        </h3>
+        <p>
+          Len 将 <strong>#5 质量检测与仪器校正 ($1,600/月)</strong> 填为 <code>暂无</code>。但拉斯维加斯厂图纸设有专门的 <strong>108 TESTING ROOM</strong>，拉力机/冲击机/耐折机每年必须请美国第三方计量机构上门外校出证（CF 年花 US$2,555），且安全鞋出货必检 ASTM F2413 / CSA（CF 年花 US$16,188）。
+        </p>
+        <div class="formula-box">
+          🔍 <strong>Boss 拍板铁律</strong>：基建期可暂按 $0，但<strong>一旦正式投产，108 实验室仪器年度外校 ($200/月) 必须在厂内发生；ASTM/CSA 产品认证费 ($1,000~$1,400/月) 需明确归属集团研发账还是美国厂账</strong>。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 1: CF 12-Month Actuals Reference Table -->
+  <div id="view-tab1" class="hidden">
+    <div class="table-card">
+      <div class="table-header">
+        <h2>表 1：加拿大厂 (CF) 2025年8月–2026年7月 实际制造与运营费用明细及月均基准 (`1 USD = 1.42482 CAD`)</h2>
+        <span style="font-size:12.5px;color:#94a3b8;">数据源：CF_Financial_Report (不含直接材料 COGS 501000，仅列制造费用与营业管理费用)</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>大类</th>
+              <th>科目代码</th>
+              <th>科目英文原名</th>
+              <th>中文说明</th>
+              <th class="num">12个月全年累计<br>(CAD/年)</th>
+              <th class="num">CF 月均实绩<br>(CAD/月)</th>
+              <th class="num">CF 月均折算美金<br>(USD/月)</th>
+              <th class="num">占总费用比例</th>
+              <th>费用性质与美国厂对标提示</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="section-row"><td colspan="9">一、營業與行政管理費用 (Operating SG&A — 600000)</td></tr>
+            <tr><td>SG&A</td><td><code>605000</code></td><td>Rental Expenses</td><td>厂房租金与物业费</td><td class="num">C$266,491.56</td><td class="num">C$22,207.63</td><td class="num">$15,586.05</td><td class="num">21.82%</td><td>第一大固定费用；拉斯维加斯2026年实数为 US$18,161/月</td></tr>
+            <tr><td>SG&A</td><td><code>603000</code></td><td>Management Salaries & Benefits</td><td>管理人员薪资福利 (含603101/201/301)</td><td class="num">C$136,327.36</td><td class="num">C$11,360.61</td><td class="num">$7,973.38</td><td class="num">11.16%</td><td>美国厂2名固定管理 @$25/hr 含税约 US$9,750/月</td></tr>
+            <tr><td>SG&A</td><td><code>606000</code></td><td>Non-Sales T&L (Airfare/Hotel/Gas)</td><td>非销售差旅费 (其中机票 C$83,698)</td><td class="num">C$101,663.33</td><td class="num">C$8,471.94</td><td class="num">$5,945.98</td><td class="num">8.32%</td><td>LEN 预估 $800/月（仅含本地交通，不含跨国机票酒店）</td></tr>
+            <tr><td>SG&A</td><td><code>616000</code></td><td>Quality System, Certs & Calibration</td><td>质量认证/ASTM/CSA检测/仪器校正</td><td class="num">C$26,704.58</td><td class="num">C$2,225.38</td><td class="num">$1,561.87</td><td class="num">2.19%</td><td>含产品认证 C$23,064 + 仪器校正 C$3,640</td></tr>
+            <tr><td>SG&A</td><td><code>613000</code></td><td>Administrative I (Audit/Bank/Cleaning)</td><td>行政管理费 (招待/报税/银行/保洁/专业服务)</td><td class="num">C$25,086.67</td><td class="num">C$2,090.56</td><td class="num">$1,467.24</td><td class="num">2.05%</td><td>LEN 预估 $1,000/月</td></tr>
+            <tr><td>SG&A</td><td><code>601000</code></td><td>Marketing, Free Samples & Claims</td><td>市场推广、免费样品与客诉赔付</td><td class="num">C$16,317.75</td><td class="num">C$1,359.81</td><td class="num">$954.38</td><td class="num">1.34%</td><td>LEN 填“暂无”（纯工厂不背销售费用）</td></tr>
+            <tr><td>SG&A</td><td><code>615000</code></td><td>E-Commerce Expenses</td><td>电商运营费 (建站/推广/平台费)</td><td class="num">C$15,010.58</td><td class="num">C$1,250.88</td><td class="num">$877.92</td><td class="num">1.23%</td><td>美国实体工厂不适用 ($0)</td></tr>
+            <tr><td>SG&A</td><td><code>608000</code></td><td>Communication Expenses</td><td>办公室网络与电话费</td><td class="num">C$2,429.74</td><td class="num">C$202.48</td><td class="num">$142.11</td><td class="num">0.20%</td><td>LEN 填入真实账单 US$129.00/月</td></tr>
+            <tr><td>SG&A</td><td><code>604000</code></td><td>Office Expenses</td><td>办公用品、打印与邮寄费</td><td class="num">C$2,202.07</td><td class="num">C$183.51</td><td class="num">$128.79</td><td class="num">0.18%</td><td>双方一致预估 US$150.00/月</td></tr>
+            <tr><td>SG&A</td><td><code>607000</code></td><td>Import & Export / Customs</td><td>进出口报关杂费</td><td class="num">C$1,249.68</td><td class="num">C$104.14</td><td class="num">$73.09</td><td class="num">0.10%</td><td>LEN 标注“未包含在LOP内”</td></tr>
+            <tr><td>SG&A</td><td><code>610000</code></td><td>Repair and Maintenance (Office/Plant)</td><td>厂房与办公区日常修缮</td><td class="num">C$1,148.03</td><td class="num">C$95.67</td><td class="num">$67.14</td><td class="num">0.09%</td><td>LEN 标注“新厂房暂无”</td></tr>
+            <tr><td>SG&A</td><td><code>614101</code></td><td>Depreciation - Office</td><td>办公设备折旧</td><td class="num">-C$8,871.06</td><td class="num">-C$739.26</td><td class="num">-$518.84</td><td class="num">-0.73%</td><td>CF 年末折旧冲回调整</td></tr>
+            <tr class="subtotal-row">
+              <td colspan="4"><strong>【小计一】CF 营业与行政管理费用合计 (600000 SG&A Subtotal)</strong></td>
+              <td class="num">C$585,760.29</td>
+              <td class="num">C$48,813.36</td>
+              <td class="num">$34,259.32</td>
+              <td class="num">47.96%</td>
+              <td>—</td>
+            </tr>
+
+            <tr class="section-row"><td colspan="9">二、製造端人工與製造費用 (Manufacturing Labor & Overhead — 500000 不含直接材料)</td></tr>
+            <tr><td>制造端</td><td><code>503000</code></td><td>Wages & Benefits - Manufacturing</td><td>车间直接人工与福利雇主税 (503101/201/301)</td><td class="num">C$217,887.64</td><td class="num">C$18,157.30</td><td class="num">$12,743.52</td><td class="num">17.84%</td><td>美国厂单班 11 名临时工 @$20.5/hr = US$39,688/月</td></tr>
+            <tr><td>制造端</td><td><code>511101</code></td><td>Freight Charge & Courier</td><td>进料海运与内陆拖车/快递 (含511201)</td><td class="num">C$133,315.57</td><td class="num">C$11,109.63</td><td class="num">$7,797.22</td><td class="num">10.92%</td><td>LEN 标注“未包含在LOP内”，需计入材料到岸价</td></tr>
+            <tr><td>制造端</td><td><code>505000</code></td><td>Electricity Expenses</td><td>生产与车间电费</td><td class="num">C$33,268.31</td><td class="num">C$2,772.36</td><td class="num">$1,945.73</td><td class="num">2.72%</td><td>双方一致预估 US$2,500.00/月</td></tr>
+            <tr><td>制造端</td><td><code>508000</code></td><td>Maintenance Expenses</td><td>生产设备维修保养费</td><td class="num">C$4,565.61</td><td class="num">C$380.47</td><td class="num">$267.02</td><td class="num">0.37%</td><td>双方一致预估 US$350.00/月</td></tr>
+            <tr><td>制造端</td><td><code>509000</code></td><td>Consumables Expenses</td><td>制造用消耗品 (脱模剂/清洗剂等)</td><td class="num">C$4,020.19</td><td class="num">C$335.02</td><td class="num">$235.12</td><td class="num">0.33%</td><td>双方一致预估 US$300.00/月</td></tr>
+            <tr><td>制造端</td><td><code>517000</code></td><td>Depreciation - Manufacturing</td><td>生产设备、模具与装修折旧 (517101~301)</td><td class="num">C$242,538.48</td><td class="num">C$20,211.54</td><td class="num">$14,185.33</td><td class="num">19.86%</td><td>美国厂已投 $513,524 按60个月摊销 = US$8,558.73/月</td></tr>
+            <tr class="subtotal-row">
+              <td colspan="4"><strong>【小计二】CF 制造端人工与制造费用合计 (500000 Mfg Overhead Subtotal)</strong></td>
+              <td class="num">C$635,595.80</td>
+              <td class="num">C$52,966.32</td>
+              <td class="num">$37,174.03</td>
+              <td class="num">52.04%</td>
+              <td>其中付现制造费 US$22,988.71/月 + 折旧 US$14,185.33/月</td>
+            </tr>
+            <tr class="total-cash-row">
+              <td colspan="4"><strong>【CF 付现总计】每月付现运营+制造总费用 (不含折旧)</strong></td>
+              <td class="num">C$987,688.67</td>
+              <td class="num">C$82,307.39</td>
+              <td class="num">$57,766.85</td>
+              <td class="num">80.87%</td>
+              <td>若扣除进料运费 US$7,797/月，纯厂内付现为 US$49,970/月</td>
+            </tr>
+            <tr class="total-all-row">
+              <td colspan="4"><strong>【CF 全口径总计】每月含折旧运营+制造总费用 (All-In)</strong></td>
+              <td class="num">C$1,221,356.09</td>
+              <td class="num">C$101,779.67</td>
+              <td class="num">$71,433.35</td>
+              <td class="num">100.00%</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function switchTab(tab) {
+    document.getElementById('view-tab2').classList.toggle('hidden', tab !== 'tab2');
+    document.getElementById('view-tab1').classList.toggle('hidden', tab !== 'tab1');
+    document.getElementById('filter-box').classList.toggle('hidden', tab !== 'tab2');
+    document.getElementById('tab-btn-2').classList.toggle('active', tab === 'tab2');
+    document.getElementById('tab-btn-1').classList.toggle('active', tab === 'tab1');
+  }
+
+  function filterRows(mode) {
+    ['all', 'diff', 'same', 'excl'].forEach(m => {
+      document.getElementById('flt-' + m).classList.toggle('active-amber', m === mode);
+    });
+    const rows = document.querySelectorAll('#us-table tbody tr.item-row');
+    rows.forEach(r => {
+      const st = r.getAttribute('data-status') || '';
+      if (mode === 'all') {
+        r.classList.remove('hidden');
+      } else {
+        r.classList.toggle('hidden', !st.includes(mode));
+      }
+    });
+  }
+
+  function fmtMoney(n) {
+    return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+
+  function setCapacity(pairs, label, shiftMult) {
+    ['1', '15', '2'].forEach(id => document.getElementById('sh-' + id).classList.remove('active'));
+    if (shiftMult === 1) document.getElementById('sh-1').classList.add('active');
+    if (shiftMult === 1.5) document.getElementById('sh-15').classList.add('active');
+    if (shiftMult === 2) document.getElementById('sh-2').classList.add('active');
+
+    document.getElementById('cap-label').textContent = '当前模拟月产量：' + label;
+
+    // Direct labor scales linearly with shifts ($39,688 * shiftMult)
+    const dlMo = 39688.00 * shiftMult;
+    const dlYr = dlMo * 12;
+    document.getElementById('base-dl').textContent = fmtMoney(dlMo);
+    document.getElementById('len-dl').textContent = fmtMoney(dlMo);
+    document.getElementById('len-dl-yr').textContent = fmtMoney(dlYr);
+    document.getElementById('dl-pair').textContent = '$' + (dlMo / pairs).toFixed(2);
+
+    // Fixed SG&A & other Mfg items
+    document.querySelectorAll('.pair-calc').forEach(td => {
+      const mo = parseFloat(td.getAttribute('data-mo') || '0');
+      td.textContent = '$' + (mo / pairs).toFixed(2);
+    });
+
+    const sgaLen = 30693.33;
+    const sgaBase = 36794.33;
+    const otherMfgCashLen = 2500 + 350 + 300; // 3150
+    const otherMfgCashBase = 3150 + 7800; // 10950
+    const dep = 8558.73;
+
+    const mfgLen = dlMo + otherMfgCashLen + dep;
+    const mfgBase = dlMo + otherMfgCashBase + dep;
+    document.getElementById('sub-mfg-base').textContent = fmtMoney(mfgBase);
+    document.getElementById('sub-mfg-len').textContent = fmtMoney(mfgLen);
+    document.getElementById('sub-mfg-len-yr').textContent = fmtMoney(mfgLen * 12);
+    document.getElementById('sub-mfg-pair').textContent = '$' + (mfgLen / pairs).toFixed(2);
+
+    const totCashLen = sgaLen + dlMo + otherMfgCashLen;
+    const totCashBase = sgaBase + dlMo + otherMfgCashBase;
+    const totAllLen = totCashLen + dep;
+    const totAllBase = totCashBase + dep;
+
+    document.getElementById('tot-cash-base').textContent = fmtMoney(totCashBase);
+    document.getElementById('tot-cash-len').textContent = fmtMoney(totCashLen);
+    document.getElementById('tot-cash-len-yr').textContent = fmtMoney(totCashLen * 12);
+    document.getElementById('tot-cash-pair').textContent = '$' + (totCashLen / pairs).toFixed(2);
+
+    document.getElementById('tot-all-base').textContent = fmtMoney(totAllBase);
+    document.getElementById('tot-all-len').textContent = fmtMoney(totAllLen);
+    document.getElementById('tot-all-len-yr').textContent = fmtMoney(totAllLen * 12);
+    document.getElementById('tot-all-pair').textContent = '$' + (totAllLen / pairs).toFixed(2);
+
+    // Update top KPI cards
+    document.getElementById('kpi-len-cash').innerHTML = fmtMoney(totCashLen) + ' <span style="font-size:15px;font-weight:500;color:#cbd5e1">/月</span>';
+    document.getElementById('kpi-len-cash-pair').textContent = '单双付现 LOP：US$' + (totCashLen / pairs).toFixed(2) + ' / 双 (' + label + ')';
+    document.getElementById('kpi-len-full').innerHTML = fmtMoney(totAllLen) + ' <span style="font-size:15px;font-weight:500;color:#cbd5e1">/月</span>';
+    document.getElementById('kpi-len-full-pair').textContent = '单双全口径 LOP：US$' + (totAllLen / pairs).toFixed(2) + ' / 双 (' + label + ')';
+    document.getElementById('kpi-base-pair').textContent = '单双全口径：$' + (totAllBase / pairs).toFixed(2) + ' / 双（付现 $' + (totCashBase / pairs).toFixed(2) + ' / 双）';
+    document.getElementById('kpi-diff-pair').textContent = '单双差额：-$' + ((totAllBase - totAllLen) / pairs).toFixed(2) + ' / 双';
+  }
+</script>
+</body>
+</html>
