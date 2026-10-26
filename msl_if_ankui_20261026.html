@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MSL × IF (印尼 U0088) 安库全貌与二级水位直观看板</title>
+  <title>MSL × IF (印尼 U0088 × U0042) 三表全貌对账与二级安库决策看板</title>
   <style>
     :root {
       --bg: #f1f5f9;
@@ -36,7 +36,7 @@
       background: linear-gradient(135deg, #0f2942 0%, #1e3a5f 100%);
       color: #fff;
       padding: 26px 32px 22px;
-      border-bottom: 4px solid #3b82f6;
+      border-bottom: 4px solid #10b981;
     }
     header h1 {
       margin: 0 0 8px;
@@ -46,7 +46,7 @@
     header .sub {
       color: #cbd5e1;
       font-size: 14px;
-      max-width: 1150px;
+      max-width: 1220px;
     }
     .tag-row {
       display: flex;
@@ -63,17 +63,16 @@
       font-size: 12.5px;
       font-weight: 600;
     }
-    .h-tag.ok { background: rgba(16,185,129,0.25); border-color: #34d399; color: #a7f3d0; }
+    .h-tag.ok { background: rgba(16,185,129,0.28); border-color: #34d399; color: #a7f3d0; }
     .h-tag.warn { background: rgba(245,158,11,0.25); border-color: #fbbf24; color: #fde68a; }
     .h-tag.danger { background: rgba(239,68,68,0.28); border-color: #f87171; color: #fecaca; }
 
     main {
-      max-width: 1440px;
+      max-width: 1460px;
       margin: 0 auto;
       padding: 22px 26px 56px;
     }
 
-    /* Section Card */
     .card {
       background: var(--card);
       border: 1px solid var(--line);
@@ -100,7 +99,6 @@
     }
     .card-body { padding: 18px 20px; }
 
-    /* Pills */
     .pill {
       display: inline-block;
       padding: 3px 10px;
@@ -115,7 +113,6 @@
     .pill.blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
     .pill.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid #ddd6fe; }
 
-    /* Top Answer Box */
     .verdict-box {
       background: linear-gradient(90deg, #ecfdf5 0%, #eff6ff 100%);
       border: 2px solid #10b981;
@@ -136,15 +133,14 @@
       margin-top: 12px;
     }
     .v-item {
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.92);
       border: 1px solid #cbd5e1;
       border-radius: 8px;
-      padding: 12px 14px;
+      padding: 13px 15px;
       font-size: 13.5px;
     }
     .v-item strong { color: var(--navy); }
 
-    /* KPI Strip */
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -166,10 +162,9 @@
     .kpi .val { font-size: 24px; font-weight: 800; margin: 4px 0; color: var(--ink); font-variant-numeric: tabular-nums; }
     .kpi .desc { font-size: 12px; color: var(--sub); line-height: 1.4; }
 
-    /* Flow Diagram */
     .flow-grid {
       display: grid;
-      grid-template-columns: 1fr 60px 1fr 60px 1fr;
+      grid-template-columns: 1.15fr 54px 1.25fr 54px 1.15fr;
       align-items: stretch;
       gap: 8px;
     }
@@ -180,7 +175,7 @@
       background: #f8fafc;
     }
     .flow-step.if-box { border-color: #3b82f6; background: #eff6ff; }
-    .flow-step.msl-box { border-color: #10b981; background: #ecfdf5; }
+    .flow-step.split-box { border-color: #10b981; background: #ecfdf5; }
     .flow-step.cust-box { border-color: #8b5cf6; background: #f5f3ff; }
     .flow-arrow {
       display: flex;
@@ -193,7 +188,6 @@
     }
     .flow-arrow span { font-size: 11px; color: var(--muted); text-align: center; font-weight: 600; }
 
-    /* Two-column comparison */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -211,7 +205,6 @@
     .compare-box ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--sub); }
     .compare-box li { margin-bottom: 6px; }
 
-    /* Tables */
     .table-wrap { overflow-x: auto; }
     table {
       width: 100%;
@@ -219,7 +212,7 @@
       font-size: 13px;
     }
     th, td {
-      padding: 10px 10px;
+      padding: 9px 10px;
       border-bottom: 1px solid var(--line);
       vertical-align: middle;
     }
@@ -234,6 +227,7 @@
     tr:nth-child(even) td { background: #f8fafc; }
     tr.highlight-red td { background: #fef2f2 !important; }
     tr.highlight-amber td { background: #fffbeb !important; }
+    tr.highlight-blue td { background: #eff6ff !important; }
     tr.total-row td {
       background: #e2e8f0 !important;
       font-weight: 800;
@@ -241,18 +235,6 @@
       border-bottom: 2px solid #0f172a;
     }
 
-    /* Bar visual */
-    .bar-track {
-      width: 100%;
-      height: 10px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
-      margin-top: 4px;
-    }
-    .bar-fill { height: 100%; border-radius: 999px; }
-
-    /* Filter tabs */
     .filter-bar {
       display: flex;
       gap: 8px;
@@ -283,158 +265,166 @@
 </head>
 <body>
   <header>
-    <h1>KPR 印尼本地业务（IF 工厂 × MSL 贸易 · U0088）安库直观决策看板</h1>
+    <h1>KPR 印尼本地业务（IF 工厂 × Dunia U0042 × MSL U0088）三表全貌与安库决策看板</h1>
     <div class="sub">
-      数据范围：2026年1月1日 – 10月20日 ｜ 仓库数据来源：<strong>IF 印尼工厂系统 (PT King Power Safety · IFERP)</strong> ｜ 销售数据来源：<strong>MSL 印尼贸易系统 (PT Midland Sun Lixia)</strong>
+      三表完整闭环（2026年1–10月）：① <strong>IF 仓库进出存日报表 (IFERP)</strong> × ② <strong>IF 销售月统计表 (66,999 Dunia + 29,654 MSL + 1,300纸箱)</strong> × ③ <strong>MSL 终端销售月表 (29,461双 + 1,300纸箱)</strong>
     </div>
     <div class="tag-row">
-      <span class="h-tag ok">核心结论：数据分属 IF 与 MSL 不仅未推翻结论，反而 100% 验证了【二级解耦安库】方向</span>
-      <span class="h-tag danger">IF 仓库现状：U0088 成品库存 10,588 双中，77%（8,154双）积压在慢销款，主力 SP 仅剩 2,434 双</span>
-      <span class="h-tag warn">两系统差额：IF 出库 35,991 双 vs MSL 销售 29,461 双（差额 6,530 双已逐款查明）</span>
+      <span class="h-tag ok">拼图 100% 严丝合缝：IF 仓库出库 96,653 双 ＝ IF 销售 96,653 双（29个款型逐款 0 误差！）</span>
+      <span class="h-tag warn">6,530 双差额真相大白：6,337 双系 Dunia (U0042) 直接采购了 -U0088 款型，MSL 自身仅留存 193 双！</span>
+      <span class="h-tag danger">关键修正：805/S-EH 因 Dunia 近3月月提 1,387 双上调为主力常备款；真正趴窝死库存实锤为 6,449 双 (60.9%)</span>
     </div>
   </header>
 
   <main>
-    <!-- 0. Boss 关心的问题：IF 仓库 vs MSL 销售分属两套系统，会影响方向吗？ -->
+    <!-- 0. 拼图补齐后的三大核心发现与认知修正 -->
     <div class="verdict-box">
-      <div class="verdict-title">💡 先回答 Boss 的核心关切：仓库数据来自 IF、销售数据来自 MSL，会影响我们的安库方向吗？</div>
+      <div class="verdict-title">🎯 补齐《IF 销售月统计表》后的全貌真相：此前认知 vs. 最新修正（零盲区对账）</div>
       <div style="font-size:14px; color:#1e293b;">
-        <strong>完全不会让分析失效，反而解开了之前最大的谜团，并让安库方向更加笃定！原因有 3 条：</strong>
+        <strong>拿到 Boss 给的第 3 张表《IF 销售月统计》后，IF 仓库、IF 销售、MSL 销售三张表实现 100.0% 闭环，不仅解开了 <code>+6,530 双</code> 的全部去向，还直接修正了 2 项关键水位参数：</strong>
       </div>
       <div class="verdict-grid">
         <div class="v-item">
-          <strong>1. 物理上，IF 就是 MSL 的唯一成品仓与鞋面仓</strong><br>
-          按清华《MSL运作解说》，MSL 接单后直接录入 <code>IFERP</code>，由 PMC 查 <strong>IF 的 U0088 成品库存（10,588双）</strong> 和 <strong>IF 的共享鞋面池</strong> 来排产发货。因此 MSL 的安全库存物理上就是设在 IF 工厂仓内。
+          <strong>1. 解开 <code>+6,530 双</code> 差额：97% 是 Dunia 直接提走了 <code>-U0088</code> 的鞋！</strong><br>
+          • <strong>此前我以为</strong>：<code>-U0088</code> 后缀只卖给 MSL，误以为多出的 <code>6,530 双</code> 压在 MSL 仓或漏记。<br>
+          • <strong>拿到 IF 销售表后才知</strong>：IF 出库的 <code>35,991 双 -U0088</code> 成品中，<strong>有 <code>6,337 双</code> 是 IF 直接卖给了合资伙伴 <code>PT Dunia Saftindo (U0042)</code></strong>（含 <code>805/S-EH 5,114双</code>、<code>805/S-SP 1,218双</code>、<code>M8 5双</code>），卖给 MSL 的是 <code>29,654 双</code>；而 MSL 终端卖出 <code>29,461 双</code>，<strong>MSL 手里实际仅留存 <code>193 双</code>（几乎零库存过单即发）</strong>！
         </div>
         <div class="v-item">
-          <strong>2. 无论按 IF 出库还是按 MSL 销售，二八分化与错配完全一致</strong><br>
-          两款主力 <code>805/S-SP</code> 与 <code>026/3-SP</code> 在 MSL 销售占 <strong>85.4%</strong>（25,148双），在 IF 出库也占 <strong>73.7%</strong>（26,524双），但 IF 仓里加起来只剩 <strong>2,434双（不到1个月）</strong>；而 <code>M8</code>（2,549双）和 <code>807/8-SP</code>（1,212双）在两套系统里都是零头（≤45双），100% 证实是盲目注塑造成的死库存。
+          <strong>2. 重大修正：<code>L8-805/S-EH</code> 不是死库存，而是 Dunia 主力提货款！</strong><br>
+          • <strong>此前误判</strong>：只看 MSL 卖了 151 双，误判 IF 仓 <code>1,705 双 805/S-EH</code> 是“够卖 113 个月的死库存”。<br>
+          • <strong>真相与修正</strong>：Dunia 在 3月(54)、6月(900)、<strong>8月(1,150)、9月(1,150)、10月上半月(1,860)</strong> 持续大批量提走 <code>805/S-EH</code>（近3个月均提 <strong>1,387 双/月</strong>）！因此 IF 仓现有的 <code>1,705 双</code> 仅够 Dunia <strong>1.2 个月</strong> 周转，立即从“B类超储”<strong>上调为【A2类：Dunia 跨号主力款】（目标水位 1,500 双，当前 1,705 双属健康绿区）</strong>！
         </div>
         <div class="v-item">
-          <strong>3. 彻底解开 6,530 双差额（尤其 805/S-EH 的 5,114 双）</strong><br>
-          此前我误把 File 1 当作“尊荣同系统出货”；经 Boss 点醒 File 1 是 <strong>IF 出库</strong>、File 2 是 <strong>MSL 销售</strong> 后，真相大白：IF 出库单价恰等于 MSL 表里的「采购单价」（如 22.2万/24.7万 IDR）。多出的 <code>5,114双 805/S-EH</code> 要么已从 IF 调拨进 MSL 仓尚未售出，要么在 IF 直接被其他渠道提走——无论哪种，IF 仓里还躺着 <code>1,705双</code>，都必须立即锁死无单注塑！
+          <strong>3. 上游 <code>U6700020 (805/S)</code> 鞋面池上调至 5,700 双；真积压锁定 6,449 双</strong><br>
+          • <strong>鞋面池修正</strong>：因 Dunia 额外消耗了 <code>6,332 双</code> <code>805/S</code> 鞋面，IF 全口径 1–10 月实耗 <code>U6700020</code> 达 <strong>19,560 双（月均 1,956 双）</strong>，故将 <code>U6700020</code> 目标池从 4,500 双<strong>上调至 5,700 双</strong>，防双渠道抢料断货。<br>
+          • <strong>真积压坐实</strong>：哪怕算上 Dunia，<code>026/3-EH</code>（库存 2,548 双，近4月仅出2双）、<code>807/8-SP</code>（库存 1,212 双 + 鞋面 3,884 双，10月仅出3双）、<code>M8+样品</code>（库存 2,689 双）依然是 <strong>100% 实锤的 6,449 双超储死库存</strong>！
         </div>
       </div>
     </div>
 
-    <!-- 1. 一张图看懂 IF 与 MSL 的数据链路 -->
+    <!-- 1. 三表完整闭环流向图 -->
     <div class="card">
       <div class="card-head">
-        <h2>一、一图看懂：IF 印尼工厂 (PT KPS) vs. MSL 贸易公司的数据与实物链路</h2>
-        <span class="pill blue">为什么两张表一个是 35,991 双、一个是 29,461 双？</span>
+        <h2>一、一图看懂三表完整拼图：IF 仓库 (表1) ➜ IF 销售分流 (表2) ➜ MSL 终端销售 (表3)</h2>
+        <span class="pill green">96,653 双成品鞋 + 1,300 个纸箱 ＝ 97,953 笔笔严丝合缝</span>
       </div>
       <div class="card-body">
         <div class="flow-grid">
           <div class="flow-step if-box">
-            <div style="font-weight:800; font-size:15px; color:#1e3a8a; margin-bottom:6px;">🏭 第一环：IF 印尼工厂 (PT King Power Safety)</div>
+            <div style="font-weight:800; font-size:15px; color:#1e3a8a; margin-bottom:6px;">🏭 表1：IF 工厂仓库进出存日报表 (IFERP)</div>
             <div style="font-size:13px; color:#334155;">
-              • 系统：<strong>IFERP</strong>（套用尊荣ERP模板，故表头显示“尊荣日报表”，币别为 IDR）<br>
-              • 产能：<strong>2 台 DESMA 注塑机</strong>，共用 BASF PU 原液<br>
-              • 两大平行的渠道后缀：<br>
-              &nbsp;&nbsp;① <code>-U0042</code>（Dunia 印尼合资伙伴渠道）：1-10月出库 <strong>60,662 双</strong>，期末仅剩 <strong>781 双</strong>（周转极快，且使用独立鞋面 <code>805/K</code>、<code>026/2</code> 等，<strong>不抢 U0088 鞋面</strong>）。<br>
-              &nbsp;&nbsp;② <code>-U0088</code>（<strong>MSL 专属备货渠道</strong>）：期初推算 <strong>8,086 双</strong> ＋ 1-10月生产入库 <strong>38,493 双</strong> － 1-10月 IF 出库 <strong>35,991 双</strong> ＝ 当前 IF 期末库存 <strong>10,588 双</strong>（占 IF 全厂库存 <strong>93.1%</strong>！）。
+              • <strong>全厂 1–10 月总入库</strong>：<strong>99,841 双</strong>（<code>U0042</code>款 61,348 + <code>U0088</code>款 38,493）<br>
+              • <strong>全厂 1–10 月总出库</strong>：<strong>96,653 双</strong>（<code>U0042</code>款 60,662 + <code>U0088</code>款 35,991）<br>
+              • <strong>全厂 10/20 期末库存</strong>：<strong>11,369 双</strong>：<br>
+              &nbsp;&nbsp;① <code>-U0042</code> 后缀（11款）：期末仅 <strong>781 双 (6.9%)</strong>，随产随清；<br>
+              &nbsp;&nbsp;② <code>-U0088</code> 后缀（16款）：期末高达 <strong>10,588 双 (93.1%)</strong>！
             </div>
           </div>
           <div class="flow-arrow">
             ➜
-            <span>IF 出库给 MSL<br><strong>35,991 双</strong><br>(内部转移采购价)</span>
+            <span>100% 吻合<br><strong>96,653 双</strong><br>(+1,300纸箱)</span>
           </div>
-          <div class="flow-step msl-box">
-            <div style="font-weight:800; font-size:15px; color:#065f46; margin-bottom:6px;">🏢 第二环：两系统之间的 6,530 双差额去向</div>
+          <div class="flow-step split-box">
+            <div style="font-weight:800; font-size:15px; color:#065f46; margin-bottom:6px;">🔀 表2：IF 销售月统计表（揭晓两大客户真实提货）</div>
             <div style="font-size:13px; color:#334155;">
-              • <strong>IF 工厂出库 (35,991双) － MSL 终端销售 (29,461双) ＝ +6,530 双</strong><br>
-              • 98.2% 的差额集中在两款：<br>
-              &nbsp;&nbsp;① <code>L8-805/S-EH</code>（<strong>+5,114 双</strong>）：IF 出库 5,265 双（均价 24.63万 IDR，对应7月调价后 24.7万内部采购价），但 MSL 月表仅售出 151 双。这 5,114 双系 6月底排产 3,600 双后<strong>从 IF 提货转入 MSL 侧待售/专案直发</strong>。<br>
-              &nbsp;&nbsp;② <code>L8-805/S-SP</code>（<strong>+1,299 双</strong>）：IF 出库 14,248 双 vs MSL 销售 12,949 双，系跨月订单提货未结转尾差。<br>
-              &nbsp;&nbsp;③ <code>L8-026/3-EH</code>（<strong>差额 0 双</strong>）：IF 出库与 MSL 销售均为 <strong>4,122 双</strong>，100% 吻合！
+              • <strong>流向一：售予 <code>PT Dunia Saftindo (U0042)</code> 共 66,999 双</strong><br>
+              &nbsp;&nbsp;├─ 提走 <code>-U0042</code> 专属款：<strong>60,662 双</strong>（100% 吻合表1）<br>
+              &nbsp;&nbsp;└─ <strong>跨号提走 <code>-U0088</code> 款：<code>6,337 双</code></strong>（<code>805/S-EH</code> <strong>5,114双</strong> + <code>805/S-SP</code> <strong>1,218双</strong> + <code>M8</code> <strong>5双</strong>）！<br>
+              • <strong>流向二：售予 <code>MSL (U0088)</code> 共 29,654 双鞋 + 1,300 纸箱</strong><br>
+              &nbsp;&nbsp;└─ <code>35,991 (表1 U0088总出库) ＝ 6,337 (售Dunia) ＋ 29,654 (售MSL)</code>！
             </div>
           </div>
           <div class="flow-arrow">
             ➜
-            <span>MSL 终端开票<br><strong>29,461 双</strong><br>(+1,300个鞋盒)</span>
+            <span>MSL 仅留存<br><strong>193 双</strong><br>(过单即发)</span>
           </div>
           <div class="flow-step cust-box">
-            <div style="font-weight:800; font-size:15px; color:#5b21b6; margin-bottom:6px;">👷 第三环：MSL 终端客户销售 (在印中资企业/分销商)</div>
+            <div style="font-weight:800; font-size:15px; color:#5b21b6; margin-bottom:6px;">👷 表3：MSL 销售月统计表（售予终端中资客户）</div>
             <div style="font-size:13px; color:#334155;">
-              • 系统：<strong>MSL 销售月统计表</strong>（含销售单价 + 对应 IF 采购单价）<br>
-              • <strong>前 2 大客户垄断 85.3% 销量</strong>：<br>
-              &nbsp;&nbsp;① <strong>金牛 ARCHINOVA (IT0038)</strong>：<strong>13,425 双 (45.6%)</strong>，7月脉冲大单 7,546 双，8-10月稳定月提 623~653 双（主提两款 SP）。<br>
-              &nbsp;&nbsp;② <strong>COYE 陶总 (IT0007)</strong>：<strong>11,718 双 (39.8%)</strong>，典型项目大单脉冲（4月提 SP 6,082双，6月提 026/3-EH 4,045双，8月提 1,300双）。<br>
-              &nbsp;&nbsp;③ <strong>断崖预警</strong>：LEEMI (2,850双) 5-10月连续6个月为0；亚铝 (620双) 6-10月连续5个月为0。
+              • <strong>MSL 终端总销量</strong>：<strong>29,461 双鞋 + 1,300 个纸箱</strong><br>
+              • <strong>MSL 进销净留存仅 <code>193 双</code>（<code>29,654 - 29,461</code>）</strong>：<br>
+              &nbsp;&nbsp;├─ <code>L8-805/S-SP</code>：IF 售 MSL 13,030 − MSL 售出 12,949 ＝ <strong>81 双</strong><br>
+              &nbsp;&nbsp;├─ <code>L8-026/3-SP</code>：IF 售 MSL 12,276 − MSL 售出 12,199 ＝ <strong>77 双</strong><br>
+              &nbsp;&nbsp;├─ <code>L8-026/3-EH</code> (4,122) & <code>805/S-EH</code> (151)：进销差均为 <strong>0 双</strong>！<br>
+              &nbsp;&nbsp;└─ <code>M8</code> 与 7款样品：MSL 手头样品留存 <strong>35 双</strong>（13+22）。
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 2. 核心KPI卡片 -->
+    <!-- 2. 核心KPI卡片（修正后） -->
     <div class="kpi-grid">
       <div class="kpi red">
         <div class="label">IF 仓 U0088 当前成品总库存</div>
         <div class="val">10,588 <span style="font-size:14px">双</span></div>
-        <div class="desc">占 IF 全厂库存 (11,369双) 的 <strong>93.1%</strong>；但结构完全倒挂！</div>
-      </div>
-      <div class="kpi red">
-        <div class="label">B/C类慢销与呆滞成品积压</div>
-        <div class="val">8,154 <span style="font-size:14px">双 (77%)</span></div>
-        <div class="desc"><code>026/3-EH</code> 2,548 + <code>M8</code> 2,549 + <code>805/S-EH</code> 1,705 + <code>807/8</code> 1,212 + 样品 140</div>
+        <div class="desc">占 IF 全厂库存 (11,369双) 的 <strong>93.1%</strong>（MSL 自身仅留存 193 双）</div>
       </div>
       <div class="kpi amber">
-        <div class="label">A类主力款 (占销量85%) 剩余库存</div>
-        <div class="val">2,434 <span style="font-size:14px">双 (23%)</span></div>
-        <div class="desc"><code>805/S-SP</code> 仅剩 <strong>958双</strong>（跌破最低红线！）<br><code>026/3-SP</code> 剩 <strong>1,476双</strong>（逼近起订点）</div>
+        <div class="label">A类主力款 (3款占总出货88.3%) 库存</div>
+        <div class="val">4,139 <span style="font-size:14px">双 (39.1%)</span></div>
+        <div class="desc"><code>805/S-SP</code> <strong>958双(缺货!)</strong> ｜ <code>026/3-SP</code> <strong>1,476双(临界)</strong> ｜ <code>805/S-EH</code> <strong>1,705双(Dunia正常周转)</strong></div>
+      </div>
+      <div class="kpi red">
+        <div class="label">实锤超储与死库存 (B/C类 13款)</div>
+        <div class="val">6,449 <span style="font-size:14px">双 (60.9%)</span></div>
+        <div class="desc"><code>026/3-EH</code> <strong>2,548双</strong> + <code>M8全系</code> <strong>2,549双</strong> + <code>807/8</code> <strong>1,212双</strong> + 样品 <strong>140双</strong></div>
       </div>
       <div class="kpi purple">
         <div class="label">第一层：上游 IF 共享鞋面池目标</div>
-        <div class="val">8,900 <span style="font-size:14px">双鞋面</span></div>
-        <div class="desc"><code>U6700020 (805/S)</code> 目标 <strong>4,500双</strong><br><code>U2100002 (026/3)</code> 目标 <strong>4,200双</strong></div>
+        <div class="val">10,100 <span style="font-size:14px">双鞋面</span></div>
+        <div class="desc"><code>U6700020 (805/S)</code> 上调至 <strong>5,700双</strong>（含Dunia需求）<br><code>U2100002 (026/3)</code> 保持 <strong>4,200双</strong></div>
       </div>
       <div class="kpi green">
         <div class="label">第二层：下游 IF 成品标准安库</div>
-        <div class="val">4,750 <span style="font-size:14px">双成品</span></div>
-        <div class="desc">较当前 10,588 双<strong>压降 55.1% 资金占用</strong>，同时消灭主力款断货！</div>
+        <div class="val">5,900 <span style="font-size:14px">双成品</span></div>
+        <div class="desc">较当前 10,588 双<strong>净压降 44.3%（释放 4,688 双资金）</strong>，且双渠道不断货！</div>
       </div>
     </div>
 
-    <!-- 3. 症结诊断：旧做法 vs 新二级解耦模型 -->
+    <!-- 3. 深度诊断：跨号提货与价格观察 + 二级解耦方案 -->
     <div class="card">
       <div class="card-head">
-        <h2>二、一眼看懂核心矛盾：为什么不能再按“所有款 1.5 倍月均”备成品？</h2>
-        <span class="pill red">痛点诊断与解法对比</span>
+        <h2>二、全貌诊断：从三表交叉发现的「双渠道抢料风险」与「二级解耦安库法」</h2>
+        <span class="pill blue">业务洞察与管控升级</span>
       </div>
       <div class="card-body">
         <div class="grid-2">
           <div class="compare-box bad">
-            <h3>❌ 过去做法的三大陷阱（导致 8,154 双积压、主力款却缺货）</h3>
+            <h3>⚠️ 三表交叉揭示的 3 个关键实操风险（必须建立规则拦截）</h3>
             <ul>
-              <li><strong>陷阱 1：把黄金“共享鞋面”过早注塑成慢销成品！</strong><br>
-                <code>805/S (U6700020)</code> 和 <code>026/3 (U2100002)</code> 是 <strong>1对4 通用鞋面</strong>（同一个鞋面既能打 SP，也能打 EH 和 M8，注塑仅需约 3 天）。但 6–10 月工厂在没有客户订单的情况下，把好鞋面注塑成了 <code>M8</code>（积压 2,549 双）、<code>026/3-EH</code>（积压 2,548 双）、<code>805/S-EH</code>（积压 1,705 双），反而把最畅销的 <code>805/S-SP</code> 饿到只剩 <strong>958 双</strong>！</li>
-              <li><strong>陷阱 2：项目脉冲大单严重扭曲“算术月均”！</strong><br>
-                例如 <code>L8-026/3-EH</code> 全年 4,122 双销量里，<strong>4,045 双（98.1%）是 6 月 COYE 陶总一笔项目大单</strong>，平时 9 个月一共只卖了 77 双（月均 8.5 双）。如果机械按“10个月均销 412双 × 1.5”设成品安库，就会常备 600~3,000 双卖不动的 EH 成品。</li>
-              <li><strong>陷阱 3：成品仓没有“最高水位封顶闸门”！</strong><br>
-                6月底 <code>L8-807/8-SP</code> 累计销量为 0，却排产 5,000 双（已入库 1,216 双，至今仅出 3 双样品，1,212 双躺在 IF 仓）。</li>
+              <li><strong>风险 1：Dunia 与 MSL 共抢 <code>-U0088</code> 库存与 <code>U6700020</code> 鞋面！</strong><br>
+                1–3月 Dunia 从 <code>-U0088</code> 提走 <code>1,218 双 L8-805/S-SP</code>；6月、8–10月又连续提走 <code>5,114 双 L8-805/S-EH</code>（仅10月上半月就提了 1,860 双）。如果 PMC 只看 MSL 报表设安库，Dunia 一来大单就会把共享鞋面 <code>U6700020</code> 抽干，导致 <code>L8-805/S-SP</code> 断货（目前仅剩 958 双就是明证）！</li>
+              <li><strong>风险 2：真正无单盲目注塑的 3 大重灾区（共积压 6,449 双成品 + 3,884 双鞋面）</strong><br>
+                ① <code>L8-026/3-EH</code>：5月为 COYE 大单（4,045双）集中生产 6,670 双，多打了 <strong>2,548 双</strong>，7–10月双渠道合计仅出 2 双；<br>
+                ② <code>L8-807/8-SP</code>：6月到货 5,100 双鞋面，无订单先注塑 1,216 双（双渠道仅卖 3 双），<strong>1,212 双成品 + 3,884 双鞋面</strong> 全部趴窝；<br>
+                ③ <code>M8</code> 4款与样品：双渠道 10 个月仅卖 77 双，却注塑积压了 <strong>2,689 双</strong>。</li>
+              <li><strong>风险 3：跨渠道结算单价观察（供 Boss 与财务/业务关注）</strong><br>
+                7月调价后 IF 售予 MSL 的 <code>L8-805/S-SP</code> 内部价为 <strong>247,000 IDR</strong>；但 9–10月 IF 直接售予 Dunia 的 <code>3,010 双 L8-805/S-EH</code> 单价为 <strong>240,000 IDR</strong>（低于 8月的 257,300 IDR 及 MSL 的 247,000 IDR）。</li>
             </ul>
           </div>
           <div class="compare-box good">
-            <h3>✅ 新方案：【二级解耦安库模型】（重上游共享鞋面池 · 轻下游慢销成品）</h3>
+            <h3>✅ 修正后的【二级解耦安库方案】（统筹 MSL + Dunia 全口径需求）</h3>
             <ul>
-              <li><strong>第一级（上游）：在 IF 设立【共享鞋面安全库存池（3个月 = 8,900双）】</strong><br>
-                因为鞋面采购前置期长达 <strong>2 个月</strong>，而鞋面在 IF 上机注塑成成品仅需 <strong>约 3 天</strong>。把安全缓冲留在通用的 <code>U6700020 (805/S)</code> 和 <code>U2100002 (026/3)</code> 鞋面上，不管是金牛日常补单还是 COYE 突发大单，都能随时调拨注塑！</li>
-              <li><strong>第二级（下游）：IF 成品按 A / B / C 三级严控水位（总目标 4,750 双）</strong><br>
-                • <strong>A 类（2款主力 SP）</strong>：占销量 85.4%，设常备成品安库（<code>805/S-SP</code> 目标 <strong>2,000双</strong>、<code>026/3-SP</code> 目标 <strong>1,850双</strong>），满足日常秒发。<br>
-                • <strong>B 类（3款脉冲/专案 EH & 807）</strong>：只设小额样品/底线缓冲（合计 <strong>900双</strong>），大单来了直接从第一级“共享鞋面池”领料 3 天注塑！当前超储的 <strong>4,565 双</strong> 立即锁死排产、优先清库。<br>
-                • <strong>C 类（11款 M8 及样品）</strong>：成品安库一律设为 <strong>0 双（100% 凭正式锁单生产 MTO）</strong>，全力消化现有 <strong>2,689 双</strong> 死库存。</li>
+              <li><strong>第一级（上游）：IF 共享鞋面安全库存池上调至 <code>10,100 双</code>（3个月全口径）</strong><br>
+                • <strong><code>U6700020 (805/S)</code></strong>：统筹 MSL 的 SP 需求（1,300/月）+ Dunia 的 EH 需求（600~1,300/月），按 <strong>1,900 双/月</strong> 设池：最低 <code>3,800</code> / 起订点 <code>4,750</code> / 目标 <strong><code>5,700 双</code></strong> / 最高 <code>7,600 双</code>。<br>
+                • <strong><code>U2100002 (026/3)</code></strong>：Dunia 不提此款，按 MSL <strong>1,400 双/月</strong> 设池：最低 <code>2,800</code> / 起订点 <code>3,500</code> / 目标 <strong><code>4,200 双</code></strong> / 最高 <code>5,600 双</code>。</li>
+              <li><strong>第二级（下游）：IF 成品按 A1 / A2 / B / C 精准设水位（总目标 <code>5,900 双</code>）</strong><br>
+                • <strong>A1 类（MSL 2款日常主力 SP）</strong>：<code>805/S-SP</code> 目标 <strong>2,000双</strong>（现 958 双，立即补产 2 批 = 1,042 双）；<code>026/3-SP</code> 目标 <strong>1,850双</strong>（现 1,476 双，补产 1 批 = 500 双）。<br>
+                • <strong>A2 类（Dunia 跨号主力 <code>L8-805/S-EH</code>）</strong>：目标 <strong>1,500双</strong> / 最高 <strong>2,000双</strong>（现 1,705 双处于健康绿区，跌破 1,200 双起订点再补）。<br>
+                • <strong>B 类（脉冲 <code>026/3-EH</code> & <code>807/8-SP</code>）</strong>：合计封顶 <strong>550~800 双</strong>，严禁无单注塑，全力消化现有 <code>3,760 双</code> 超储。<br>
+                • <strong>C 类（11款 M8 及样品）</strong>：<strong>0 安库（100% 凭锁单 MTO）</strong>，消化现有 <code>2,689 双</code> 呆滞。</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 4. 第一级：上游共享鞋面池五段水位表 -->
+    <!-- 4. 第一级：上游共享鞋面池五段水位表（含 Dunia 全口径修正） -->
     <div class="card">
       <div class="card-head">
-        <h2>三、【第一级缓冲】上游 IF 共享鞋面安全库存池（五段标准水位设定表）</h2>
-        <span class="pill purple">鞋面前置期 = 2 个月 ｜ 缓冲池目标 = 3 个月总需求 (8,900 双)</span>
+        <h2>三、【第一级缓冲】上游 IF 共享鞋面安全库存池（统筹 MSL + Dunia 全口径需求）</h2>
+        <span class="pill purple">鞋面前置期 = 2 个月 ｜ 缓冲池目标 = 3 个月全口径总需求 (10,100 双)</span>
       </div>
       <div class="card-body">
         <div class="table-wrap">
@@ -443,10 +433,11 @@
               <tr>
                 <th>共享鞋面编码</th>
                 <th>鞋面名称</th>
-                <th>1对多供应的下游成品款型</th>
+                <th>1对多供应的下游款型与对应渠道</th>
                 <th class="num">6月基线<br>(在库+在途)</th>
-                <th class="num">1-10月IF成型<br>实际耗用鞋面</th>
-                <th class="num">月均需求<br>核算基准</th>
+                <th class="num">1-10月IF成型<br>耗用鞋面</th>
+                <th class="num">1-10月双渠道<br>成品总出库</th>
+                <th class="num">全口径月均<br>需求基准</th>
                 <th class="num">最低水位<br>(2.0个月)</th>
                 <th class="num">起订点 ROP<br>(2.5个月)</th>
                 <th class="num">起订量<br>(经济批)</th>
@@ -456,66 +447,70 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr class="highlight-blue">
                 <td><strong><code>U6700020</code></strong></td>
                 <td>805/S 牛皮中帮鞋面</td>
                 <td>
-                  <span class="pill green">A类 L8-805/S-SP</span>
-                  <span class="pill amber">B类 L8-805/S-EH</span>
-                  <span class="pill red">C类 M8-805/S (SP/EH)</span>
+                  <span class="pill green">A1: 805/S-SP (MSL主+Dunia辅)</span><br>
+                  <span class="pill blue">A2: 805/S-EH (Dunia主力月提)</span><br>
+                  <span class="pill red">C: M8-805/S (零星)</span>
                 </td>
                 <td class="num">13,706<br><span style="font-size:11px;color:#64748b">(库3,171+途10,535)</span></td>
                 <td class="num"><strong>19,128</strong></td>
-                <td class="num"><strong>1,500</strong> /月</td>
-                <td class="num"><strong>3,000</strong></td>
-                <td class="num"><strong>3,750</strong></td>
-                <td class="num"><strong>1,500</strong></td>
-                <td class="num" style="color:#1d4ed8;font-weight:800;">4,500</td>
-                <td class="num"><strong>6,000</strong></td>
-                <td><strong>100% 优先拨给 <code>L8-805/S-SP</code> 补产 1,042 双</strong>；无正式合同严禁拨给 EH 或 M8！</td>
+                <td class="num"><strong>19,560</strong><br><span style="font-size:11px;color:#64748b">(MSL 13,223 + Dunia 6,337)</span></td>
+                <td class="num" style="color:#1d4ed8;font-weight:800;">1,900 /月<br><span style="font-size:11px;color:#047857">(原1,500上调)</span></td>
+                <td class="num"><strong>3,800</strong></td>
+                <td class="num"><strong>4,750</strong></td>
+                <td class="num"><strong>2,000</strong></td>
+                <td class="num" style="color:#1d4ed8;font-weight:800;font-size:14px;">5,700</td>
+                <td class="num"><strong>7,600</strong></td>
+                <td><strong>优先拨 1,042 双补 <code>805/S-SP</code></strong>；<code>805/S-EH</code> 仅在成品跌破 1,200 双或有 Dunia 大单时领用；严禁拨给 M8！</td>
               </tr>
               <tr>
                 <td><strong><code>U2100002</code></strong></td>
                 <td>026/3 牛皮低帮鞋面</td>
                 <td>
-                  <span class="pill green">A类 L8-026/3-SP</span>
-                  <span class="pill amber">B类 L8-026/3-EH</span>
-                  <span class="pill red">C类 M8-026/3 (SP/EH)</span>
+                  <span class="pill green">A1: 026/3-SP (MSL主力)</span><br>
+                  <span class="pill amber">B: 026/3-EH (COYE项目脉冲)</span><br>
+                  <span class="pill red">C: M8-026/3 (零星)</span>
                 </td>
                 <td class="num">19,313<br><span style="font-size:11px;color:#64748b">(库17,293+途2,020)</span></td>
                 <td class="num"><strong>18,184</strong></td>
-                <td class="num"><strong>1,400</strong> /月</td>
+                <td class="num"><strong>16,409</strong><br><span style="font-size:11px;color:#64748b">(100% 为 MSL 提货)</span></td>
+                <td class="num"><strong>1,400 /月</strong></td>
                 <td class="num"><strong>2,800</strong></td>
                 <td class="num"><strong>3,500</strong></td>
                 <td class="num"><strong>1,500</strong></td>
-                <td class="num" style="color:#1d4ed8;font-weight:800;">4,200</td>
+                <td class="num" style="color:#1d4ed8;font-weight:800;font-size:14px;">4,200</td>
                 <td class="num"><strong>5,600</strong></td>
-                <td><strong>仅对 <code>L8-026/3-SP</code> 开放自动补库（拨 500 双）</strong>；遇 COYE 的 EH 大单凭锁单领用注塑。</td>
+                <td><strong>仅对 <code>L8-026/3-SP</code> 开放自动补库（拨 500 双）</strong>；<code>026/3-EH</code> 现有 2,548 双未消化完前严禁领用！</td>
               </tr>
               <tr class="highlight-amber">
                 <td><strong><code>U6500009</code> / <code>U6700028</code></strong></td>
                 <td>807/8 牛皮中帮鞋面</td>
-                <td><span class="pill amber">B类 L8-807/8-SP</span></td>
+                <td><span class="pill amber">B: L8-807/8-SP (新品待推广)</span></td>
                 <td class="num">5,100<br><span style="font-size:11px;color:#64748b">(库0+途5,100)</span></td>
                 <td class="num"><strong>1,216</strong></td>
-                <td class="num"><strong>65</strong> /月</td>
+                <td class="num"><strong>3</strong><br><span style="font-size:11px;color:#64748b">(仅MSL 3双样品)</span></td>
+                <td class="num"><strong>65 /月</strong></td>
                 <td class="num"><strong>0</strong></td>
                 <td class="num"><strong>0</strong></td>
                 <td class="num"><strong>按单</strong></td>
                 <td class="num"><strong>200</strong></td>
                 <td class="num"><strong>400</strong></td>
-                <td>🛑 <strong>紧急冻结注塑！</strong>6月到货5,100双已注塑1,216双（仅卖3双），剩余 <strong>3,884 双鞋面严禁继续上机</strong>！</td>
+                <td>🛑 <strong>紧急冻结注塑！</strong>6月到货5,100双已注塑1,216双（仅出3双），剩余 <strong>3,884 双鞋面严禁继续上机</strong>！</td>
               </tr>
               <tr class="total-row">
                 <td colspan="3"><strong>上游 IF 共享鞋面安全库存池合计</strong></td>
                 <td class="num">38,119</td>
                 <td class="num">38,528</td>
-                <td class="num">2,965 /月</td>
-                <td class="num">5,800</td>
-                <td class="num">7,250</td>
+                <td class="num">35,972</td>
+                <td class="num">3,365 /月</td>
+                <td class="num">6,600</td>
+                <td class="num">8,250</td>
                 <td class="num">—</td>
-                <td class="num" style="color:#1d4ed8;">8,900</td>
-                <td class="num">12,000</td>
+                <td class="num" style="color:#1d4ed8;">10,100</td>
+                <td class="num">13,600</td>
                 <td><strong>公式：鞋面可用净水位 = IF鞋面在库 + 已确认到厂在途 - 已锁定成型工单占用量</strong></td>
               </tr>
             </tbody>
@@ -524,15 +519,15 @@
       </div>
     </div>
 
-    <!-- 5. 第二级：下游 IF 成品分级安库水位与对账总表 -->
+    <!-- 5. 第二级：下游 IF 成品分级安库水位与三表闭环总表 -->
     <div class="card">
       <div class="card-head">
-        <h2>四、【第二级缓冲】下游 IF 成品分级安库水位设定表（含 IF 出库 vs MSL 销售逐款对照）</h2>
+        <h2>四、【第二级缓冲】下游 IF 成品分级安库水位表（含表1 IF出库 ＝ 表2 售Dunia + 售MSL ＝ 表3 MSL终端全闭环）</h2>
         <div class="filter-bar" style="margin:0;">
-          <button class="f-btn active" onclick="filterRows('ALL', this)">全部款型 (16款)</button>
-          <button class="f-btn" onclick="filterRows('A', this)">🟢 A类 常备主力款 (2款)</button>
-          <button class="f-btn" onclick="filterRows('B', this)">🟡 B类 脉冲/专案封顶款 (3款)</button>
-          <button class="f-btn" onclick="filterRows('C', this)">🔴 C类 零安库MTO清库款 (11款)</button>
+          <button class="f-btn active" onclick="filterRows('ALL', this)">全部 U0088 款型 (16款)</button>
+          <button class="f-btn" onclick="filterRows('A', this)">🟢 A1/A2 主力常备款 (3款)</button>
+          <button class="f-btn" onclick="filterRows('B', this)">🟡 B类 脉冲封顶清库款 (2款)</button>
+          <button class="f-btn" onclick="filterRows('C', this)">🔴 C类 零安库MTO呆滞款 (11款)</button>
         </div>
       </div>
       <div class="card-body">
@@ -542,31 +537,35 @@
               <tr>
                 <th>款型编码 (IFERP)</th>
                 <th>客户型号 / 共享鞋面</th>
-                <th>ABC 分级</th>
-                <th class="num">IF 1-10月入库<br>(工厂生产)</th>
-                <th class="num">IF 1-10月出库<br>(发往MSL等)</th>
-                <th class="num">MSL 1-10月销量<br>(终端月表)</th>
-                <th class="num">两系统差额<br>(IF出 - MSL销)</th>
-                <th class="num">IF 当前库存<br>(10月20日)</th>
+                <th>分级与渠道定位</th>
+                <th class="num">表1: IF入库<br>(工厂生产)</th>
+                <th class="num">表1=表2:<br>IF总出库</th>
+                <th class="num" style="background:#1e3a8a;">表2分流①:<br>IF直售Dunia</th>
+                <th class="num" style="background:#065f46;">表2分流②:<br>IF售予MSL</th>
+                <th class="num" style="background:#4c1d95;">表3: MSL<br>售予终端</th>
+                <th class="num">MSL自身留存<br>(售MSL-终端)</th>
+                <th class="num">表1: IF当前<br>库存(10/20)</th>
                 <th class="num">最低水位<br>(Min)</th>
                 <th class="num">起订点<br>(ROP)</th>
                 <th class="num">起订量<br>(Lot)</th>
                 <th class="num">目标安库<br>(Target)</th>
                 <th class="num">最高水位<br>(Max)</th>
                 <th class="num">需补产 /<br>(超储去化)</th>
-                <th style="min-width:260px;">立即可执行指令 (Action)</th>
+                <th style="min-width:250px;">立即可执行指令 (Action)</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Class A -->
+              <!-- Class A1 -->
               <tr data-tier="A" class="highlight-red">
                 <td><strong><code>L8-805/S-SP-04-U0088</code></strong></td>
                 <td>L-805H (SP)<br><span style="font-size:11.5px;color:#64748b">鞋面: U6700020</span></td>
-                <td><span class="pill green">A类 常备主力</span></td>
+                <td><span class="pill green">A1类 MSL核心主力</span></td>
                 <td class="num">10,069</td>
                 <td class="num"><strong>14,248</strong></td>
-                <td class="num"><strong>12,949</strong><br><span style="font-size:11px;color:#64748b">(占MSL 44.0%)</span></td>
-                <td class="num">+1,299<br><span style="font-size:11px;color:#64748b">跨期提货在途</span></td>
+                <td class="num" style="color:#1d4ed8;font-weight:700;">1,218<br><span style="font-size:10.5px;color:#64748b">(1-3月提)</span></td>
+                <td class="num" style="color:#047857;font-weight:700;">13,030</td>
+                <td class="num"><strong>12,949</strong></td>
+                <td class="num">+81</td>
                 <td class="num" style="color:#b91c1c;font-weight:800;font-size:14px;">958</td>
                 <td class="num"><strong>1,000</strong></td>
                 <td class="num"><strong>1,500</strong></td>
@@ -574,16 +573,18 @@
                 <td class="num" style="color:#047857;font-weight:800;">2,000</td>
                 <td class="num"><strong>2,600</strong></td>
                 <td class="num" style="color:#b91c1c;font-weight:800;">缺 +1,042</td>
-                <td>🔴 <strong>立即补产 2 批 (1,000~1,042双)</strong>：IF库存(958)已跌破最低红线(1,000)，立即从 <code>U6700020</code> 领鞋面注塑！</td>
+                <td>🔴 <strong>立即补产 2 批 (1,000~1,042双)</strong>：IF库存(958)已跌破最低水位(1,000)，立即从 <code>U6700020</code> 领鞋面注塑！</td>
               </tr>
               <tr data-tier="A" class="highlight-amber">
                 <td><strong><code>L8-026/3-SP-04-U0088</code></strong></td>
                 <td>L-026X (SP)<br><span style="font-size:11.5px;color:#64748b">鞋面: U2100002</span></td>
-                <td><span class="pill green">A类 常备主力</span></td>
+                <td><span class="pill green">A1类 MSL核心主力</span></td>
                 <td class="num">10,260</td>
                 <td class="num"><strong>12,276</strong></td>
-                <td class="num"><strong>12,199</strong><br><span style="font-size:11px;color:#64748b">(占MSL 41.4%)</span></td>
-                <td class="num">+77<br><span style="font-size:11px;color:#64748b">10月截账尾差</span></td>
+                <td class="num">0</td>
+                <td class="num" style="color:#047857;font-weight:700;">12,276</td>
+                <td class="num"><strong>12,199</strong></td>
+                <td class="num">+77</td>
                 <td class="num" style="color:#b45309;font-weight:800;font-size:14px;">1,476</td>
                 <td class="num"><strong>900</strong></td>
                 <td class="num"><strong>1,400</strong></td>
@@ -591,18 +592,41 @@
                 <td class="num" style="color:#047857;font-weight:800;">1,850</td>
                 <td class="num"><strong>2,400</strong></td>
                 <td class="num" style="color:#b45309;font-weight:800;">缺 +374</td>
-                <td>🟡 <strong>计划补产 1 批 (500双)</strong>：IF库存(1,476)已触及起订点(1,400)，排产1个标准批拉回 1,976 双。</td>
+                <td>🟡 <strong>计划补产 1 批 (500双)</strong>：IF库存(1,476)已逼近起订点(1,400)，排产1批拉回 1,976 双。</td>
+              </tr>
+
+              <!-- Class A2 (Upgraded after IF Sales reconciliation!) -->
+              <tr data-tier="A" class="highlight-blue">
+                <td><strong><code>L8-805/S-EH-04-U0088</code></strong></td>
+                <td>L-805H (SB/EH)<br><span style="font-size:11.5px;color:#64748b">鞋面: U6700020</span></td>
+                <td><span class="pill blue">A2类 Dunia跨号主力</span></td>
+                <td class="num">6,970</td>
+                <td class="num"><strong>5,265</strong></td>
+                <td class="num" style="color:#1d4ed8;font-weight:800;">5,114<br><span style="font-size:10.5px;color:#1d4ed8">(8-10月均1,387!)</span></td>
+                <td class="num">151<br><span style="font-size:10.5px;color:#64748b">(6月金牛)</span></td>
+                <td class="num"><strong>151</strong></td>
+                <td class="num" style="color:#047857;font-weight:700;">0</td>
+                <td class="num" style="color:#047857;font-weight:800;font-size:14px;">1,705</td>
+                <td class="num"><strong>800</strong></td>
+                <td class="num"><strong>1,200</strong></td>
+                <td class="num">500</td>
+                <td class="num" style="color:#047857;font-weight:800;">1,500</td>
+                <td class="num"><strong>2,000</strong></td>
+                <td class="num" style="color:#047857;font-weight:700;">正常 (-205)</td>
+                <td>🟢 <strong>正常周转（修正定位！）</strong>：Dunia 8–10月连续月提 1,150~1,860 双，现库 1,705 双处于健康绿区，跌破 1,200 双再补产。</td>
               </tr>
 
               <!-- Class B -->
               <tr data-tier="B">
                 <td><strong><code>L8-026/3-EH-04-U0088</code></strong></td>
-                <td>L-026X (EH)<br><span style="font-size:11.5px;color:#64748b">鞋面: U2100002</span></td>
-                <td><span class="pill amber">B类 项目脉冲</span></td>
+                <td>L-026X (SB/EH)<br><span style="font-size:11.5px;color:#64748b">鞋面: U2100002</span></td>
+                <td><span class="pill amber">B类 项目脉冲封顶</span></td>
                 <td class="num">6,670</td>
                 <td class="num"><strong>4,122</strong></td>
-                <td class="num"><strong>4,122</strong><br><span style="font-size:11px;color:#64748b">(6月COYE 4,045)</span></td>
-                <td class="num" style="color:#047857;font-weight:700;">0 (完全吻合)</td>
+                <td class="num">0</td>
+                <td class="num">4,122<br><span style="font-size:10.5px;color:#64748b">(5月COYE 4,045)</span></td>
+                <td class="num"><strong>4,122</strong></td>
+                <td class="num" style="color:#047857;font-weight:700;">0</td>
                 <td class="num" style="color:#b91c1c;font-weight:800;">2,548</td>
                 <td class="num"><strong>200</strong></td>
                 <td class="num"><strong>350</strong></td>
@@ -610,31 +634,16 @@
                 <td class="num"><strong>350</strong></td>
                 <td class="num"><strong>500</strong></td>
                 <td class="num" style="color:#1d4ed8;font-weight:700;">超储 -2,198</td>
-                <td>🛑 <strong>锁死无单注塑 + 去库存</strong>：日常月销仅8.5双，封顶500双；向 COYE/金牛推专案消化 2,198 双超储。</td>
-              </tr>
-              <tr data-tier="B">
-                <td><strong><code>L8-805/S-EH-04-U0088</code></strong></td>
-                <td>L-805H (EH)<br><span style="font-size:11.5px;color:#64748b">鞋面: U6700020</span></td>
-                <td><span class="pill amber">B类 专案观察</span></td>
-                <td class="num">6,970</td>
-                <td class="num"><strong>5,265</strong></td>
-                <td class="num"><strong>151</strong><br><span style="font-size:11px;color:#64748b">(6月金牛 151)</span></td>
-                <td class="num" style="color:#b45309;font-weight:700;">+5,114<br><span style="font-size:11px;color:#64748b">IF已发/MSL未售</span></td>
-                <td class="num" style="color:#b91c1c;font-weight:800;">1,705</td>
-                <td class="num"><strong>200</strong></td>
-                <td class="num"><strong>350</strong></td>
-                <td class="num">300</td>
-                <td class="num"><strong>350</strong></td>
-                <td class="num"><strong>500</strong></td>
-                <td class="num" style="color:#1d4ed8;font-weight:700;">超储 -1,355</td>
-                <td>🛑 <strong>锁死无单注塑 + 核查 5,114 双去向</strong>：IF仓尚有 1,705 双，严禁再把 <code>U6700020</code> 鞋面注塑成 EH！</td>
+                <td>🛑 <strong>锁死无单注塑 + 去库存</strong>：7–10月双渠道仅出2双，封顶500双；向 COYE/Dunia 推专案消化 2,198 双超储。</td>
               </tr>
               <tr data-tier="B">
                 <td><strong><code>L8-807/8-SP-04-U0088</code></strong></td>
                 <td>L-807/8 (SP)<br><span style="font-size:11.5px;color:#64748b">鞋面: U6500009</span></td>
-                <td><span class="pill amber">B类 新品观察</span></td>
+                <td><span class="pill amber">B类 新品观察封顶</span></td>
                 <td class="num">1,216</td>
                 <td class="num"><strong>3</strong></td>
+                <td class="num">0</td>
+                <td class="num">3</td>
                 <td class="num"><strong>0</strong></td>
                 <td class="num">+3 (样品)</td>
                 <td class="num" style="color:#b91c1c;font-weight:800;">1,212</td>
@@ -644,18 +653,20 @@
                 <td class="num"><strong>200</strong></td>
                 <td class="num"><strong>300</strong></td>
                 <td class="num" style="color:#1d4ed8;font-weight:700;">超储 -1,012</td>
-                <td>🛑 <strong>紧急冻结剩余 3,884 双鞋面注塑</strong>：10个月仅出3双样品，先专项清库 1,212 双成品！</td>
+                <td>🛑 <strong>紧急冻结剩余 3,884 双鞋面注塑</strong>：10个月双渠道仅出3双样品，先专项清库 1,212 双成品！</td>
               </tr>
 
               <!-- Class C -->
               <tr data-tier="C">
                 <td><strong><code>M8-805/S-EH-08-U0088</code></strong></td>
-                <td>M805S-EH (U6700020)</td>
+                <td>M-805H (SB) (U6700020)</td>
                 <td><span class="pill red">C类 零安库MTO</span></td>
                 <td class="num">1,220</td>
                 <td class="num">2</td>
+                <td class="num">2</td>
                 <td class="num">0</td>
-                <td class="num">+2 (样品)</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
                 <td class="num" style="color:#b91c1c;font-weight:700;">1,010</td>
                 <td class="num">0</td>
                 <td class="num">0</td>
@@ -663,13 +674,15 @@
                 <td class="num"><strong>0</strong></td>
                 <td class="num">0</td>
                 <td class="num" style="color:#1d4ed8;">呆滞 -1,010</td>
-                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月 0 销售，全面停产并促销清库。</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月仅Dunia拿2双样品，全面停产并促销清库。</td>
               </tr>
               <tr data-tier="C">
                 <td><strong><code>M8-026/3-EH-08-U0088</code></strong></td>
-                <td>M026/3-EH (U2100002)</td>
+                <td>M-026X (SB) (U2100002)</td>
                 <td><span class="pill red">C类 零安库MTO</span></td>
                 <td class="num">800</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
                 <td class="num">0</td>
                 <td class="num">0</td>
                 <td class="num">0</td>
@@ -680,16 +693,18 @@
                 <td class="num"><strong>0</strong></td>
                 <td class="num">0</td>
                 <td class="num" style="color:#1d4ed8;">呆滞 -600</td>
-                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月 0 出库 0 销售，促销清库。</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月双渠道 0 出库，促销清库。</td>
               </tr>
               <tr data-tier="C">
                 <td><strong><code>M8-805/S-SP-08-U0088</code></strong></td>
-                <td>M805S-SP (U6700020)</td>
+                <td>M-805H (SP) (U6700020)</td>
                 <td><span class="pill red">C类 零安库MTO</span></td>
                 <td class="num">669</td>
                 <td class="num">45</td>
+                <td class="num">3</td>
+                <td class="num">42</td>
                 <td class="num">30 (凯达)</td>
-                <td class="num">+15 (样品)</td>
+                <td class="num">+12 (样品)</td>
                 <td class="num" style="color:#b91c1c;font-weight:700;">496</td>
                 <td class="num">0</td>
                 <td class="num">0</td>
@@ -697,13 +712,15 @@
                 <td class="num"><strong>0</strong></td>
                 <td class="num">0</td>
                 <td class="num" style="color:#1d4ed8;">呆滞 -496</td>
-                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月仅凯达提30双，现有496双足够卖数年，停产清库。</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月双渠道仅出45双，现有496双停产清库。</td>
               </tr>
               <tr data-tier="C">
                 <td><strong><code>M8-026/3-SP-08-U0088</code></strong></td>
-                <td>M026/3-SP (U2100002)</td>
+                <td>M-026X (SP) (U2100002)</td>
                 <td><span class="pill red">C类 零安库MTO</span></td>
                 <td class="num">454</td>
+                <td class="num">11</td>
+                <td class="num">0</td>
                 <td class="num">11</td>
                 <td class="num">10 (凯达)</td>
                 <td class="num">+1 (样品)</td>
@@ -714,13 +731,15 @@
                 <td class="num"><strong>0</strong></td>
                 <td class="num">0</td>
                 <td class="num" style="color:#1d4ed8;">呆滞 -443</td>
-                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月仅凯达提10双，现有443双停产清库。</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月双渠道仅出11双，现有443双停产清库。</td>
               </tr>
               <tr data-tier="C">
                 <td><strong>其余 7 款样品/尾货</strong><br><span style="font-size:11px;color:#64748b">(I14-881/6 104双 + I14/L8-222/M11 36双)</span></td>
                 <td>样品 / 展厅款</td>
                 <td><span class="pill red">C类 样品零安库</span></td>
                 <td class="num">155</td>
+                <td class="num">19</td>
+                <td class="num">0</td>
                 <td class="num">19</td>
                 <td class="num">0</td>
                 <td class="num">+19 (样品)</td>
@@ -736,19 +755,21 @@
 
               <!-- Total Row -->
               <tr class="total-row">
-                <td colspan="3"><strong>U0088 成品鞋合计（16款）</strong></td>
+                <td colspan="3"><strong>U0088 后缀成品鞋合计（16款，不含1,300个纸箱）</strong></td>
                 <td class="num">38,493</td>
                 <td class="num">35,991</td>
-                <td class="num">29,461<br><span style="font-size:11px;font-weight:600">(另1,300纸箱)</span></td>
-                <td class="num">+6,530</td>
+                <td class="num" style="color:#1d4ed8;">6,337</td>
+                <td class="num" style="color:#047857;">29,654</td>
+                <td class="num" style="color:#4c1d95;">29,461</td>
+                <td class="num">+193</td>
                 <td class="num">10,588</td>
-                <td class="num">2,300</td>
-                <td class="num">3,750</td>
+                <td class="num">2,900</td>
+                <td class="num">4,600</td>
                 <td class="num">—</td>
-                <td class="num" style="color:#047857;">4,750</td>
-                <td class="num">6,300</td>
-                <td class="num">补+1,416 / 清-7,254</td>
-                <td><strong>成品安库目标压降至 4,750 双（释放 55% 成品资金，消除主力断货）</strong></td>
+                <td class="num" style="color:#047857;">5,900</td>
+                <td class="num">7,800</td>
+                <td class="num">补+1,416 / 清-6,103</td>
+                <td><strong>成品总安库设 5,900 双（释放 44.3% 资金，同时保障 MSL + Dunia 双渠道不断货）</strong></td>
               </tr>
             </tbody>
           </table>
@@ -756,30 +777,131 @@
       </div>
     </div>
 
-    <!-- 6. 落地执行三步走与待补齐的最后一块拼图 -->
+    <!-- 6. 附表：U0042 (PT Dunia Saftindo) 专属款型全貌对照表 -->
     <div class="card">
       <div class="card-head">
-        <h2>五、下一步落地清单（只需确认这 3 件事即可在 IFERP 锁死执行）</h2>
-        <span class="pill green">实操行动指南</span>
+        <h2>五、附表：<code>PT Dunia Saftindo (U0042)</code> 专属款型（12款 <code>-U0042</code> 后缀）三表核对与周转表现</h2>
+        <span class="pill blue">入库 61,348 双 ｜ 出库/销售 60,662 双（100% 吻合）｜ 期末库存仅 781 双（年化周转 >90 次，标杆按单流转！）</span>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>U0042 专属款型编码</th>
+                <th>Dunia 客户型号</th>
+                <th>使用鞋面（与 U0088 完全独立）</th>
+                <th class="num">表1: IF 1-10月入库</th>
+                <th class="num">表1: IF 1-10月出库</th>
+                <th class="num">表2: IF 售予 Dunia</th>
+                <th class="num">表1-表2 误差</th>
+                <th class="num">IF 10/20 期末库存</th>
+                <th>周转状态评价</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>L8-805/K-SD-04-U0042</code></td>
+                <td>L-805 H</td>
+                <td>805/K 专属鞋面</td>
+                <td class="num">27,670</td>
+                <td class="num">27,354</td>
+                <td class="num"><strong>27,354</strong></td>
+                <td class="num" style="color:#047857;">0</td>
+                <td class="num">380</td>
+                <td><span class="pill green">极速流转（库存仅够 4 天）</span></td>
+              </tr>
+              <tr>
+                <td><code>L8-807/5-SD-04-U0042</code></td>
+                <td>L--807</td>
+                <td>807/5 专属鞋面</td>
+                <td class="num">10,610</td>
+                <td class="num">10,557</td>
+                <td class="num"><strong>10,557</strong></td>
+                <td class="num" style="color:#047857;">0</td>
+                <td class="num">73</td>
+                <td><span class="pill green">极速流转（库存仅够 2 天）</span></td>
+              </tr>
+              <tr>
+                <td><code>L8-026/2-SD-04-U0042</code></td>
+                <td>L--026X</td>
+                <td>026/2 专属鞋面</td>
+                <td class="num">8,878</td>
+                <td class="num">8,742</td>
+                <td class="num"><strong>8,742</strong></td>
+                <td class="num" style="color:#047857;">0</td>
+                <td class="num">140</td>
+                <td><span class="pill green">极速流转（库存仅够 5 天）</span></td>
+              </tr>
+              <tr>
+                <td><code>L8-026/W-SD-04-U0042</code></td>
+                <td>L--026</td>
+                <td>026/W 专属鞋面</td>
+                <td class="num">8,720</td>
+                <td class="num">8,634</td>
+                <td class="num"><strong>8,634</strong></td>
+                <td class="num" style="color:#047857;">0</td>
+                <td class="num">90</td>
+                <td><span class="pill green">极速流转（库存仅够 3 天）</span></td>
+              </tr>
+              <tr>
+                <td><code>L8-706/2-SD-04-U0042</code></td>
+                <td>L--706</td>
+                <td>706/2 专属鞋面</td>
+                <td class="num">3,440</td>
+                <td class="num">3,432</td>
+                <td class="num"><strong>3,432</strong></td>
+                <td class="num" style="color:#047857;">0</td>
+                <td class="num">8</td>
+                <td><span class="pill green">随产随走</span></td>
+              </tr>
+              <tr>
+                <td><code>其余 7 款 (-U0042)</code></td>
+                <td>806/5、805/K-ASP、808/0、706/2-ASP、807/5-ASP、M8-805/L</td>
+                <td>各款独立鞋面</td>
+                <td class="num">2,030</td>
+                <td class="num">1,943</td>
+                <td class="num"><strong>1,943</strong></td>
+                <td class="num" style="color:#047857;">0</td>
+                <td class="num">90</td>
+                <td><span class="pill green">按单生产清零</span></td>
+              </tr>
+              <tr class="total-row">
+                <td colspan="3"><strong>U0042 专属后缀合计（12款）＋ 跨号采购 U0088 款（6,337双）＝ Dunia 总提货 66,999 双</strong></td>
+                <td class="num">61,348</td>
+                <td class="num">60,662</td>
+                <td class="num">60,662</td>
+                <td class="num" style="color:#047857;">0</td>
+                <td class="num">781</td>
+                <td><strong>启示：U0042 证明 IF 工厂完全具备“鞋面备料 + 成品按单快打”的高周转能力！</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. 下一步仅剩的 3 项执行确认（已剔除解开的 5,114 双之谜） -->
+    <div class="card">
+      <div class="card-head">
+        <h2>六、下一步在 PMC 群落地执行的 3 件事（第 1 项 5,114 双差额已由本表 100% 解决！）</h2>
+        <span class="pill green">清晰可执行</span>
       </div>
       <div class="card-body">
         <div class="verdict-grid" style="margin-top:0;">
           <div class="v-item">
-            <strong>第一步：立即在 IF 排产补齐 2 款主力 SP，同时锁死 B/C 类无单注塑</strong><br>
-            1. <code>L8-805/S-SP</code> 立即从鞋面池领料补产 <strong>2 批（1,000~1,042 双）</strong>；<code>L8-026/3-SP</code> 补产 <strong>1 批（500 双）</strong>。<br>
-            2. 排产前优先核查 2 个共用瓶颈辅料：<strong><code>K0900036</code> 米白EVA冲孔鞋垫</strong>（建议设常备安库 4,500 双）与 <strong><code>M0500158</code> 蛋格纸箱</strong>（设常备安库 500 个）。<br>
-            3. 在 IFERP 对 <code>EH</code>、<code>807/8</code>、<code>M8</code> 设上限拦截：库存高于起订点时，严禁无客户合同排产注塑。
+            <strong>1. 立即补产 2 款缺货 SP，同时对 Dunia 跨号提货建规矩</strong><br>
+            • <code>L8-805/S-SP</code> 立即补产 <strong>2 批（1,000~1,042 双）</strong>；<code>L8-026/3-SP</code> 补产 <strong>1 批（500 双）</strong>。<br>
+            • 明确规则：今後 <code>Dunia (U0042)</code> 如需继续提 <code>L8-805/S-EH-04-U0088</code> 或 <code>SP</code>，其月度预测必须一并纳入 <code>U6700020</code> 共享鞋面池（目标已上调至 <strong>5,700 双</strong>），严禁无预警抽干 MSL 的主力 SP 库存。
           </div>
           <div class="v-item">
-            <strong>第二步：向清华/Lixia 核清 <code>L8-805/S-EH</code> 的 5,114 双去向</strong><br>
-            IF 账面已出库 <code>5,265 双</code>（按 24.7万 IDR 内部采购价结算），但 MSL 销售月表仅记 <code>151 双</code>。<br>
-            • 若这 <strong>5,114 双</strong> 已调拨在 MSL 仓库尚未卖出，则全集团实际积压高达 <code>1,705 (IF) + 5,114 (MSL) = 6,819 双</code>！<br>
-            • 若是由 IF 直接发给了专案大客户而未录进 MSL 分销月表，只需把专案合同补录对齐即可。
+            <strong>2. 请清华姐确认 IF 现场「3大共享鞋面 + 2个瓶颈辅料」最新可用量</strong><br>
+            • 核对截至 10/26 的 <code>U6700020 (805/S)</code>、<code>U2100002 (026/3)</code>、<code>U6500009 (807/8)</code> 在库 + 在途 + 已排产占用。<br>
+            • 核对共用瓶颈辅料 <strong><code>K0900036</code> 米白EVA冲孔鞋垫</strong> 与 <strong><code>M0500158</code> 蛋格纸箱</strong> 是否够立即排产这 <code>1,542 双</code> 主力 SP。
           </div>
           <div class="v-item">
-            <strong>第三步：补齐「尺码比例（Size Run）」—— 把 2,000 双与 1,850 双拆到每个码</strong><br>
-            正如 Boss 在 6 月问题矩阵（A2/A9/B3）所指出的：<em>“总量够但缺核心码数，依然出不了货”</em>。<br>
-            目前 IF 日报表和 MSL 销售月表都只有款型总数、没有尺码列。下一步只需从 IFERP 导出 <strong><code>L8-805/S-SP</code> 和 <code>L8-026/3-SP</code> 的分尺码出库历史与当前分尺码库存</strong>，即可把 <code>2,000 双</code> 和 <code>1,850 双</code> 精确拆解成每个尺码的最低水位与起订点！
+            <strong>3. 请清华姐从 IFERP 导出「分尺码（Size Run）」数据</strong><br>
+            • 导出 <code>L8-805/S-SP</code>（目标 2,000 双）、<code>L8-026/3-SP</code>（目标 1,850 双）、<code>L8-805/S-EH</code>（目标 1,500 双）的 <strong>1–10月分尺码出库明细 + 当前分尺码库存</strong>，把总水位拆解到 38#~46# 每个尺码，彻底杜绝“有总量、缺主力码”。
           </div>
         </div>
       </div>
