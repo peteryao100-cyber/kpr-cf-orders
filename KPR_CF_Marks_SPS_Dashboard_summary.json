@@ -1,15 +1,15 @@
 {
- "total_pos": 97,
+ "total_pos": 96,
  "dedup": {
-  "sps_order_rows": 148,
-  "distinct_pos": 97,
+  "sps_order_rows": 147,
+  "distinct_pos": 96,
   "multi_version_pos": 39,
   "exact_duplicate_order_rows": 0,
-  "asn_rows": 90,
-  "distinct_asns": 90,
-  "invoice_rows": 85,
-  "distinct_invoices": 85,
-  "invoiced_pos": 85,
+  "asn_rows": 89,
+  "distinct_asns": 89,
+  "invoice_rows": 84,
+  "distinct_invoices": 84,
+  "invoiced_pos": 84,
   "pos_with_multiple_asns": {
    "14860421": 2
   },
@@ -54,17 +54,28 @@
   "14686936"
  ],
  "action_items": 12,
- "order_rows": 148,
- "asns": 90,
- "invoices": 85,
+ "order_rows": 147,
+ "asns": 89,
+ "invoices": 84,
  "counts": {
   "NEED INVOICE": 4,
   "OPEN ORDER": 8,
-  "Invoiced": 85
+  "Invoiced": 84
  },
  "close": [],
  "check": [],
- "date_flags": [],
+ "date_flags": [
+  [
+   "14946928",
+   "due",
+   "Due in 6d (11-01), no ASN sent / 6天内到期"
+  ],
+  [
+   "14946927",
+   "due",
+   "Due in 6d (11-01), no ASN sent / 6天内到期"
+  ]
+ ],
  "need_invoice": [
   [
    "14934990",
@@ -92,18 +103,245 @@
   "ASN OPENED": 0,
   "NEED INVOICE": 4,
   "Special attention": 0,
-  "Invoiced": 85
+  "Invoiced": 84
  },
- "bucket_sum": "8 + 0 + 4 + 0 + 85 = 97 POs",
+ "bucket_pairs": {
+  "OPEN ORDER": 6185,
+  "ASN OPENED": 0,
+  "NEED INVOICE": 3965,
+  "Special attention": 0
+ },
+ "bucket_sum": "8 + 0 + 4 + 0 + 84 = 96 POs",
  "unmatched_records": 0,
  "tile_counts": {
   "OPEN ORDER": 8,
   "ASN OPENED": 0,
   "NEED INVOICE": 4,
-  "Due within 7 days": 0,
+  "Due within 7 days": 2,
   "Late": 0,
   "Special attention": 0,
-  "Invoiced (header)": 85
+  "Invoiced (header)": 84
+ },
+ "tile_pairs": {
+  "OPEN ORDER": 6185,
+  "ASN OPENED": 0,
+  "NEED INVOICE": 3965,
+  "Due within 7 days": 650,
+  "Late": 0,
+  "Special attention": 0,
+  "Outstanding (Unshipped)": 6185
+ },
+ "outstanding_unshipped": {
+  "definition": "Outstanding = unshipped POs (no sent ASN and not invoiced: OPEN ORDER + ASN OPENED + any unshipped Special attention)",
+  "po_count": 8,
+  "total_pairs": 6185,
+  "open_order_pos": 8,
+  "open_order_pairs": 6185,
+  "asn_opened_draft_pos": 0,
+  "asn_opened_draft_pairs": 0,
+  "missing_qty_pos": [],
+  "by_style": {
+   "Dakota": 2295,
+   "Helly Hansen": 3890
+  },
+  "by_dc": {
+   "000155 Brampton": 3682,
+   "000350 Calgary DC": 2503
+  },
+  "pos": [
+   {
+    "po": "14946927",
+    "pipe": "OPEN ORDER",
+    "style": "Dakota",
+    "scode": "DAK",
+    "style_codes": "5ANADK6-8100, 5ANADK6-8110, 5ANBDK6-6200",
+    "qty_by_style": {
+     "5ANADK6-8100": 135,
+     "5ANADK6-8110": 120,
+     "5ANBDK6-6200": 160
+    },
+    "dc": "000155 Brampton",
+    "dc_code": "155",
+    "qty": 415,
+    "original": "2026-11-01",
+    "newest_ship": "2026-11-01",
+    "newest_src": "SPS",
+    "cancel": "2026-12-01"
+   },
+   {
+    "po": "14946928",
+    "pipe": "OPEN ORDER",
+    "style": "Dakota",
+    "scode": "DAK",
+    "style_codes": "5ANADK6-8100, 5ANADK6-8110, 5ANBDK6-6200",
+    "qty_by_style": {
+     "5ANADK6-8100": 55,
+     "5ANADK6-8110": 70,
+     "5ANBDK6-6200": 110
+    },
+    "dc": "000350 Calgary DC",
+    "dc_code": "350",
+    "qty": 235,
+    "original": "2026-11-01",
+    "newest_ship": "2026-11-01",
+    "newest_src": "SPS",
+    "cancel": "2026-12-01"
+   },
+   {
+    "po": "14934991",
+    "pipe": "OPEN ORDER",
+    "style": "Helly Hansen",
+    "scode": "HH",
+    "style_codes": "HHS252022, HHS252026",
+    "qty_by_style": {
+     "HHS252022": 1125,
+     "HHS252026": 1147
+    },
+    "dc": "000155 Brampton",
+    "dc_code": "155",
+    "qty": 2272,
+    "original": "2026-10-30",
+    "newest_ship": "2026-11-12",
+    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+    "cancel": "2026-11-29"
+   },
+   {
+    "po": "14934994",
+    "pipe": "OPEN ORDER",
+    "style": "Helly Hansen",
+    "scode": "HH",
+    "style_codes": "HHS252022, HHS252026",
+    "qty_by_style": {
+     "HHS252022": 564,
+     "HHS252026": 1054
+    },
+    "dc": "000350 Calgary DC",
+    "dc_code": "350",
+    "qty": 1618,
+    "original": "2026-10-30",
+    "newest_ship": "2026-11-12",
+    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+    "cancel": "2026-11-29"
+   },
+   {
+    "po": "14950926",
+    "pipe": "OPEN ORDER",
+    "style": "Dakota",
+    "scode": "DAK",
+    "style_codes": "5ANADK6-8100, 5ANADK6-8110, 5ANBDK6-6200",
+    "qty_by_style": {
+     "5ANADK6-8100": 145,
+     "5ANADK6-8110": 90,
+     "5ANBDK6-6200": 125
+    },
+    "dc": "000155 Brampton",
+    "dc_code": "155",
+    "qty": 360,
+    "original": "2026-11-15",
+    "newest_ship": "2026-11-30",
+    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+    "cancel": "2026-12-15"
+   },
+   {
+    "po": "14950927",
+    "pipe": "OPEN ORDER",
+    "style": "Dakota",
+    "scode": "DAK",
+    "style_codes": "5ANADK6-8100, 5ANADK6-8110, 5ANBDK6-6200",
+    "qty_by_style": {
+     "5ANADK6-8100": 75,
+     "5ANADK6-8110": 30,
+     "5ANBDK6-6200": 95
+    },
+    "dc": "000350 Calgary DC",
+    "dc_code": "350",
+    "qty": 200,
+    "original": "2026-11-15",
+    "newest_ship": "2026-11-30",
+    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
+    "cancel": "2026-12-15"
+   },
+   {
+    "po": "14960565",
+    "pipe": "OPEN ORDER",
+    "style": "Dakota",
+    "scode": "DAK",
+    "style_codes": "5ANADK6-8100, 5ANADK6-8110, 5ANBDK6-6200",
+    "qty_by_style": {
+     "5ANADK6-8100": 410,
+     "5ANADK6-8110": 30,
+     "5ANBDK6-6200": 195
+    },
+    "dc": "000155 Brampton",
+    "dc_code": "155",
+    "qty": 635,
+    "original": "2026-12-13",
+    "newest_ship": "2026-12-13",
+    "newest_src": "SPS",
+    "cancel": "2027-01-12"
+   },
+   {
+    "po": "14960566",
+    "pipe": "OPEN ORDER",
+    "style": "Dakota",
+    "scode": "DAK",
+    "style_codes": "5ANADK6-8100, 5ANADK6-8110, 5ANBDK6-6200",
+    "qty_by_style": {
+     "5ANADK6-8100": 210,
+     "5ANADK6-8110": 15,
+     "5ANBDK6-6200": 225
+    },
+    "dc": "000350 Calgary DC",
+    "dc_code": "350",
+    "qty": 450,
+    "original": "2026-12-13",
+    "newest_ship": "2026-12-13",
+    "newest_src": "SPS",
+    "cancel": "2027-01-12"
+   }
+  ]
+ },
+ "shipped_need_invoice": {
+  "po_count": 4,
+  "total_pairs": 3965,
+  "pos": [
+   {
+    "po": "14925449",
+    "asn": "326284448",
+    "asn_date": "2026-10-20 16:52",
+    "style": "Dakota",
+    "dc": "000155 Brampton",
+    "qty": 520,
+    "newest_ship": "2026-10-21"
+   },
+   {
+    "po": "14925450",
+    "asn": "327284448",
+    "asn_date": "2026-10-20 21:51",
+    "style": "Dakota",
+    "dc": "000350 Calgary DC",
+    "qty": 245,
+    "newest_ship": "2026-10-21"
+   },
+   {
+    "po": "14934990",
+    "asn": "328284448",
+    "asn_date": "2026-10-21 17:34",
+    "style": "Helly Hansen",
+    "dc": "000155 Brampton",
+    "qty": 2040,
+    "newest_ship": "2026-10-27"
+   },
+   {
+    "po": "14934993",
+    "asn": "329284448",
+    "asn_date": "2026-10-21 17:46",
+    "style": "Helly Hansen",
+    "dc": "000350 Calgary DC",
+    "qty": 1160,
+    "newest_ship": "2026-10-27"
+   }
+  ]
  },
  "po_dates": {
   "14934990": {
@@ -116,7 +354,9 @@
    "newest": "2026-10-27",
    "newest_src": "SPS amendment",
    "sps_newest": "2026-10-27",
-   "cancel": "2026-11-26"
+   "cancel": "2026-11-26",
+   "pipe": "NEED INVOICE",
+   "unshipped": false
   },
   "14934993": {
    "dc": "000350 Calgary DC",
@@ -128,7 +368,9 @@
    "newest": "2026-10-27",
    "newest_src": "SPS amendment",
    "sps_newest": "2026-10-27",
-   "cancel": "2026-11-26"
+   "cancel": "2026-11-26",
+   "pipe": "NEED INVOICE",
+   "unshipped": false
   },
   "14960565": {
    "dc": "000155 Brampton",
@@ -140,7 +382,9 @@
    "newest": "2026-12-13",
    "newest_src": "SPS",
    "sps_newest": "2026-12-13",
-   "cancel": "2027-01-12"
+   "cancel": "2027-01-12",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   },
   "14960566": {
    "dc": "000350 Calgary DC",
@@ -152,7 +396,9 @@
    "newest": "2026-12-13",
    "newest_src": "SPS",
    "sps_newest": "2026-12-13",
-   "cancel": "2027-01-12"
+   "cancel": "2027-01-12",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   },
   "14925449": {
    "dc": "000155 Brampton",
@@ -164,7 +410,9 @@
    "newest": "2026-10-21",
    "newest_src": "SPS amendment",
    "sps_newest": "2026-10-21",
-   "cancel": "2026-11-20"
+   "cancel": "2026-11-20",
+   "pipe": "NEED INVOICE",
+   "unshipped": false
   },
   "14925450": {
    "dc": "000350 Calgary DC",
@@ -176,7 +424,9 @@
    "newest": "2026-10-21",
    "newest_src": "SPS amendment",
    "sps_newest": "2026-10-21",
-   "cancel": "2026-11-20"
+   "cancel": "2026-11-20",
+   "pipe": "NEED INVOICE",
+   "unshipped": false
   },
   "14950926": {
    "dc": "000155 Brampton",
@@ -188,7 +438,9 @@
    "newest": "2026-11-30",
    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
    "sps_newest": "2026-11-15",
-   "cancel": "2026-12-15"
+   "cancel": "2026-12-15",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   },
   "14950927": {
    "dc": "000350 Calgary DC",
@@ -200,7 +452,9 @@
    "newest": "2026-11-30",
    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
    "sps_newest": "2026-11-15",
-   "cancel": "2026-12-15"
+   "cancel": "2026-12-15",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   },
   "14946928": {
    "dc": "000350 Calgary DC",
@@ -212,7 +466,9 @@
    "newest": "2026-11-01",
    "newest_src": "SPS",
    "sps_newest": "2026-11-01",
-   "cancel": "2026-12-01"
+   "cancel": "2026-12-01",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   },
   "14946927": {
    "dc": "000155 Brampton",
@@ -224,7 +480,9 @@
    "newest": "2026-11-01",
    "newest_src": "SPS",
    "sps_newest": "2026-11-01",
-   "cancel": "2026-12-01"
+   "cancel": "2026-12-01",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   },
   "14934994": {
    "dc": "000350 Calgary DC",
@@ -236,7 +494,9 @@
    "newest": "2026-11-12",
    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
    "sps_newest": "2026-10-30",
-   "cancel": "2026-11-29"
+   "cancel": "2026-11-29",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   },
   "14934991": {
    "dc": "000155 Brampton",
@@ -248,7 +508,9 @@
    "newest": "2026-11-12",
    "newest_src": "Revised (Max→Curtis, not yet in SPS)",
    "sps_newest": "2026-10-30",
-   "cancel": "2026-11-29"
+   "cancel": "2026-11-29",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
   }
  },
  "pending_v1": [],
