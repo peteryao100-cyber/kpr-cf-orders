@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MSL × IF (印尼 U0088) 安库全貌与二级水位直观看板</title>
+  <style>
+    :root {
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --sub: #334155;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --navy: #0f2942;
+      --blue: #1d4ed8;
+      --blue-bg: #eff6ff;
+      --green: #047857;
+      --green-bg: #ecfdf5;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --red: #b91c1c;
+      --red-bg: #fef2f2;
+      --purple: #6d28d9;
+      --purple-bg: #f5f3ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    header {
+      background: linear-gradient(135deg, #0f2942 0%, #1e3a5f 100%);
+      color: #fff;
+      padding: 26px 32px 22px;
+      border-bottom: 4px solid #3b82f6;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      font-weight: 800;
+    }
+    header .sub {
+      color: #cbd5e1;
+      font-size: 14px;
+      max-width: 1150px;
+    }
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .h-tag {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+      color: #f8fafc;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .h-tag.ok { background: rgba(16,185,129,0.25); border-color: #34d399; color: #a7f3d0; }
+    .h-tag.warn { background: rgba(245,158,11,0.25); border-color: #fbbf24; color: #fde68a; }
+    .h-tag.danger { background: rgba(239,68,68,0.28); border-color: #f87171; color: #fecaca; }
+
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 22px 26px 56px;
+    }
+
+    /* Section Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+      overflow: hidden;
+    }
+    .card-head {
+      padding: 14px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .card-head h2 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .card-body { padding: 18px 20px; }
+
+    /* Pills */
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pill.green { background: var(--green-bg); color: var(--green); border: 1px solid #a7f3d0; }
+    .pill.amber { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+    .pill.red { background: var(--red-bg); color: var(--red); border: 1px solid #fecaca; }
+    .pill.blue { background: var(--blue-bg); color: var(--blue); border: 1px solid #bfdbfe; }
+    .pill.purple { background: var(--purple-bg); color: var(--purple); border: 1px solid #ddd6fe; }
+
+    /* Top Answer Box */
+    .verdict-box {
+      background: linear-gradient(90deg, #ecfdf5 0%, #eff6ff 100%);
+      border: 2px solid #10b981;
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 20px;
+    }
+    .verdict-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #065f46;
+      margin: 0 0 8px;
+    }
+    .verdict-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .v-item {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+    }
+    .v-item strong { color: var(--navy); }
+
+    /* KPI Strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .kpi {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--blue);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .kpi.red { border-top-color: var(--red); }
+    .kpi.green { border-top-color: var(--green); }
+    .kpi.amber { border-top-color: var(--amber); }
+    .kpi.purple { border-top-color: var(--purple); }
+    .kpi .label { font-size: 12.5px; color: var(--muted); font-weight: 700; }
+    .kpi .val { font-size: 24px; font-weight: 800; margin: 4px 0; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .kpi .desc { font-size: 12px; color: var(--sub); line-height: 1.4; }
+
+    /* Flow Diagram */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr 60px 1fr;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .flow-step {
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: #f8fafc;
+    }
+    .flow-step.if-box { border-color: #3b82f6; background: #eff6ff; }
+    .flow-step.msl-box { border-color: #10b981; background: #ecfdf5; }
+    .flow-step.cust-box { border-color: #8b5cf6; background: #f5f3ff; }
+    .flow-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 22px;
+    }
+    .flow-arrow span { font-size: 11px; color: var(--muted); text-align: center; font-weight: 600; }
+
+    /* Two-column comparison */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .compare-box {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      background: #f8fafc;
+    }
+    .compare-box.bad { border-left: 5px solid var(--red); background: #fff5f5; }
+    .compare-box.good { border-left: 5px solid var(--green); background: #f0fdf4; }
+    .compare-box h3 { margin: 0 0 10px; font-size: 15.5px; }
+    .compare-box ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--sub); }
+    .compare-box li { margin-bottom: 6px; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+    th {
+      background: #1e293b;
+      color: #fff;
+      font-weight: 700;
+      text-align: left;
+      white-space: nowrap;
+    }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    tr.highlight-red td { background: #fef2f2 !important; }
+    tr.highlight-amber td { background: #fffbeb !important; }
+    tr.total-row td {
+      background: #e2e8f0 !important;
+      font-weight: 800;
+      border-top: 2px solid #0f172a;
+      border-bottom: 2px solid #0f172a;
+    }
+
+    /* Bar visual */
+    .bar-track {
+      width: 100%;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .bar-fill { height: 100%; border-radius: 999px; }
+
+    /* Filter tabs */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .f-btn {
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      color: var(--sub);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .f-btn.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    @media (max-width: 1024px) {
+      .verdict-grid, .kpi-grid, .grid-2, .flow-grid { grid-template-columns: 1fr; }
+      .flow-arrow { transform: rotate(90deg); margin: 4px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>KPR 印尼本地业务（IF 工厂 × MSL 贸易 · U0088）安库直观决策看板</h1>
+    <div class="sub">
+      数据范围：2026年1月1日 – 10月20日 ｜ 仓库数据来源：<strong>IF 印尼工厂系统 (PT King Power Safety · IFERP)</strong> ｜ 销售数据来源：<strong>MSL 印尼贸易系统 (PT Midland Sun Lixia)</strong>
+    </div>
+    <div class="tag-row">
+      <span class="h-tag ok">核心结论：数据分属 IF 与 MSL 不仅未推翻结论，反而 100% 验证了【二级解耦安库】方向</span>
+      <span class="h-tag danger">IF 仓库现状：U0088 成品库存 10,588 双中，77%（8,154双）积压在慢销款，主力 SP 仅剩 2,434 双</span>
+      <span class="h-tag warn">两系统差额：IF 出库 35,991 双 vs MSL 销售 29,461 双（差额 6,530 双已逐款查明）</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- 0. Boss 关心的问题：IF 仓库 vs MSL 销售分属两套系统，会影响方向吗？ -->
+    <div class="verdict-box">
+      <div class="verdict-title">💡 先回答 Boss 的核心关切：仓库数据来自 IF、销售数据来自 MSL，会影响我们的安库方向吗？</div>
+      <div style="font-size:14px; color:#1e293b;">
+        <strong>完全不会让分析失效，反而解开了之前最大的谜团，并让安库方向更加笃定！原因有 3 条：</strong>
+      </div>
+      <div class="verdict-grid">
+        <div class="v-item">
+          <strong>1. 物理上，IF 就是 MSL 的唯一成品仓与鞋面仓</strong><br>
+          按清华《MSL运作解说》，MSL 接单后直接录入 <code>IFERP</code>，由 PMC 查 <strong>IF 的 U0088 成品库存（10,588双）</strong> 和 <strong>IF 的共享鞋面池</strong> 来排产发货。因此 MSL 的安全库存物理上就是设在 IF 工厂仓内。
+        </div>
+        <div class="v-item">
+          <strong>2. 无论按 IF 出库还是按 MSL 销售，二八分化与错配完全一致</strong><br>
+          两款主力 <code>805/S-SP</code> 与 <code>026/3-SP</code> 在 MSL 销售占 <strong>85.4%</strong>（25,148双），在 IF 出库也占 <strong>73.7%</strong>（26,524双），但 IF 仓里加起来只剩 <strong>2,434双（不到1个月）</strong>；而 <code>M8</code>（2,549双）和 <code>807/8-SP</code>（1,212双）在两套系统里都是零头（≤45双），100% 证实是盲目注塑造成的死库存。
+        </div>
+        <div class="v-item">
+          <strong>3. 彻底解开 6,530 双差额（尤其 805/S-EH 的 5,114 双）</strong><br>
+          此前我误把 File 1 当作“尊荣同系统出货”；经 Boss 点醒 File 1 是 <strong>IF 出库</strong>、File 2 是 <strong>MSL 销售</strong> 后，真相大白：IF 出库单价恰等于 MSL 表里的「采购单价」（如 22.2万/24.7万 IDR）。多出的 <code>5,114双 805/S-EH</code> 要么已从 IF 调拨进 MSL 仓尚未售出，要么在 IF 直接被其他渠道提走——无论哪种，IF 仓里还躺着 <code>1,705双</code>，都必须立即锁死无单注塑！
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. 一张图看懂 IF 与 MSL 的数据链路 -->
+    <div class="card">
+      <div class="card-head">
+        <h2>一、一图看懂：IF 印尼工厂 (PT KPS) vs. MSL 贸易公司的数据与实物链路</h2>
+        <span class="pill blue">为什么两张表一个是 35,991 双、一个是 29,461 双？</span>
+      </div>
+      <div class="card-body">
+        <div class="flow-grid">
+          <div class="flow-step if-box">
+            <div style="font-weight:800; font-size:15px; color:#1e3a8a; margin-bottom:6px;">🏭 第一环：IF 印尼工厂 (PT King Power Safety)</div>
+            <div style="font-size:13px; color:#334155;">
+              • 系统：<strong>IFERP</strong>（套用尊荣ERP模板，故表头显示“尊荣日报表”，币别为 IDR）<br>
+              • 产能：<strong>2 台 DESMA 注塑机</strong>，共用 BASF PU 原液<br>
+              • 两大平行的渠道后缀：<br>
+              &nbsp;&nbsp;① <code>-U0042</code>（Dunia 印尼合资伙伴渠道）：1-10月出库 <strong>60,662 双</strong>，期末仅剩 <strong>781 双</strong>（周转极快，且使用独立鞋面 <code>805/K</code>、<code>026/2</code> 等，<strong>不抢 U0088 鞋面</strong>）。<br>
+              &nbsp;&nbsp;② <code>-U0088</code>（<strong>MSL 专属备货渠道</strong>）：期初推算 <strong>8,086 双</strong> ＋ 1-10月生产入库 <strong>38,493 双</strong> － 1-10月 IF 出库 <strong>35,991 双</strong> ＝ 当前 IF 期末库存 <strong>10,588 双</strong>（占 IF 全厂库存 <strong>93.1%</strong>！）。
+            </div>
+          </div>
+          <div class="flow-arrow">
+            ➜
+            <span>IF 出库给 MSL<br><strong>35,991 双</strong><br>(内部转移采购价)</span>
+          </div>
+          <div class="flow-step msl-box">
+            <div style="font-weight:800; font-size:15px; color:#065f46; margin-bottom:6px;">🏢 第二环：两系统之间的 6,530 双差额去向</div>
+            <div style="font-size:13px; color:#334155;">
+              • <strong>IF 工厂出库 (35,991双) － MSL 终端销售 (29,461双) ＝ +6,530 双</strong><br>
+              • 98.2% 的差额集中在两款：<br>
+              &nbsp;&nbsp;① <code>L8-805/S-EH</code>（<strong>+5,114 双</strong>）：IF 出库 5,265 双（均价 24.63万 IDR，对应7月调价后 24.7万内部采购价），但 MSL 月表仅售出 151 双。这 5,114 双系 6月底排产 3,600 双后<strong>从 IF 提货转入 MSL 侧待售/专案直发</strong>。<br>
+              &nbsp;&nbsp;② <code>L8-805/S-SP</code>（<strong>+1,299 双</strong>）：IF 出库 14,248 双 vs MSL 销售 12,949 双，系跨月订单提货未结转尾差。<br>
+              &nbsp;&nbsp;③ <code>L8-026/3-EH</code>（<strong>差额 0 双</strong>）：IF 出库与 MSL 销售均为 <strong>4,122 双</strong>，100% 吻合！
+            </div>
+          </div>
+          <div class="flow-arrow">
+            ➜
+            <span>MSL 终端开票<br><strong>29,461 双</strong><br>(+1,300个鞋盒)</span>
+          </div>
+          <div class="flow-step cust-box">
+            <div style="font-weight:800; font-size:15px; color:#5b21b6; margin-bottom:6px;">👷 第三环：MSL 终端客户销售 (在印中资企业/分销商)</div>
+            <div style="font-size:13px; color:#334155;">
+              • 系统：<strong>MSL 销售月统计表</strong>（含销售单价 + 对应 IF 采购单价）<br>
+              • <strong>前 2 大客户垄断 85.3% 销量</strong>：<br>
+              &nbsp;&nbsp;① <strong>金牛 ARCHINOVA (IT0038)</strong>：<strong>13,425 双 (45.6%)</strong>，7月脉冲大单 7,546 双，8-10月稳定月提 623~653 双（主提两款 SP）。<br>
+              &nbsp;&nbsp;② <strong>COYE 陶总 (IT0007)</strong>：<strong>11,718 双 (39.8%)</strong>，典型项目大单脉冲（4月提 SP 6,082双，6月提 026/3-EH 4,045双，8月提 1,300双）。<br>
+              &nbsp;&nbsp;③ <strong>断崖预警</strong>：LEEMI (2,850双) 5-10月连续6个月为0；亚铝 (620双) 6-10月连续5个月为0。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 核心KPI卡片 -->
+    <div class="kpi-grid">
+      <div class="kpi red">
+        <div class="label">IF 仓 U0088 当前成品总库存</div>
+        <div class="val">10,588 <span style="font-size:14px">双</span></div>
+        <div class="desc">占 IF 全厂库存 (11,369双) 的 <strong>93.1%</strong>；但结构完全倒挂！</div>
+      </div>
+      <div class="kpi red">
+        <div class="label">B/C类慢销与呆滞成品积压</div>
+        <div class="val">8,154 <span style="font-size:14px">双 (77%)</span></div>
+        <div class="desc"><code>026/3-EH</code> 2,548 + <code>M8</code> 2,549 + <code>805/S-EH</code> 1,705 + <code>807/8</code> 1,212 + 样品 140</div>
+      </div>
+      <div class="kpi amber">
+        <div class="label">A类主力款 (占销量85%) 剩余库存</div>
+        <div class="val">2,434 <span style="font-size:14px">双 (23%)</span></div>
+        <div class="desc"><code>805/S-SP</code> 仅剩 <strong>958双</strong>（跌破最低红线！）<br><code>026/3-SP</code> 剩 <strong>1,476双</strong>（逼近起订点）</div>
+      </div>
+      <div class="kpi purple">
+        <div class="label">第一层：上游 IF 共享鞋面池目标</div>
+        <div class="val">8,900 <span style="font-size:14px">双鞋面</span></div>
+        <div class="desc"><code>U6700020 (805/S)</code> 目标 <strong>4,500双</strong><br><code>U2100002 (026/3)</code> 目标 <strong>4,200双</strong></div>
+      </div>
+      <div class="kpi green">
+        <div class="label">第二层：下游 IF 成品标准安库</div>
+        <div class="val">4,750 <span style="font-size:14px">双成品</span></div>
+        <div class="desc">较当前 10,588 双<strong>压降 55.1% 资金占用</strong>，同时消灭主力款断货！</div>
+      </div>
+    </div>
+
+    <!-- 3. 症结诊断：旧做法 vs 新二级解耦模型 -->
+    <div class="card">
+      <div class="card-head">
+        <h2>二、一眼看懂核心矛盾：为什么不能再按“所有款 1.5 倍月均”备成品？</h2>
+        <span class="pill red">痛点诊断与解法对比</span>
+      </div>
+      <div class="card-body">
+        <div class="grid-2">
+          <div class="compare-box bad">
+            <h3>❌ 过去做法的三大陷阱（导致 8,154 双积压、主力款却缺货）</h3>
+            <ul>
+              <li><strong>陷阱 1：把黄金“共享鞋面”过早注塑成慢销成品！</strong><br>
+                <code>805/S (U6700020)</code> 和 <code>026/3 (U2100002)</code> 是 <strong>1对4 通用鞋面</strong>（同一个鞋面既能打 SP，也能打 EH 和 M8，注塑仅需约 3 天）。但 6–10 月工厂在没有客户订单的情况下，把好鞋面注塑成了 <code>M8</code>（积压 2,549 双）、<code>026/3-EH</code>（积压 2,548 双）、<code>805/S-EH</code>（积压 1,705 双），反而把最畅销的 <code>805/S-SP</code> 饿到只剩 <strong>958 双</strong>！</li>
+              <li><strong>陷阱 2：项目脉冲大单严重扭曲“算术月均”！</strong><br>
+                例如 <code>L8-026/3-EH</code> 全年 4,122 双销量里，<strong>4,045 双（98.1%）是 6 月 COYE 陶总一笔项目大单</strong>，平时 9 个月一共只卖了 77 双（月均 8.5 双）。如果机械按“10个月均销 412双 × 1.5”设成品安库，就会常备 600~3,000 双卖不动的 EH 成品。</li>
+              <li><strong>陷阱 3：成品仓没有“最高水位封顶闸门”！</strong><br>
+                6月底 <code>L8-807/8-SP</code> 累计销量为 0，却排产 5,000 双（已入库 1,216 双，至今仅出 3 双样品，1,212 双躺在 IF 仓）。</li>
+            </ul>
+          </div>
+          <div class="compare-box good">
+            <h3>✅ 新方案：【二级解耦安库模型】（重上游共享鞋面池 · 轻下游慢销成品）</h3>
+            <ul>
+              <li><strong>第一级（上游）：在 IF 设立【共享鞋面安全库存池（3个月 = 8,900双）】</strong><br>
+                因为鞋面采购前置期长达 <strong>2 个月</strong>，而鞋面在 IF 上机注塑成成品仅需 <strong>约 3 天</strong>。把安全缓冲留在通用的 <code>U6700020 (805/S)</code> 和 <code>U2100002 (026/3)</code> 鞋面上，不管是金牛日常补单还是 COYE 突发大单，都能随时调拨注塑！</li>
+              <li><strong>第二级（下游）：IF 成品按 A / B / C 三级严控水位（总目标 4,750 双）</strong><br>
+                • <strong>A 类（2款主力 SP）</strong>：占销量 85.4%，设常备成品安库（<code>805/S-SP</code> 目标 <strong>2,000双</strong>、<code>026/3-SP</code> 目标 <strong>1,850双</strong>），满足日常秒发。<br>
+                • <strong>B 类（3款脉冲/专案 EH & 807）</strong>：只设小额样品/底线缓冲（合计 <strong>900双</strong>），大单来了直接从第一级“共享鞋面池”领料 3 天注塑！当前超储的 <strong>4,565 双</strong> 立即锁死排产、优先清库。<br>
+                • <strong>C 类（11款 M8 及样品）</strong>：成品安库一律设为 <strong>0 双（100% 凭正式锁单生产 MTO）</strong>，全力消化现有 <strong>2,689 双</strong> 死库存。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 第一级：上游共享鞋面池五段水位表 -->
+    <div class="card">
+      <div class="card-head">
+        <h2>三、【第一级缓冲】上游 IF 共享鞋面安全库存池（五段标准水位设定表）</h2>
+        <span class="pill purple">鞋面前置期 = 2 个月 ｜ 缓冲池目标 = 3 个月总需求 (8,900 双)</span>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>共享鞋面编码</th>
+                <th>鞋面名称</th>
+                <th>1对多供应的下游成品款型</th>
+                <th class="num">6月基线<br>(在库+在途)</th>
+                <th class="num">1-10月IF成型<br>实际耗用鞋面</th>
+                <th class="num">月均需求<br>核算基准</th>
+                <th class="num">最低水位<br>(2.0个月)</th>
+                <th class="num">起订点 ROP<br>(2.5个月)</th>
+                <th class="num">起订量<br>(经济批)</th>
+                <th class="num">目标标准池<br>(3.0个月)</th>
+                <th class="num">最高水位<br>(4.0个月)</th>
+                <th>鞋面池领用与管控铁律</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>U6700020</code></strong></td>
+                <td>805/S 牛皮中帮鞋面</td>
+                <td>
+                  <span class="pill green">A类 L8-805/S-SP</span>
+                  <span class="pill amber">B类 L8-805/S-EH</span>
+                  <span class="pill red">C类 M8-805/S (SP/EH)</span>
+                </td>
+                <td class="num">13,706<br><span style="font-size:11px;color:#64748b">(库3,171+途10,535)</span></td>
+                <td class="num"><strong>19,128</strong></td>
+                <td class="num"><strong>1,500</strong> /月</td>
+                <td class="num"><strong>3,000</strong></td>
+                <td class="num"><strong>3,750</strong></td>
+                <td class="num"><strong>1,500</strong></td>
+                <td class="num" style="color:#1d4ed8;font-weight:800;">4,500</td>
+                <td class="num"><strong>6,000</strong></td>
+                <td><strong>100% 优先拨给 <code>L8-805/S-SP</code> 补产 1,042 双</strong>；无正式合同严禁拨给 EH 或 M8！</td>
+              </tr>
+              <tr>
+                <td><strong><code>U2100002</code></strong></td>
+                <td>026/3 牛皮低帮鞋面</td>
+                <td>
+                  <span class="pill green">A类 L8-026/3-SP</span>
+                  <span class="pill amber">B类 L8-026/3-EH</span>
+                  <span class="pill red">C类 M8-026/3 (SP/EH)</span>
+                </td>
+                <td class="num">19,313<br><span style="font-size:11px;color:#64748b">(库17,293+途2,020)</span></td>
+                <td class="num"><strong>18,184</strong></td>
+                <td class="num"><strong>1,400</strong> /月</td>
+                <td class="num"><strong>2,800</strong></td>
+                <td class="num"><strong>3,500</strong></td>
+                <td class="num"><strong>1,500</strong></td>
+                <td class="num" style="color:#1d4ed8;font-weight:800;">4,200</td>
+                <td class="num"><strong>5,600</strong></td>
+                <td><strong>仅对 <code>L8-026/3-SP</code> 开放自动补库（拨 500 双）</strong>；遇 COYE 的 EH 大单凭锁单领用注塑。</td>
+              </tr>
+              <tr class="highlight-amber">
+                <td><strong><code>U6500009</code> / <code>U6700028</code></strong></td>
+                <td>807/8 牛皮中帮鞋面</td>
+                <td><span class="pill amber">B类 L8-807/8-SP</span></td>
+                <td class="num">5,100<br><span style="font-size:11px;color:#64748b">(库0+途5,100)</span></td>
+                <td class="num"><strong>1,216</strong></td>
+                <td class="num"><strong>65</strong> /月</td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>按单</strong></td>
+                <td class="num"><strong>200</strong></td>
+                <td class="num"><strong>400</strong></td>
+                <td>🛑 <strong>紧急冻结注塑！</strong>6月到货5,100双已注塑1,216双（仅卖3双），剩余 <strong>3,884 双鞋面严禁继续上机</strong>！</td>
+              </tr>
+              <tr class="total-row">
+                <td colspan="3"><strong>上游 IF 共享鞋面安全库存池合计</strong></td>
+                <td class="num">38,119</td>
+                <td class="num">38,528</td>
+                <td class="num">2,965 /月</td>
+                <td class="num">5,800</td>
+                <td class="num">7,250</td>
+                <td class="num">—</td>
+                <td class="num" style="color:#1d4ed8;">8,900</td>
+                <td class="num">12,000</td>
+                <td><strong>公式：鞋面可用净水位 = IF鞋面在库 + 已确认到厂在途 - 已锁定成型工单占用量</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 第二级：下游 IF 成品分级安库水位与对账总表 -->
+    <div class="card">
+      <div class="card-head">
+        <h2>四、【第二级缓冲】下游 IF 成品分级安库水位设定表（含 IF 出库 vs MSL 销售逐款对照）</h2>
+        <div class="filter-bar" style="margin:0;">
+          <button class="f-btn active" onclick="filterRows('ALL', this)">全部款型 (16款)</button>
+          <button class="f-btn" onclick="filterRows('A', this)">🟢 A类 常备主力款 (2款)</button>
+          <button class="f-btn" onclick="filterRows('B', this)">🟡 B类 脉冲/专案封顶款 (3款)</button>
+          <button class="f-btn" onclick="filterRows('C', this)">🔴 C类 零安库MTO清库款 (11款)</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table id="fgTable">
+            <thead>
+              <tr>
+                <th>款型编码 (IFERP)</th>
+                <th>客户型号 / 共享鞋面</th>
+                <th>ABC 分级</th>
+                <th class="num">IF 1-10月入库<br>(工厂生产)</th>
+                <th class="num">IF 1-10月出库<br>(发往MSL等)</th>
+                <th class="num">MSL 1-10月销量<br>(终端月表)</th>
+                <th class="num">两系统差额<br>(IF出 - MSL销)</th>
+                <th class="num">IF 当前库存<br>(10月20日)</th>
+                <th class="num">最低水位<br>(Min)</th>
+                <th class="num">起订点<br>(ROP)</th>
+                <th class="num">起订量<br>(Lot)</th>
+                <th class="num">目标安库<br>(Target)</th>
+                <th class="num">最高水位<br>(Max)</th>
+                <th class="num">需补产 /<br>(超储去化)</th>
+                <th style="min-width:260px;">立即可执行指令 (Action)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Class A -->
+              <tr data-tier="A" class="highlight-red">
+                <td><strong><code>L8-805/S-SP-04-U0088</code></strong></td>
+                <td>L-805H (SP)<br><span style="font-size:11.5px;color:#64748b">鞋面: U6700020</span></td>
+                <td><span class="pill green">A类 常备主力</span></td>
+                <td class="num">10,069</td>
+                <td class="num"><strong>14,248</strong></td>
+                <td class="num"><strong>12,949</strong><br><span style="font-size:11px;color:#64748b">(占MSL 44.0%)</span></td>
+                <td class="num">+1,299<br><span style="font-size:11px;color:#64748b">跨期提货在途</span></td>
+                <td class="num" style="color:#b91c1c;font-weight:800;font-size:14px;">958</td>
+                <td class="num"><strong>1,000</strong></td>
+                <td class="num"><strong>1,500</strong></td>
+                <td class="num">500</td>
+                <td class="num" style="color:#047857;font-weight:800;">2,000</td>
+                <td class="num"><strong>2,600</strong></td>
+                <td class="num" style="color:#b91c1c;font-weight:800;">缺 +1,042</td>
+                <td>🔴 <strong>立即补产 2 批 (1,000~1,042双)</strong>：IF库存(958)已跌破最低红线(1,000)，立即从 <code>U6700020</code> 领鞋面注塑！</td>
+              </tr>
+              <tr data-tier="A" class="highlight-amber">
+                <td><strong><code>L8-026/3-SP-04-U0088</code></strong></td>
+                <td>L-026X (SP)<br><span style="font-size:11.5px;color:#64748b">鞋面: U2100002</span></td>
+                <td><span class="pill green">A类 常备主力</span></td>
+                <td class="num">10,260</td>
+                <td class="num"><strong>12,276</strong></td>
+                <td class="num"><strong>12,199</strong><br><span style="font-size:11px;color:#64748b">(占MSL 41.4%)</span></td>
+                <td class="num">+77<br><span style="font-size:11px;color:#64748b">10月截账尾差</span></td>
+                <td class="num" style="color:#b45309;font-weight:800;font-size:14px;">1,476</td>
+                <td class="num"><strong>900</strong></td>
+                <td class="num"><strong>1,400</strong></td>
+                <td class="num">500</td>
+                <td class="num" style="color:#047857;font-weight:800;">1,850</td>
+                <td class="num"><strong>2,400</strong></td>
+                <td class="num" style="color:#b45309;font-weight:800;">缺 +374</td>
+                <td>🟡 <strong>计划补产 1 批 (500双)</strong>：IF库存(1,476)已触及起订点(1,400)，排产1个标准批拉回 1,976 双。</td>
+              </tr>
+
+              <!-- Class B -->
+              <tr data-tier="B">
+                <td><strong><code>L8-026/3-EH-04-U0088</code></strong></td>
+                <td>L-026X (EH)<br><span style="font-size:11.5px;color:#64748b">鞋面: U2100002</span></td>
+                <td><span class="pill amber">B类 项目脉冲</span></td>
+                <td class="num">6,670</td>
+                <td class="num"><strong>4,122</strong></td>
+                <td class="num"><strong>4,122</strong><br><span style="font-size:11px;color:#64748b">(6月COYE 4,045)</span></td>
+                <td class="num" style="color:#047857;font-weight:700;">0 (完全吻合)</td>
+                <td class="num" style="color:#b91c1c;font-weight:800;">2,548</td>
+                <td class="num"><strong>200</strong></td>
+                <td class="num"><strong>350</strong></td>
+                <td class="num">300</td>
+                <td class="num"><strong>350</strong></td>
+                <td class="num"><strong>500</strong></td>
+                <td class="num" style="color:#1d4ed8;font-weight:700;">超储 -2,198</td>
+                <td>🛑 <strong>锁死无单注塑 + 去库存</strong>：日常月销仅8.5双，封顶500双；向 COYE/金牛推专案消化 2,198 双超储。</td>
+              </tr>
+              <tr data-tier="B">
+                <td><strong><code>L8-805/S-EH-04-U0088</code></strong></td>
+                <td>L-805H (EH)<br><span style="font-size:11.5px;color:#64748b">鞋面: U6700020</span></td>
+                <td><span class="pill amber">B类 专案观察</span></td>
+                <td class="num">6,970</td>
+                <td class="num"><strong>5,265</strong></td>
+                <td class="num"><strong>151</strong><br><span style="font-size:11px;color:#64748b">(6月金牛 151)</span></td>
+                <td class="num" style="color:#b45309;font-weight:700;">+5,114<br><span style="font-size:11px;color:#64748b">IF已发/MSL未售</span></td>
+                <td class="num" style="color:#b91c1c;font-weight:800;">1,705</td>
+                <td class="num"><strong>200</strong></td>
+                <td class="num"><strong>350</strong></td>
+                <td class="num">300</td>
+                <td class="num"><strong>350</strong></td>
+                <td class="num"><strong>500</strong></td>
+                <td class="num" style="color:#1d4ed8;font-weight:700;">超储 -1,355</td>
+                <td>🛑 <strong>锁死无单注塑 + 核查 5,114 双去向</strong>：IF仓尚有 1,705 双，严禁再把 <code>U6700020</code> 鞋面注塑成 EH！</td>
+              </tr>
+              <tr data-tier="B">
+                <td><strong><code>L8-807/8-SP-04-U0088</code></strong></td>
+                <td>L-807/8 (SP)<br><span style="font-size:11.5px;color:#64748b">鞋面: U6500009</span></td>
+                <td><span class="pill amber">B类 新品观察</span></td>
+                <td class="num">1,216</td>
+                <td class="num"><strong>3</strong></td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num">+3 (样品)</td>
+                <td class="num" style="color:#b91c1c;font-weight:800;">1,212</td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num"><strong>150</strong></td>
+                <td class="num">200</td>
+                <td class="num"><strong>200</strong></td>
+                <td class="num"><strong>300</strong></td>
+                <td class="num" style="color:#1d4ed8;font-weight:700;">超储 -1,012</td>
+                <td>🛑 <strong>紧急冻结剩余 3,884 双鞋面注塑</strong>：10个月仅出3双样品，先专项清库 1,212 双成品！</td>
+              </tr>
+
+              <!-- Class C -->
+              <tr data-tier="C">
+                <td><strong><code>M8-805/S-EH-08-U0088</code></strong></td>
+                <td>M805S-EH (U6700020)</td>
+                <td><span class="pill red">C类 零安库MTO</span></td>
+                <td class="num">1,220</td>
+                <td class="num">2</td>
+                <td class="num">0</td>
+                <td class="num">+2 (样品)</td>
+                <td class="num" style="color:#b91c1c;font-weight:700;">1,010</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
+                <td class="num">按单</td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num">0</td>
+                <td class="num" style="color:#1d4ed8;">呆滞 -1,010</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月 0 销售，全面停产并促销清库。</td>
+              </tr>
+              <tr data-tier="C">
+                <td><strong><code>M8-026/3-EH-08-U0088</code></strong></td>
+                <td>M026/3-EH (U2100002)</td>
+                <td><span class="pill red">C类 零安库MTO</span></td>
+                <td class="num">800</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
+                <td class="num" style="color:#b91c1c;font-weight:700;">600</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
+                <td class="num">按单</td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num">0</td>
+                <td class="num" style="color:#1d4ed8;">呆滞 -600</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月 0 出库 0 销售，促销清库。</td>
+              </tr>
+              <tr data-tier="C">
+                <td><strong><code>M8-805/S-SP-08-U0088</code></strong></td>
+                <td>M805S-SP (U6700020)</td>
+                <td><span class="pill red">C类 零安库MTO</span></td>
+                <td class="num">669</td>
+                <td class="num">45</td>
+                <td class="num">30 (凯达)</td>
+                <td class="num">+15 (样品)</td>
+                <td class="num" style="color:#b91c1c;font-weight:700;">496</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
+                <td class="num">按单</td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num">0</td>
+                <td class="num" style="color:#1d4ed8;">呆滞 -496</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月仅凯达提30双，现有496双足够卖数年，停产清库。</td>
+              </tr>
+              <tr data-tier="C">
+                <td><strong><code>M8-026/3-SP-08-U0088</code></strong></td>
+                <td>M026/3-SP (U2100002)</td>
+                <td><span class="pill red">C类 零安库MTO</span></td>
+                <td class="num">454</td>
+                <td class="num">11</td>
+                <td class="num">10 (凯达)</td>
+                <td class="num">+1 (样品)</td>
+                <td class="num" style="color:#b91c1c;font-weight:700;">443</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
+                <td class="num">按单</td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num">0</td>
+                <td class="num" style="color:#1d4ed8;">呆滞 -443</td>
+                <td>🛑 <strong>设为 0 安库 (MTO)</strong>：10个月仅凯达提10双，现有443双停产清库。</td>
+              </tr>
+              <tr data-tier="C">
+                <td><strong>其余 7 款样品/尾货</strong><br><span style="font-size:11px;color:#64748b">(I14-881/6 104双 + I14/L8-222/M11 36双)</span></td>
+                <td>样品 / 展厅款</td>
+                <td><span class="pill red">C类 样品零安库</span></td>
+                <td class="num">155</td>
+                <td class="num">19</td>
+                <td class="num">0</td>
+                <td class="num">+19 (样品)</td>
+                <td class="num">140</td>
+                <td class="num">0</td>
+                <td class="num">0</td>
+                <td class="num">按单</td>
+                <td class="num"><strong>0</strong></td>
+                <td class="num">0</td>
+                <td class="num" style="color:#1d4ed8;">尾货 -140</td>
+                <td>⚪ <strong>设为 0 安库 (MTO)</strong>：展厅与测试尾货清理。</td>
+              </tr>
+
+              <!-- Total Row -->
+              <tr class="total-row">
+                <td colspan="3"><strong>U0088 成品鞋合计（16款）</strong></td>
+                <td class="num">38,493</td>
+                <td class="num">35,991</td>
+                <td class="num">29,461<br><span style="font-size:11px;font-weight:600">(另1,300纸箱)</span></td>
+                <td class="num">+6,530</td>
+                <td class="num">10,588</td>
+                <td class="num">2,300</td>
+                <td class="num">3,750</td>
+                <td class="num">—</td>
+                <td class="num" style="color:#047857;">4,750</td>
+                <td class="num">6,300</td>
+                <td class="num">补+1,416 / 清-7,254</td>
+                <td><strong>成品安库目标压降至 4,750 双（释放 55% 成品资金，消除主力断货）</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. 落地执行三步走与待补齐的最后一块拼图 -->
+    <div class="card">
+      <div class="card-head">
+        <h2>五、下一步落地清单（只需确认这 3 件事即可在 IFERP 锁死执行）</h2>
+        <span class="pill green">实操行动指南</span>
+      </div>
+      <div class="card-body">
+        <div class="verdict-grid" style="margin-top:0;">
+          <div class="v-item">
+            <strong>第一步：立即在 IF 排产补齐 2 款主力 SP，同时锁死 B/C 类无单注塑</strong><br>
+            1. <code>L8-805/S-SP</code> 立即从鞋面池领料补产 <strong>2 批（1,000~1,042 双）</strong>；<code>L8-026/3-SP</code> 补产 <strong>1 批（500 双）</strong>。<br>
+            2. 排产前优先核查 2 个共用瓶颈辅料：<strong><code>K0900036</code> 米白EVA冲孔鞋垫</strong>（建议设常备安库 4,500 双）与 <strong><code>M0500158</code> 蛋格纸箱</strong>（设常备安库 500 个）。<br>
+            3. 在 IFERP 对 <code>EH</code>、<code>807/8</code>、<code>M8</code> 设上限拦截：库存高于起订点时，严禁无客户合同排产注塑。
+          </div>
+          <div class="v-item">
+            <strong>第二步：向清华/Lixia 核清 <code>L8-805/S-EH</code> 的 5,114 双去向</strong><br>
+            IF 账面已出库 <code>5,265 双</code>（按 24.7万 IDR 内部采购价结算），但 MSL 销售月表仅记 <code>151 双</code>。<br>
+            • 若这 <strong>5,114 双</strong> 已调拨在 MSL 仓库尚未卖出，则全集团实际积压高达 <code>1,705 (IF) + 5,114 (MSL) = 6,819 双</code>！<br>
+            • 若是由 IF 直接发给了专案大客户而未录进 MSL 分销月表，只需把专案合同补录对齐即可。
+          </div>
+          <div class="v-item">
+            <strong>第三步：补齐「尺码比例（Size Run）」—— 把 2,000 双与 1,850 双拆到每个码</strong><br>
+            正如 Boss 在 6 月问题矩阵（A2/A9/B3）所指出的：<em>“总量够但缺核心码数，依然出不了货”</em>。<br>
+            目前 IF 日报表和 MSL 销售月表都只有款型总数、没有尺码列。下一步只需从 IFERP 导出 <strong><code>L8-805/S-SP</code> 和 <code>L8-026/3-SP</code> 的分尺码出库历史与当前分尺码库存</strong>，即可把 <code>2,000 双</code> 和 <code>1,850 双</code> 精确拆解成每个尺码的最低水位与起订点！
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function filterRows(tier, btn) {
+      document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#fgTable tbody tr[data-tier]').forEach(row => {
+        if (tier === 'ALL' || row.getAttribute('data-tier') === tier) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
