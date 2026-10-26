@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JONGLONG供应商年度(2025/1/1---2025/12/31)交易金额统计表                                  2026-01-29</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f0f2f5;--card:#fff;--text:#1a1a2e;--sub:#64748b;--border:#e2e8f0;--blue:#1a73e8;--green:#0d9488;--orange:#f59e0b;--red:#ef4444;--purple:#7c3aed;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:0}
+.header{background:linear-gradient(135deg,#1a237e 0%,#283593 50%,#1565c0 100%);color:#fff;padding:28px 40px;position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.header h1{font-size:22px;font-weight:700;letter-spacing:.5px;margin-bottom:4px}
+.header .meta{font-size:13px;opacity:.8}
+.container{max-width:1400px;margin:0 auto;padding:24px 28px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.kpi{background:var(--card);border-radius:12px;padding:20px 24px;box-shadow:var(--shadow);border-left:4px solid var(--blue)}
+.kpi:nth-child(2){border-left-color:var(--green)}
+.kpi:nth-child(3){border-left-color:var(--orange)}
+.kpi:nth-child(4){border-left-color:var(--purple)}
+.kpi-label{font-size:12px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.kpi-val{font-size:26px;font-weight:700;color:var(--text)}
+.kpi-sub{font-size:12px;color:var(--sub);margin-top:4px}
+.row{display:grid;gap:20px;margin-bottom:20px}
+.row-2{grid-template-columns:1fr 1fr}
+.row-3{grid-template-columns:1fr 1fr 1fr}
+.row-2-1{grid-template-columns:2fr 1fr}
+.row-1-2{grid-template-columns:1fr 2fr}
+.card{background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
+.card-title{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chart{width:100%;height:380px}
+.chart-sm{width:100%;height:320px}
+.chart-lg{width:100%;height:450px}
+
+/* Tables */
+.table-wrap{max-height:420px;overflow-y:auto;border:1px solid var(--border);border-radius:8px}
+.table-wrap::-webkit-scrollbar{width:6px}
+.table-wrap::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#f8fafc;position:sticky;top:0;padding:10px 12px;text-align:left;font-weight:600;color:var(--sub);border-bottom:2px solid var(--border);z-index:1}
+td{padding:9px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:#f8fafc}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* Tags */
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.tag-blue{background:#dbeafe;color:#1e40af}
+.tag-green{background:#d1fae5;color:#065f46}
+.tag-orange{background:#fef3c7;color:#92400e}
+.tag-red{background:#fee2e2;color:#991b1b}
+.tag-purple{background:#ede9fe;color:#5b21b6}
+
+/* Search */
+.search-box{margin-bottom:14px}
+.search-box input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;outline:none;transition:border .2s}
+.search-box input:focus{border-color:var(--blue)}
+
+/* Tabs */
+.tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:16px}
+.tab{padding:8px 20px;cursor:pointer;font-size:13px;font-weight:600;color:var(--sub);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+
+/* Concentration Pareto Section */
+.conc-kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px}
+.conc-kpi{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:12px 14px;border-top:3px solid var(--blue)}
+.conc-kpi:nth-child(1){border-top-color:#ef4444}
+.conc-kpi:nth-child(2){border-top-color:#f59e0b}
+.conc-kpi:nth-child(3){border-top-color:#1a73e8}
+.conc-kpi:nth-child(4){border-top-color:#7c3aed}
+.conc-kpi:nth-child(5){border-top-color:#0d9488}
+.conc-kpi-title{font-size:12px;font-weight:600;color:var(--sub);display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.conc-kpi-val{font-size:18px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.conc-kpi-sub{font-size:11px;color:var(--sub);margin-top:3px}
+.card-header-flex{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.card-header-flex .card-title{margin-bottom:0}
+.btn-group{display:flex;gap:6px;flex-wrap:wrap}
+.btn-toggle{padding:5px 12px;font-size:12px;font-weight:600;border:1px solid var(--border);background:#f8fafc;color:var(--sub);border-radius:6px;cursor:pointer;transition:all .15s}
+.btn-toggle:hover{color:var(--text);border-color:#cbd5e1}
+.btn-toggle.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pct-cell{display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.pct-bar-bg{width:72px;height:7px;background:#e2e8f0;border-radius:4px;overflow:hidden;flex-shrink:0}
+.pct-bar-fill{height:100%;border-radius:4px}
+.step-row{cursor:pointer;transition:background .15s}
+.step-row:hover td{background:#eff6ff !important}
+.step-row.highlight-80 td{background:#fefce8}
+.step-row.highlight-90 td{background:#f5f3ff}
+.step-row.total-row td{background:#f1f5f9;font-weight:700;border-top:2px solid #cbd5e1}
+.step-expand-icon{display:inline-block;width:16px;font-size:11px;color:var(--blue);transition:transform .2s}
+.step-row.open .step-expand-icon{transform:rotate(90deg)}
+.step-detail-tr{display:none;background:#f8fafc}
+.step-detail-tr.open{display:table-row}
+.step-detail-box{padding:10px 14px;background:#f8fafc;border-left:3px solid var(--blue);border-radius:4px}
+.step-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-top:6px}
+.step-sup-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.step-sup-rank{display:inline-block;min-width:22px;height:20px;line-height:20px;text-align:center;background:#e2e8f0;color:#334155;border-radius:4px;font-size:11px;font-weight:700;margin-right:6px;padding:0 4px}
+.jump-link{color:var(--blue);text-decoration:none;font-weight:600;cursor:pointer}
+.jump-link:hover{text-decoration:underline}
+@media(max-width:1100px){
+  .conc-kpi-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .conc-kpi-row{grid-template-columns:1fr}
+}
+
+/* Footer */
+.footer{text-align:center;padding:20px;font-size:12px;color:var(--sub)}
+
+@media(max-width:900px){
+  .kpi-row,.row-2,.row-3,.row-2-1,.row-1-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1 id="dash-title"></h1>
+  <div class="meta" id="dash-meta"></div>
+</div>
+
+<div class="container">
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">年度采购总额</div>
+      <div class="kpi-val" id="kpi-total"></div>
+      <div class="kpi-sub" id="kpi-total-sub"></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">供应商数量</div>
+      <div class="kpi-val" id="kpi-suppliers"></div>
+      <div class="kpi-sub" id="kpi-suppliers-sub"></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">物料类别</div>
+      <div class="kpi-val" id="kpi-categories"></div>
+      <div class="kpi-sub" id="kpi-cat-sub"></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">最大品类占比</div>
+      <div class="kpi-val" id="kpi-top-cat"></div>
+      <div class="kpi-sub" id="kpi-top-cat-sub"></div>
+    </div>
+  </div>
+
+  <!-- Row 1: Category pie + Tier bar -->
+  <div class="row row-2">
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--blue)"></span>采购金额 — 按物料类别分布</div>
+      <div class="chart" id="chart-cat-pie"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--green)"></span>供应商分布 — 按金额台阶</div>
+      <div class="chart" id="chart-tier-bar"></div>
+    </div>
+  </div>
+
+  <!-- Row 2: Top 20 suppliers -->
+  <div class="row">
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--orange)"></span>Top 20 供应商 — 按年度交易金额</div>
+      <div class="chart-lg" id="chart-top-suppliers"></div>
+    </div>
+  </div>
+
+  <!-- Row 3: Category bar + Treemap -->
+  <div class="row row-2">
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--purple)"></span>各品类采购金额对比</div>
+      <div class="chart" id="chart-cat-bar"></div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--red)"></span>供应商金额矩阵图</div>
+      <div class="chart" id="chart-treemap"></div>
+    </div>
+  </div>
+
+  <!-- Row 4: Tabs - by category / by tier tables -->
+  <div class="row">
+    <div class="card">
+      <div class="tab-bar">
+        <div class="tab active" data-tab="tab-by-cat">按物料类别明细</div>
+        <div class="tab" data-tab="tab-by-tier">按金额台阶明细</div>
+        <div class="tab" data-tab="tab-all-suppliers">全部供应商</div>
+        <div class="tab" data-tab="tab-topn-steps">Top 10/20/30... 阶梯汇总</div>
+      </div>
+
+      <div class="tab-content active" id="tab-by-cat">
+        <div class="search-box"><input type="text" id="search-cat" placeholder="搜索供应商、物料..."></div>
+        <div class="table-wrap">
+          <table><thead><tr><th style="width:30px">#</th><th>物料类别</th><th>供应物料</th><th>供应商</th><th class="num">金额 (RMB)</th><th class="num">占总额比</th></tr></thead>
+          <tbody id="tbody-cat"></tbody></table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-by-tier">
+        <div class="search-box"><input type="text" id="search-tier" placeholder="搜索供应商、物料..."></div>
+        <div class="table-wrap">
+          <table><thead><tr><th style="width:30px">#</th><th>金额台阶</th><th>供应物料</th><th>供应商</th><th class="num">金额 (RMB)</th></tr></thead>
+          <tbody id="tbody-tier"></tbody></table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-all-suppliers">
+        <div class="search-box"><input type="text" id="search-all" placeholder="搜索供应商..."></div>
+        <div class="table-wrap">
+          <table><thead><tr><th style="width:30px">#</th><th>供应商</th><th class="num">合计金额 (RMB)</th><th class="num">占总额比</th><th>金额等级</th></tr></thead>
+          <tbody id="tbody-all"></tbody></table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-topn-steps">
+        <div class="table-wrap" style="max-height:520px">
+          <table>
+            <thead>
+              <tr>
+                <th>累计阶梯</th>
+                <th>排名区间</th>
+                <th class="num">累计采购金额 (RMB)</th>
+                <th class="num">累计占总额比</th>
+                <th class="num">本档新增金额 (RMB)</th>
+                <th class="num">本档占比</th>
+                <th class="num">累计户均金额</th>
+                <th class="num">本档户均金额</th>
+                <th>本档代表供应商 (前3名)</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-topn-tab"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Concentration analysis (Upgraded Top 10 / 20 / 30 ... Pareto Chart & Table) -->
+  <div class="row" id="section-concentration">
+    <div class="card">
+      <div class="card-header-flex">
+        <div class="card-title">
+          <span class="dot" style="background:#6366f1"></span>
+          供应商集中度分析 — Top 10 / 20 / 30 … 累计采购金额与占比 (帕累托阶梯统计)
+        </div>
+        <div class="btn-group">
+          <button class="btn-toggle active" id="btn-conc-all" onclick="setConcMode('all')">全量阶梯 (Top 10–223)</button>
+          <button class="btn-toggle" id="btn-conc-top100" onclick="setConcMode('top100')">聚焦前100 (Top 10–100)</button>
+          <button class="btn-toggle" id="btn-conc-curve" onclick="setConcMode('curve')">逐户连续曲线 (1–223)</button>
+          <button class="btn-toggle" id="btn-expand-all" onclick="toggleAllStepDetails()">展开各档供应商明细</button>
+        </div>
+      </div>
+
+      <!-- 5 Pareto Milestone KPI Cards -->
+      <div class="conc-kpi-row" id="conc-kpi-strip"></div>
+
+      <!-- Upgraded Combo Chart -->
+      <div class="chart-lg" id="chart-concentration" style="height:430px;margin-bottom:20px"></div>
+
+      <!-- Complete Step Summary Table -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+        <div style="font-size:14px;font-weight:600;color:var(--text)">
+          📊 Top 10 / 20 / 30 … 供应商累计交易金额与区间增量明细表
+          <span style="font-size:12px;font-weight:400;color:var(--sub);margin-left:8px">（点击任意行可展开查看该档位全部 10 家供应商及交易额）</span>
+        </div>
+        <div style="font-size:12px;color:var(--sub)">
+          <span style="display:inline-block;width:10px;height:10px;background:#fefce8;border:1px solid #fde047;border-radius:2px;margin-right:4px"></span>跨过 80% 帕累托线 (Top 30)
+          <span style="display:inline-block;width:10px;height:10px;background:#f5f3ff;border:1px solid #c4b5fd;border-radius:2px;margin:0 4px 0 12px"></span>跨过 90% 集中度线 (Top 50)
+        </div>
+      </div>
+      <div class="table-wrap" style="max-height:none;overflow-y:visible">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:110px">累计阶梯</th>
+              <th style="width:95px">名次区间</th>
+              <th class="num">累计采购金额 (RMB)</th>
+              <th class="num" style="width:165px">累计占总额比</th>
+              <th class="num">本档新增金额 (RMB)</th>
+              <th class="num">本档占比</th>
+              <th class="num">累计户均金额</th>
+              <th class="num">本档户均金额</th>
+              <th class="num">本档单家金额区间</th>
+              <th>本档代表供应商 (前3名)</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-concentration-steps"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category supplier count -->
+  <div class="row">
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:#ec4899"></span>各品类供应商数量</div>
+      <div class="chart" id="chart-cat-supplier-count"></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Dashboard generated from: Supply 2025.xlsx | Generated: 2026-03-30 18:35</div>
+
+<script>
+const D = {"title": "JONGLONG供应商年度(2025/1/1---2025/12/31)交易金额统计表                                  2026-01-29", "supplier_count": 223, "categories": [{"name": "鞋厂原材料 - 鞋面类", "amount": 29898111.57321301, "pct": 42.53}, {"name": "鞋厂原材料 - 钳帮类", "amount": 4272953.274800001, "pct": 6.08}, {"name": "鞋厂原材料 - 射出类（包括TPU）", "amount": 9082507.412999999, "pct": 12.92}, {"name": "鞋厂原材料 -  - 包材类", "amount": 5691774.450500001, "pct": 8.1}, {"name": "注塑材料类（PC）", "amount": 2949842.24, "pct": 4.2}, {"name": "设备/零配件类", "amount": 1970272.414422, "pct": 2.8}, {"name": "模厂原材料类", "amount": 670626.2904, "pct": 0.95}, {"name": "橡胶厂原材料类", "amount": 6521407.295100001, "pct": 9.28}, {"name": "生产制具类", "amount": 266153.6621, "pct": 0.38}, {"name": "总务类", "amount": 1082624.2347, "pct": 1.54}, {"name": "安全防护类（通荣/3M)", "amount": 7886567.46, "pct": 11.22}], "total_amount": 70292840.30823502, "tiers": [{"tier": "400万以上", "count": 6}, {"tier": "100-399万", "count": 9}, {"tier": "50-99万", "count": 12}, {"tier": "20-49万", "count": 24}, {"tier": "10-19万", "count": 17}, {"tier": "1-9万", "count": 87}, {"tier": "1万以下", "count": 68}], "by_category": [{"category": "鞋厂原材料 鞋面类", "material": "鞋面加工", "supplier": "力荣", "amount": 6046389.61}, {"category": "鞋厂原材料 鞋面类", "material": "皮料/鞋面加工", "supplier": "ALLIED", "amount": 5148426.410803}, {"category": "鞋厂原材料 鞋面类", "material": "PU皮", "supplier": "大钰", "amount": 4410458.35}, {"category": "鞋厂原材料 鞋面类", "material": "鞋面加工", "supplier": "佳利", "amount": 3524803.7}, {"category": "鞋厂原材料 鞋面类", "material": "皮料", "supplier": "ISA", "amount": 1262241.85}, {"category": "鞋厂原材料 鞋面类", "material": "内里布料/贴合", "supplier": "建朋", "amount": 1235891.14}, {"category": "鞋厂原材料 鞋面类", "material": "反毛皮", "supplier": "皇成", "amount": 983842.63}, {"category": "鞋厂原材料 鞋面类", "material": "皮料", "supplier": "大时代", "amount": 686169.72}, {"category": "鞋厂原材料 鞋面类", "material": "防水材料", "supplier": "高洋", "amount": 660660.42}, {"category": "鞋厂原材料 鞋面类", "material": "网布", "supplier": "雅妮", "amount": 657164.12}, {"category": "鞋厂原材料 鞋面类", "material": "三芳/猪面纹PU/超纤", "supplier": "聚屹", "amount": 656312.95}, {"category": "鞋厂原材料 鞋面类", "material": "超纤", "supplier": "浚晔", "amount": 549446.38}, {"category": "鞋厂原材料 鞋面类", "material": "饰扣", "supplier": "千行", "amount": 466090.88}, {"category": "鞋厂原材料 鞋面类", "material": "皮料", "supplier": "扬州东吴", "amount": 456597.26}, {"category": "鞋厂原材料 鞋面类", "material": "反毛皮", "supplier": "新颖", "amount": 290093.84}, {"category": "鞋厂原材料 鞋面类", "material": "鞋面加工", "supplier": "鑫奥", "amount": 280044.84}, {"category": "鞋厂原材料 鞋面类", "material": "热熔胶港宝", "supplier": "祥德", "amount": 275821.06}, {"category": "鞋厂原材料 鞋面类", "material": "皮料", "supplier": "泰庆", "amount": 201214.81408}, {"category": "鞋厂原材料 鞋面类", "material": "皮料", "supplier": "德勤", "amount": 185610.6}, {"category": "鞋厂原材料 鞋面类", "material": "布标", "supplier": "龙森", "amount": 170726.44}, {"category": "鞋厂原材料 鞋面类", "material": "印刷加工", "supplier": "永兴", "amount": 168892.38}, {"category": "鞋厂原材料 鞋面类", "material": "皮料", "supplier": "尚红", "amount": 161181.84823}, {"category": "鞋厂原材料 鞋面类", "material": "堪培拉", "supplier": "台沛", "amount": 145303.3264}, {"category": "鞋厂原材料 鞋面类", "material": "车线", "supplier": "永鑫", "amount": 133822.88}, {"category": "鞋厂原材料 鞋面类", "material": "飞织", "supplier": "荣科", "amount": 129475.9404}, {"category": "鞋厂原材料 鞋面类", "material": "TPU头套", "supplier": "齐顺塑胶", "amount": 120334.80739999999}, {"category": "鞋厂原材料 鞋面类", "material": "TPU标签", "supplier": "凯格", "amount": 95132.76}, {"category": "鞋厂原材料 鞋面类", "material": "车线", "supplier": "汇淼", "amount": 77955.88}, {"category": "鞋厂原材料 鞋面类", "material": "射出片", "supplier": "德祥", "amount": 73819.52}, {"category": "鞋厂原材料 鞋面类", "material": "补强", "supplier": "正永", "amount": 70570.97}, {"category": "鞋厂原材料 鞋面类", "material": "鞋垫材料加工", "supplier": "伟欣（托外）", "amount": 66202.63}, {"category": "鞋厂原材料 鞋面类", "material": "抗静电线", "supplier": "可可", "amount": 60139.59}, {"category": "鞋厂原材料 鞋面类", "material": "转印纸", "supplier": "洲合", "amount": 58485.87}, {"category": "鞋厂原材料 鞋面类", "material": "保温棉", "supplier": "恒江", "amount": 38694.7}, {"category": "鞋厂原材料 鞋面类", "material": "冲孔", "supplier": "华宝", "amount": 36473.93}, {"category": "鞋厂原材料 鞋面类", "material": "反光条", "supplier": "浩盈", "amount": 34004.9}, {"category": "鞋厂原材料 鞋面类", "material": "皮料", "supplier": "新点", "amount": 29819.6444}, {"category": "鞋厂原材料 鞋面类", "material": "网布", "supplier": "嘉翔", "amount": 22234.57}, {"category": "鞋厂原材料 鞋面类", "material": "塑胶扣", "supplier": "鑫典", "amount": 21763.8}, {"category": "鞋厂原材料 鞋面类", "material": "印刷加工", "supplier": "高银", "amount": 21668.96}, {"category": "鞋厂原材料 鞋面类", "material": "毛绒内里", "supplier": "和荣", "amount": 21172.8387}, {"category": "鞋厂原材料 鞋面类", "material": "保温棉", "supplier": "YOUNGONE", "amount": 21093.03}, {"category": "鞋厂原材料 鞋面类", "material": "内里贴合", "supplier": "瑜鸿鞋材", "amount": 20440.744}, {"category": "鞋厂原材料 鞋面类", "material": "补强", "supplier": "裕嵘", "amount": 18741.75}, {"category": "鞋厂原材料 鞋面类", "material": "布标", "supplier": "CSA", "amount": 17771.69}, {"category": "鞋厂原材料 鞋面类", "material": "毛绒内里", "supplier": "佳昌", "amount": 15826.53}, {"category": "鞋厂原材料 鞋面类", "material": "后套内里", "supplier": "重庆嘉卓", "amount": 12509.7216}, {"category": "鞋厂原材料 鞋面类", "material": "鞋垫材料 泡棉", "supplier": "胜辉", "amount": 12294.67}, {"category": "鞋厂原材料 鞋面类", "material": "塑胶扣", "supplier": "正川", "amount": 12027.25}, {"category": "鞋厂原材料 鞋面类", "material": "车线", "supplier": "安博", "amount": 11596.17}, {"category": "鞋厂原材料 鞋面类", "material": "快速旋转穿带扣", "supplier": "菲特奥", "amount": 9331.0}, {"category": "鞋厂原材料 鞋面类", "material": "拉链", "supplier": "吉田", "amount": 3563.2212}, {"category": "鞋厂原材料 鞋面类", "material": "布标", "supplier": "久鼎", "amount": 3088.0}, {"category": "鞋厂原材料 鞋面类", "material": "合成革", "supplier": "铭佳皮革", "amount": 2831.86}, {"category": "鞋厂原材料 鞋面类", "material": "鞋垫材料加工", "supplier": "宏泰", "amount": 1327.44}, {"category": "鞋厂原材料 鞋面类", "material": "飞织", "supplier": "柯府", "amount": 509.736}, {"category": "鞋厂原材料 钳帮类", "material": "钢头", "supplier": "美江", "amount": 1684069.84}, {"category": "鞋厂原材料 钳帮类", "material": "中底布", "supplier": "昌明", "amount": 718000.96}, {"category": "鞋厂原材料 钳帮类", "material": "中底布", "supplier": "南昌斯普码", "amount": 385478.6}, {"category": "鞋厂原材料 钳帮类", "material": "钢头", "supplier": "淞阳", "amount": 338779.85}, {"category": "鞋厂原材料 钳帮类", "material": "中底布", "supplier": "百亚能", "amount": 318750.24}, {"category": "鞋厂原材料 钳帮类", "material": "热熔胶条", "supplier": "富洋/高祥", "amount": 211451.32}, {"category": "鞋厂原材料 钳帮类", "material": "胶水/化工", "supplier": "湖北统联", "amount": 170551.83}, {"category": "鞋厂原材料 钳帮类", "material": "钢头", "supplier": "家豪", "amount": 157776.04}, {"category": "鞋厂原材料 钳帮类", "material": "中底布", "supplier": "博安", "amount": 134399.24}, {"category": "鞋厂原材料 钳帮类", "material": "钳帮加工", "supplier": "齐力加工", "amount": 74295.0}, {"category": "鞋厂原材料 钳帮类", "material": "EVA沿条", "supplier": "洁亿", "amount": 38187.99}, {"category": "鞋厂原材料 钳帮类", "material": "胶水", "supplier": "南欣", "amount": 27961.55}, {"category": "鞋厂原材料 钳帮类", "material": "胶水", "supplier": "福力", "amount": 8118.07}, {"category": "鞋厂原材料 钳帮类", "material": "胶水", "supplier": "力灿", "amount": 5132.7448}, {"category": "鞋厂原材料 射出类", "material": "PU料", "supplier": "BASF", "amount": 6187373.86}, {"category": "鞋厂原材料 射出类", "material": "PU料", "supplier": "华峰", "amount": 1346297.44}, {"category": "鞋厂原材料 射出类", "material": "TPU料", "supplier": "鼎誉新", "amount": 353276.74}, {"category": "鞋厂原材料 射出类", "material": "色膏", "supplier": "权友", "amount": 319504.4}, {"category": "鞋厂原材料 射出类", "material": "离模剂", "supplier": "杰德", "amount": 283643.07}, {"category": "鞋厂原材料 射出类", "material": "色膏", "supplier": "宝升", "amount": 259492.61}, {"category": "鞋厂原材料 射出类", "material": "鞋垫PU料", "supplier": "振豪", "amount": 234851.18}, {"category": "鞋厂原材料 射出类", "material": "TPU料", "supplier": "锐申", "amount": 59734.5}, {"category": "鞋厂原材料 射出类", "material": "离模剂", "supplier": "维创", "amount": 18053.1}, {"category": "鞋厂原材料 射出类", "material": "离模剂", "supplier": "德士肯/佩巧夫", "amount": 11132.733}, {"category": "鞋厂原材料 射出类", "material": "油墨", "supplier": "方睿油墨", "amount": 2900.0}, {"category": "鞋厂原材料 射出类", "material": "离模剂", "supplier": "三彩", "amount": 5840.7}, {"category": "鞋厂原材料 射出类", "material": "TPU料", "supplier": "新孚达(镇江)", "amount": 407.08}, {"category": "鞋厂原材料 包材类", "material": "鞋盒", "supplier": "经之纬", "amount": 1350261.38}, {"category": "鞋厂原材料 包材类", "material": "鞋垫", "supplier": "长发", "amount": 1050702.62}, {"category": "鞋厂原材料 包材类", "material": "外箱", "supplier": "天宏", "amount": 644729.92}, {"category": "鞋厂原材料 包材类", "material": "织带/鞋带", "supplier": "创伟", "amount": 564120.32}, {"category": "鞋厂原材料 包材类", "material": "鞋垫", "supplier": "甄锋", "amount": 410506.83}, {"category": "鞋厂原材料 包材类", "material": "鞋垫", "supplier": "优科", "amount": 407510.55}, {"category": "鞋厂原材料 包材类", "material": "鞋垫", "supplier": "祥虹", "amount": 365816.32}, {"category": "鞋厂原材料 包材类", "material": "鞋盒", "supplier": "有余", "amount": 311898.57}, {"category": "鞋厂原材料 包材类", "material": "鞋盒", "supplier": "宝绅", "amount": 155537.7}, {"category": "鞋厂原材料 包材类", "material": "包装纸", "supplier": "思诚", "amount": 75883.2}, {"category": "鞋厂原材料 包材类", "material": "透明袋/封箱胶袋", "supplier": "顺裕塑胶", "amount": 70234.85}, {"category": "鞋厂原材料 包材类", "material": "吊卡", "supplier": "煜扬", "amount": 40650.96}, {"category": "鞋厂原材料 包材类", "material": "透明袋/封箱胶袋", "supplier": "港源", "amount": 33422.65}, {"category": "鞋厂原材料 包材类", "material": "鞋盒", "supplier": "云客", "amount": 36212.0}, {"category": "鞋厂原材料 包材类", "material": "亮光剂", "supplier": "菲利斯", "amount": 29376.92}, {"category": "鞋厂原材料 包材类", "material": "标签纸", "supplier": "鑫华", "amount": 21272.57}, {"category": "鞋厂原材料 包材类", "material": "鞋盒", "supplier": "超群印刷", "amount": 20801.76}, {"category": "鞋厂原材料 包材类", "material": "鞋垫", "supplier": "俊足", "amount": 17356.74}, {"category": "鞋厂原材料 包材类", "material": "无纺布袋", "supplier": "聚米包装", "amount": 14144.0}, {"category": "鞋厂原材料 包材类", "material": "鞋垫", "supplier": "展旭", "amount": 13822.5366}, {"category": "鞋厂原材料 包材类", "material": "碳带", "supplier": "祥名", "amount": 10787.607}, {"category": "鞋厂原材料 包材类", "material": "干燥剂", "supplier": "干霸", "amount": 9279.26}, {"category": "鞋厂原材料 包材类", "material": "干燥剂", "supplier": "虹华/鸿达", "amount": 8409.6}, {"category": "鞋厂原材料 包材类", "material": "透明袋/封箱胶袋", "supplier": "港瑞", "amount": 6911.2}, {"category": "鞋厂原材料 包材类", "material": "鞋垫", "supplier": "鸿盛鞋材", "amount": 5752.2}, {"category": "鞋厂原材料 包材类", "material": "包装纸", "supplier": "大悠", "amount": 5310.0}, {"category": "鞋厂原材料 包材类", "material": "鞋带", "supplier": "鸿昌", "amount": 4908.986}, {"category": "鞋厂原材料 包材类", "material": "外箱贴纸（HH）", "supplier": "宏晟", "amount": 3544.2}, {"category": "鞋厂原材料 包材类", "material": "标签", "supplier": "承运", "amount": 2343.588}, {"category": "鞋厂原材料 包材类", "material": "胶带", "supplier": "东沣", "amount": 265.4129}, {"category": "注塑原材料类", "material": "PC料", "supplier": "Sankyokasei", "amount": 2133027.24}, {"category": "注塑原材料类", "material": "PC料", "supplier": "利德昌", "amount": 816815.0}, {"category": "设备/零配件类", "material": "设备/零配件（裁断机）", "supplier": "爱玛", "amount": 591150.4425}, {"category": "设备/零配件类", "material": "设备/零配件（射出）", "supplier": "德士马", "amount": 322216.203622}, {"category": "设备/零配件类", "material": "设备/零配件（射出）", "supplier": "科杰", "amount": 170924.81}, {"category": "设备/零配件类", "material": "设备/零配件（五金）", "supplier": "恒荣", "amount": 121366.63}, {"category": "设备/零配件类", "material": "设备/零配件（鞋面划线机/配件）", "supplier": "银威", "amount": 106366.5288}, {"category": "设备/零配件类", "material": "设备/零配件（射出）", "supplier": "费斯拓", "amount": 92277.94}, {"category": "设备/零配件类", "material": "设备/零配件（射出）", "supplier": "高欣达", "amount": 73726.18}, {"category": "设备/零配件类", "material": "设备/零配件（射出）", "supplier": "信泰（辉华）", "amount": 61710.0}, {"category": "设备/零配件类", "material": "设备/零配件（五金）", "supplier": "顺和", "amount": 58264.04}, {"category": "设备/零配件类", "material": "设备/零配件（针车）", "supplier": "森豪（针车）", "amount": 42913.47}, {"category": "设备/零配件类", "material": "设备/零配件（前帮机）", "supplier": "晖达", "amount": 42052.973}, {"category": "设备/零配件类", "material": "设备/零配件（针车）", "supplier": "启鑫", "amount": 41232.86}, {"category": "设备/零配件类", "material": "设备/零配件（射出）", "supplier": "立兴", "amount": 37760.0}, {"category": "设备/零配件类", "material": "设备/零配件（打扣机）", "supplier": "九州", "amount": 32743.3628}, {"category": "设备/零配件类", "material": "设备/零配件（针车）", "supplier": "达欣（针车)", "amount": 27161.9466}, {"category": "设备/零配件类", "material": "设备/零配件（高周波机）", "supplier": "联胜机械", "amount": 23008.8496}, {"category": "设备/零配件类", "material": "设备/零配件（打标机 ）", "supplier": "经纬激光", "amount": 16690.2655}, {"category": "设备/零配件类", "material": "设备/零配件（五金）", "supplier": "琪锋（宏铭）", "amount": 15270.0}, {"category": "设备/零配件类", "material": "设备/零配件（注塑设备）", "supplier": "创亚", "amount": 12831.8585}, {"category": "设备/零配件类", "material": "设备/零配件（实验室）", "supplier": "汇科检测", "amount": 12650.4724}, {"category": "设备/零配件类", "material": "设备/零配件（空压机）", "supplier": "鼎晟机电", "amount": 12415.9293}, {"category": "设备/零配件类", "material": "制鞋消耗品（磨粗轮）", "supplier": "铭峻劳保用品", "amount": 8910.9}, {"category": "设备/零配件类", "material": "设备/零配件（鞋垫机配件）", "supplier": "实诚机械", "amount": 8274.3361}, {"category": "设备/零配件类", "material": "设备/零配件（验皮机）", "supplier": "魔森", "amount": 5742.5743}, {"category": "设备/零配件类", "material": "设备/零配件（叉车配件）", "supplier": "吉之力机械", "amount": 4955.7522}, {"category": "设备/零配件类", "material": "设备/零配件（叉车配件）", "supplier": "金鼎", "amount": 3858.4072}, {"category": "设备/零配件类", "material": "设备/零配件（ABB）", "supplier": "凡诚", "amount": 5699.11}, {"category": "设备/零配件类", "material": "设备/零配件（ABB）", "supplier": "星钢", "amount": 3600.0}, {"category": "设备/零配件类", "material": "设备/零配件（轮子）", "supplier": "国基", "amount": 3200.0}, {"category": "设备/零配件类", "material": "设备/零配件（削边机刀组）", "supplier": "高捷精密", "amount": 2563.108}, {"category": "设备/零配件类", "material": "设备/零配件（空压机）", "supplier": "丰捷机电", "amount": 2123.894}, {"category": "设备/零配件类", "material": "设备/零配件（五金）", "supplier": "闽东", "amount": 2100.0}, {"category": "设备/零配件类", "material": "设备/零配件（针车）", "supplier": "旭豪", "amount": 1637.1681}, {"category": "设备/零配件类", "material": "设备/零配件（五金）", "supplier": "汉朗", "amount": 973.45}, {"category": "设备/零配件类", "material": "设备/零配件（配件）", "supplier": "金博", "amount": 761.0619}, {"category": "设备/零配件类", "material": "设备/零配件（离模剂盖配件）", "supplier": "强达", "amount": 720.0}, {"category": "设备/零配件类", "material": "设备/零配件（五金）", "supplier": "农兴(兴华)", "amount": 417.89}, {"category": "模厂原材料类", "material": "铝块", "supplier": "锦发", "amount": 323976.89}, {"category": "模厂原材料类", "material": "模具/楦头组装零配件", "supplier": "威美特", "amount": 126726.39}, {"category": "模厂原材料类", "material": "橡胶模具/工字模具/铝块加工", "supplier": "华锐模具", "amount": 124380.5316}, {"category": "模厂原材料类", "material": "楦头", "supplier": "建发", "amount": 57688.4948}, {"category": "模厂原材料类", "material": "润滑油（模厂CNC）", "supplier": "广东东孚", "amount": 22508.85}, {"category": "模厂原材料类", "material": "机床链条", "supplier": "宙斯工模", "amount": 12318.584}, {"category": "模厂原材料类", "material": "模厂材料类", "supplier": "大山气体", "amount": 3026.55}, {"category": "橡胶厂 原材料类", "material": "橡胶料", "supplier": "青铧", "amount": 5175666.6}, {"category": "橡胶厂 原材料类", "material": "橡胶无纺布", "supplier": "友信", "amount": 721638.15}, {"category": "橡胶厂 原材料类", "material": "橡胶厂(液化气）", "supplier": "新锋液化", "amount": 308926.95}, {"category": "橡胶厂 原材料类", "material": "促进剂（橡胶）", "supplier": "睿宇", "amount": 97986.81}, {"category": "橡胶厂 原材料类", "material": "橡胶料", "supplier": "越境", "amount": 53185.9}, {"category": "橡胶厂 原材料类", "material": "设备/零配件（橡胶裁断机）", "supplier": "亿凯机械", "amount": 35397.3451}, {"category": "橡胶厂 原材料类", "material": "色料", "supplier": "色真", "amount": 33699.11}, {"category": "橡胶厂 原材料类", "material": "添加剂", "supplier": "爱利克", "amount": 27389.4}, {"category": "橡胶厂 原材料类", "material": "离型剂", "supplier": "愉星", "amount": 21986.58}, {"category": "橡胶厂 原材料类", "material": "色料", "supplier": "富足", "amount": 16500.0}, {"category": "橡胶厂 原材料类", "material": "委外加工", "supplier": "硕轩", "amount": 11890.0}, {"category": "橡胶厂 原材料类", "material": "自动切条机", "supplier": "森林", "amount": 11500.0}, {"category": "橡胶厂 原材料类", "material": "色料", "supplier": "楷林(楷丰)", "amount": 4667.0}, {"category": "橡胶厂 原材料类", "material": "橡胶无纺布", "supplier": "上海丰为实业", "amount": 973.45}, {"category": "生产制具类", "material": "刀模", "supplier": "利宏", "amount": 77105.25}, {"category": "生产制具类", "material": "高周波模具", "supplier": "高银模具", "amount": 36675.4855}, {"category": "生产制具类", "material": "磨粗轮", "supplier": "江苏华海", "amount": 31327.4424}, {"category": "生产制具类", "material": "框子", "supplier": "惠通", "amount": 18074.671}, {"category": "生产制具类", "material": "刷子", "supplier": "几何家居", "amount": 18052.8}, {"category": "生产制具类", "material": "网版/印刷", "supplier": "四会三合", "amount": 18320.5}, {"category": "生产制具类", "material": "斩板", "supplier": "富民", "amount": 13349.9805}, {"category": "生产制具类", "material": "刀模", "supplier": "利嘉刀模", "amount": 12780.0}, {"category": "生产制具类", "material": "磨粗轮", "supplier": "芜湖益精", "amount": 11061.95}, {"category": "生产制具类", "material": "环氧树脂版", "supplier": "雄毅华", "amount": 9292.03}, {"category": "生产制具类", "material": "模具活动日期标", "supplier": "三上/和宝", "amount": 7749.61}, {"category": "生产制具类", "material": "打标配件", "supplier": "冠力激光科技", "amount": 4247.7876}, {"category": "生产制具类", "material": "鞋垫模具", "supplier": "鑫旺", "amount": 3982.3008}, {"category": "生产制具类", "material": "高周波模具", "supplier": "明冠模具", "amount": 1765.0484}, {"category": "生产制具类", "material": "涂边水", "supplier": "诚和鞋材", "amount": 1675.0}, {"category": "生产制具类", "material": "网版", "supplier": "浩鑫(网版）", "amount": 693.8059}, {"category": "总务 日常用品类", "material": "国际阿里巴巴", "supplier": "阿里巴巴", "amount": 433600.0}, {"category": "总务 日常用品类", "material": "特斯拉", "supplier": "特斯拉", "amount": 303539.82}, {"category": "总务 日常用品类", "material": "日常用品/办公用品/生产物料", "supplier": "淘宝(网购)", "amount": 99533.42}, {"category": "总务 日常用品类", "material": "日常用品/办公用品", "supplier": "雄冠文具", "amount": 36613.28}, {"category": "总务 日常用品类", "material": "065饰品-新加坡", "supplier": "浔鑫", "amount": 34247.4425}, {"category": "总务 日常用品类", "material": "袜子-新加坡", "supplier": "青岛添博", "amount": 31415.5}, {"category": "总务 日常用品类", "material": "月饼", "supplier": "富利丰食品", "amount": 19314.1566}, {"category": "总务 日常用品类", "material": "厂服", "supplier": "必橙纺织", "amount": 14105.0}, {"category": "总务 日常用品类", "material": "厂服", "supplier": "展创", "amount": 11565.0}, {"category": "总务 日常用品类", "material": "日常用品/办公用品", "supplier": "宇纳电脑", "amount": 10815.0}, {"category": "总务 日常用品类", "material": "日常用品/办公用品/生产物料", "supplier": "八达路", "amount": 9804.69}, {"category": "总务 日常用品类", "material": "场所", "supplier": "安标检测", "amount": 9339.6227}, {"category": "总务 日常用品类", "material": "员工生日袋", "supplier": "袋狮", "amount": 9200.0}, {"category": "总务 日常用品类", "material": "日常用品/办公用品/生产物料", "supplier": "京东(网购)", "amount": 8754.2506}, {"category": "总务 日常用品类", "material": "日常用品/办公用品/生产物料", "supplier": "鸿盛（达轩）", "amount": 6750.0}, {"category": "总务 日常用品类", "material": "日常用品/办公用品/生产物料", "supplier": "中农", "amount": 5761.056}, {"category": "总务 日常用品类", "material": "日常用品/办公用品/生产物料", "supplier": "支点（红码）", "amount": 6849.54}, {"category": "总务 日常用品类", "material": "员工体检", "supplier": "广东安盛", "amount": 4598.0}, {"category": "总务 日常用品类", "material": "架子", "supplier": "立存仓储", "amount": 3728.8}, {"category": "总务 日常用品类", "material": "实验室校正", "supplier": "中国检验认证", "amount": 3697.6415}, {"category": "总务 日常用品类", "material": "窗帘", "supplier": "晟昌装饰", "amount": 3270.0}, {"category": "总务 日常用品类", "material": "水泥", "supplier": "阿光", "amount": 3127.0}, {"category": "总务 日常用品类", "material": "厂服", "supplier": "纯衣服装", "amount": 2787.615}, {"category": "总务 日常用品类", "material": "广告/名片", "supplier": "摩尔登", "amount": 2651.4898}, {"category": "总务 日常用品类", "material": "无纺布袋-内销", "supplier": "钜得包装", "amount": 2389.4}, {"category": "总务 日常用品类", "material": "木版", "supplier": "林昕包装", "amount": 1800.0}, {"category": "总务 日常用品类", "material": "广告/名片", "supplier": "佳益", "amount": 1317.0}, {"category": "总务 日常用品类", "material": "电商-桶装水", "supplier": "怡宝水店", "amount": 743.365}, {"category": "总务 日常用品类", "material": "日常用品/办公用品/生产物料", "supplier": "天猫", "amount": 646.6}, {"category": "总务 日常用品类", "material": "电商-桶装水", "supplier": "沁华源", "amount": 352.0}, {"category": "总务 日常用品类", "material": "日常用品/办公用品", "supplier": "东兴", "amount": 168.0}, {"category": "总务 日常用品类", "material": "橡皮泥-实验室", "supplier": "贝旺公司", "amount": 139.545}, {"category": "安全防护用品类", "material": "安全防护用品", "supplier": "3M", "amount": 6022883.95}, {"category": "安全防护用品类", "material": "安全防护用品", "supplier": "通荣", "amount": 1863683.51}], "by_tier": [{"tier": "400万以上", "material": "PU料", "supplier": "BASF", "amount": 6187373.86}, {"tier": "400万以上", "material": "鞋面加工", "supplier": "力荣", "amount": 6046389.61}, {"tier": "400万以上", "material": "安全防护用品", "supplier": "3M", "amount": 6022883.95}, {"tier": "400万以上", "material": "橡胶料", "supplier": "青铧", "amount": 5175666.6}, {"tier": "400万以上", "material": "皮料/鞋面加工", "supplier": "ALLIED", "amount": 5148426.410803}, {"tier": "400万以上", "material": "PU皮", "supplier": "大钰", "amount": 4410458.35}, {"tier": "100-399万", "material": "鞋面加工", "supplier": "佳利", "amount": 3524803.7}, {"tier": "100-399万", "material": "PC料", "supplier": "Sankyokasei", "amount": 2133027.24}, {"tier": "100-399万", "material": "安全防护用品", "supplier": "通荣", "amount": 1863683.51}, {"tier": "100-399万", "material": "钢头", "supplier": "美江", "amount": 1684069.84}, {"tier": "100-399万", "material": "鞋盒", "supplier": "经之纬", "amount": 1350261.38}, {"tier": "100-399万", "material": "PU料", "supplier": "华峰", "amount": 1346297.44}, {"tier": "100-399万", "material": "皮料", "supplier": "ISA", "amount": 1262241.85}, {"tier": "100-399万", "material": "内里布料/贴合", "supplier": "建朋", "amount": 1235891.14}, {"tier": "100-399万", "material": "鞋垫", "supplier": "长发", "amount": 1050702.62}, {"tier": "50-99万", "material": "反毛皮", "supplier": "皇成", "amount": 983842.63}, {"tier": "50-99万", "material": "PC料", "supplier": "利德昌", "amount": 816815.0}, {"tier": "50-99万", "material": "橡胶无纺布", "supplier": "友信", "amount": 721638.15}, {"tier": "50-99万", "material": "中底布", "supplier": "昌明", "amount": 718000.96}, {"tier": "50-99万", "material": "皮料", "supplier": "大时代", "amount": 686169.72}, {"tier": "50-99万", "material": "防水材料", "supplier": "高洋", "amount": 660660.42}, {"tier": "50-99万", "material": "网布", "supplier": "雅妮", "amount": 657164.12}, {"tier": "50-99万", "material": "三芳/猪面纹PU/超纤", "supplier": "聚屹", "amount": 656312.95}, {"tier": "50-99万", "material": "外箱", "supplier": "天宏", "amount": 644729.92}, {"tier": "50-99万", "material": "设备/零配件（裁断机）", "supplier": "爱玛", "amount": 591150.4425}, {"tier": "50-99万", "material": "织带/鞋带", "supplier": "创伟", "amount": 564120.32}, {"tier": "50-99万", "material": "超纤", "supplier": "浚晔", "amount": 549446.38}, {"tier": "20-49万", "material": "饰扣", "supplier": "千行", "amount": 466090.88}, {"tier": "20-49万", "material": "皮料", "supplier": "扬州东吴", "amount": 456597.26}, {"tier": "20-49万", "material": "国际阿里巴巴", "supplier": "阿里巴巴", "amount": 433600.0}, {"tier": "20-49万", "material": "鞋垫", "supplier": "甄锋", "amount": 410506.83}, {"tier": "20-49万", "material": "鞋垫", "supplier": "优科", "amount": 407510.55}, {"tier": "20-49万", "material": "中底布", "supplier": "南昌斯普码", "amount": 385478.6}, {"tier": "20-49万", "material": "鞋垫", "supplier": "祥虹", "amount": 365816.32}, {"tier": "20-49万", "material": "TPU料", "supplier": "鼎誉新", "amount": 353276.74}, {"tier": "20-49万", "material": "钢头", "supplier": "淞阳", "amount": 338779.85}, {"tier": "20-49万", "material": "铝块", "supplier": "锦发", "amount": 323976.89}, {"tier": "20-49万", "material": "设备/零配件（射出）", "supplier": "德士马", "amount": 322216.203622}, {"tier": "20-49万", "material": "色膏", "supplier": "权友", "amount": 319504.4}, {"tier": "20-49万", "material": "中底布", "supplier": "百亚能", "amount": 318750.24}, {"tier": "20-49万", "material": "鞋盒", "supplier": "有余", "amount": 311898.57}, {"tier": "20-49万", "material": "橡胶厂(液化气）", "supplier": "新锋液化", "amount": 308926.95}, {"tier": "20-49万", "material": "特斯拉", "supplier": "特斯拉", "amount": 303539.82}, {"tier": "20-49万", "material": "反毛皮", "supplier": "新颖", "amount": 290093.84}, {"tier": "20-49万", "material": "离模剂", "supplier": "杰德", "amount": 283643.07}, {"tier": "20-49万", "material": "鞋面加工", "supplier": "鑫奥", "amount": 280044.84}, {"tier": "20-49万", "material": "热熔胶港宝", "supplier": "祥德", "amount": 275821.06}, {"tier": "20-49万", "material": "色膏", "supplier": "宝升", "amount": 259492.61}, {"tier": "20-49万", "material": "鞋垫PU料", "supplier": "振豪", "amount": 234851.18}, {"tier": "20-49万", "material": "热熔胶条", "supplier": "富洋/高祥", "amount": 211451.32}, {"tier": "20-49万", "material": "皮料", "supplier": "泰庆", "amount": 201214.81408}, {"tier": "10-19万", "material": "皮料", "supplier": "德勤", "amount": 185610.6}, {"tier": "10-19万", "material": "设备/零配件（射出）", "supplier": "科杰", "amount": 170924.81}, {"tier": "10-19万", "material": "布标", "supplier": "龙森", "amount": 170726.44}, {"tier": "10-19万", "material": "胶水/化工", "supplier": "湖北统联", "amount": 170551.83}, {"tier": "10-19万", "material": "印刷加工", "supplier": "永兴", "amount": 168892.38}, {"tier": "10-19万", "material": "皮料", "supplier": "尚红", "amount": 161181.84823}, {"tier": "10-19万", "material": "钢头", "supplier": "家豪", "amount": 157776.04}, {"tier": "10-19万", "material": "鞋盒", "supplier": "宝绅", "amount": 155537.7}, {"tier": "10-19万", "material": "堪培拉", "supplier": "台沛", "amount": 145303.3264}, {"tier": "10-19万", "material": "中底布", "supplier": "博安", "amount": 134399.24}, {"tier": "10-19万", "material": "车线", "supplier": "永鑫", "amount": 133822.88}, {"tier": "10-19万", "material": "飞织", "supplier": "荣科", "amount": 129475.9404}, {"tier": "10-19万", "material": "模具/楦头组装零配件", "supplier": "威美特", "amount": 126726.39}, {"tier": "10-19万", "material": "橡胶模具/工字模具/铝块加工", "supplier": "华锐模具", "amount": 124380.5316}, {"tier": "10-19万", "material": "设备/零配件（五金）", "supplier": "恒荣", "amount": 121366.63}, {"tier": "10-19万", "material": "TPU头套", "supplier": "齐顺塑胶", "amount": 120334.80739999999}, {"tier": "10-19万", "material": "设备/零配件（鞋面划线机/配件）", "supplier": "银威", "amount": 106366.5288}, {"tier": "1-9万", "material": "日常用品/办公用品/生产物料", "supplier": "淘宝(网购)", "amount": 99533.42}, {"tier": "1-9万", "material": "促进剂（橡胶）", "supplier": "睿宇", "amount": 97986.81}, {"tier": "1-9万", "material": "TPU标签", "supplier": "凯格", "amount": 95132.76}, {"tier": "1-9万", "material": "设备/零配件（射出）", "supplier": "费斯拓", "amount": 92277.94}, {"tier": "1-9万", "material": "车线", "supplier": "汇淼", "amount": 77955.88}, {"tier": "1-9万", "material": "刀模", "supplier": "利宏", "amount": 77105.25}, {"tier": "1-9万", "material": "包装纸", "supplier": "思诚", "amount": 75883.2}, {"tier": "1-9万", "material": "钳帮加工", "supplier": "齐力加工", "amount": 74295.0}, {"tier": "1-9万", "material": "射出片", "supplier": "德祥", "amount": 73819.52}, {"tier": "1-9万", "material": "设备/零配件（射出）", "supplier": "高欣达", "amount": 73726.18}, {"tier": "1-9万", "material": "补强", "supplier": "正永", "amount": 70570.97}, {"tier": "1-9万", "material": "透明袋/封箱胶袋", "supplier": "顺裕塑胶", "amount": 70234.85}, {"tier": "1-9万", "material": "鞋垫材料加工", "supplier": "伟欣（托外）", "amount": 66202.63}, {"tier": "1-9万", "material": "设备/零配件（射出）", "supplier": "信泰（辉华）", "amount": 61710.0}, {"tier": "1-9万", "material": "抗静电线", "supplier": "可可", "amount": 60139.59}, {"tier": "1-9万", "material": "TPU料", "supplier": "锐申", "amount": 59734.5}, {"tier": "1-9万", "material": "转印纸", "supplier": "洲合", "amount": 58485.87}, {"tier": "1-9万", "material": "设备/零配件（五金）", "supplier": "顺和", "amount": 58264.04}, {"tier": "1-9万", "material": "楦头", "supplier": "建发", "amount": 57688.4948}, {"tier": "1-9万", "material": "橡胶料", "supplier": "越境", "amount": 53185.9}, {"tier": "1-9万", "material": "设备/零配件（针车）", "supplier": "森豪（针车）", "amount": 42913.47}, {"tier": "1-9万", "material": "设备/零配件（前帮机）", "supplier": "晖达", "amount": 42052.973}, {"tier": "1-9万", "material": "设备/零配件（针车）", "supplier": "启鑫", "amount": 41232.86}, {"tier": "1-9万", "material": "吊卡", "supplier": "煜扬", "amount": 40650.96}, {"tier": "1-9万", "material": "保温棉", "supplier": "恒江", "amount": 38694.7}, {"tier": "1-9万", "material": "EVA沿条", "supplier": "洁亿", "amount": 38187.99}, {"tier": "1-9万", "material": "设备/零配件（射出）", "supplier": "立兴", "amount": 37760.0}, {"tier": "1-9万", "material": "高周波模具", "supplier": "高银模具", "amount": 36675.4855}, {"tier": "1-9万", "material": "日常用品/办公用品", "supplier": "雄冠文具", "amount": 36613.28}, {"tier": "1-9万", "material": "冲孔", "supplier": "华宝", "amount": 36473.93}, {"tier": "1-9万", "material": "鞋盒", "supplier": "云客", "amount": 36212.0}, {"tier": "1-9万", "material": "设备/零配件（橡胶裁断机）", "supplier": "亿凯机械", "amount": 35397.3451}, {"tier": "1-9万", "material": "065饰品-新加坡", "supplier": "浔鑫", "amount": 34247.4425}, {"tier": "1-9万", "material": "反光条", "supplier": "浩盈", "amount": 34004.9}, {"tier": "1-9万", "material": "色料", "supplier": "色真", "amount": 33699.11}, {"tier": "1-9万", "material": "透明袋/封箱胶袋", "supplier": "港源", "amount": 33422.65}, {"tier": "1-9万", "material": "设备/零配件（打扣机）", "supplier": "九州", "amount": 32743.3628}, {"tier": "1-9万", "material": "袜子-新加坡", "supplier": "青岛添博", "amount": 31415.5}, {"tier": "1-9万", "material": "磨粗轮", "supplier": "江苏华海", "amount": 31327.4424}, {"tier": "1-9万", "material": "皮料", "supplier": "新点", "amount": 29819.6444}, {"tier": "1-9万", "material": "亮光剂", "supplier": "菲利斯", "amount": 29376.92}, {"tier": "1-9万", "material": "胶水", "supplier": "南欣", "amount": 27961.55}, {"tier": "1-9万", "material": "添加剂", "supplier": "爱利克", "amount": 27389.4}, {"tier": "1-9万", "material": "设备/零配件（针车）", "supplier": "达欣（针车)", "amount": 27161.9466}, {"tier": "1-9万", "material": "设备/零配件（高周波机）", "supplier": "联胜机械", "amount": 23008.8496}, {"tier": "1-9万", "material": "润滑油（模厂CNC）", "supplier": "广东东孚", "amount": 22508.85}, {"tier": "1-9万", "material": "网布", "supplier": "嘉翔", "amount": 22234.57}, {"tier": "1-9万", "material": "离型剂", "supplier": "愉星", "amount": 21986.58}, {"tier": "1-9万", "material": "塑胶扣", "supplier": "鑫典", "amount": 21763.8}, {"tier": "1-9万", "material": "印刷加工", "supplier": "高银", "amount": 21668.96}, {"tier": "1-9万", "material": "标签纸", "supplier": "鑫华", "amount": 21272.57}, {"tier": "1-9万", "material": "毛绒内里", "supplier": "和荣", "amount": 21172.8387}, {"tier": "1-9万", "material": "保温棉", "supplier": "YOUNGONE", "amount": 21093.03}, {"tier": "1-9万", "material": "鞋盒", "supplier": "超群印刷", "amount": 20801.76}, {"tier": "1-9万", "material": "内里贴合", "supplier": "瑜鸿鞋材", "amount": 20440.744}, {"tier": "1-9万", "material": "月饼", "supplier": "富利丰食品", "amount": 19314.1566}, {"tier": "1-9万", "material": "补强", "supplier": "裕嵘", "amount": 18741.75}, {"tier": "1-9万", "material": "网版/印刷", "supplier": "四会三合", "amount": 18320.5}, {"tier": "1-9万", "material": "框子", "supplier": "惠通", "amount": 18074.671}, {"tier": "1-9万", "material": "离模剂", "supplier": "维创", "amount": 18053.1}, {"tier": "1-9万", "material": "刷子", "supplier": "几何家居", "amount": 18052.8}, {"tier": "1-9万", "material": "布标", "supplier": "CSA", "amount": 17771.69}, {"tier": "1-9万", "material": "鞋垫", "supplier": "俊足", "amount": 17356.74}, {"tier": "1-9万", "material": "设备/零配件（打标机 ）", "supplier": "经纬激光", "amount": 16690.2655}, {"tier": "1-9万", "material": "色料", "supplier": "富足", "amount": 16500.0}, {"tier": "1-9万", "material": "毛绒内里", "supplier": "佳昌", "amount": 15826.53}, {"tier": "1-9万", "material": "设备/零配件（五金）", "supplier": "琪锋（宏铭）", "amount": 15270.0}, {"tier": "1-9万", "material": "无纺布袋", "supplier": "聚米包装", "amount": 14144.0}, {"tier": "1-9万", "material": "厂服", "supplier": "必橙纺织", "amount": 14105.0}, {"tier": "1-9万", "material": "鞋垫", "supplier": "展旭", "amount": 13822.5366}, {"tier": "1-9万", "material": "斩板", "supplier": "富民", "amount": 13349.9805}, {"tier": "1-9万", "material": "设备/零配件（注塑设备）", "supplier": "创亚", "amount": 12831.8585}, {"tier": "1-9万", "material": "刀模", "supplier": "利嘉刀模", "amount": 12780.0}, {"tier": "1-9万", "material": "设备/零配件（实验室）", "supplier": "汇科检测", "amount": 12650.4724}, {"tier": "1-9万", "material": "后套内里", "supplier": "重庆嘉卓", "amount": 12509.7216}, {"tier": "1-9万", "material": "设备/零配件（空压机）", "supplier": "鼎晟机电", "amount": 12415.9293}, {"tier": "1-9万", "material": "机床链条", "supplier": "宙斯工模", "amount": 12318.584}, {"tier": "1-9万", "material": "鞋垫材料 泡棉", "supplier": "胜辉", "amount": 12294.67}, {"tier": "1-9万", "material": "塑胶扣", "supplier": "正川", "amount": 12027.25}, {"tier": "1-9万", "material": "委外加工", "supplier": "硕轩", "amount": 11890.0}, {"tier": "1-9万", "material": "车线", "supplier": "安博", "amount": 11596.17}, {"tier": "1-9万", "material": "厂服", "supplier": "展创", "amount": 11565.0}, {"tier": "1-9万", "material": "自动切条机", "supplier": "森林", "amount": 11500.0}, {"tier": "1-9万", "material": "离模剂", "supplier": "德士肯/佩巧夫", "amount": 11132.733}, {"tier": "1-9万", "material": "磨粗轮", "supplier": "芜湖益精", "amount": 11061.95}, {"tier": "1-9万", "material": "日常用品/办公用品", "supplier": "宇纳电脑", "amount": 10815.0}, {"tier": "1-9万", "material": "碳带", "supplier": "祥名", "amount": 10787.607}, {"tier": "1万以下", "material": "日常用品/办公用品/生产物料", "supplier": "八达路", "amount": 9804.69}, {"tier": "1万以下", "material": "场所", "supplier": "安标检测", "amount": 9339.6227}, {"tier": "1万以下", "material": "快速旋转穿带扣", "supplier": "菲特奥", "amount": 9331.0}, {"tier": "1万以下", "material": "环氧树脂版", "supplier": "雄毅华", "amount": 9292.03}, {"tier": "1万以下", "material": "干燥剂", "supplier": "干霸", "amount": 9279.26}, {"tier": "1万以下", "material": "员工生日袋", "supplier": "袋狮", "amount": 9200.0}, {"tier": "1万以下", "material": "制鞋消耗品（磨粗轮）", "supplier": "铭峻劳保用品", "amount": 8910.9}, {"tier": "1万以下", "material": "日常用品/办公用品/生产物料", "supplier": "京东(网购)", "amount": 8754.2506}, {"tier": "1万以下", "material": "干燥剂", "supplier": "虹华/鸿达", "amount": 8409.6}, {"tier": "1万以下", "material": "设备/零配件（鞋垫机配件）", "supplier": "实诚机械", "amount": 8274.3361}, {"tier": "1万以下", "material": "胶水", "supplier": "福力", "amount": 8118.07}, {"tier": "1万以下", "material": "模具活动日期标", "supplier": "三上/和宝", "amount": 7749.61}, {"tier": "1万以下", "material": "透明袋/封箱胶袋", "supplier": "港瑞", "amount": 6911.2}, {"tier": "1万以下", "material": "日常用品/办公用品/生产物料", "supplier": "支点（红码）", "amount": 6849.54}, {"tier": "1万以下", "material": "日常用品/办公用品/生产物料", "supplier": "鸿盛（达轩）", "amount": 6750.0}, {"tier": "1万以下", "material": "离模剂", "supplier": "三彩", "amount": 5840.7}, {"tier": "1万以下", "material": "日常用品/办公用品/生产物料", "supplier": "中农", "amount": 5761.056}, {"tier": "1万以下", "material": "鞋垫", "supplier": "鸿盛鞋材", "amount": 5752.2}, {"tier": "1万以下", "material": "设备/零配件（验皮机）", "supplier": "魔森", "amount": 5742.5743}, {"tier": "1万以下", "material": "设备/零配件（ABB）", "supplier": "凡诚", "amount": 5699.11}, {"tier": "1万以下", "material": "包装纸", "supplier": "大悠", "amount": 5310.0}, {"tier": "1万以下", "material": "胶水", "supplier": "力灿", "amount": 5132.7448}, {"tier": "1万以下", "material": "设备/零配件（叉车配件）", "supplier": "吉之力机械", "amount": 4955.7522}, {"tier": "1万以下", "material": "鞋带", "supplier": "鸿昌", "amount": 4908.986}, {"tier": "1万以下", "material": "色料", "supplier": "楷林(楷丰)", "amount": 4667.0}, {"tier": "1万以下", "material": "员工体检", "supplier": "广东安盛", "amount": 4598.0}, {"tier": "1万以下", "material": "打标配件", "supplier": "冠力激光科技", "amount": 4247.7876}, {"tier": "1万以下", "material": "鞋垫模具", "supplier": "鑫旺", "amount": 3982.3008}, {"tier": "1万以下", "material": "设备/零配件（叉车配件）", "supplier": "金鼎", "amount": 3858.4072}, {"tier": "1万以下", "material": "架子", "supplier": "立存仓储", "amount": 3728.8}, {"tier": "1万以下", "material": "实验室校正", "supplier": "中国检验认证", "amount": 3697.6415}, {"tier": "1万以下", "material": "设备/零配件（ABB）", "supplier": "星钢", "amount": 3600.0}, {"tier": "1万以下", "material": "拉链", "supplier": "吉田", "amount": 3563.2212}, {"tier": "1万以下", "material": "外箱贴纸（HH）", "supplier": "宏晟", "amount": 3544.2}, {"tier": "1万以下", "material": "窗帘", "supplier": "晟昌装饰", "amount": 3270.0}, {"tier": "1万以下", "material": "设备/零配件（轮子）", "supplier": "国基", "amount": 3200.0}, {"tier": "1万以下", "material": "水泥", "supplier": "阿光", "amount": 3127.0}, {"tier": "1万以下", "material": "布标", "supplier": "久鼎", "amount": 3088.0}, {"tier": "1万以下", "material": "模厂材料类", "supplier": "大山气体", "amount": 3026.55}, {"tier": "1万以下", "material": "油墨", "supplier": "方睿油墨", "amount": 2900.0}, {"tier": "1万以下", "material": "合成革", "supplier": "铭佳皮革", "amount": 2831.86}, {"tier": "1万以下", "material": "厂服", "supplier": "纯衣服装", "amount": 2787.615}, {"tier": "1万以下", "material": "广告/名片", "supplier": "摩尔登", "amount": 2651.4898}, {"tier": "1万以下", "material": "设备/零配件（削边机刀组）", "supplier": "高捷精密", "amount": 2563.108}, {"tier": "1万以下", "material": "无纺布袋-内销", "supplier": "钜得包装", "amount": 2389.4}, {"tier": "1万以下", "material": "标签", "supplier": "承运", "amount": 2343.588}, {"tier": "1万以下", "material": "设备/零配件（空压机）", "supplier": "丰捷机电", "amount": 2123.894}, {"tier": "1万以下", "material": "设备/零配件（五金）", "supplier": "闽东", "amount": 2100.0}, {"tier": "1万以下", "material": "木版", "supplier": "林昕包装", "amount": 1800.0}, {"tier": "1万以下", "material": "高周波模具", "supplier": "明冠模具", "amount": 1765.0484}, {"tier": "1万以下", "material": "涂边水", "supplier": "诚和鞋材", "amount": 1675.0}, {"tier": "1万以下", "material": "设备/零配件（针车）", "supplier": "旭豪", "amount": 1637.1681}, {"tier": "1万以下", "material": "鞋垫材料加工", "supplier": "宏泰", "amount": 1327.44}, {"tier": "1万以下", "material": "广告/名片", "supplier": "佳益", "amount": 1317.0}, {"tier": "1万以下", "material": "设备/零配件（五金）", "supplier": "汉朗", "amount": 973.45}, {"tier": "1万以下", "material": "橡胶无纺布", "supplier": "上海丰为实业", "amount": 973.45}, {"tier": "1万以下", "material": "设备/零配件（配件）", "supplier": "金博", "amount": 761.0619}, {"tier": "1万以下", "material": "电商-桶装水", "supplier": "怡宝水店", "amount": 743.365}, {"tier": "1万以下", "material": "设备/零配件（离模剂盖配件）", "supplier": "强达", "amount": 720.0}, {"tier": "1万以下", "material": "网版", "supplier": "浩鑫(网版）", "amount": 693.8059}, {"tier": "1万以下", "material": "日常用品/办公用品/生产物料", "supplier": "天猫", "amount": 646.6}, {"tier": "1万以下", "material": "飞织", "supplier": "柯府", "amount": 509.736}, {"tier": "1万以下", "material": "设备/零配件（五金）", "supplier": "农兴(兴华)", "amount": 417.89}, {"tier": "1万以下", "material": "TPU料", "supplier": "新孚达(镇江)", "amount": 407.08}, {"tier": "1万以下", "material": "电商-桶装水", "supplier": "沁华源", "amount": 352.0}, {"tier": "1万以下", "material": "胶带", "supplier": "东沣", "amount": 265.4129}, {"tier": "1万以下", "material": "日常用品/办公用品", "supplier": "东兴", "amount": 168.0}, {"tier": "1万以下", "material": "橡皮泥-实验室", "supplier": "贝旺公司", "amount": 139.545}], "top_suppliers": [{"supplier": "BASF", "amount": 6187373.86}, {"supplier": "力荣", "amount": 6046389.61}, {"supplier": "3M", "amount": 6022883.95}, {"supplier": "青铧", "amount": 5175666.6}, {"supplier": "ALLIED", "amount": 5148426.410803}, {"supplier": "大钰", "amount": 4410458.35}, {"supplier": "佳利", "amount": 3524803.7}, {"supplier": "Sankyokasei", "amount": 2133027.24}, {"supplier": "通荣", "amount": 1863683.51}, {"supplier": "美江", "amount": 1684069.84}, {"supplier": "经之纬", "amount": 1350261.38}, {"supplier": "华峰", "amount": 1346297.44}, {"supplier": "ISA", "amount": 1262241.85}, {"supplier": "建朋", "amount": 1235891.14}, {"supplier": "长发", "amount": 1050702.62}, {"supplier": "皇成", "amount": 983842.63}, {"supplier": "利德昌", "amount": 816815.0}, {"supplier": "友信", "amount": 721638.15}, {"supplier": "昌明", "amount": 718000.96}, {"supplier": "大时代", "amount": 686169.72}], "cat_supplier_counts": {"鞋厂原材料 鞋面类": 56, "鞋厂原材料 钳帮类": 14, "鞋厂原材料 射出类": 13, "鞋厂原材料 包材类": 30, "注塑原材料类": 2, "设备/零配件类": 37, "模厂原材料类": 7, "橡胶厂 原材料类": 14, "生产制具类": 16, "总务 日常用品类": 32, "安全防护用品类": 2}};
+const TOTAL = D.total_amount;
+const COLORS = ['#1a73e8','#0d9488','#f59e0b','#ef4444','#7c3aed','#6366f1','#ec4899','#14b8a6','#8b5cf6','#f97316','#06b6d4','#84cc16'];
+
+function fmt(n){
+  if(Math.abs(n)>=1e8) return (n/1e8).toFixed(2)+'亿';
+  if(Math.abs(n)>=1e4) return (n/1e4).toFixed(1)+'万';
+  return n.toFixed(2);
+}
+function fmtN(n){ return n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function tierTag(amount){
+  if(amount>=4000000) return '<span class="tag tag-red">400万以上</span>';
+  if(amount>=1000000) return '<span class="tag tag-orange">100-399万</span>';
+  if(amount>=500000) return '<span class="tag tag-blue">50-99万</span>';
+  if(amount>=200000) return '<span class="tag tag-green">20-49万</span>';
+  if(amount>=100000) return '<span class="tag tag-purple">10-19万</span>';
+  if(amount>=10000) return '<span class="tag tag-blue">1-9万</span>';
+  return '<span class="tag">1万以下</span>';
+}
+
+// ===== Title =====
+document.getElementById('dash-title').textContent = D.title.replace(/\s+/g,' ').trim();
+document.getElementById('dash-meta').textContent = 'Source: Supply 2025.xlsx | ' + D.supplier_count + ' suppliers | Generated ' + new Date().toLocaleDateString('zh-CN');
+
+// ===== KPIs =====
+document.getElementById('kpi-total').textContent = '¥' + fmt(TOTAL);
+document.getElementById('kpi-total-sub').textContent = '¥' + fmtN(TOTAL);
+document.getElementById('kpi-suppliers').textContent = D.supplier_count;
+document.getElementById('kpi-suppliers-sub').textContent = D.tiers.reduce((s,t)=>s+t.count,0) + ' (按台阶统计)';
+document.getElementById('kpi-categories').textContent = D.categories.length;
+document.getElementById('kpi-cat-sub').textContent = '共 ' + D.categories.length + ' 个物料类别';
+var topCat = D.categories.reduce((a,b)=>a.amount>b.amount?a:b);
+document.getElementById('kpi-top-cat').textContent = topCat.pct.toFixed(1) + '%';
+document.getElementById('kpi-top-cat-sub').textContent = topCat.name;
+
+// ===== Charts =====
+// 1. Category Pie
+var c1 = echarts.init(document.getElementById('chart-cat-pie'));
+c1.setOption({
+  tooltip:{trigger:'item',formatter:function(p){return p.name+'<br/>¥'+fmtN(p.value)+' ('+p.percent+'%)'}},
+  legend:{type:'scroll',bottom:0,textStyle:{fontSize:11}},
+  series:[{type:'pie',radius:['35%','65%'],center:['50%','45%'],
+    label:{show:true,formatter:'{b}\n{d}%',fontSize:11},
+    data:D.categories.map(function(c,i){return{name:c.name,value:c.amount,itemStyle:{color:COLORS[i%COLORS.length]}}}),
+    emphasis:{itemStyle:{shadowBlur:10,shadowColor:'rgba(0,0,0,.2)'}}}]
+});
+
+// 2. Tier Bar
+var c2 = echarts.init(document.getElementById('chart-tier-bar'));
+var tierColors = ['#ef4444','#f97316','#f59e0b','#eab308','#84cc16','#22c55e','#0d9488'];
+c2.setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:90,right:40,top:20,bottom:30},
+  xAxis:{type:'value',name:'供应商数量'},
+  yAxis:{type:'category',data:D.tiers.map(t=>t.tier).reverse(),axisLabel:{fontSize:12}},
+  series:[{type:'bar',data:D.tiers.map(function(t,i){return{value:t.count,itemStyle:{color:tierColors[i%tierColors.length]}}}).reverse(),
+    barWidth:24,label:{show:true,position:'right',fontSize:12,fontWeight:600}}]
+});
+
+// 3. Top 20 Suppliers
+var c3 = echarts.init(document.getElementById('chart-top-suppliers'));
+c3.setOption({
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){return p[0].name+'<br/>¥'+fmtN(p[0].value)}},
+  grid:{left:100,right:80,top:10,bottom:30},
+  xAxis:{type:'value',axisLabel:{formatter:function(v){return fmt(v)}}},
+  yAxis:{type:'category',data:D.top_suppliers.map(s=>s.supplier).reverse(),axisLabel:{fontSize:11}},
+  series:[{type:'bar',data:D.top_suppliers.map(function(s){
+    var pct=s.amount/TOTAL;
+    return{value:s.amount,itemStyle:{color:pct>.05?'#ef4444':pct>.02?'#f59e0b':'#1a73e8'}}
+  }).reverse(),
+    barWidth:16,label:{show:true,position:'right',fontSize:10,formatter:function(p){return fmt(p.value)}}}]
+});
+
+// 4. Category Bar
+var c4 = echarts.init(document.getElementById('chart-cat-bar'));
+var sortedCats = D.categories.slice().sort((a,b)=>b.amount-a.amount);
+c4.setOption({
+  tooltip:{trigger:'axis',formatter:function(p){return p[0].name+'<br/>¥'+fmtN(p[0].value)+'<br/>占比: '+(p[0].value/TOTAL*100).toFixed(1)+'%'}},
+  grid:{left:160,right:60,top:10,bottom:30},
+  xAxis:{type:'value',axisLabel:{formatter:function(v){return fmt(v)}}},
+  yAxis:{type:'category',data:sortedCats.map(c=>c.name).reverse(),axisLabel:{fontSize:11}},
+  series:[{type:'bar',data:sortedCats.map(function(c,i){return{value:c.amount,itemStyle:{color:COLORS[i%COLORS.length]}}}).reverse(),
+    barWidth:18,label:{show:true,position:'right',fontSize:10,formatter:function(p){return fmt(p.value)}}}]
+});
+
+// 5. Treemap
+var c5 = echarts.init(document.getElementById('chart-treemap'));
+var treemapData = [];
+var catMap = {};
+D.by_category.forEach(function(d){
+  if(!catMap[d.category]){catMap[d.category]={name:d.category,value:0,children:[]};treemapData.push(catMap[d.category])}
+  catMap[d.category].children.push({name:d.supplier,value:d.amount});
+  catMap[d.category].value += d.amount;
+});
+c5.setOption({
+  tooltip:{formatter:function(p){return p.name+'<br/>¥'+fmtN(p.value)}},
+  series:[{type:'treemap',data:treemapData,roam:false,
+    breadcrumb:{show:true,bottom:5},
+    levels:[
+      {itemStyle:{borderColor:'#fff',borderWidth:3,gapWidth:3},upperLabel:{show:true,height:24,fontSize:12}},
+      {itemStyle:{borderColor:'#fff',borderWidth:1,gapWidth:1},colorSaturation:[.3,.7]}
+    ],
+    label:{show:true,fontSize:11,formatter:'{b}'},
+    upperLabel:{show:true}}]
+});
+
+// 6. Concentration Pareto Analysis (Top 10, 20, 30... Steps + Continuous Curve)
+var c6 = echarts.init(document.getElementById('chart-concentration'));
+var supRecordsMap = {};
+D.by_category.forEach(function(d){
+  if(!supRecordsMap[d.supplier]){
+    supRecordsMap[d.supplier] = {supplier: d.supplier, amount: 0, category: d.category, material: d.material};
+  }
+  supRecordsMap[d.supplier].amount += d.amount;
+});
+var allSortedRecords = Object.values(supRecordsMap).sort(function(a,b){ return b.amount - a.amount; });
+var cumPct = []; var cumVal = 0;
+allSortedRecords.forEach(function(s,i){
+  cumVal += s.amount;
+  cumPct.push({
+    rank: i+1,
+    name: 'Top '+(i+1),
+    supplier: s.supplier,
+    singleAmount: s.amount,
+    cumAmount: cumVal,
+    value: Math.round(cumVal/TOTAL*10000)/100
+  });
+});
+
+// Build Top 10, 20, 30, ... 220, 223 steps
+var stepList = [];
+for(var k=10; k<allSortedRecords.length; k+=10){ stepList.push(k); }
+stepList.push(allSortedRecords.length);
+
+var stepData = [];
+var prevN = 0;
+var prevCumAmt = 0;
+stepList.forEach(function(n, idx){
+  var sliceItems = allSortedRecords.slice(prevN, n);
+  var sliceAmt = sliceItems.reduce(function(acc, r){ return acc + r.amount; }, 0);
+  var cAmt = prevCumAmt + sliceAmt;
+  var cPct = cAmt / TOTAL * 100;
+  var sPct = sliceAmt / TOTAL * 100;
+  var sCnt = n - prevN;
+  stepData.push({
+    idx: idx,
+    n: n,
+    label: n === allSortedRecords.length ? '全部(' + n + ')' : 'Top ' + n,
+    tableLabel: n === allSortedRecords.length ? '全部 ' + n + ' 家' : 'Top ' + n,
+    rankRange: '第 ' + (prevN + 1) + '–' + n + ' 名',
+    startRank: prevN + 1,
+    endRank: n,
+    sliceCount: sCnt,
+    cumAmount: cAmt,
+    cumPct: cPct,
+    sliceAmount: sliceAmt,
+    slicePct: sPct,
+    cumAvg: cAmt / n,
+    sliceAvg: sliceAmt / sCnt,
+    minAmount: sliceItems[sliceItems.length - 1].amount,
+    maxAmount: sliceItems[0].amount,
+    repSuppliers: sliceItems.slice(0, 3).map(function(x){ return x.supplier; }).join('、'),
+    items: sliceItems
+  });
+  prevN = n;
+  prevCumAmt = cAmt;
+});
+
+// Populate KPI sub-note on top KPI card #2
+var top10Step = stepData[0];
+var top20Step = stepData[1];
+var top30Step = stepData[2];
+var top50Step = stepData[4];
+var top100Step = stepData[9];
+document.getElementById('kpi-suppliers-sub').innerHTML =
+  'Top 10占 <b>' + top10Step.cumPct.toFixed(1) + '%</b> | Top 30占 <b>' + top30Step.cumPct.toFixed(1) + '%</b> · <a class="jump-link" onclick="document.getElementById(\'section-concentration\').scrollIntoView({behavior:\'smooth\'})">阶梯分析 ↓</a>';
+
+// Render 5 Milestone KPI Cards inside Concentration Section
+var tailAmount = TOTAL - top100Step.cumAmount;
+var tailPct = tailAmount / TOTAL * 100;
+var tailCount = allSortedRecords.length - 100;
+document.getElementById('conc-kpi-strip').innerHTML = [
+  {
+    title: 'TOP 10 供应商合计',
+    badge: '<span class="tag tag-red">' + top10Step.cumPct.toFixed(2) + '%</span>',
+    val: '¥' + fmtN(top10Step.cumAmount),
+    sub: '约 ¥' + fmt(top10Step.cumAmount) + ' | 户均 ¥' + fmt(top10Step.cumAvg) + ' (BASF、力荣、3M等)'
+  },
+  {
+    title: 'TOP 20 供应商合计',
+    badge: '<span class="tag tag-orange">' + top20Step.cumPct.toFixed(2) + '%</span>',
+    val: '¥' + fmtN(top20Step.cumAmount),
+    sub: '第11–20名新增 ¥' + fmt(top20Step.sliceAmount) + ' (+' + top20Step.slicePct.toFixed(2) + '%)'
+  },
+  {
+    title: 'TOP 30 合计 (超80%帕累托线)',
+    badge: '<span class="tag tag-blue">' + top30Step.cumPct.toFixed(2) + '%</span>',
+    val: '¥' + fmtN(top30Step.cumAmount),
+    sub: '第21–30名新增 ¥' + fmt(top30Step.sliceAmount) + ' (+' + top30Step.slicePct.toFixed(2) + '%) | 第27家达80%'
+  },
+  {
+    title: 'TOP 50 合计 (超90%集中度线)',
+    badge: '<span class="tag tag-purple">' + top50Step.cumPct.toFixed(2) + '%</span>',
+    val: '¥' + fmtN(top50Step.cumAmount),
+    sub: '前 22.4% 供应商贡献 91.55% 采购额 | 第46家达90%'
+  },
+  {
+    title: '长尾 123 家 (第101–223名)',
+    badge: '<span class="tag tag-green">' + tailPct.toFixed(2) + '%</span>',
+    val: '¥' + fmtN(tailAmount),
+    sub: '占供应商总数 55.2%，合计仅 ¥' + fmt(tailAmount) + ' (户均 ¥' + fmt(tailAmount/tailCount) + ')'
+  }
+].map(function(k){
+  return '<div class="conc-kpi">' +
+    '<div class="conc-kpi-title"><span>' + k.title + '</span>' + k.badge + '</div>' +
+    '<div class="conc-kpi-val">' + k.val + '</div>' +
+    '<div class="conc-kpi-sub">' + k.sub + '</div>' +
+  '</div>';
+}).join('');
+
+function renderConcChart(mode){
+  if(mode === 'curve'){
+    c6.setOption({
+      tooltip:{
+        trigger:'axis',
+        formatter:function(p){
+          var d = cumPct[p[0].dataIndex];
+          return '<b>排名第 ' + d.rank + ' 名：' + d.supplier + '</b><br/>' +
+            '单家采购额：¥' + fmtN(d.singleAmount) + ' (' + (d.singleAmount/TOTAL*100).toFixed(2) + '%)<br/>' +
+            'Top ' + d.rank + ' 累计金额：<b>¥' + fmtN(d.cumAmount) + '</b><br/>' +
+            '累计占总额比：<b>' + d.value.toFixed(2) + '%</b>';
+        }
+      },
+      legend:{data:['累计采购占比 (%)'],top:4},
+      grid:{left:65,right:50,top:40,bottom:45},
+      xAxis:{
+        type:'category',
+        data:cumPct.map(function(c,i){return(i+1)%10===0||i===0||i===cumPct.length-1?'Top '+(i+1):''}),
+        axisLabel:{fontSize:11,interval:0,rotate:30},
+        name:'供应商排名'
+      },
+      yAxis:[
+        {type:'value',max:100,axisLabel:{formatter:'{value}%'},name:'累计占比'}
+      ],
+      series:[{
+        name:'累计采购占比 (%)',
+        type:'line',
+        data:cumPct.map(function(c){return c.value;}),
+        smooth:true,
+        areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(99,102,241,.32)'},{offset:1,color:'rgba(99,102,241,.03)'}]}},
+        lineStyle:{color:'#6366f1',width:2.5},
+        itemStyle:{color:'#6366f1'},
+        symbol:'none',
+        markLine:{
+          silent:true,
+          data:[
+            {yAxis:80,lineStyle:{color:'#ef4444',type:'dashed'},label:{formatter:'80% 帕累托线 (第27家)'}},
+            {yAxis:90,lineStyle:{color:'#7c3aed',type:'dashed'},label:{formatter:'90% 集中度线 (第46家)'}}
+          ]
+        }
+      }]
+    }, true);
+    return;
+  }
+
+  var plotSteps = mode === 'top100'
+    ? stepData.filter(function(s){ return s.n <= 100 || s.n === allSortedRecords.length; })
+    : stepData;
+
+  c6.setOption({
+    tooltip:{
+      trigger:'axis',
+      axisPointer:{type:'shadow'},
+      formatter:function(params){
+        var s = plotSteps[params[0].dataIndex];
+        return '<div style="font-weight:700;font-size:13px;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:4px">' +
+          s.tableLabel + ' 供应商汇总 (' + s.rankRange + ')</div>' +
+          '• 累计采购金额：<b>¥' + fmtN(s.cumAmount) + '</b> (约 ' + fmt(s.cumAmount) + ')<br/>' +
+          '• 累计占总额比：<b>' + s.cumPct.toFixed(2) + '%</b><br/>' +
+          '• 本档新增金额 (' + s.sliceCount + '家)：<b>¥' + fmtN(s.sliceAmount) + '</b> (' + s.slicePct.toFixed(2) + '%)<br/>' +
+          '• 累计户均采购：¥' + fmtN(s.cumAvg) + ' | 本档户均：¥' + fmtN(s.sliceAvg) + '<br/>' +
+          '• 本档代表供应商：' + s.repSuppliers;
+      }
+    },
+    legend:{
+      data:['累计采购金额 (Top 1–N)','本档区间新增金额 (10家增量)','累计占总额比 (%)'],
+      top:4,
+      textStyle:{fontSize:12}
+    },
+    grid:{left:75,right:65,top:45,bottom:50},
+    xAxis:{
+      type:'category',
+      data:plotSteps.map(function(s){ return s.label; }),
+      axisLabel:{fontSize:11,interval:0,rotate:mode==='all'?30:0,fontWeight:600}
+    },
+    yAxis:[
+      {
+        type:'value',
+        name:'采购金额 (RMB)',
+        max:75000000,
+        axisLabel:{formatter:function(v){ return (v/1e4).toFixed(0)+'万'; },fontSize:11}
+      },
+      {
+        type:'value',
+        name:'累计占比 (%)',
+        min:0,
+        max:105,
+        axisLabel:{formatter:'{value}%',fontSize:11},
+        splitLine:{show:false}
+      }
+    ],
+    series:[
+      {
+        name:'累计采购金额 (Top 1–N)',
+        type:'bar',
+        yAxisIndex:0,
+        barGap:'12%',
+        barMaxWidth:24,
+        data:plotSteps.map(function(s){
+          return {
+            value: Math.round(s.cumAmount * 100) / 100,
+            itemStyle:{
+              color: s.n <= 10 ? '#1e40af' : s.n <= 30 ? '#1a73e8' : s.n <= 50 ? '#3b82f6' : '#60a5fa',
+              borderRadius:[4,4,0,0]
+            }
+          };
+        }),
+        label:{
+          show:true,
+          position:'top',
+          fontSize:10,
+          color:'#1e293b',
+          formatter:function(p){
+            var s = plotSteps[p.dataIndex];
+            if(mode === 'all' && s.n > 60 && s.n % 20 !== 0 && s.n !== allSortedRecords.length) return '';
+            return (s.cumAmount/1e4).toFixed(0)+'万';
+          }
+        }
+      },
+      {
+        name:'本档区间新增金额 (10家增量)',
+        type:'bar',
+        yAxisIndex:0,
+        barMaxWidth:18,
+        data:plotSteps.map(function(s){
+          return {
+            value: Math.round(s.sliceAmount * 100) / 100,
+            itemStyle:{color:'#0d9488',borderRadius:[4,4,0,0]}
+          };
+        }),
+        label:{
+          show:true,
+          position:'top',
+          fontSize:9,
+          color:'#0f766e',
+          formatter:function(p){
+            var s = plotSteps[p.dataIndex];
+            if(s.sliceAmount < 1500000) return '';
+            return '+' + (s.sliceAmount/1e4).toFixed(0)+'万';
+          }
+        }
+      },
+      {
+        name:'累计占总额比 (%)',
+        type:'line',
+        yAxisIndex:1,
+        smooth:true,
+        symbol:'circle',
+        symbolSize:7,
+        lineStyle:{color:'#ef4444',width:2.5},
+        itemStyle:{color:'#ef4444',borderWidth:2,borderColor:'#fff'},
+        data:plotSteps.map(function(s){ return Number(s.cumPct.toFixed(2)); }),
+        label:{
+          show:true,
+          position:'top',
+          fontSize:10,
+          fontWeight:700,
+          color:'#dc2626',
+          formatter:function(p){
+            var s = plotSteps[p.dataIndex];
+            if(mode === 'all' && s.n > 60 && s.n % 30 !== 0 && s.n !== 100 && s.n !== allSortedRecords.length) return '';
+            return s.cumPct.toFixed(1) + '%';
+          }
+        },
+        markLine:{
+          silent:true,
+          symbol:'none',
+          data:[
+            {yAxis:80,lineStyle:{color:'#f59e0b',type:'dashed',width:1.5},label:{formatter:'80% 线',position:'insideEndTop',color:'#b45309',fontSize:11}},
+            {yAxis:90,lineStyle:{color:'#7c3aed',type:'dashed',width:1.5},label:{formatter:'90% 线',position:'insideEndTop',color:'#6d28d9',fontSize:11}}
+          ]
+        }
+      }
+    ]
+  }, true);
+}
+
+window.setConcMode = function(mode){
+  ['all','top100','curve'].forEach(function(m){
+    var btn = document.getElementById('btn-conc-' + m);
+    if(btn) btn.classList.toggle('active', m === mode);
+  });
+  renderConcChart(mode);
+};
+
+// Render Step Summary Table (both in Concentration Section and in 4th Tab)
+function renderStepSummaryTables(){
+  var htmlMain = '';
+  var htmlTab = '';
+  stepData.forEach(function(s){
+    var rowClass = 'step-row';
+    var badge = '';
+    if(s.n === 30){ rowClass += ' highlight-80'; badge = ' <span class="tag tag-orange">超80%线</span>'; }
+    else if(s.n === 50){ rowClass += ' highlight-90'; badge = ' <span class="tag tag-purple">超90%线</span>'; }
+    else if(s.n === 100){ badge = ' <span class="tag tag-blue">超98%线</span>'; }
+    else if(s.n === allSortedRecords.length){ rowClass += ' total-row'; badge = ' <span class="tag tag-green">100%全量</span>'; }
+
+    var barColor = s.n <= 10 ? '#ef4444' : s.n <= 30 ? '#f59e0b' : s.n <= 50 ? '#1a73e8' : '#0d9488';
+
+    htmlMain += '<tr class="' + rowClass + '" id="step-tr-' + s.n + '" onclick="toggleStepDetail(' + s.n + ')">' +
+      '<td><span class="step-expand-icon">▶</span><b>' + s.tableLabel + '</b>' + badge + '</td>' +
+      '<td>' + s.rankRange + '</td>' +
+      '<td class="num"><b>¥' + fmtN(s.cumAmount) + '</b><div style="font-size:11px;color:var(--sub)">约 ¥' + fmt(s.cumAmount) + '</div></td>' +
+      '<td class="num"><div class="pct-cell"><div class="pct-bar-bg"><div class="pct-bar-fill" style="width:' + Math.min(100, s.cumPct).toFixed(1) + '%;background:' + barColor + '"></div></div><b>' + s.cumPct.toFixed(2) + '%</b></div></td>' +
+      '<td class="num">¥' + fmtN(s.sliceAmount) + '<div style="font-size:11px;color:var(--sub)">+' + fmt(s.sliceAmount) + '</div></td>' +
+      '<td class="num">' + s.slicePct.toFixed(2) + '%</td>' +
+      '<td class="num">¥' + fmtN(s.cumAvg) + '</td>' +
+      '<td class="num">¥' + fmtN(s.sliceAvg) + '</td>' +
+      '<td class="num" style="font-size:12px;color:var(--sub)">¥' + fmt(s.minAmount) + ' ~ ¥' + fmt(s.maxAmount) + '</td>' +
+      '<td style="font-size:12px">' + s.repSuppliers + ' <span style="color:var(--blue);font-size:11px">(共' + s.sliceCount + '家)</span></td>' +
+    '</tr>';
+
+    // Expandable detail row showing all suppliers in this step
+    var supCards = s.items.map(function(item, idx){
+      var rk = s.startRank + idx;
+      var itemPct = (item.amount / TOTAL * 100).toFixed(2);
+      return '<div class="step-sup-card">' +
+        '<div><span class="step-sup-rank">#' + rk + '</span><b>' + item.supplier + '</b> <span style="color:var(--sub);font-size:11px">(' + item.material + ')</span></div>' +
+        '<div class="num" style="font-weight:600">¥' + fmtN(item.amount) + ' <span style="color:var(--sub);font-weight:400;font-size:11px">(' + itemPct + '%)</span></div>' +
+      '</div>';
+    }).join('');
+
+    htmlMain += '<tr class="step-detail-tr" id="step-detail-' + s.n + '">' +
+      '<td colspan="10" style="padding:0">' +
+        '<div class="step-detail-box">' +
+          '<div style="font-size:12px;font-weight:600;color:var(--text)">' +
+            s.tableLabel + ' 本档位供应商明细 (' + s.rankRange + '，共 ' + s.sliceCount + ' 家，本档合计 ¥' + fmtN(s.sliceAmount) + ' / 占总额 ' + s.slicePct.toFixed(2) + '%)：' +
+          '</div>' +
+          '<div class="step-detail-grid">' + supCards + '</div>' +
+        '</div>' +
+      '</td>' +
+    '</tr>';
+
+    htmlTab += '<tr class="' + (s.n === allSortedRecords.length ? 'total-row' : '') + '">' +
+      '<td><b>' + s.tableLabel + '</b>' + badge + '</td>' +
+      '<td>' + s.rankRange + '</td>' +
+      '<td class="num"><b>¥' + fmtN(s.cumAmount) + '</b></td>' +
+      '<td class="num"><b>' + s.cumPct.toFixed(2) + '%</b></td>' +
+      '<td class="num">¥' + fmtN(s.sliceAmount) + '</td>' +
+      '<td class="num">' + s.slicePct.toFixed(2) + '%</td>' +
+      '<td class="num">¥' + fmtN(s.cumAvg) + '</td>' +
+      '<td class="num">¥' + fmtN(s.sliceAvg) + '</td>' +
+      '<td style="font-size:12px">' + s.repSuppliers + '</td>' +
+    '</tr>';
+  });
+
+  document.getElementById('tbody-concentration-steps').innerHTML = htmlMain;
+  var tabTb = document.getElementById('tbody-topn-tab');
+  if(tabTb) tabTb.innerHTML = htmlTab;
+}
+
+window.toggleStepDetail = function(n){
+  var tr = document.getElementById('step-tr-' + n);
+  var dtr = document.getElementById('step-detail-' + n);
+  if(tr && dtr){
+    tr.classList.toggle('open');
+    dtr.classList.toggle('open');
+  }
+};
+
+var allStepsExpanded = false;
+window.toggleAllStepDetails = function(){
+  allStepsExpanded = !allStepsExpanded;
+  stepData.forEach(function(s){
+    var tr = document.getElementById('step-tr-' + s.n);
+    var dtr = document.getElementById('step-detail-' + s.n);
+    if(tr && dtr){
+      tr.classList.toggle('open', allStepsExpanded);
+      dtr.classList.toggle('open', allStepsExpanded);
+    }
+  });
+  var btn = document.getElementById('btn-expand-all');
+  if(btn){
+    btn.textContent = allStepsExpanded ? '收起各档供应商明细' : '展开各档供应商明细';
+    btn.classList.toggle('active', allStepsExpanded);
+  }
+};
+
+renderConcChart('all');
+renderStepSummaryTables();
+
+// 7. Category supplier count
+var c7 = echarts.init(document.getElementById('chart-cat-supplier-count'));
+var csc = Object.entries(D.cat_supplier_counts).sort((a,b)=>b[1]-a[1]);
+c7.setOption({
+  tooltip:{trigger:'axis'},
+  grid:{left:160,right:40,top:10,bottom:30},
+  xAxis:{type:'value',name:'供应商数量'},
+  yAxis:{type:'category',data:csc.map(c=>c[0]).reverse(),axisLabel:{fontSize:11}},
+  series:[{type:'bar',data:csc.map(function(c,i){return{value:c[1],itemStyle:{color:COLORS[i%COLORS.length]}}}).reverse(),
+    barWidth:16,label:{show:true,position:'right',fontSize:11}}]
+});
+
+// ===== Tables =====
+function renderCatTable(filter){
+  var tb = document.getElementById('tbody-cat');
+  var html = ''; var n = 0;
+  var f = (filter||'').toLowerCase();
+  D.by_category.forEach(function(d){
+    if(f && (d.category+d.material+d.supplier).toLowerCase().indexOf(f)<0) return;
+    n++;
+    html += '<tr><td>'+n+'</td><td>'+d.category+'</td><td>'+d.material+'</td><td>'+d.supplier+'</td><td class="num">'+fmtN(d.amount)+'</td><td class="num">'+(d.amount/TOTAL*100).toFixed(2)+'%</td></tr>';
+  });
+  tb.innerHTML = html;
+}
+
+function renderTierTable(filter){
+  var tb = document.getElementById('tbody-tier');
+  var html = ''; var n = 0;
+  var f = (filter||'').toLowerCase();
+  D.by_tier.forEach(function(d){
+    if(f && (d.tier+d.material+d.supplier).toLowerCase().indexOf(f)<0) return;
+    n++;
+    html += '<tr><td>'+n+'</td><td>'+d.tier+'</td><td>'+d.material+'</td><td>'+d.supplier+'</td><td class="num">'+fmtN(d.amount)+'</td></tr>';
+  });
+  tb.innerHTML = html;
+}
+
+function renderAllTable(filter){
+  var tb = document.getElementById('tbody-all');
+  var all = {};
+  D.by_category.forEach(function(d){ all[d.supplier] = (all[d.supplier]||0) + d.amount; });
+  var list = Object.entries(all).sort((a,b)=>b[1]-a[1]);
+  var html = ''; var n = 0;
+  var f = (filter||'').toLowerCase();
+  list.forEach(function(s){
+    if(f && s[0].toLowerCase().indexOf(f)<0) return;
+    n++;
+    html += '<tr><td>'+n+'</td><td>'+s[0]+'</td><td class="num">'+fmtN(s[1])+'</td><td class="num">'+(s[1]/TOTAL*100).toFixed(2)+'%</td><td>'+tierTag(s[1])+'</td></tr>';
+  });
+  tb.innerHTML = html;
+}
+
+renderCatTable(); renderTierTable(); renderAllTable();
+
+document.getElementById('search-cat').addEventListener('input',function(){renderCatTable(this.value)});
+document.getElementById('search-tier').addEventListener('input',function(){renderTierTable(this.value)});
+document.getElementById('search-all').addEventListener('input',function(){renderAllTable(this.value)});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active'); document.getElementById(t.dataset.tab).classList.add('active');
+})});
+
+// Resize
+window.addEventListener('resize',function(){
+  [c1,c2,c3,c4,c5,c6,c7].forEach(function(c){c.resize()});
+});
+</script>
+</body>
+</html>
