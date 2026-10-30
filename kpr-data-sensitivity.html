@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>KPR 数据敏感度定义 / Data Sensitivity Definition (draft for Boss mark-up)</title>
+<style>
+  :root{--ink:#1f2937;--mut:#6b7280;--line:#d1d5db;--hd:#0f3d63;--low:#e7f6ec;--lowt:#166534;--med:#fff6db;--medt:#8a5a00;--high:#fde8e8;--hight:#9b1c1c;}
+  *{box-sizing:border-box}
+  body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;color:var(--ink);margin:0;padding:24px;line-height:1.5;font-size:14px;background:#fff}
+  .wrap{max-width:1400px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 4px;color:var(--hd)}
+  h1 small{display:block;font-size:14px;color:var(--mut);font-weight:normal}
+  h2{font-size:17px;color:var(--hd);border-bottom:2px solid var(--hd);padding-bottom:3px;margin:26px 0 10px}
+  .en{color:var(--mut);font-size:12.5px}
+  .meta{font-size:12px;color:var(--mut);margin-bottom:14px}
+  .draft{display:inline-block;background:#fde8e8;color:#9b1c1c;border:1px solid #f5b5b5;border-radius:4px;padding:1px 8px;font-size:12px;font-weight:bold}
+  .principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+  .p{border:1px solid var(--line);border-left:4px solid var(--hd);border-radius:4px;padding:8px 12px}
+  .p b{display:block}
+  table{border-collapse:collapse;width:100%;font-size:12.5px}
+  th,td{border:1px solid var(--line);padding:6px 7px;vertical-align:top;text-align:left}
+  th{background:var(--hd);color:#fff;font-weight:600}
+  th .en{color:#cfe0ef;display:block;font-weight:normal}
+  td .en{display:block;margin-top:3px}
+  tr:nth-child(even) td{background:#fafbfc}
+  .cat{font-weight:bold;white-space:nowrap}
+  .tag{display:inline-block;border-radius:3px;padding:0 6px;font-weight:bold;font-size:12px}
+  .L{background:var(--low);color:var(--lowt)} .M{background:var(--med);color:var(--medt)} .H{background:var(--high);color:var(--hight)}
+  .X{background:#111;color:#fff}
+  .mark{min-width:130px;background:#fffef5 !important}
+  .ex{font-size:11px;color:var(--mut);font-style:italic}
+  .proposed{border:1px dashed #b45309;color:#b45309;border-radius:3px;padding:0 4px;font-size:11px;font-weight:bold}
+  ol li{margin-bottom:6px}
+  .foot{margin-top:24px;font-size:11.5px;color:var(--mut);border-top:1px solid var(--line);padding-top:8px}
+  @media print{
+    body{padding:0;font-size:10.5px}
+    @page{size:A4 landscape;margin:10mm}
+    table{font-size:9.5px} th{background:#0f3d63 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .tag,.mark,.draft{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    tr{page-break-inside:avoid} h2{page-break-after:avoid}
+  }
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>KPR 数据敏感度定义
+<small>Data Sensitivity Definition — draft for Boss mark-up</small></h1>
+<div class="meta"><span class="draft">草稿 DRAFT</span> &nbsp;2026-10-30 · 供 Peter Yao (GM, KPR / 尊王) 标注 · 回应 Ryan Tsai 2026-10-26 混合AI方案<br>
+<span class="en">For Peter Yao's mark-up · Response to Ryan Tsai's 2026-10-26 hybrid-AI paper. All data items below are <b>examples</b> only; no figures included.</span></div>
+
+<h2>1. 原则 <span class="en">Principles</span></h2>
+<div class="principles">
+  <div class="p"><b>① 从"伤害"出发，而不是从"位置"出发</b>
+  先定义什么数据敏感、为什么敏感（泄露后对谁造成什么伤害），再决定数据放在哪里（本地服务器 / 云端）。Ryan 方案先做"本地 vs 云"的拆分，本文建议顺序倒过来。
+  <span class="en">Start from harm, not location. Define WHAT is sensitive and WHY (harm if leaked, and to whom) first; only then decide where it goes. Ryan's paper starts with the on-site vs cloud split — we propose reversing the order.</span></div>
+  <div class="p"><b>② 逐类追问：企业合约云AI真的是泄露风险吗？</b>
+  企业级合约（不用于训练、有保密条款）下的云AI，对大多数类别未必构成实际泄露。只有在合约/法律明确禁止第三方处理，或数据本身是凭证时，才必须排除云端。
+  <span class="en">For each category ask: is an enterprise-contract cloud AI actually a leak risk? For most categories it may not be. Cloud must be excluded only where a contract/law bars third-party processing, or the data is a credential.</span></div>
+  <div class="p"><b>③ 更大的真实风险：内部过度曝光</b>
+  对KPR多数数据而言，更现实的风险可能是"内部看错人"——通过Bot让不该看的员工或群组（跨部门、跨公司、跨工厂）看到成本、价格、薪资等。权限设计比服务器位置更关键。
+  <span class="en">The bigger real risk for most KPR data is likely internal over-exposure — the wrong staff or chat group (across departments / entities / factories) seeing cost, prices or payroll through bots. Access design matters more than server location.</span></div>
+</div>
+
+<h2>2. 敏感度分类表 <span class="en">Sensitivity categories</span></h2>
+<table>
+<thead><tr>
+  <th style="width:9%">类别<span class="en">Category</span></th>
+  <th style="width:15%">具体数据例子<span class="en">Examples (KPR-specific)</span></th>
+  <th style="width:11%">为何敏感<span class="en">Why sensitive</span></th>
+  <th style="width:13%">泄露的真实伤害<span class="en">Real harm &amp; to whom</span></th>
+  <th style="width:13%">外部云AI风险<span class="en">Cloud AI risk</span></th>
+  <th style="width:12%">内部过度曝光风险<span class="en">Internal exposure risk</span></th>
+  <th style="width:15%">建议处理<span class="en">Suggested handling</span></th>
+  <th class="mark" style="width:12%;background:#0f3d63">Boss 标注<span class="en">Boss mark-up</span></th>
+</tr></thead>
+<tbody>
+
+<tr>
+<td class="cat">(a) 竞争类<span class="en">Competitive</span></td>
+<td>成本、毛利、供应商价格、BOM及配方（如PU/橡胶配方）<span class="ex">例子 / examples</span><span class="en">Cost, margin, supplier prices, BOM &amp; formulas (PU / rubber compounds)</span></td>
+<td>反映KPR的成本结构与技术诀窍<span class="en">Reveals cost structure and technical know-how</span></td>
+<td>竞争对手可据此压价抢单或仿制配方；受害方：KPR集团（尤其工厂与报价能力）<span class="en">Competitors undercut prices or copy formulas. Harm to: KPR group (factories, quoting power)</span></td>
+<td><span class="tag M">中 Med</span> 企业合约云AI本身泄露概率低；风险主要在于配方等核心诀窍一旦外流不可逆<span class="en">Enterprise cloud leak unlikely, but formula leakage would be irreversible</span></td>
+<td><span class="tag H">高 High</span> 采购、业务、工厂员工通过Bot可能看到不该看的成本/毛利<span class="en">Purchasing/sales/factory staff may see cost &amp; margin via bots</span></td>
+<td>按角色限制访问；配方考虑仅限少数人、可放本地；成本/毛利不进入普通群组Bot<span class="en">Role-based access; formulas restricted to few people (on-site candidate); no cost/margin in general group bots</span></td>
+<td class="mark"></td>
+</tr>
+
+<tr>
+<td class="cat">(b) 客户类<span class="en">Customer</span></td>
+<td>跨客户价格与条款：内销报价包、CF / HH / Dunia 价格<span class="ex">例子 / examples</span><span class="en">Cross-customer prices &amp; terms: domestic quote packs, CF / HH / Dunia pricing</span></td>
+<td>不同客户的价格与条款不同<span class="en">Prices and terms differ by customer</span></td>
+<td>客户得知他人价格 → 关系受损、谈判被动；受害方：KPR与客户关系、业务团队<span class="en">A customer learning another's price damages the relationship and our negotiating position. Harm to: KPR customer relationships, sales team</span></td>
+<td><span class="tag L">低–中 Low–Med</span> 企业合约下外泄概率低；真正风险是交叉看到<span class="en">Low under enterprise contract; real risk is cross-visibility</span></td>
+<td><span class="tag H">高 High</span> 负责A客户的人员/群组看到B客户价格；Bot回答跨客户问题<span class="en">Staff/group for customer A seeing customer B pricing; bots answering across customers</span></td>
+<td>按客户隔离数据与群组；Bot只回答该群组所属客户的数据<span class="en">Segregate data &amp; groups per customer; bots answer only for that group's customer</span></td>
+<td class="mark"></td>
+</tr>
+
+<tr>
+<td class="cat">(c) 合约类<span class="en">Contractual</span></td>
+<td>保密协议(NDA)、客户/供应商协议（如 Sussex NDA）<span class="ex">例子 / examples</span><span class="en">NDAs, customer/supplier agreements (e.g. Sussex NDA)</span></td>
+<td>合约条款可能明确禁止第三方处理<span class="en">Clauses may legally bar third-party processing</span></td>
+<td>违约 → 法律责任、失去客户/供应商；受害方：KPR（签约主体）及对方<span class="en">Breach of contract → legal liability, loss of customer/supplier. Harm to: the KPR signing entity and the counterparty</span></td>
+<td><span class="tag H">视条款 Depends — 可能高</span> 唯一可能"没有选择"的类别：若条款禁止，云AI即违约，与技术安全无关<span class="en">The only category where we may have no choice: if a clause forbids it, cloud AI is a breach regardless of technical security</span></td>
+<td><span class="tag M">中 Med</span> 合约中可能限制知情人范围<span class="en">Contracts may also limit who internally may see it</span></td>
+<td>逐份审查NDA中关于AI/第三方处理的条款；未审查前默认不进云<span class="en">Review each NDA for AI / third-party processing clauses; default to no-cloud until reviewed</span></td>
+<td class="mark"></td>
+</tr>
+
+<tr>
+<td class="cat">(d) 个人资料类<span class="en">Personal data</span></td>
+<td>工资、社保、员工身份证件、人事档案<span class="ex">例子 / examples</span><span class="en">Payroll, social insurance (社保), staff IDs, HR files</span></td>
+<td>受隐私法保护：中国PIPL、新加坡PDPA、加拿大PIPEDA<span class="en">Protected by privacy law: PIPL (China), PDPA (Singapore), PIPEDA (Canada)</span></td>
+<td>员工隐私受损；公司面临监管处罚与员工信任问题；受害方：员工个人、对应法律实体<span class="en">Employee privacy harmed; regulatory penalties and trust issues. Harm to: individual staff, the relevant legal entity</span></td>
+<td><span class="tag M">中 Med</span> 企业合约可降低风险，但跨境传输需符合各地法规<span class="en">Enterprise contract reduces risk, but cross-border transfer must meet each jurisdiction's rules</span></td>
+<td><span class="tag H">高 High</span> 同事间看到彼此工资/证件是最常见的实际伤害<span class="en">Colleagues seeing each other's pay/IDs is the most common real harm</span></td>
+<td>仅HR/财务指定人员；不进入群组Bot；跨境前确认合规<span class="en">HR/finance named staff only; never in group bots; confirm compliance before cross-border use</span></td>
+<td class="mark"></td>
+</tr>
+
+<tr>
+<td class="cat">(e) 凭证类<span class="en">Credentials</span></td>
+<td>密码、API密钥、令牌(token)<span class="ex">例子 / examples</span><span class="en">Passwords, API keys, tokens</span></td>
+<td>直接等于系统访问权<span class="en">Equals direct system access</span></td>
+<td>账户被接管、系统/数据被盗用；受害方：整个集团<span class="en">Account takeover, systems/data misused. Harm to: the whole group</span></td>
+<td><span class="tag X">禁止 Never</span> 任何AI（云端或本地）都不应接触<span class="en">Never to any AI — cloud or on-site</span></td>
+<td><span class="tag H">高 High</span><span class="en">Shared in chats = exposed</span></td>
+<td>使用密码管理器/密钥库；禁止贴入聊天或Bot；如误贴立即更换<span class="en">Use a vault/secret manager; never paste into chats or bots; rotate immediately if exposed</span></td>
+<td class="mark"></td>
+</tr>
+
+<tr>
+<td class="cat">(f) 非敏感 / 一般<span class="en">General operational</span></td>
+<td>PO状态、出货/ASN、生产排程、公开产品目录<span class="ex">例子 / examples</span><span class="en">PO status, shipment / ASN, production schedules, public catalog</span></td>
+<td>日常运营信息，多数已与客户/供应商共享<span class="en">Day-to-day info, mostly already shared with customers/suppliers</span></td>
+<td>泄露伤害低<span class="en">Low harm if leaked</span></td>
+<td><span class="tag L">低 Low</span> 云端可用<span class="en">Cloud is fine</span></td>
+<td><span class="tag L">低 Low</span><span class="en">Normal team visibility OK</span></td>
+<td>可直接用云端Bot，提高效率；注意与(a)(b)混合的文件（如含价格的PO）<span class="en">Use cloud bots freely; watch for mixed documents (e.g. POs that carry prices → treat as (b))</span></td>
+<td class="mark"></td>
+</tr>
+
+<tr>
+<td class="cat">(g) 战略 / 财务类 <span class="proposed">建议·待Boss确认</span><span class="en">Strategic / financial — proposed, Boss to confirm</span></td>
+<td>银行/投资（如 RBC GIC）、集团财务、建厂计划<span class="ex">例子 / examples</span><span class="en">Bank / investment (e.g. RBC GIC), group financials, plant-setup plans</span></td>
+<td>反映集团财务实力与战略动向<span class="en">Reveals group financial position and strategic moves</span></td>
+<td>可能影响客户/供应商/竞争者对KPR的判断与谈判；受害方：集团及股东<span class="en">Could affect how customers, suppliers or competitors read and negotiate with KPR. Harm to: the group / owners</span></td>
+<td><span class="tag M">中 Med（待确认）</span><span class="en">Med (to confirm)</span></td>
+<td><span class="tag H">高 High</span> 应仅限Boss及极少数人<span class="en">Should be Boss + very few people only</span></td>
+<td>仅限指定个人；不进入任何群组Bot；位置待Boss决定<span class="en">Named individuals only; no group bots; location TBD by Boss</span></td>
+<td class="mark"></td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>3. 待Boss决定的问题 <span class="en">Open questions for Boss</span></h2>
+<ol>
+  <li>每份文件由谁决定属于哪一类？（文件所有人 / 部门主管 / IT）默认分类是什么？<span class="en">Who decides the category of each document (owner / dept head / IT)? What is the default when unclassified?</span></li>
+  <li>供应商价格是否允许采购人员通过Bot查看？范围到哪一层？<span class="en">Should supplier prices be visible to purchasing staff via bots? To what level?</span></li>
+  <li>是否安排对现有NDA及客户/供应商协议（如 Sussex NDA）中关于AI/第三方处理的条款做合约审查？由谁负责？<span class="en">Run a contract review of NDA and customer/supplier agreement clauses on AI / third-party processing (e.g. Sussex NDA)? Who owns it?</span></li>
+  <li>跨客户价格（CF / HH / Dunia 等）在群组层面如何隔离？<span class="en">How to segregate cross-customer pricing at the chat-group level?</span></li>
+  <li>多实体（中国工厂含JL、印度ALLIED、印尼MSL、新加坡CS公司、加拿大King Power Safety）之间的数据可见范围如何设定？<span class="en">What data may each entity (China factories incl. JL, India ALLIED, MSL Indonesia, Singapore CS company, Canada King Power Safety) see of the others?</span></li>
+  <li>(g) 战略/财务类是否单独成类？<span class="en">Confirm whether (g) strategic/financial is a separate category.</span></li>
+  <li>完成分类后，再评估是否真的需要本地AI服务器，以及放哪些类别。<span class="en">Only after classification: decide whether an on-site AI server is actually needed, and for which categories.</span></li>
+</ol>
+
+<div class="foot">草稿，仅供内部讨论。表中数据项均为举例，不含任何具体数字。风险等级为初步建议，待Boss标注。<br>
+Draft for internal discussion. All data items are examples only; no figures included. Risk ratings are preliminary suggestions pending Boss mark-up.</div>
+</div></body></html>
