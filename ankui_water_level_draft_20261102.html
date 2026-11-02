@@ -1,0 +1,137 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MSL/IF 安库水位表草稿 95% vs 90%（2026-11-02）</title>
+<style>body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f5f6f8;color:#222}
+header{background:#1f4e78;color:#fff;padding:18px 24px}header h1{margin:0;font-size:22px}.badge{display:inline-block;background:#c00000;color:#fff;padding:3px 10px;border-radius:4px;font-weight:bold;margin-left:8px}
+main{padding:16px 24px;max-width:1400px;margin:auto}.cards{display:flex;flex-wrap:wrap;gap:14px}.card{background:#fff;border-radius:8px;padding:14px;box-shadow:0 1px 3px #0002;flex:1 1 360px}
+.card h3{margin:0 0 6px}.card small{color:#888;font-weight:normal;font-size:12px}.warn{border-left:5px solid #e69500}.total{border-left:5px solid #1f4e78}
+table{border-collapse:collapse}.mini td,.mini th{padding:4px 8px;border-bottom:1px solid #eee;text-align:right}.mini td:first-child{text-align:left}.d{color:#c00000;font-weight:bold}
+.note{color:#666;font-size:12px;margin-top:6px}.kv{margin-bottom:6px}.scroll{overflow-x:auto;background:#fff;border-radius:8px;box-shadow:0 1px 3px #0002}
+.big td,.big th{border:1px solid #ddd;padding:4px 6px;text-align:right;font-size:13px;white-space:nowrap}.big th{background:#eef2f7}.big td:first-child{text-align:left}
+.g95{background:#fdecea}th.g95{background:#f8cbc6!important}.g90{background:#e8f4ea}th.g90{background:#c6e5cc!important}.gu{background:#eef0fb}th.gu{background:#d3d8f3!important}
+tr.main td:nth-child(4){color:#1f6e2e;font-weight:bold}tr.tot td{background:#fff2cc;font-weight:bold}
+.box{background:#fff;border-radius:8px;padding:12px 16px;box-shadow:0 1px 3px #0002;margin:12px 0}.box td{border-bottom:1px solid #eee;padding:5px 8px;vertical-align:top}
+.gap{border-left:5px solid #c00000}h2{margin:22px 0 8px;font-size:18px}</style></head><body>
+<header><h1>MSL / IF 安库水位表 · 95% vs 90% 服务水平 <span class="badge">草稿供审核</span></h1>
+<div>KPR PMC · 2026-11-02 · 数据：MSL销售月统计API（2025-10-30 ~ 2026-10-29，不含赠品）· 单位：双</div></header><main>
+<div class="box gap"><b>先看这里：</b>本稿只给 Boss 选服务水平用，<b>不可直接下单</b>。①需求未含赠品（偏低，量未知）；②4月/7月等项目大单未剔除，标准差偏大；③807/8 无销售数据，未算；④金额*按 MSL 采购单价（IDR，805/S-SP 247,000；026/3-SP 181,500）估算，<b>不是IF生产成本</b>（box上找不到成本数据）。</div>
+<h2>一、汇总</h2><div class="cards"><div class="card total"><h3>两款合计（805/S-SP + 026/3-SP）</h3>
+<table class="mini"><tr><th></th><th>95%</th><th>90%</th><th>差额</th></tr>
+<tr><td>成品 最低水位</td><td>3,050</td><td>2,476</td><td class="d">574</td></tr>
+<tr><td>成品 起订点</td><td>4,111</td><td>3,537</td><td class="d">574</td></tr>
+<tr><td>成品 最高水位</td><td>4,810</td><td>4,220</td><td class="d">590</td></tr>
+<tr><td>鞋面全链 起订点</td><td>12,073</td><td>10,788</td><td class="d">1,285</td></tr>
+<tr><td>鞋面全链 最高水位</td><td>12,730</td><td>11,450</td><td class="d">1,280</td></tr>
+<tr><td>成品最高水位金额*</td><td>1,026.3</td><td>900.2</td><td class="d">126.1</td></tr>
+<tr><td>鞋面全链最高水位金额*</td><td>2,721.2</td><td>2,448.9</td><td class="d">272.3</td></tr>
+</table><div class="note">现行两款安库单合计 2,120 双（805/S-SP 1,200 + 026/3-SP 920）</div></div><div class="card"><h3>805/S-SP <small>L8-805/S-SP-04-U0088</small></h3>
+<div class="kv">12月销量 <b>14,064</b> 双 · 月均 <b>1,172</b> · 月标准差 <b>1,267</b></div>
+<table class="mini"><tr><th></th><th>95%</th><th>90%</th><th>差额</th></tr>
+<tr><td>成品 最低水位</td><td>1,447</td><td>1,170</td><td class="d">277</td></tr>
+<tr><td>成品 起订点</td><td>1,992</td><td>1,715</td><td class="d">277</td></tr>
+<tr><td>成品 最高水位</td><td>2,340</td><td>2,050</td><td class="d">290</td></tr>
+<tr><td>鞋面全链 起订点</td><td>5,939</td><td>5,319</td><td class="d">620</td></tr>
+<tr><td>鞋面全链 最高水位</td><td>6,270</td><td>5,660</td><td class="d">610</td></tr>
+<tr><td>成品最高水位金额*</td><td>578.0</td><td>506.4</td><td class="d">71.6</td></tr>
+</table><div class="note">现行安库单 1,200 双 · 金额单位：百万IDR</div></div><div class="card"><h3>026/3-SP <small>L8-026/3-SP-04-U0088</small></h3>
+<div class="kv">12月销量 <b>13,269</b> 双 · 月均 <b>1,106</b> · 月标准差 <b>1,475</b></div>
+<table class="mini"><tr><th></th><th>95%</th><th>90%</th><th>差额</th></tr>
+<tr><td>成品 最低水位</td><td>1,603</td><td>1,306</td><td class="d">297</td></tr>
+<tr><td>成品 起订点</td><td>2,119</td><td>1,822</td><td class="d">297</td></tr>
+<tr><td>成品 最高水位</td><td>2,470</td><td>2,170</td><td class="d">300</td></tr>
+<tr><td>鞋面全链 起订点</td><td>6,134</td><td>5,469</td><td class="d">665</td></tr>
+<tr><td>鞋面全链 最高水位</td><td>6,460</td><td>5,790</td><td class="d">670</td></tr>
+<tr><td>成品最高水位金额*</td><td>448.3</td><td>393.9</td><td class="d">54.5</td></tr>
+</table><div class="note">现行安库单 920 双 · 金额单位：百万IDR</div></div><div class="card warn"><h3>807/8 <small>L8-807/8-SP-04-U0088</small></h3>
+<p><b>MSL近12个月销售：0笔</b>，无法用公式算水位。</p>
+<p>现行安库单 IFDD-260618002：<b>1,200</b> 双；10/25 Study 记录成品库存 1,212 双（10/20），工厂仅出3双样品。</p>
+<p>建议：按<b>新款</b>处理，待 Kelvin 提供预计月销后再算；在此之前不追加成型。</p></div></div>
+<div class="box"><b>怎么读：</b>成品层“最低水位”=安全量；每周一看可用量（库存+在制−占用），<b>≤起订点</b>就按码补到<b>最高水位</b>（10的倍数，ERP最低10双）。鞋面全链水位比较的是“成品+原物料仓鞋面+印度在途+ALLIED已下单未出”的合计，≤起订点就向印度补鞋面。两个版本差别只在主力码（EU39~43，约占销量84%）；慢码两版都按85%。</div>
+<h2>805/S-SP（L8-805/S-SP-04-U0088）分码水位</h2><div class="scroll"><table class="big">
+<tr><th rowspan="2">尺码</th><th rowspan="2">12月销量</th><th rowspan="2">占比</th><th rowspan="2">分级</th><th rowspan="2">月均需求</th><th rowspan="2">月标准差</th>
+<th colspan="4" class="g95">95%版 · 成品层</th><th colspan="4" class="g90">90%版 · 成品层</th><th colspan="2" class="gu">鞋面全链 起订点/最高水位</th><th rowspan="2">现行安库单</th></tr>
+<tr><th class="g95">最低水位</th><th class="g95">起订点</th><th class="g95">起订量</th><th class="g95">最高水位</th><th class="g90">最低水位</th><th class="g90">起订点</th><th class="g90">起订量</th><th class="g90">最高水位</th><th class="gu">95%</th><th class="gu">90%</th></tr>
+<tr class=""><td>EU36</td><td>151</td><td>1.1%</td><td>慢码85%</td><td>12.6</td><td>29.2</td>
+<td class="g95">21</td><td class="g95">27</td><td class="g95">13</td><td class="g95"><b>40</b></td>
+<td class="g90">21</td><td class="g90">27</td><td class="g90">13</td><td class="g90"><b>40</b></td>
+<td class="gu">77/90</td><td class="gu">77/90</td><td>10</td></tr><tr class=""><td>EU37</td><td>238</td><td>1.7%</td><td>慢码85%</td><td>19.8</td><td>33.2</td>
+<td class="g95">24</td><td class="g95">34</td><td class="g95">16</td><td class="g95"><b>50</b></td>
+<td class="g90">24</td><td class="g90">34</td><td class="g90">16</td><td class="g90"><b>50</b></td>
+<td class="gu">99/110</td><td class="gu">99/110</td><td>20</td></tr><tr class=""><td>EU38</td><td>619</td><td>4.4%</td><td>慢码85%</td><td>51.6</td><td>71.6</td>
+<td class="g95">51</td><td class="g95">75</td><td class="g95">15</td><td class="g95"><b>90</b></td>
+<td class="g90">51</td><td class="g90">75</td><td class="g90">15</td><td class="g90"><b>90</b></td>
+<td class="gu">233/250</td><td class="gu">233/250</td><td>60</td></tr><tr class="main"><td>EU39</td><td>1,636</td><td>11.6%</td><td>主力</td><td>136.3</td><td>211.4</td>
+<td class="g95">237</td><td class="g95">300</td><td class="g95">40</td><td class="g95"><b>340</b></td>
+<td class="g90">185</td><td class="g90">248</td><td class="g90">32</td><td class="g90"><b>280</b></td>
+<td class="gu">844/880</td><td class="gu">727/760</td><td>110</td></tr><tr class="main"><td>EU40</td><td>2,411</td><td>17.1%</td><td>主力</td><td>200.9</td><td>243.3</td>
+<td class="g95">272</td><td class="g95">365</td><td class="g95">55</td><td class="g95"><b>420</b></td>
+<td class="g90">212</td><td class="g90">305</td><td class="g90">55</td><td class="g90"><b>360</b></td>
+<td class="gu">1073/1120</td><td class="gu">938/990</td><td>220</td></tr><tr class="main"><td>EU41</td><td>3,005</td><td>21.4%</td><td>主力</td><td>250.4</td><td>280.3</td>
+<td class="g95">314</td><td class="g95">430</td><td class="g95">60</td><td class="g95"><b>490</b></td>
+<td class="g90">245</td><td class="g90">361</td><td class="g90">59</td><td class="g90"><b>420</b></td>
+<td class="gu">1279/1340</td><td class="gu">1124/1190</td><td>240</td></tr><tr class="main"><td>EU42</td><td>2,893</td><td>20.6%</td><td>主力</td><td>241.1</td><td>246.4</td>
+<td class="g95">276</td><td class="g95">388</td><td class="g95">62</td><td class="g95"><b>450</b></td>
+<td class="g90">215</td><td class="g90">327</td><td class="g90">63</td><td class="g90"><b>390</b></td>
+<td class="gu">1173/1230</td><td class="gu">1037/1100</td><td>240</td></tr><tr class="main"><td>EU43</td><td>1,938</td><td>13.8%</td><td>主力</td><td>161.5</td><td>140.8</td>
+<td class="g95">158</td><td class="g95">233</td><td class="g95">47</td><td class="g95"><b>280</b></td>
+<td class="g90">123</td><td class="g90">198</td><td class="g90">42</td><td class="g90"><b>240</b></td>
+<td class="gu">725/770</td><td class="gu">648/690</td><td>170</td></tr><tr class=""><td>EU44</td><td>957</td><td>6.8%</td><td>慢码85%</td><td>79.8</td><td>107.2</td>
+<td class="g95">76</td><td class="g95">113</td><td class="g95">27</td><td class="g95"><b>140</b></td>
+<td class="g90">76</td><td class="g90">113</td><td class="g90">27</td><td class="g90"><b>140</b></td>
+<td class="gu">354/380</td><td class="gu">354/380</td><td>100</td></tr><tr class=""><td>EU45</td><td>216</td><td>1.5%</td><td>慢码85%</td><td>18.0</td><td>25.0</td>
+<td class="g95">18</td><td class="g95">27</td><td class="g95">13</td><td class="g95"><b>40</b></td>
+<td class="g90">18</td><td class="g90">27</td><td class="g90">13</td><td class="g90"><b>40</b></td>
+<td class="gu">82/100</td><td class="gu">82/100</td><td>20</td></tr><tr class=""><td>EU46</td><td>0</td><td>0.0%</td><td>慢码85%</td><td>0.0</td><td>0.0</td>
+<td class="g95">0</td><td class="g95">0</td><td class="g95">0</td><td class="g95"><b>0</b></td>
+<td class="g90">0</td><td class="g90">0</td><td class="g90">0</td><td class="g90"><b>0</b></td>
+<td class="gu">0/0</td><td class="gu">0/0</td><td>10</td></tr><tr class="tot"><td>合计</td><td>14,064</td><td>100%</td><td>主力占84%</td><td>1172</td><td>1267</td>
+<td>1,447</td><td>1,992</td><td></td><td>2,340</td><td>1,170</td><td>1,715</td><td></td><td>2,050</td>
+<td>5,939/6,270</td><td>5,319/5,660</td><td>1,200</td></tr></table></div><h2>026/3-SP（L8-026/3-SP-04-U0088）分码水位</h2><div class="scroll"><table class="big">
+<tr><th rowspan="2">尺码</th><th rowspan="2">12月销量</th><th rowspan="2">占比</th><th rowspan="2">分级</th><th rowspan="2">月均需求</th><th rowspan="2">月标准差</th>
+<th colspan="4" class="g95">95%版 · 成品层</th><th colspan="4" class="g90">90%版 · 成品层</th><th colspan="2" class="gu">鞋面全链 起订点/最高水位</th><th rowspan="2">现行安库单</th></tr>
+<tr><th class="g95">最低水位</th><th class="g95">起订点</th><th class="g95">起订量</th><th class="g95">最高水位</th><th class="g90">最低水位</th><th class="g90">起订点</th><th class="g90">起订量</th><th class="g90">最高水位</th><th class="gu">95%</th><th class="gu">90%</th></tr>
+<tr class=""><td>EU36</td><td>200</td><td>1.5%</td><td>慢码85%</td><td>16.7</td><td>44.4</td>
+<td class="g95">32</td><td class="g95">40</td><td class="g95">20</td><td class="g95"><b>60</b></td>
+<td class="g90">32</td><td class="g90">40</td><td class="g90">20</td><td class="g90"><b>60</b></td>
+<td class="gu">109/120</td><td class="gu">109/120</td><td>10</td></tr><tr class=""><td>EU37</td><td>305</td><td>2.3%</td><td>慢码85%</td><td>25.4</td><td>49.8</td>
+<td class="g95">36</td><td class="g95">48</td><td class="g95">12</td><td class="g95"><b>60</b></td>
+<td class="g90">36</td><td class="g90">48</td><td class="g90">12</td><td class="g90"><b>60</b></td>
+<td class="gu">138/150</td><td class="gu">138/150</td><td>20</td></tr><tr class=""><td>EU38</td><td>602</td><td>4.5%</td><td>慢码85%</td><td>50.2</td><td>89.9</td>
+<td class="g95">64</td><td class="g95">88</td><td class="g95">12</td><td class="g95"><b>100</b></td>
+<td class="g90">64</td><td class="g90">88</td><td class="g90">12</td><td class="g90"><b>100</b></td>
+<td class="gu">258/270</td><td class="gu">258/270</td><td>40</td></tr><tr class="main"><td>EU39</td><td>1,411</td><td>10.6%</td><td>主力</td><td>117.6</td><td>203.5</td>
+<td class="g95">228</td><td class="g95">283</td><td class="g95">37</td><td class="g95"><b>320</b></td>
+<td class="g90">178</td><td class="g90">233</td><td class="g90">37</td><td class="g90"><b>270</b></td>
+<td class="gu">781/810</td><td class="gu">669/700</td><td>80</td></tr><tr class="main"><td>EU40</td><td>2,307</td><td>17.4%</td><td>主力</td><td>192.2</td><td>250.1</td>
+<td class="g95">280</td><td class="g95">369</td><td class="g95">51</td><td class="g95"><b>420</b></td>
+<td class="g90">218</td><td class="g90">307</td><td class="g90">53</td><td class="g90"><b>360</b></td>
+<td class="gu">1069/1120</td><td class="gu">931/980</td><td>170</td></tr><tr class="main"><td>EU41</td><td>3,042</td><td>22.9%</td><td>主力</td><td>253.5</td><td>320.1</td>
+<td class="g95">358</td><td class="g95">475</td><td class="g95">65</td><td class="g95"><b>540</b></td>
+<td class="g90">279</td><td class="g90">396</td><td class="g90">64</td><td class="g90"><b>460</b></td>
+<td class="gu">1385/1450</td><td class="gu">1209/1270</td><td>180</td></tr><tr class="main"><td>EU42</td><td>2,451</td><td>18.5%</td><td>主力</td><td>204.2</td><td>239.6</td>
+<td class="g95">268</td><td class="g95">363</td><td class="g95">57</td><td class="g95"><b>420</b></td>
+<td class="g90">209</td><td class="g90">304</td><td class="g90">56</td><td class="g90"><b>360</b></td>
+<td class="gu">1071/1120</td><td class="gu">939/990</td><td>180</td></tr><tr class="main"><td>EU43</td><td>1,880</td><td>14.2%</td><td>主力</td><td>156.7</td><td>193.0</td>
+<td class="g95">216</td><td class="g95">289</td><td class="g95">41</td><td class="g95"><b>330</b></td>
+<td class="g90">169</td><td class="g90">242</td><td class="g90">38</td><td class="g90"><b>280</b></td>
+<td class="gu">845/890</td><td class="gu">738/780</td><td>130</td></tr><tr class=""><td>EU44</td><td>735</td><td>5.5%</td><td>慢码85%</td><td>61.2</td><td>110.3</td>
+<td class="g95">78</td><td class="g95">107</td><td class="g95">23</td><td class="g95"><b>130</b></td>
+<td class="g90">78</td><td class="g90">107</td><td class="g90">23</td><td class="g90"><b>130</b></td>
+<td class="gu">316/340</td><td class="gu">316/340</td><td>80</td></tr><tr class=""><td>EU45</td><td>235</td><td>1.8%</td><td>慢码85%</td><td>19.6</td><td>42.0</td>
+<td class="g95">30</td><td class="g95">40</td><td class="g95">20</td><td class="g95"><b>60</b></td>
+<td class="g90">30</td><td class="g90">40</td><td class="g90">20</td><td class="g90"><b>60</b></td>
+<td class="gu">113/130</td><td class="gu">113/130</td><td>20</td></tr><tr class=""><td>EU46</td><td>101</td><td>0.8%</td><td>慢码85%</td><td>8.4</td><td>17.9</td>
+<td class="g95">13</td><td class="g95">17</td><td class="g95">13</td><td class="g95"><b>30</b></td>
+<td class="g90">13</td><td class="g90">17</td><td class="g90">13</td><td class="g90"><b>30</b></td>
+<td class="gu">49/60</td><td class="gu">49/60</td><td>10</td></tr><tr class="tot"><td>合计</td><td>13,269</td><td>100%</td><td>主力占84%</td><td>1106</td><td>1475</td>
+<td>1,603</td><td>2,119</td><td></td><td>2,470</td><td>1,306</td><td>1,822</td><td></td><td>2,170</td>
+<td>6,134/6,460</td><td>5,469/5,790</td><td>920</td></tr></table></div>
+<h2>807/8</h2><div class="box">L8-807/8-SP-04-U0088 在 MSL 近12个月销售接口里 <b>0 笔</b>，没有尺码曲线，无法计算。现行安库单 IFDD-260618002 分码（UK2~13 换算 EU35~48）：EU36 20、EU37 30、EU38 60、EU39 110、EU40 220、EU41 270、EU42 230、EU43 170、EU44 60、EU45 20、EU46 10，合计 1,200 双。</div>
+<h2>二、敏感度：若剔除单笔≥1,000双项目大单（非已定口径，仅参考）</h2>
+<div class="box"><table><tr><th>款式</th><th>剔除后12月销量</th><th>成品最高水位95%</th><th>成品最高水位90%</th><th>全链最高水位95%</th><th>全链最高水位90%</th></tr><tr><td>805/S-SP</td><td>6,417</td><td>1,020</td><td>920</td><td>2,720</td><td>2,500</td></tr><tr><td>026/3-SP</td><td>4,879</td><td>760</td><td>700</td><td>2,010</td><td>1,850</td></tr></table>
+<div class="note">两款各有4笔单笔≥1,000双（COYE、LEEMI、金牛）。若大单可提前通知（Kelvin 提供），水位可大幅下降；若大单不通知，则需按上方完整版。</div></div>
+<h2>三、现行9张安全库存单 vs MSL近12月销量</h2>
+<div class="box"><table><tr><th>ERP型号</th><th>安库单号</th><th>安库单数量</th><th>MSL近12月销量</th></tr><tr><td>L8-026/3-EH-04-U0088</td><td>IFDD-260530001</td><td>2,110</td><td>4,122</td></tr><tr><td>L8-026/3-SP-04-U0088</td><td>IFDD-260528002</td><td>920</td><td>13,269</td></tr><tr><td>L8-805/S-EH-04-U0088</td><td>IFDD-260528002</td><td>2,770</td><td>151</td></tr><tr><td>L8-805/S-SP-04-U0088</td><td>IFDD-260528002</td><td>1,200</td><td>14,064</td></tr><tr><td>L8-807/8-SP-04-U0088</td><td>IFDD-260618002</td><td>1,200</td><td>0</td></tr><tr><td>M8-026/3-EH-08-U0088</td><td>IFDD-260624001</td><td>800</td><td>0</td></tr><tr><td>M8-026/3-SP-08-U0088</td><td>IFDD-260624002</td><td>400</td><td>10</td></tr><tr><td>M8-805/S-EH-08-U0088</td><td>IFDD-260624001</td><td>1,200</td><td>0</td></tr><tr><td>M8-805/S-SP-08-U0088</td><td>IFDD-260624002</td><td>600</td><td>30</td></tr><tr><td><b>合计</b></td><td></td><td><b>11,200</b></td><td></td></tr></table>
+<div class="note">来源：清华 10/30 PMC群图片。805/S-EH 安库单 2,770 双，但 MSL 近12月只卖 151 双；807/8、M8 EH 款为 0。建议 Boss/Kelvin 复核安库款式清单。</div></div>
+<h2>四、假设与数据缺口</h2><div class="box"><table><tr><td>状态</td><td>草稿供审核：数字只用于Boss选择服务水平，未经清华/Kelvin核对，不可直接下单</td></tr><tr><td>数据源</td><td>MSL销售月统计Open API，startDate 2025-10-30 ~ endDate 2026-10-29，95行，totalSl 32,946（含1,300个026X纸箱）。按 shipPeriodLabel 前7位归月：2025-11~2026-10 共12个月；无销售月计0。2026-10 只到10/29。</td></tr><tr><td>尺码</td><td>sz1=EU35…sz14=EU48；sz15~20为US半码（三款均无销量）。现行安库单图片为UK码：UK2=EU35 … UK13=EU48。</td></tr><tr><td>款式归并</td><td>805/S-SP = 仅 L8-805/S-SP-04-U0088（14,064双）；026/3-SP = 仅 L8-026/3-SP-04-U0088（13,269双）。M8-805/S-SP-08（30双）、M8-026/3-SP-08（10双）、L8-805/S-EH（151双）、L8-026/3-EH（4,122双）为不同款，单列参考、未并入（M8采购价327,400/255,400 IDR，与L8不同；EH为不同款）。若Boss要求L8+M8合并，M8仅40双，对结果影响很小。</td></tr><tr><td>807/8</td><td>L8-807/8-SP-04-U0088 在MSL近12月销售API中为0笔，无法用公式；10/25 Study 记录工厂出货仅3双（样品）、成品库存1,212双（10/20）。现行安库单1,200双。建议按新款处理。</td></tr><tr><td>需求口径</td><td>需求=MSL正常销售净发（sl=发货−退货）。赠品未进API → 需求偏低，偏低量未知。Dunia：API中12个客户均为MSL内销客户，没有Dunia，无需剔除。</td></tr><tr><td>项目大单</td><td>未剔除（按已定口径）。805/S-SP有4笔、026/3-SP有4笔单笔≥1,000双（4月、5月、7月、8月），明显拉高标准差；汇总表另附“剔除大单”敏感度。</td></tr><tr><td>周换算</td><td>每月=52/12=4.33周；周均=月均/4.33；周标准差=月标准差/√4.33（假设各周需求独立）。</td></tr><tr><td>成品层公式</td><td>保护期P=检查周期R 1周+成型补货时间L 1周=2周（产能2线×600×5天=6,000双/周，远大于周需求，按1周内可成型入库）；安全量=z×σ周×√P；起订点=周均×P+安全量；最高水位=把(起订点+max(11,周均×R))向上取10的倍数（保证>起订点+10）；起订量=最高水位−起订点（≥10）。</td></tr><tr><td>鞋面全链公式</td><td>保护期=印度鞋面提前期9周+检查1周=10周；安全量=z×σ周×√10；起订点=周均×10+安全量；最高水位、起订量同上取整。比较对象=成品+IF原物料仓鞋面+印度在途+ALLIED已下单未出货的合计。</td></tr><tr><td>服务水平</td><td>主力码=按12月销量从高到低累计至≥80%的尺码（两款均为EU39~43）：95%版z=1.645、90%版z=1.282；其余慢码两版一律85%，z=1.036。所以两版差异只来自主力码。</td></tr><tr><td>金额</td><td>box上未找到IF成品生产成本。金额仅按API字段purchaseUnitPrice（MSL采购单价IDR，最新价：805/S-SP 247,000；026/3-SP 181,500，2026-07下旬起）估算，代表MSL采购金额，不是IF成本。</td></tr><tr><td>参考对比</td><td>现行安库单数量来自清华10/30 PMC群图片（9张，合计11,200双）。10/25 Study 初版：805/S-SP Min1,000/ROP1,500/Max2,600；026/3-SP Min900/ROP1,400/Max2,400；成品库存(10/20) 805/S-SP 958、026/3-SP 1,476（无分码）。</td></tr><tr><td>数据缺口</td><td>①赠品出货明细（API无）；②IF成品分码库存、在制、已占用；③印度在途分码（仅805/S 3,960双截图）与ALLIED已下单未出；④IF成品生产成本；⑤807/8预计月销（新款）；⑥鞋面共用关系（U6700020是否也供805/S-EH/M8），全链水位需按鞋面料号合并EH/M8需求；⑦ALLIED最小下单/整柜量（鞋面起订量实际可能远大于10双）；⑧MSL对客承诺交期（服务水平定义）；⑨鞋面不良率（皮料报废17–20%未计入）。</td></tr><tr><td>后续</td><td>Boss已表示过段时间要再找你们了解实际情况；建议1~2个月后用实际出库与赠品数据复核。</td></tr></table></div>
+<div class="note">Excel：安库水位表草稿_95vs90_20261102.xlsx（汇总 / 95%版 / 90%版 / 假设与数据缺口 / 月度明细）。</div>
+</main></body></html>
