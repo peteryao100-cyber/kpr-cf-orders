@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KPR 尊王 · BOT 与群桥接明细 / Bots &amp; Bridges Inventory · 2026-11-03</title>
+<style>
+:root{--b:#1f3a5f;--l:#eef3f9;--g:#1a7f37;--y:#9a6700;--r:#b42318;--m:#5b6470}
+*{box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;margin:0;color:#1d232b;background:#f7f9fb;line-height:1.45}
+header{background:var(--b);color:#fff;padding:18px 16px}header h1{margin:0;font-size:1.3rem}header p{margin:.3rem 0 0;opacity:.85;font-size:.9rem}
+main{max-width:1200px;margin:auto;padding:12px}
+section{background:#fff;border-radius:10px;box-shadow:0 1px 3px #0001;margin:14px 0;padding:12px 14px}
+h2{font-size:1.1rem;color:var(--b);margin:.2rem 0 .6rem}h2 small{color:var(--m);font-weight:normal;font-size:.85rem}
+.kpi{display:flex;flex-wrap:wrap;gap:8px}.kpi div{flex:1 1 140px;background:var(--l);border-radius:8px;padding:8px 10px}.kpi b{display:block;font-size:1.4rem;color:var(--b)}.kpi span{font-size:.8rem;color:var(--m)}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.85rem;min-width:760px}
+th,td{border-bottom:1px solid #e3e8ee;padding:6px 7px;text-align:left;vertical-align:top}th{background:var(--l);position:sticky;top:0;white-space:nowrap}
+td .en,.en{color:var(--m);font-size:.78rem;display:block}code{font-size:.75rem;background:#f1f3f5;padding:0 3px;border-radius:3px;word-break:break-all}
+.ok{color:var(--g);font-weight:600}.warn{color:var(--y);font-weight:600}.bad{color:var(--r);font-weight:600}.tbd{background:#fff4d6;color:#7a5200;border-radius:4px;padding:0 4px;font-size:.75rem}
+ul{margin:.3rem 0;padding-left:1.2rem}li{margin:.2rem 0}footer{color:var(--m);font-size:.78rem;padding:10px 16px 30px;max-width:1200px;margin:auto}
+</style></head><body>
+<header><h1>KPR 尊王 · 现有全部 BOT 与群桥接明细</h1>
+<p>Bots &amp; chat-group bridges inventory · 截至 / as of 2026-11-03 13:48 (UTC+8 上海时间) · 资料来源：盒子上的桥接代码/配置/日志、日报周报、用量看板 / Source: bridge code, config, logs, digests, usage dashboard</p></header>
+<main>
+
+<section><h2>总览 <small>Overview</small></h2>
+<div class="kpi">
+<div><b>12</b><span>BOT（Grok Bot + 11 个专项）<br>bots (1 coordinator + 11 specialists)</span></div>
+<div><b>4</b><span>在线桥接（全部运行中）<br>live bridges, all running</span></div>
+<div><b>7</b><span>已接入群：飞书 3 · Lark 4<br>bridged groups: Feishu 3 · Lark 4</span></div>
+<div><b>3</b><span>BOT 有群桥接（Grok Bot / 客服 / S-Bot）<br>bots with a group bridge</span></div>
+<div><b>4</b><span>已移除/停用项<br>removed / paused items</span></div>
+</div>
+<p style="font-size:.85rem;margin:.6rem 0 0">实时状态 13:48：4 个桥接进程与 4 个看门狗均存活，WebSocket 全部 <span class="ok">connected</span>。12:47–13:45 盒子被平台暂停约 58 分钟，恢复后四桥自动重连（飞书 13:47:05 最后恢复），重连补查已排程/完成，未发现漏消息。<span class="en">Live 13:48: all 4 bridge processes + 4 watchdogs alive, all WebSockets connected. The box was paused ~58 min (12:47–13:45); all 4 bridges reconnected on their own (Feishu last, 13:47:05) and reconnect catch-ups ran; no missed messages found.</span></p>
+</section>
+
+<section><h2>一、BOT 清单 <small>Bots (Grok Bot teammate assistants)</small></h2>
+<div class="tw"><table>
+<tr><th>#</th><th>BOT</th><th>职责 / Role</th><th>群 / 桥接 · Groups / bridges</th><th>依据 · 备注 / Evidence · notes</th></tr>
+<tr><td>1</td><td><b>Grok Bot</b><span class="en">coordinator / 综合助理</span></td><td>总协调；决定何时拆分专项 BOT；PO/SPS 看板、柜货、采购后段、PMC、品管群回复；日报周报<span class="en">Hub; owns all bridges; PO/SPS, containers, Feishu purchasing/PMC/QC groups, digests</span></td><td>拥有全部 4 个桥接；亲自处理：Lark PO-Bot Group - SPS、飞书 3 群、Lark PMC-ALLIED（以 S-Bot 身份）<span class="en">Owns all 4 bridges; handles PO group, 3 Feishu groups, PMC-ALLIED (as S-Bot)</span></td><td>用量 55.5%（7 天）<span class="en">55.5% of 7-day usage</span></td></tr>
+<tr><td>2</td><td><b>KPR 客服 - 邮件系统+接单系统</b><span class="en">CS (formerly KPR 新加坡客服)</span></td><td>新加坡 CS 邮件 cso1 起草（只写草稿，CS 自己按发送）；Ryan 接单平台/Doris ERP 对接<span class="en">SG cso1 email drafting (drafts only, CS sends); order-intake platform with Ryan/Doris</span></td><td>Lark CS-BOT 桥接 → SALES &amp; CS System、Email Agent Group（独立唤醒 webhook，事件驱动）<span class="en">Lark CS-BOT bridge → 2 groups, own wake webhook</span></td><td>例行：cso1 工作日每 2 小时（影子试跑）；Lark 群监听 14% 用量<span class="en">Routines: cso1 every 2h weekdays; Lark listener ~14%</span></td></tr>
+<tr><td>3</td><td><b>S-Bot</b><span class="en">supplier groups / 供应商群</span></td><td>供应商群：跟踪 ALLIED PO、回答 @、催交期、记 5W2H 群记忆<span class="en">Supplier groups: ALLIED POs, @answers, chase dates</span></td><td>Lark S-Bot 桥接 → PMC-ALLIED；唤醒走 Grok Bot 的 Lark instant message wake，实际由 Grok Bot 处理<span class="en">S-Bot bridge → PMC-ALLIED; wakes go to Grok Bot's routine</span></td><td>S-Bot 智能体本身近期“未动”（日报）；群内发文由 Grok Bot 代 S-Bot app 完成 <span class="tbd">待确认是否改由 S-Bot 智能体接手</span></td></tr>
+<tr><td>4</td><td><b>C-Bot</b><span class="en">customer groups / 客户群</span></td><td>客户群（飞书+Lark 外部客户群），对外先草稿<span class="en">Customer groups, draft-first externally</span></td><td>无群桥接，仅私聊。Lark app <code>cli_aa520df4e278de12</code> 已建（10-21，v1.0.0）但未进任何群，盒子上无桥接目录<span class="en">No bridge; Lark app created 10-21, not in any group</span></td><td>日报 10-21 起一直“未动”<span class="en">No activity since creation</span></td></tr>
+<tr><td>5</td><td><b>KPR PMC</b></td><td>安库（IF 三层模型）、水位表、资料跟踪表、MSL API<span class="en">Safety stock, tracker, MSL API</span></td><td>无群桥接，仅私聊（飞书 PMC 群由 Grok Bot 桥接回复）<span class="en">No bridge (Feishu PMC群 is answered by Grok Bot)</span></td><td>例行：用量健康每日刷新、IF安库每周一对比表；10-24 建<span class="en">Routines: usage health daily, IF 安库 weekly</span></td></tr>
+<tr><td>6</td><td><b>KPR 内销</b></td><td>国内销售：李荣宏渠道整合、2027 渠道+薪酬方案<span class="en">Domestic sales</span></td><td>无群桥接，仅私聊</td><td><code>/workspace/neixiao</code>；用量 5%</td></tr>
+<tr><td>7</td><td><b>KPR 设厂</b></td><td>美国设厂：LOP 成本、盈亏平衡、关税/CBP 清单<span class="en">US plant setup</span></td><td>无群桥接，仅私聊</td><td><code>/workspace/plant_setup</code>；10-26 建；用量 2%</td></tr>
+<tr><td>8</td><td><b>KPR HR</b></td><td>人事：东莞社保、薪酬方案、Comet Empire 看板<span class="en">HR</span></td><td>无群桥接，仅私聊</td><td><code>/workspace/hr</code>；10-16 建</td></tr>
+<tr><td>9</td><td><b>KPR 财务</b></td><td>财务：FX 监控、个人资产表、租金支票<span class="en">Finance</span></td><td>无群桥接，仅私聊</td><td><code>/workspace/finance</code>、<code>/workspace/fx</code></td></tr>
+<tr><td>10</td><td><b>KPR 品牌企划</b></td><td>品牌：故事、网站、FBA vs Shopify<span class="en">Brand planning</span></td><td>无群桥接，仅私聊</td><td>用量 &lt;1%；<span class="tbd">待确认</span> 工作目录</td></tr>
+<tr><td>11</td><td><b>KPR 系统开发</b></td><td>CRM 及应用开发（自测自修）<span class="en">CRM / app development</span></td><td>无群桥接，仅私聊</td><td><code>/workspace/kpr-crm</code>、<code>/workspace/pm_app</code>；近期“未动”</td></tr>
+<tr><td>12</td><td><b>KPR产品经理</b></td><td>产品主数据、非保留形体<span class="en">Product master data</span></td><td>无群桥接，仅私聊</td><td><code>/workspace/product_manager</code>；Boss：其库存资料不作安库依据；近期“未动”</td></tr>
+</table></div></section>
+
+<section><h2>二、桥接与群明细 <small>Bridges &amp; groups</small></h2>
+<div class="tw"><table>
+<tr><th>桥接 / Bridge</th><th>平台 · App</th><th>连接方式 / Connection</th><th>覆盖群 · chat_id / Groups</th><th>处理方 / Handled by</th><th>回复模式 / Reply mode</th><th>保活 · 补查 / Watchdog · catch-up</th><th>实时状态 / Live</th></tr>
+<tr><td><b>飞书 采购后段</b><br><code>/workspace/feishu</code><br>event_bridge.py</td><td>飞书 Feishu (open.feishu.cn)<br>bot「采购后段」<br><code>cli_aa4dea2c9ab41bdf</code></td><td>WebSocket 长连接（im.message.receive_v1）+ webhook 唤醒<span class="en">WS event + wake webhook</span></td><td>白名单 3 群：<br>① 采购-后段作业 <code>oc_f58ef9bbf5d14207628638029d07c245</code><br>② PMC 群 <code>oc_9ae1d1917d8769ee5f4dd72ab8b6b187</code><br>③ 品管 - 采购后段 <code>oc_383c0f38a868a63b4d991586b12f2bcb</code>（10-28 加入）</td><td>Grok Bot（routine「Lark instant message wake」，payload platform=feishu）</td><td>自动回复（Boss 10-08「要及时回复」）；OK 表情回执，失败才发「收到，正在处理」<span class="en">Auto-reply; OK reaction, text ack fallback</span></td><td>feishu_watchdog.sh 每 300s + ws_guard 每 30s；重连后进程内补查 + 5 分钟 REST 补查</td><td class="ok">运行中 pid 2536359（12:51 重启）· 13:47 已重连</td></tr>
+<tr><td><b>Lark PO-BOT</b><br><code>/workspace/lark</code><br>event_bridge.py</td><td>Lark 国际版 (larksuite SG)<br>KPR PO-BOT（SPS PO-Bot 雄霸）<br><code>cli_aa4b5fe498389e2f</code></td><td>WebSocket 长连接 + webhook 唤醒</td><td>仅 1 群（默认白名单）：<br>PO-Bot Group - SPS <code>oc_8f52cab584d44c587cb27738ad39deb4</code></td><td>Grok Bot（Lark instant message wake）</td><td>常设授权自由发帖（10-05）；OK 表情 + 文字回执<span class="en">Standing post permission; reaction + text ack</span></td><td>lark_watchdog.sh 每 300s + ws_guard；catchup.py；ws_selfheal 重连补查</td><td class="ok">运行中 pid 2100551（11-02 23:02 起）· 13:46 已重连</td></tr>
+<tr><td><b>Lark CS-BOT</b><br><code>/workspace/lark_cs</code><br>cs_bridge.py</td><td>Lark 国际版<br>KPR CS-BOT<br><code>cli_aa4d9ab51578de13</code></td><td>WebSocket 长连接 + <b>独立</b>唤醒 webhook；send.py 发文<span class="en">WS + its own wake webhook</span></td><td>所在全部群（2 个）：<br>① SALES &amp; CS System <code>oc_ed2023a446e94c36defc4aa5896a2dff</code>（技术：Boss/Ryan/Doris）<br>② Email Agent Group <code>oc_11f156ff8ee7277253f3c53ef13b07a5</code>（cso1 日常）</td><td>KPR 客服 - 邮件系统+接单系统（其 Lark 群监听 routine；与 Grok Bot 的 webhook 不同）</td><td>桥接从不发文字，只 OK 表情；KPR 客服用 send.py 发汇总/升级；邮件仅草稿<span class="en">Bridge reacts only; CS bot posts summaries via send.py; email drafts only</span></td><td>cs_watchdog.sh 每 300s：心跳超 900s 重启 + catchup.py；暂停恢复检测</td><td class="ok">运行中 pid 2204317（10-31 18:16 起）· 13:46 已重连</td></tr>
+<tr><td><b>Lark S-Bot</b><br><code>/workspace/lark_sbot/bridge</code><br>sbot_bridge.py</td><td>Lark 国际版<br>S-Bot<br><code>cli_aa5210e54f38de2a</code></td><td>WebSocket 长连接 + webhook 唤醒（只在 @S-Bot 或提问时唤醒，全部消息记录）</td><td>1 群：PMC-ALLIED <code>oc_5c085bb5a2499c09272dbbe8cebc0932</code>（ALLIED 印度：Sarwat/Sheezan、Kelvin、清华、Vivienne、Min Yu）</td><td>Grok Bot（同一 Lark instant message wake，payload source=S-Bot/PMC-ALLIED）</td><td>桥接从不发帖/表情；S-Bot 可自由发帖（10-23 授权，同 PO 群）</td><td>sbot_watchdog.sh 每 300s + ws_guard；catchup.py；暂停恢复检测；status.txt</td><td class="ok">运行中 pid 2204211 · 13:46 已重连</td></tr>
+</table></div>
+<p style="font-size:.82rem;color:#5b6470">唤醒：飞书、PO-BOT、S-Bot 三桥共用 <code>/workspace/lark/wake_webhook.url</code>（Grok Bot）；CS-BOT 用自己的 <code>lark_cs/wake_webhook.url</code>（KPR 客服）。密钥只在环境变量，不落盘、不显示。<span class="en">Feishu, PO-BOT and S-Bot share Grok Bot's wake webhook; CS-BOT has its own (KPR 客服). Secrets live only in env vars and are not shown.</span></p>
+</section>
+
+<section><h2>三、相关 Grok Bot 例行任务 <small>Related routines</small></h2>
+<div class="tw"><table>
+<tr><th>例行 / Routine</th><th>BOT</th><th>频率 / Cadence</th><th>状态 / Status</th><th>说明 / Note</th></tr>
+<tr><td>Lark instant message wake（webhook）</td><td>Grok Bot</td><td>有消息才触发 / on message</td><td class="ok">运行</td><td>接收飞书、PO-BOT、S-Bot 三桥唤醒；用量约 8%</td></tr>
+<tr><td>Lark: Sales &amp; CS System + Email Agent 监听</td><td>KPR 客服</td><td>有消息才触发</td><td class="ok">运行</td><td>接收 CS-BOT 桥唤醒；用量约 14% <span class="tbd">routine 名称待确认</span></td></tr>
+<tr><td>Bot bridges keepalive</td><td>Grok Bot</td><td>周一至六 9–18 每 3 小时</td><td class="warn">运行（观察）</td><td>跑 <code>keepalive_all.sh</code>（四桥）；10-29 由 24/7 每 15 分钟削减；用量约 25%，最大单项</td></tr>
+<tr><td>Lark groups monitor（REST 轮询）</td><td>Grok Bot</td><td>原每 3 小时</td><td class="bad">已暂停</td><td>10-25 为 Lark API 配额暂停，改由看门狗补查</td></tr>
+<tr><td>WeCom groups monitor</td><td>Grok Bot</td><td>原周一至六每 30 分钟</td><td class="bad">已暂停</td><td>企业微信 10-03 起拒绝读群（errcode 853006），已迁 Lark</td></tr>
+<tr><td>SPS CF dashboard refresh</td><td>Grok Bot</td><td>多伦多 7AM / 7PM</td><td class="ok">运行</td><td>10-28 因登录过期暂停，11-01 Boss 重登后恢复（11-03 08:06 已刷新）</td></tr>
+<tr><td>Mac → box file mirror sync</td><td>Grok Bot</td><td>周一至六 8–20 每 3 小时</td><td class="ok">运行</td><td>用量约 4%</td></tr>
+<tr><td>Daily all-bots digest</td><td>Grok Bot</td><td>周一至六每日</td><td class="ok">运行</td><td><code>/workspace/org/digest</code>，仅供内部记忆</td></tr>
+<tr><td>Weekly all-bots digest / 周看板</td><td>Grok Bot</td><td>每周</td><td class="ok">运行</td><td>周报 + weekly dashboard</td></tr>
+<tr><td>SG cso1 drafting</td><td>KPR 客服</td><td>工作日每 2 小时</td><td class="warn">运行（观察）</td><td>影子试跑；用量约 18%</td></tr>
+</table></div></section>
+
+<section><h2>四、已移除 / 停用 <small>Removed / paused</small></h2>
+<ul>
+<li><b>Lark 安库运作群</b> <code>oc_7a0a49db64ee8792e39772143c86c78e</code> — 10-21 已解散（Boss 确认取消），已从 PO-BOT 白名单移除并记入 removed_chats；安库工作移至飞书 PMC 群。<span class="en">Disbanded 10-21; removed from allowlist. (Weekly-dashboard config says "retired 10-15" — dates differ, 10-21 is the disband date.)</span></li>
+<li><b>Lark PMC-India Allied</b>（外部群，S-Bot 自定义 webhook 仅推送、听不到成员）— 10-23 停用，由内部群 PMC-ALLIED + 真 S-Bot app 取代；旧 webhook 文件已标 RETIRED。<span class="en">Outbound-only webhook retired 10-23, replaced by PMC-ALLIED.</span></li>
+<li><b>企业微信 WeCom</b>（PO-Bot Group、Yao Clan with BOT、尊荣 KPR）— 读群被拒，监控 routine 暂停，日志止于 10-03。<span class="en">WeCom monitor paused; read blocked since 10-03.</span></li>
+<li><b>Lark groups monitor</b> 3 小时 REST 轮询 — 10-25 暂停（API 配额 9,014/10,000）。<span class="en">Paused 10-25 for API quota.</span></li>
+</ul></section>
+
+<section><h2>五、需注意 / 不一致 <small>Watch-outs</small></h2>
+<ul>
+<li>盒子今天 12:47–13:45 被平台暂停约 58 分钟；四桥已自愈，但暂停期间消息最长延迟约 1 小时（已有 ws_guard_gaps 记录 227 条历史间隙）。根本解决仍是 11-01 建议的独立云服务器（待 Boss 与 Ryan 讨论）。<span class="en">Box paused ~58 min today; bridges self-healed. Root fix = cloud server proposal (pending).</span></li>
+<li>C-Bot：Lark app 已建但未进任何客户群，无桥接。<span class="en">C-Bot has no group yet.</span></li>
+<li>S-Bot：PMC-ALLIED 最后群消息日志为 10-29，之后无新消息（桥接计数 events=0）<span class="tbd">待确认群是否安静</span>；回复实际由 Grok Bot 处理而非 S-Bot 智能体。</li>
+<li>PO-BOT 历史日志里有少量 PMC 群 / 品管群记录（应属飞书），属早期混记，不影响现行白名单。<span class="en">A few Feishu-group records in the Lark PO log (legacy mix-up).</span></li>
+</ul></section>
+</main>
+<footer>2026-11-03 · Grok Bot 生成 / generated by Grok Bot · 不含任何密钥、token、webhook key / no secrets shown.<br>
+早前相关文件（架构建议，非清单）/ Earlier related doc (architecture advice, not an inventory)：「Bot Bridge Best-Practice Setup 群聊机器人桥接最佳架构建议」2026-11-01（<code>it_infra/bridge_setup.html</code> + <code>Bot_Bridge_Best_Practice_Setup.pdf</code>）；另见用量看板 <a href="bot_usage_dashboard.html">bot_usage_dashboard.html</a>.</footer>
+</body></html>
