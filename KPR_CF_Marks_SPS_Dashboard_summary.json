@@ -1,8 +1,8 @@
 {
- "total_pos": 94,
+ "total_pos": 95,
  "dedup": {
-  "sps_order_rows": 149,
-  "distinct_pos": 94,
+  "sps_order_rows": 150,
+  "distinct_pos": 95,
   "multi_version_pos": 43,
   "exact_duplicate_order_rows": 0,
   "asn_rows": 88,
@@ -57,12 +57,12 @@
   "14744345",
   "14686936"
  ],
- "action_items": 8,
- "order_rows": 149,
+ "action_items": 9,
+ "order_rows": 150,
  "asns": 88,
  "invoices": 86,
  "counts": {
-  "OPEN ORDER": 7,
+  "OPEN ORDER": 8,
   "ASN OPENED": 1,
   "Invoiced": 86
  },
@@ -70,65 +70,70 @@
  "check": [],
  "date_flags": [
   [
+   "14976418",
+   "due",
+   "Due in 6d (11-12), no ASN sent / 6天内到期"
+  ],
+  [
    "14934994",
    "due",
-   "Due in 7d (11-12), no ASN sent / 7天内到期"
+   "Due in 6d (11-12), no ASN sent / 6天内到期"
   ],
   [
    "14934991",
    "due",
-   "Due in 7d (11-12), no ASN sent / 7天内到期"
+   "Due in 6d (11-12), no ASN sent / 6天内到期"
   ]
  ],
  "need_invoice": [],
  "bucket_counts": {
-  "OPEN ORDER": 7,
+  "OPEN ORDER": 8,
   "ASN OPENED": 1,
   "NEED INVOICE": 0,
   "Special attention": 0,
   "Invoiced": 86
  },
  "bucket_pairs": {
-  "OPEN ORDER": 3913,
+  "OPEN ORDER": 4034,
   "ASN OPENED": 2272,
   "NEED INVOICE": 0,
   "Special attention": 0
  },
- "bucket_sum": "7 + 1 + 0 + 0 + 86 = 94 POs",
+ "bucket_sum": "8 + 1 + 0 + 0 + 86 = 95 POs",
  "unmatched_records": 0,
  "tile_counts": {
-  "OPEN ORDER": 7,
+  "OPEN ORDER": 8,
   "ASN OPENED": 1,
   "NEED INVOICE": 0,
-  "Due within 7 days": 2,
+  "Due within 7 days": 3,
   "Late": 0,
   "Special attention": 0,
   "Invoiced (header)": 86
  },
  "tile_pairs": {
-  "OPEN ORDER": 3913,
+  "OPEN ORDER": 4034,
   "ASN OPENED": 2272,
   "NEED INVOICE": 0,
-  "Due within 7 days": 3890,
+  "Due within 7 days": 4011,
   "Late": 0,
   "Special attention": 0,
-  "Outstanding (Unshipped)": 6185
+  "Outstanding (Unshipped)": 6306
  },
  "outstanding_unshipped": {
   "definition": "Outstanding = unshipped POs (no sent ASN and not invoiced: OPEN ORDER + ASN OPENED + any unshipped Special attention)",
-  "po_count": 8,
-  "total_pairs": 6185,
-  "open_order_pos": 7,
-  "open_order_pairs": 3913,
+  "po_count": 9,
+  "total_pairs": 6306,
+  "open_order_pos": 8,
+  "open_order_pairs": 4034,
   "asn_opened_draft_pos": 1,
   "asn_opened_draft_pairs": 2272,
   "missing_qty_pos": [],
   "by_style": {
    "Dakota": 2295,
-   "Helly Hansen": 3890
+   "Helly Hansen": 4011
   },
   "by_dc": {
-   "000155 Brampton": 3682,
+   "000155 Brampton": 3803,
    "000350 Calgary DC": 2503
   },
   "pos": [
@@ -166,6 +171,24 @@
     "original": "2026-10-30",
     "newest_ship": "2026-11-12",
     "newest_src": "SPS amendment",
+    "cancel": "2026-12-12"
+   },
+   {
+    "po": "14976418",
+    "pipe": "OPEN ORDER",
+    "style": "Helly Hansen",
+    "scode": "HH",
+    "style_codes": "HHS252022, HHS252026",
+    "qty_by_style": {
+     "HHS252022": 66,
+     "HHS252026": 55
+    },
+    "dc": "000155 Brampton",
+    "dc_code": "155",
+    "qty": 121,
+    "original": "2026-11-12",
+    "newest_ship": "2026-11-12",
+    "newest_src": "SPS",
     "cancel": "2026-12-12"
    },
    {
@@ -290,6 +313,20 @@
   "pos": []
  },
  "po_dates": {
+  "14976418": {
+   "dc": "000155 Brampton",
+   "qty": 121,
+   "style": "Helly Hansen",
+   "original": "2026-11-12",
+   "amended": "",
+   "changes": "",
+   "newest": "2026-11-12",
+   "newest_src": "SPS",
+   "sps_newest": "2026-11-12",
+   "cancel": "2026-12-12",
+   "pipe": "OPEN ORDER",
+   "unshipped": true
+  },
   "14946927": {
    "dc": "000155 Brampton",
    "qty": 415,
