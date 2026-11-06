@@ -17,9 +17,20 @@ td{border-bottom:1px solid #e3e7ec;padding:7px 8px;vertical-align:top}tr.grp td{
 .st{font-weight:bold;padding:2px 6px;border-radius:4px;white-space:nowrap}.s-ok{background:#C6EFCE}.s-part{background:#FFE699}.s-miss{background:#F8CBAD}.s-na{background:#eee}
 td.edit select,td.edit input{width:100%;box-sizing:border-box}.small{color:#666;font-size:12px}.changed{background:#fffbe6}
 .tip{font-size:12px;color:#555;margin:6px 0 12px}
+.notice{background:#FFF3CD;border:1px solid #f0c36d;border-left:5px solid #d39e00;padding:12px 16px;border-radius:8px;margin-bottom:12px;font-size:13px;line-height:1.6}
+.stale{background:#fff;border-left:5px solid #1F4E78;padding:10px 16px;border-radius:8px;margin-bottom:14px;font-size:13px;line-height:1.55}.stale ol{margin:6px 0 2px;padding-left:22px}.stale li{margin:4px 0}
 </style></head><body>
-<header><h1>IF / MSL 安库资料提供跟踪表</h1><p>三层安库：① IF成品仓 ② IF原物料仓 ③ 鞋面链（未到IF部分）｜MSL 不备库存｜官方版本更新：2026-11-06 14:22 (UTC+8)</p></header>
+<header><h1>IF / MSL 安库资料提供跟踪表</h1><p>三层安库：① IF成品仓 ② IF原物料仓 ③ 鞋面链（未到IF部分）｜MSL 不备库存｜官方版本更新：2026-11-06 14:28 (UTC+8)</p></header>
 <div class="wrap">
+<div class="notice"><b>⚠ 数据时效：已提供的资料都已过期。</b>多数是 <b>2026-11-02 / 11-03</b> 的快照（库存、在制、订单），到用的时候已经不是实时数；原因是人工导出速度。<b>这版本只用于算规则、参数和一次性水位建议，不当实时库存、不直接开补货单。</b>等接口每日拉数后，此问题消失。4-5 前置期 / 6-2 在制两段 / 6-3 订单扣库存 已按 Boss 11/6 确认完成，不再是缺项。</div>
+<div class="stale"><b>还缺什么（不影响先算第①层一次性水位）：</b>
+<ol>
+<li><b>1-6 MSL 对客户承诺交货天数</b>（Kelvin）——转成成品层安全天数的最后口径。</li>
+<li><b>每日持续更新的接口</b>（10-2 443 端口待 Doris；库存/订单/采购等接口）——解决「资料过期」，才能天天出一补一。</li>
+<li><b>5-2 赠品出货</b>、<b>5-5 退货流水</b>——净需求补全。</li>
+<li><b>6-4 成品入库流水</b>——对账用，不挡水位计算。</li>
+<li><b>7-3 底料分码/款对应</b>、<b>8-1 印度在途柜号/ETA</b>、<b>9-1 鞋面到 IF 不良率</b>——第②③层与齐套精度。</li>
+</ol></div>
 <div class="layers">
 <div class="layer"><b>① IF成品仓</b><br>安全库存单成品，分款分码；客户下单即可出货</div>
 <div class="layer"><b>② IF原物料仓</b><br>鞋面(在库)、底料、鞋垫、纸箱、安全件；按款齐套算可成型双数</div>
