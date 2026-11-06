@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shopify Operations | Fulfillment & Returns Blueprint</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#14243c;--muted:#62748a;--line:#dfe7f1;--blue:#2563eb;--teal:#0d9488;--amber:#d97706;--red:#dc2626;--navy:#0c1b32}
+*{box-sizing:border-box}body{margin:0;font:14px/1.65 "Microsoft YaHei","PingFang SC",system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#0c1b32,#163a65);color:white;padding:30px clamp(18px,4vw,56px)}
+header h1{font-size:clamp(24px,3vw,36px);margin:4px 0}header p{color:#c7d7ea;max-width:900px}
+.tag{display:inline-block;border:1px solid #6d8aad;border-radius:99px;padding:3px 10px;color:#dbeafe;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);min-height:calc(100vh - 170px)}
+aside{background:#fff;border-right:1px solid var(--line);padding:18px 12px;position:sticky;top:0;height:100vh;overflow:auto}
+aside button{display:block;width:100%;text-align:left;background:transparent;border:0;padding:11px 12px;color:#4d6178;border-radius:9px;cursor:pointer;font-weight:600}
+aside button:hover,aside button.active{background:#eaf2ff;color:#174db5}
+main{padding:24px clamp(15px,3vw,40px);max-width:1450px;width:100%;margin:auto}
+section{display:none}section.active{display:block}.section-title{font-size:25px;margin:0 0 5px}.lead{color:var(--muted);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 3px 12px #20345108;margin-bottom:16px}
+.card h3{margin:0 0 10px;font-size:17px}.metric{font-size:27px;font-weight:800;color:#143b72}.muted{color:var(--muted)}.small{font-size:12px}
+.pill{display:inline-block;border-radius:50px;padding:3px 9px;background:#e8f3ff;color:#1851a1;font-size:11px;font-weight:700}
+.pill.green{background:#e0f6ef;color:#08785b}.pill.amber{background:#fff2da;color:#9a5c00}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:11px 10px;text-align:left;vertical-align:top}th{background:#f1f5fa;color:#354c67}tr:last-child td{border-bottom:0}
+.tablewrap{overflow:auto}button.action,select,input[type=number]{border:1px solid #c9d6e7;border-radius:8px;padding:9px 11px;background:white;color:var(--ink);font:inherit}
+button.action{cursor:pointer}button.primary{background:var(--blue);color:white;border-color:var(--blue)}button.action:hover{filter:brightness(.96)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin:18px 0}
+.step{flex:1 1 135px;min-width:135px;max-width:240px;border:1px solid #bed4f1;border-radius:12px;background:#f0f6ff;padding:14px;cursor:pointer;text-align:left;position:relative}
+.step strong{display:block;color:#144a96}.step small{display:block;color:#526a86;margin-top:5px}.step:hover,.step.selected{border:2px solid var(--blue);background:#e1eeff;padding:13px}
+.arrow{align-self:center;color:#8295ad;font-size:22px;font-weight:bold}.detail{background:#eef7ff;border-left:4px solid var(--blue);padding:15px;border-radius:8px;min-height:80px}
+input[type=number]{width:100%;max-width:150px}.formula{font-size:17px;font-weight:700;padding:14px;background:#ecfdf5;border-radius:10px;color:#066449}
+.checkrow{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}.checkrow input{margin-top:4px;accent-color:#2563eb}.checkrow label{cursor:pointer;flex:1}.checkrow:has(input:checked) label{text-decoration:line-through;color:#7a8da3}
+.progress{height:11px;border-radius:20px;background:#e2eaf5;overflow:hidden}.progress div{height:100%;background:#0d9488;transition:width .2s}
+details{border:1px solid var(--line);border-radius:10px;padding:12px 15px;background:#fff;margin-bottom:9px}summary{cursor:pointer;font-weight:700}
+.note{border-left:4px solid #e3a139;background:#fff8e9;padding:12px 15px;border-radius:8px;margin:14px 0}
+.source{border-left:4px solid #0d9488;background:#eefaf7;padding:12px 15px;border-radius:8px;margin:14px 0}
+kbd{font:inherit;background:#eef1f6;padding:2px 5px;border-radius:4px}
+@media(max-width:800px){.layout{display:block}aside{height:auto;position:static;display:flex;overflow-x:auto;gap:3px;padding:8px}aside button{min-width:max-content;width:auto}main{padding:18px 12px}.step{max-width:none}.arrow{display:none}}
+@media print{aside,.toolbar,.no-print{display:none!important}.layout{display:block}section{display:block!important;break-before:page}main{padding:0}.card{box-shadow:none}header{background:#fff;color:#111;padding:12px}header p{color:#555}}
+</style></head><body>
+<header><span class="tag">Operations / System Design / v1.0</span><h1>Shopify 发货与退货管理</h1><p>安全鞋及个人防护用品（PPE）业务交互式开发蓝图。以《仓储规范》为基础，补充 ERP、WMS、物流、退货和系统集成控制建议。</p></header>
+<div class="layout"><aside id="nav"></aside><main>
+<section id="overview" class="active"><h2 class="section-title">系统总体架构</h2><p class="lead">开发前先明确系统职责和可靠的数据同步机制。</p>
+<div class="grid">
+<div class="card"><div class="muted small">电商前端</div><div class="metric">Shopify</div><p>客户结账、支付、订单展示、履约和退款信息。</p></div>
+<div class="card"><div class="muted small">运营数据权威来源</div><div class="metric">ERP / 仓储 WMS</div><p>实物库存、预占、拣货、打包、收货与质检。</p></div>
+<div class="card"><div class="muted small">物流事件</div><div class="metric">Carrier</div><p>运单、交接、物流追踪、配送异常及拦截。</p></div>
+<div class="card"><div class="muted small">系统可靠性</div><div class="metric">Integration</div><p>Webhook、API任务、重试、审计记录与对账。</p></div></div>
+<div class="card"><h3>系统集成架构</h3><div class="flow">
+<button class="step" data-detail="Shopify 负责客户结账、支付以及客户可见的订单信息。">Shopify 商店<small>订单 · 支付 · 客户</small></button><span class="arrow">⇄</span>
+<button class="step" data-detail="使用 Webhook 接收、鉴权 API、防重复处理、重试队列及对账。">集成中间层<small>API · Webhook · 队列</small></button><span class="arrow">⇄</span>
+<button class="step" data-detail="ERP 负责订单分配、库存预占、退货审批和业务状态；WMS 负责仓库扫描和实物库存。">ERP / 仓储 WMS<small>Orders · 库存管理 · RMA</small></button><span class="arrow">⇄</span>
+<button class="step" data-detail="物流商提供面单和轨迹，财务负责退款对账；两者均不应独立覆盖仓库库存。">物流 / 财务<small>物流轨迹 · 退款</small></button>
+</div><div class="detail" id="architecture-detail">点击系统模块查看职责说明。</div></div>
+<div class="note"><strong>架构关键决策：</strong> 以 ERP/WMS 作为实物库存的权威来源，将可售库存同步至 Shopify；避免不同系统重复扣减库存。</div>
+<div class="card"><h3>系统职责分工表</h3><div class="tablewrap"><table><tr><th>功能</th><th>主责系统</th></tr><tr><td>结账 / 支付 / 客户可见状态</td><td>Shopify</td></tr><tr><td>实物库存、预占库存和可售库存</td><td>ERP / 仓储 WMS</td></tr><tr><td>拣货、打包、条码扫描</td><td>WMS</td></tr><tr><td>面单与物流追踪</td><td>Carrier / shipping integration</td></tr><tr><td>退货签收与质量检查</td><td>WMS / CT warehouse</td></tr><tr><td>退款执行</td><td>Shopify / 支付服务商（按审批规则）</td></tr><tr><td>重试、日志和对账</td><td>Integration layer</td></tr></table></div></div>
+</section>
+<section id="fulfillment"><h2 class="section-title">订单 → 发货履约</h2><p class="lead">点击各环节查看操作和开发要求。</p><div class="card"><div id="orderflow" class="flow"></div><div class="detail" id="orderdetail">Select a workflow step.</div></div>
+<div class="card"><h3>关键异常分支</h3><div class="tablewrap"><table><tr><th>条件</th><th>应采取的操作</th></tr><tr><td>付款未确认或风控暂停</td><td>不得下发仓库</td></tr><tr><td>库存不足</td><td>根据规则挂起、缺货预订或部分发货</td></tr><tr><td>扫描条码或鞋码错误</td><td>阻止打包并要求纠正</td></tr><tr><td>发货前取消</td><td>立即暂停并核实包裹状态</td></tr><tr><td>物流商已揽收</td><td>记录发货并同步物流单号</td></tr><tr><td>丢件或派送失败</td><td>创建异常处理工单</td></tr></table></div></div></section>
+<section id="inventory"><h2 class="section-title">库存与可售量</h2><p class="lead">单仓库、单 SKU 的实时模拟计算器。</p>
+<div class="card"><h3>可售库存模拟器</h3><div class="grid">
+<label>实物库存<br><input id="onhand" type="number" min="0" value="100"></label><label>已预占<br><input id="reserved" type="number" min="0" value="20"></label><label>冻结 / 待质检 / 破损<br><input id="blocked" type="number" min="0" value="5"></label><label>安全库存<br><input id="safety" type="number" min="0" value="10"></label></div><p class="formula" id="inventory-result"></p><p class="muted small">在途库存未经实收验收不得计入可售量。库存分类不得重复计数。即使显示可售量不小于零，计算结果为负仍属于异常。</p></div>
+<div class="card"><h3>库存流转规则</h3><div class="flow" id="stockflow"></div><div class="detail" id="stockdetail">点击库存事件查看详情。</div></div>
+<div class="card"><h3>SKU 主数据字段</h3><div class="tablewrap"><table><tr><th>数据字段</th><th>用途</th></tr><tr><td>SKU / 变体 ID / 条码</td><td>准确识别鞋款和尺码</td></tr><tr><td>仓库 ID / 库位</td><td>分仓及库位库存</td></tr><tr><td>实物 / 预占 / 可售</td><td>准确分配库存并控制可售数量</td></tr><tr><td>在途 / 待质检 / 破损 / 安全库存</td><td>避免提前售卖</td></tr><tr><td>调整原因 / 操作人 / 时间戳</td><td>可审计、可追溯</td></tr></table></div></div></section>
+<section id="cancellation"><h2 class="section-title">订单取消与物流拦截</h2><p class="lead">选择包裹当前所处的发货阶段。</p>
+<div class="card"><div class="toolbar"><label for="cancelstage">履约阶段</label><select id="cancelstage"><option value="notpicked">已付款，未拣货</option><option value="picking">拣货中</option><option value="label">已打印面单，仍在仓库</option><option value="collected">物流商已揽收</option><option value="delivery">派送中</option><option value="delivered">已签收</option></select></div><div id="cancelresult" class="detail"></div></div>
+<div class="note"><strong>控制要点：</strong> 客户申请取消 ≠ 取消成功。需区分取消申请、暂停处理中、拦截中、已取消、拦截失败等状态，并根据实际履约结果及退款政策处理。</div></section>
+<section id="returns"><h2 class="section-title">退货与退款（RMA）</h2><p class="lead">客户提出退货申请时，不得直接增加可售库存。</p>
+<div class="card"><div class="flow" id="returnflow"></div><div class="detail" id="returndetail">点击退货流程节点查看详情。</div></div>
+<div class="card"><h3>退货质检结果模拟器</h3><div class="toolbar"><label for="qc">质检结果</label><select id="qc"><option value="resell">SKU 正确，全新 / 可二次销售</option><option value="damaged">破损 / 穿过</option><option value="mismatch">SKU / 尺码 / 数量不符</option></select></div><div class="detail" id="qcresult"></div></div>
+<div class="card"><h3>RMA 必填字段</h3><p>RMA 编号、原订单号、SKU、尺码、应退和实收数量、退货原因、客户照片（如有）、物流单号、仓库签收时间、质检人员、质检等级、处理方式、退款决定、批准退款金额及退款交易 ID。</p></div></section>
+<section id="sync"><h2 class="section-title">事件与信息同步</h2><p class="lead">明确事件来源、目标系统以及防重复处理机制。</p><div class="card"><div class="tablewrap"><table id="synctable"><thead><tr><th>事件</th><th>来源 → 目标</th><th>处理要求</th></tr></thead><tbody></tbody></table></div></div><div class="note">建议目标：常规更新在 1–5 分钟内完成，失败时自动告警。这是建议服务指标，并非 Shopify API 的保证。</div></section>
+<section id="statuses"><h2 class="section-title">状态模型</h2><p class="lead">各类状态独立管理，不要将所有状态混入单一订单状态字段。</p><div class="card"><div class="tablewrap"><table id="statustable"><thead><tr><th>状态类别</th><th>建议内部状态</th></tr></thead><tbody></tbody></table></div></div><div class="note">以下为建议的 ERP/WMS 内部状态，不代表 Shopify 存在完全相同的原生字段。开发时需映射到 Shopify 支持的对象与 API。</div></section>
+<section id="checklist"><h2 class="section-title">开发准备清单</h2><p class="lead">开发完成或验收后勾选；进度仅保存在当前浏览器本地。</p>
+<div class="card"><div style="display:flex;justify-content:space-between"><strong>实施进度</strong><strong id="progresslabel">0%</strong></div><div class="progress" style="margin:12px 0"><div id="progressbar"></div></div><div class="toolbar"><button class="action primary" id="exportcheck">导出进度（JSON）</button><button class="action" id="resetcheck">重置清单</button></div></div><div id="checkgroups"></div></section>
+<section id="testing"><h2 class="section-title">验收测试 / 异常场景</h2><p class="lead">上线前验证以下场景，包括故障恢复。</p><div class="card"><div class="tablewrap"><table id="testtable"><thead><tr><th>测试场景</th><th>预期结果</th></tr></thead><tbody></tbody></table></div></div></section>
+<section id="priorities"><h2 class="section-title">开发优先级与待决事项</h2><p class="lead">先确定首期开发范围，再确认业务规则。</p>
+<div class="grid"><div class="card"><span class="pill">P0 · 上线必备</span><h3>核心业务</h3><p>SKU 主数据、库存预占、订单导入、条码校验、物流追踪、取消拦截、退货收货、退款审批、API 重试。</p></div><div class="card"><span class="pill amber">P1 · 下一阶段</span><h3>效率提升</h3><p>物流拦截自动化、换货、批量拣货、多仓分单、高级质检和异常看板。</p></div><div class="card"><span class="pill green">P2 · 持续优化</span><h3>数据分析</h3><p>销量预测、补货建议、物流成本优化、鞋码退货分析、仓库效率和供应商质量分析。</p></div></div>
+<div class="card"><h3>需要业务负责人确认的规则</h3><ol><li>哪个系统是库存数据的权威来源？</li><li>什么付款状态允许预占库存并下发仓库？</li><li>实物库存在哪个环节正式扣减？</li><li>谁负责批准退款？哪些情况例外？</li><li>CT 仓库仅负责退货，还是也负责发货？</li><li>换尺码和补发政策是什么？</li><li>已穿过的安全鞋如何处理？</li><li>ERP 将来是否对接 Amazon Canada 及其他销售渠道？</li></ol></div></section>
+<section id="source"><h2 class="section-title">原始中文需求 / 来源说明</h2><p class="lead">此处保留原始仓储需求，与其他章节的补充建议分开。</p>
+<div class="source"><strong>信息规范</strong><p>商品、SKU、条码、规格统一。</p><strong>一、仓储系统</strong><ol><li>独立的shopify本地仓储系统</li><li>实物库存</li><li>成交订单已占用库存</li><li>可售库存</li><li>待质检退货</li><li>破损/冻结库存</li><li>在途库存</li><li>安全库存</li><li>未发货前——客户取消订单，发货时能做到及时拦截</li><li>发货途中——客户取消订单，后台能提醒及时拦截货件</li><li>发货系统——货物发出后，快递单号及时同步到shopify后台</li><li>退款系统——退货订单CT签收后，及时同步到shopify后台</li></ol>
+<strong>二、下单并确认付款</strong><p>→ ERP 预占库存 → Shopify 可售库存立即减少 → 仓库发货 → ERP 实物库存正式扣减，同时释放预占。</p>
+<strong>三、退货入仓流程</strong><p>客户申请退货 → 创建 RMA/退货单 → 此时不增加库存 → 仓库收到退货 → 核对 SKU、数量和订单 → 质检 → 可再次销售：加入实物库存 → 破损或待处理：进入冻结库存 → ERP 重新计算可售库存 → 同步 Shopify → 按政策执行退款。</p></div>
+<div class="note"><strong>范围说明：</strong> 原始文件定义了仓储基础需求。物流接口、风控暂停、API 防重复、员工权限、换货规则、数据看板及详细状态映射属于额外建议，并非原文已明确的要求。</div></section>
+</main></div>
+<script>
+const sections=[["overview","总体架构"],["fulfillment","订单履约"],["inventory","库存管理"],["cancellation","取消与拦截"],["returns","退货与退款"],["sync","信息同步"],["statuses","状态字典"],["checklist","开发准备清单"],["testing","UAT Tests"],["priorities","优先级"],["source","原始中文需求"]];
+const nav=document.getElementById('nav');sections.forEach(([id,name])=>{let b=document.createElement('button');b.textContent=name;b.dataset.section=id;b.onclick=()=>show(id);nav.appendChild(b)});
+function show(id){document.querySelectorAll('main section').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x.dataset.section===id));location.hash=id;window.scrollTo(0,0)}
+show(sections.some(s=>s[0]===location.hash.slice(1))?location.hash.slice(1):'overview');
+document.querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>{b.parentElement.querySelectorAll('.step').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById('architecture-detail').textContent=b.dataset.detail});
+function makeFlow(container,detail,steps){const host=document.getElementById(container);steps.forEach((s,i)=>{if(i){let a=document.createElement('span');a.className='arrow';a.textContent='→';host.appendChild(a)}let b=document.createElement('button');b.className='step';b.innerHTML='<strong>'+s[0]+'</strong><small>'+s[1]+'</small>';b.onclick=()=>{host.querySelectorAll('.step').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById(detail).textContent=s[2]};host.appendChild(b)})}
+makeFlow('orderflow','orderdetail',[['1. 订单已付款','Shopify','核实付款确认/授权和风控状态，按唯一订单 ID 导入，避免重复。'],['2. 预占库存','ERP','按仓库、SKU、尺码原子化预占库存，并同步可售量。'],['3. 拣货','WMS','生成拣货任务，扫描库位和商品条码，阻止错码错尺码。'],['4. 打包','WMS','核对数量和尺码后打印面单；打印面单不等于已发货。'],['5. 交接物流','Carrier','确认无取消暂停，记录物流揽收，并按已确认规则扣减实物库存。'],['6. 物流追踪','Shopify','同步发货和物流信息，监控派送异常及退回发件人。']]);
+makeFlow('stockflow','stockdetail',[['Receive','Inbound','扫描并质检到货，验收通过后增加实物库存。'],['Reserve','Order','增加预占库存，可售量立即减少。'],['Ship','Dispatch','在一致的库存事务中扣减实物库存并释放预占。'],['Return','退货 / 质检','申请退货时不回库；签收并质检后转入可售或冻结库存。'],['Sync','Shopify','按 SKU 和仓库重新计算并核对差异。']]);
+makeFlow('returnflow','returndetail',[['Request','Customer','核查退货资格及原因，获准后创建 RMA。'],['Label','退货物流','提供退货指引和退货面单（如适用），追踪回仓包裹。'],['Receive','CT warehouse','实际签收时扫描并核对 SKU、尺码、数量和订单。'],['QC','Inspector','判定商品状态及重新上架、隔离或异常处理方式。'],['Refund','Approval','根据退款政策及实际质检结果审批退款。'],['Close','Sync','更新库存、Shopify 退货/退款记录和财务对账。']]);
+function calc(){let vals=['onhand','reserved','blocked','safety'].map(id=>Math.max(0,Number(document.getElementById(id).value)||0));let raw=vals[0]-vals[1]-vals[2]-vals[3];document.getElementById('inventory-result').textContent='可售库存：'+Math.max(0,raw)+' 件  |  原始余额：'+raw+(raw<0?' — 需排查超额分配':'')}
+['onhand','reserved','blocked','safety'].forEach(id=>document.getElementById(id).add事件Listener('input',calc));calc();
+const cancel={notpicked:'停止下发仓库，取消尚未执行的履约任务，释放预占库存，并按政策退款。',picking:'立即暂停拣货并通知拣货员；扫描退回库位，确认后才释放预占。',label:'阻止出库，尽可能作废面单，核实实物库存后按政策退款。',collected:'向物流商申请拦截或退回发件人，标记拦截中并跟踪结果，不得默认成功。',delivery:'升级物流拦截申请；此时可能无法拦截，若已送达则准备退货指引。',delivered:'按退货 RMA 流程处理，而不是简单取消未发货订单；遵循退货资格、质检及退款规则。'};
+function updateCancel(){document.getElementById('cancelresult').textContent=cancel[document.getElementById('cancelstage').value]}document.getElementById('cancelstage').onchange=updateCancel;updateCancel();
+const qc={resell:'签收且质检通过后，将正确 SKU/尺码的数量加入可售库存并同步 Shopify；退款必须走审批流程。',damaged:'转入隔离/不可售库存，保留证据，并依据政策决定退款或索赔；不得加入可售库存。',mismatch:'放入异常暂存区，核实 RMA 与客户信息后再决定上架或退款。'};
+function updateQC(){document.getElementById('qcresult').textContent=qc[document.getElementById('qc').value]}document.getElementById('qc').onchange=updateQC;updateQC();
+const sync=[['已付款订单','Shopify → ERP','去重导入并预占库存'],['订单修改','Shopify → ERP','重新分配库存并更新任务'],['库存变化','WMS → Shopify','按仓库同步可售库存'],['面单已生成','物流系统 → ERP','记录面单和运单号，尚不视为已发货'],['交接物流','WMS / 物流商 → Shopify','记录发货及运单号'],['取消与拦截 requested','Shopify / 客服 → ERP','暂停并尝试拦截'],['物流异常','物流商 → ERP','创建异常工单'],['RMA 已批准','Shopify / ERP → WMS','建立预计退货记录'],['CT 仓库收到退货','WMS → ERP / Shopify','记录实际签收'],['退货质检完成','WMS → ERP','执行处理决定和库存移动'],['退款完成','Shopify → ERP / 财务','核对退款金额和交易']];
+const statuses=[['Payment','待付款 · 已授权 · 已付款 · 部分退款 · 已退款 · 失败'],['Fulfillment','未履约 · 暂停 · 拣货中 · 已打包 · 部分履约 · 已履约'],['Shipping','Label Created · Awaiting Pickup · In Transit · Out for Delivery · 已签收 · Exception · Returned to Sender'],['取消与拦截','无 · 已申请 · 拦截中 · 已取消 · 拦截失败'],['Return','无 · 已申请 · 已批准 · 运输中 · 已收货 · 待质检 · 已通过 · 已拒绝 · 已关闭'],['Refund','无需退款 · 待审批 · 已批准 · 已提交 · 已完成 · 失败'],['库存管理','Available · 已预占 · Quarantined · Damaged · Inbound']];
+function rows(id,arr){document.querySelector('#'+id+' tbody').innerHTML=arr.map(r=>'<tr>'+r.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')}rows('synctable',sync);rows('statustable',statuses);
+const groups={'主数据与库存':['统一商品、变体、SKU、条码和尺码映射','定义仓库和库位结构','定义库存分类和可售量公式','实现库存预占和原子化库存更新','实现库存调整、调拨和循环盘点'],'订单与发货':['定义付款、风控和履约资格','实现订单导入和防重复','实现拣货、打包、条码扫描和面单','支持部分发货和多运单号','实现取消暂停和物流拦截'],'退货与退款':['建立 RMA 编号和退货原因代码','实现退货签收和质检','定义上架、隔离和报废处理','支持换货、补发和部分退款','定义退款审批权限'],'系统集成与运营':['确认 Shopify API 和 Webhook 架构','实现重试、防重复和对账','配置员工角色和审计日志','建立异常看板和告警','上线前进行端到端测试']};
+let saved={};try{saved=JSON.parse(localStorage.getItem('shopify_blueprint_checklist')||'{}')}catch(e){}
+const cg=document.getElementById('checkgroups');Object.entries(groups).forEach(([group,items],gi)=>{let card=document.createElement('div');card.className='card';let h=document.createElement('h3');h.textContent=(gi+1)+'. '+group;card.appendChild(h);items.forEach((item,j)=>{let key=gi+'-'+j;let r=document.createElement('div');r.className='checkrow';let cb=document.createElement('input');cb.type='checkbox';cb.id='c'+key;cb.checked=!!saved[key];cb.onchange=()=>{saved[key]=cb.checked;localStorage.setItem('shopify_blueprint_checklist',JSON.stringify(saved));progress()};let l=document.createElement('label');l.htmlFor=cb.id;l.textContent=item;r.append(cb,l);card.appendChild(r)});cg.appendChild(card)});
+function progress(){let all=document.querySelectorAll('#checkgroups input[type=checkbox]'),n=[...all].filter(x=>x.checked).length,p=Math.round(n/all.length*100);document.getElementById('progresslabel').textContent=n+' / '+all.length+' ('+p+'%)';document.getElementById('progressbar').style.width=p+'%'}progress();
+document.getElementById('resetcheck').onclick=()=>{if(confirm('确定重置所有清单进度吗？')){saved={};localStorage.removeItem('shopify_blueprint_checklist');document.querySelectorAll('#checkgroups input').forEach(x=>x.checked=false);progress()}};
+function download(name,text,type){let a=document.createElement('a'),blob=new Blob([text],{type});a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+document.getElementById('exportcheck').onclick=()=>download('shopify_checklist_progress.json',JSON.stringify({exportedAt:new Date().toISOString(),groups,completed:saved},null,2),'application/json');
+const tests=[['两笔订单同时购买最后一件','原子化分配，防止超卖'],['打印面单时客户取消','交接物流前暂停出库'],['物流揽收后客户取消','标记拦截中，不得误报取消成功'],['多商品订单中一件缺货','按政策部分发货或暂停'],['实退尺码与 RMA 不符','质检不符，进入异常队列'],['退回的鞋已穿过','隔离并按政策审核'],['收到重复订单 Webhook','仅创建一笔 ERP 订单及一次预占'],['库存管理 sync API fails','重试、告警并对账'],['退款请求超时','重试前先核查是否已退款'],['拣货过程中断网','恢复后不得重复库存移动'],['收到无 RMA 的退货','进入无法匹配退货队列'],['一笔订单分两包发货','分别记录运单号和数量']];rows('testtable',tests);
+</script></body></html>
