@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IF/MSL 安库 · Doris 接口明细表 2026-11-06</title>
+<style>
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f4f6f9;color:#1d2733;line-height:1.55}
+header{background:#1F4E78;color:#fff;padding:18px 24px;display:flex;gap:14px;align-items:center}
+header img{height:48px;width:auto;background:#fff;border-radius:6px;padding:2px}
+header h1{margin:0;font-size:20px} header p{margin:6px 0 0;opacity:.92;font-size:13px}
+.wrap{padding:16px 20px;max-width:1480px;margin:0 auto}
+.card{background:#fff;border-radius:10px;padding:14px 16px;margin:0 0 14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+h2{margin:0 0 10px;font-size:17px;color:#1F4E78;border-left:4px solid #2E75B6;padding-left:8px}
+.small{color:#666;font-size:12px}
+.warn{background:#FFF3CD;border-left:5px solid #d39e00;padding:10px 12px;border-radius:8px;margin-bottom:12px;font-size:13px}
+.okbox{background:#E8F5E9;border-left:5px solid #2e7d32;padding:10px 12px;border-radius:8px;margin-bottom:12px;font-size:13px}
+.bluebox{background:#E3F2FD;border-left:5px solid #1565c0;padding:10px 12px;border-radius:8px;margin-bottom:12px;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0}
+.kpi{background:#f7fafc;border-radius:8px;padding:8px 10px} .kpi b{display:block;font-size:22px;color:#1F4E78}
+table{border-collapse:collapse;width:100%;font-size:12px;background:#fff}
+th,td{border:1px solid #e3e7ec;padding:6px 7px;vertical-align:top;text-align:center}
+th{background:#1F4E78;color:#fff;position:sticky;top:0;z-index:1}
+td.left,.left{text-align:left}
+td.note{min-width:280px;font-size:11.5px;color:#333}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px}
+tr.p0 td:nth-child(2){background:#F8CBAD;font-weight:700}
+tr.p1 td:nth-child(2){background:#FFE699;font-weight:700}
+tr.p2 td:nth-child(2){background:#C6EFCE;font-weight:700}
+.scroll{overflow-x:auto;max-height:78vh}
+ol,ul{margin:6px 0 6px 20px;padding:0} li{margin:4px 0}
+a{color:#1565c0}
+footer{color:#777;font-size:12px;padding:8px 20px 24px;text-align:center}
+</style></head><body>
+<header>
+<img src="kpr-shield.png" alt="KPR">
+<div>
+<h1>IF / MSL 安库 · 给 Doris 的接口明细表</h1>
+<p>2026-11-06｜用途：每日闭环自动拉数｜规则已基本确认｜本表不是下单指令｜未知字段一律「待Doris确认」</p>
+</div>
+</header>
+<div class="wrap">
+
+<div class="okbox"><b>目的：</b>IF/MSL 安库每日闭环所需 Open API / ERP 接口清单，方便 IT（Doris）排期开/改接口。
+优先保证能每日拉数。安库业务规则以 Boss 已确认口径为准；接口只负责供数，不代替水位决策。</div>
+
+<div class="warn"><b>重要口径（Boss 11/6，Doris 勿按旧缺项开多余接口）：</b>
+<ul>
+<li>先确认规则，再接每日接口（本表明细仍请现在排期）。</li>
+<li>赠品/退货：并入每日流水，用订单类型/发货类型区分；不再单列缺项。</li>
+<li>6-2：不要单独「安全库存单完成表」；WIP=已发鞋面未射出 + 已下线未入库；已发鞋面与排产占用只计一次。</li>
+<li>6-3：可用=IF成品库存−占用；占用=客户实单+Dunia订单/预算；安库计划量与内部预算只定目标、不扣库存；不需要「已分配/已预留」表。</li>
+<li>6-4：入库流水仅对账，不挡水位。</li>
+<li>印度鞋面不良：规则参数按实际 12–15%（保守 15%）；QC 流水为 P2 可选，非阻塞。</li>
+</ul></div>
+
+<div class="bluebox"><b>给 Doris 的阅读顺序：</b>
+① <b>443 端口</b>（全 API 前提）→
+② <b>合同逾期字段口径书面确认</b>（能覆盖则少开新接口）→
+③ <b>每日库存 / 在制两段 / 占用 / 出货·退货流水 / 入库流水</b> →
+④ <b>原物料与在途鞋面</b> →
+⑤ <b>BOM 周更</b>。鉴权统一：<code>X-Api-Key</code> + 环境变量 <code>KPR_OPEN_API_KEY_MSL</code>。</div>
+
+<div class="card">
+<h2>汇总</h2>
+<div class="grid">
+<div class="kpi"><span class="small">接口行数</span><b>16</b></div>
+<div class="kpi"><span class="small">P0</span><b>8</b></div>
+<div class="kpi"><span class="small">P1</span><b>6</b></div>
+<div class="kpi"><span class="small">P2</span><b>2</b></div>
+</div>
+<p class="small">现有已通（经 Boss Mac :5001）：销售月统计、合同逾期。其余多为 Excel/人工；自动化卡在 443 与字段口径。
+跟踪表同源：IF安库资料跟踪表（38项）API 相关行已并入本表并按 11/6 规则刷新。</p>
+</div>
+
+<div class="card">
+<h2>接口明细</h2>
+<div class="scroll"><table>
+<thead><tr>
+<th>序号</th><th>优先级</th><th>系统</th><th>接口名称 / 意图</th><th>现状</th>
+<th>建议路径或现有 endpoint</th><th>频率</th><th>关键字段 / 粒度</th><th>业务用途</th><th>给 Doris 的说明与待确认点</th>
+</tr></thead>
+<tbody>
+<tr class='p0'><td>1</td><td><b>P0</b></td><td>Open API 网关</td><td class='left'>全站 Open API 改 HTTPS 443（前提）</td><td>需改</td><td class='left mono'>现 Base：https://zr.api.kprsafety.com.cn:5001<br>目标：同主机 :443（或标准 HTTPS 无端口）</td><td>一次性基础设施</td><td class='left'>—（网络层）</td><td class='left'>自动化每日拉数的前提；电脑出网/服务端目前连不上 5001</td><td class='left note'>现状：全部 MSL Open API 挂在 :5001，仅 Boss Mac 可通；自动化与其它电脑出网失败。<br>请 Doris：为整个 API 开/反代到 443（一整站一个端口即可），TLS 证书有效；确认防火墙放行。<br>鉴权不变：请求头 X-Api-Key，环境变量 KPR_OPEN_API_KEY_MSL（勿写进仓库）。<br>待确认：443 上线时间；是否保留 5001 过渡；限流策略是否随端口一起迁。</td></tr><tr class='p0'><td>2</td><td><b>P0</b></td><td>MSL</td><td class='left'>销售月统计 API（已有）— 日粒度 / 出货类型澄清</td><td>已有·需改/澄清</td><td class='left mono'>GET /api/open/v1/msl/sales-month-statistics<br>文档：MSL_SalesMonthStatistics_OpenAPI_说明.md</td><td>每日（水位用）；现可按日期区间拉</td><td class='left'>xh×sz1–20；sl 净发；发货日区间<br>建议加：出货类型/订单类型（正单/赠品/退货/样品）</td><td class='left'>月均需求、尺码曲线；赠品/退货已并入每日流水规则</td><td class='left note'>我们已能经 Boss Mac 拉近12月销量（约32,946双）。<br>Boss 11/6：赠品、退货会在每日流水里按订单/发货类型分开；不再单列缺项。<br>请 Doris 确认：① 现 API 的 sl 是否已净扣退货、是否含赠品；② 能否按「日」而非仅旬段汇总；③ 最干净做法是在本接口或独立日流水加「出货类型/订单类型」字段（正单/赠品/退货/样品），避免另开多套接口。④ Key=KPR_OPEN_API_KEY_MSL。<br>未知字段名标「待Doris确认」，勿臆造。</td></tr><tr class='p0'><td>3</td><td><b>P0</b></td><td>MSL</td><td class='left'>合同逾期 API（已有）— statusCode / 订单占用口径书面确认</td><td>已有·需书面确认</td><td class='left mono'>GET /api/open/v1/msl/contract-overdue<br>文档：MSL_合同逾期_OpenAPI_说明.md<br>日限 2 次；无查询参数</td><td>每日 ≤2 次（重 SP）</td><td class='left'>items: xh, ddh, statusCode, s1–s20, khJc, khjq…<br>关注 statusCode 0/2/6/22 与 ddh=预算</td><td class='left'>可能覆盖成品库存、在制、订单占用；若口径对得上可少开新接口</td><td class='left note'>文档已列 statusCode：2=有效成品库存、22=成品库存明细、6/7=3天内排产或下线未入库、0=订单/预算明细；ddh 预算行可能为「预算」。<br>请 Doris 书面确认（安库水位要用的口径）：<br>① statusCode 2 与 22 是否=分款分码成品库存「可用」口径（与 IF成品库存1102.xls 对得上）？<br>② statusCode 6 是否=已下线未入库 / 在制？与「已发鞋面未射出」如何区分？<br>③ ddh=「预算」如何识别 Dunia 预算单 vs MSL 内部预算？客户实单如何过滤？<br>④ statusCode 0 订单明细能否覆盖占用=客户实单+Dunia订单/预算（分款分码×交期）？<br>Boss 11/6：安库计划量与拍脑袋内部预算只定目标水位，不扣库存；成品安库入库后为自由库存。若合同逾期做不到上述拆分，请标明需新建接口（见下行）。</td></tr><tr class='p0'><td>4</td><td><b>P0</b></td><td>IF ERP / MSL</td><td class='left'>分款分码成品库存快照</td><td>新建（若合同逾期不够）/ 或扩展</td><td class='left mono'>建议：/api/open/v1/if/fg-inventory 或扩展合同逾期仅返回库存段<br>（路径待Doris定）</td><td>每日 1 次快照</td><td class='left'>鞋型xh × EU码(s1–s20或EU35–48) × 数量；asOf 时点</td><td class='left'>第①层水位：现有量，判断哪款哪码断</td><td class='left note'>现状靠清华 Excel：IF成品库存1102.xls（11/2，16款共11,556双）。<br>若合同逾期 statusCode 2/22 已能稳定等价该表，可只确认口径、不必新建。<br>否则请新建分款分码库存接口；粒度必须到码；标注导出时点 asOf。<br>待Doris确认：库存是否已扣预留、仓库区位（IF成品仓）。</td></tr><tr class='p0'><td>5</td><td><b>P0</b></td><td>IF ERP</td><td class='left'>在制两段：①已发鞋面未射出 ②已下线未入库</td><td>新建 / 或合同逾期拆段确认</td><td class='left mono'>建议：/api/open/v1/if/wip-segments<br>或合同逾期拆出明确两段字段（路径待Doris定）</td><td>每日</td><td class='left'>段类型 + xh × 码 × 数量；机台可选<br>与排产占用鞋面同一数据源时只计一次</td><td class='left'>成品层在途；净位置=库存+在制−占用</td><td class='left note'>Boss 11/6：不需要单独「安全库存单完成表」。WIP=【IF排产已发鞋面未生产】+【IF下线未入库】；已发鞋面与排产占用鞋面同一份，只加一次（11/2：715+940）。<br>请 Doris：提供分款分码两段；勿让我们把同一批鞋面加两遍。<br>合同逾期 statusCode 6 若只能给「下线未入库」一段，另一段仍需接口。字段名待Doris确认。</td></tr><tr class='p0'><td>6</td><td><b>P0</b></td><td>IF ERP / MSL</td><td class='left'>占用订单：客户实单 + Dunia 订单/预算（分款分码×交期）</td><td>新建 / 或合同逾期订单段确认</td><td class='left mono'>建议：/api/open/v1/if/occupancy-orders<br>或合同逾期 statusCode 0 + 过滤规则（待确认）</td><td>每日</td><td class='left'>订单号/类型(客户实单|Dunia订单|Dunia预算) + xh × 码 × 数量 × 交期<br>排除：安库计划量、MSL内部拍脑袋预算</td><td class='left'>可用成品=库存−占用；避免把已占用当自由库存</td><td class='left note'>Boss 11/6：占用=客户实际订单+Dunia订单/预算；安库计划量与内部预算只定目标、不扣库存；安库完成入库进自由库存。不需要单独 ERP「已分配/已预留」表。<br>现状：IF订单包括预算1103.xls（Dunia订单20,073+预算2,030等）。<br>请 Doris：能从合同逾期或新接口稳定输出上述三类占用；说明如何识别 Dunia 与「预算」行。字段名待Doris确认。</td></tr><tr class='p0'><td>7</td><td><b>P0</b></td><td>IF ERP（主）/ MSL</td><td class='left'>成品出货 / 赠品 / 退货 每日流水（订单类型·发货类型）</td><td>新建（可与销售接口合并字段）</td><td class='left mono'>建议：/api/open/v1/if/ship-return-daily<br>或扩展销售月统计加类型字段<br>（路径待Doris定）</td><td>每日增量（按发货/退货日）</td><td class='left'>日期 × xh × 码 × 数量 × 订单类型 × 发货类型 × 客户<br>正单/赠品/退货/样品分开</td><td class='left'>出一补一净需求；赠品同样消耗安库；退货回库存</td><td class='left note'>Boss 11/6：赠品、退货并入每日流水，按类型分开，不再单列缺项。<br>现状：10/29 出货明细 Excel（含发货类型；正单72,177 / 赠品6；样品靠请购单号文字识别）。<br>请 Doris：日流水必须能机器区分类型，勿再靠备注文本。可合并进销售/出货 API 比开多接口更干净。<br>待确认：IF 侧 vs MSL 侧以哪边为权威；样品是否独立类型。</td></tr><tr class='p0'><td>8</td><td><b>P0</b></td><td>IF ERP</td><td class='left'>成品入库流水（分款分码）— 对账用</td><td>新建</td><td class='left mono'>建议：/api/open/v1/if/fg-receipt-daily<br>（路径待Doris定）</td><td>每日增量</td><td class='left'>入库日 × xh × 码 × 数量 × 来源单号（可选）</td><td class='left'>对账：期初+入库−出库+退货±调整=期末；不挡水位计算</td><td class='left note'>Boss 11/6：入库流水只做对账，不挡第①层水位；接口接上后自动执行。<br>请提供分款分码日流水即可。字段名待Doris确认。</td></tr><tr class='p1'><td>9</td><td><b>P1</b></td><td>IF ERP</td><td class='left'>鞋面在库（分码）</td><td>新建</td><td class='left mono'>建议：/api/open/v1/if/upper-inventory<br>（路径待Doris定）</td><td>每日</td><td class='left'>鞋面料号U* × 码 × 数量；asOf</td><td class='left'>第②层齐套：可成型双数</td><td class='left note'>现状：10/29 Excel 约30,618双；日期/是否已含排产占用待确认。<br>请 Doris：分码库存 + 是否已扣发料。字段名待Doris确认。</td></tr><tr class='p1'><td>10</td><td><b>P1</b></td><td>IF ERP</td><td class='left'>排产已占用鞋面（分码）</td><td>新建（可与在制「已发鞋面」同源）</td><td class='left mono'>建议与在制段①同源，避免双计<br>（路径待Doris定）</td><td>每日</td><td class='left'>U料号或成品xh × 码 × 数量 × 机台/指令号</td><td class='left'>可用鞋面=在库−占用</td><td class='left note'>11/2：715双(7号机)；与「已发鞋面未射出」同表。<br>请 Doris：同一数据源暴露一次即可；文档写清是否已含在「鞋面在库」内。字段名待Doris确认。</td></tr><tr class='p1'><td>11</td><td><b>P1</b></td><td>IF ERP</td><td class='left'>底料库存：PU A/B（KG）+ 安库橡胶大底分码（左右脚）</td><td>新建</td><td class='left mono'>建议：/api/open/v1/if/sole-material-inventory<br>（路径待Doris定）</td><td>每日</td><td class='left'>料号 ×（PU:A/B KG）或（橡胶:左右脚×EU码×双）；在库/在途</td><td class='left'>射出齐套；L8 用 PU 折双，M8 用橡胶短板</td><td class='left note'>Boss 11/6：安库用 I0900139（M8）分码左右相等 7,741双 EU36–47；L8 Q00020=L-ST-02 PU 单耗 EU36–48 A0.314/B0.330kg（EU35 A0.315）。非安库橡胶底按 BOM 归款，勿混入安库接口默认集合。<br>请 Doris：库存接口可按料号过滤；左右脚分列。字段名待Doris确认。</td></tr><tr class='p1'><td>12</td><td><b>P1</b></td><td>IF ERP</td><td class='left'>辅料在库/在途：鞋垫 K0900036、纸箱、塑钢头/钢片等</td><td>新建（可与原料库存合并）</td><td class='left mono'>建议：原料库存通用接口按料号列表拉取<br>（路径待Doris定）</td><td>每日</td><td class='left'>料号 × 数量（鞋垫建议分码）× 在库/在途/PO</td><td class='left'>齐套；缺纸箱/鞋垫/安全件无法出货成型</td><td class='left note'>现状靠 1102 Excel：K0900036 在库约12,763 + 在途2,720；纸箱 M0500157–160；塑钢头/TSO 钢片等。<br>可与底料合并为一个「原物料库存+在途」接口。字段/料号清单待Doris与清华对齐。</td></tr><tr class='p1'><td>13</td><td><b>P1</b></td><td>IF ERP / ALLIED</td><td class='left'>印度在途鞋面（柜号/ETA/分码/装柜率）</td><td>新建</td><td class='left mono'>建议：/api/open/v1/if/upper-in-transit<br>（路径待Doris定）</td><td>每日</td><td class='left'>柜号 × ETA × U料号/款 × 码 × 数量 × 装柜率/Bundle</td><td class='left'>第③层可用量；按 ETA 排射出</td><td class='left note'>现状：IF鞋面在途1102.xls（例 Container20，ETA 11/23，U6700020 3,960双等）。<br>请 Doris：结构化柜号/ETA/分码。字段名待Doris确认。</td></tr><tr class='p1'><td>14</td><td><b>P1</b></td><td>IF ERP 采购</td><td class='left'>ALLIED 已下单未出（PO/款/码/交期）</td><td>新建·先确认是否=在途</td><td class='left mono'>若与在途同源则文档说明即可；否则独立采购未交接口</td><td>每日</td><td class='left'>PO × 料号/款 × 码 × 未交量 × 交期</td><td class='left'>鞋面链=在途+已下单未出；决定是否再下单</td><td class='left note'>清华 11/3：ALLIED 已下单未出 ≈ IF 鞋面在途。<br>请 Doris 确认是否同一数据源；若是，接口文档写清别名即可，避免双计。字段名待Doris确认。</td></tr><tr class='p2'><td>15</td><td><b>P2</b></td><td>IF ERP BOM</td><td class='left'>BOM 主数据：鞋面料号↔成品款；分码单耗 Bd_yl1–20</td><td>新建</td><td class='left mono'>建议：/api/open/v1/if/bom<br>（路径待Doris定）</td><td>每周（变动少）</td><td class='left'>成品xh ↔ U料号；各料 Bd_yl1–20（1–14=EU35–48，15–20=美码半码）</td><td class='left'>共用鞋面防重复算；料件折双</td><td class='left note'>Boss 11/3 已提供 IF BOM 清单（70 BOM / 1,378行）作一次性；长期需接口周更。<br>已知：U2100002=026/3，U6700020=805/S，U6500009=807/8。字段名待Doris确认。</td></tr><tr class='p2'><td>16</td><td><b>P2</b></td><td>QC / IF</td><td class='left'>（可选）印度鞋面来料检验不良率流水</td><td>可选·非阻塞</td><td class='left mono'>日后 /api/open/v1/if/qc-incoming-defect（待定）</td><td>每批/每月</td><td class='left'>批次/款 × 检验数 × 不良数 × 不良率</td><td class='left'>刷新第②③层损耗参数（当前固定 15%）</td><td class='left note'>Boss 11/6：实际不良 12–15%，安库按保守 15% 作规则参数；改善目标＜4% 不作补货参数。<br>非 Doris P0；有流水后再自动刷新。字段名待Doris确认。</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="card">
+<h2>已有 Open API 速查（文档）</h2>
+<ul>
+<li>Base（现状）：<code>https://zr.api.kprsafety.com.cn:5001</code>（待改 443）</li>
+<li>销售月统计：<code>GET /api/open/v1/msl/sales-month-statistics</code></li>
+<li>合同逾期：<code>GET /api/open/v1/msl/contract-overdue</code>（每日最多 2 次成功调用）</li>
+<li>新建路径上表仅为建议命名，以 Doris 最终路由为准；请勿臆造未文档化的字段名。</li>
+</ul>
+</div>
+
+</div>
+<footer>KPR PMC · 采购后段 Bot · https://peteryao100-cyber.github.io/kpr-cf-orders/if_ankui_doris_api_spec_20261106.html</footer>
+</body></html>
