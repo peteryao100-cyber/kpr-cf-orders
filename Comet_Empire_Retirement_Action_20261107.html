@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Comet Empire 退休与养老风险行动看板</title><style>
+*{box-sizing:border-box}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f5f6f8;color:#1f2933;font-size:14px;line-height:1.55}
+header{background:#0f2a44;color:#fff;padding:18px 24px}header h1{margin:0;font-size:22px}header .sub{opacity:.85;font-size:13px;margin-top:4px}
+main{max-width:1280px;margin:0 auto;padding:16px 20px 40px}section{background:#fff;border-radius:10px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+h2{font-size:17px;margin:0 0 10px;border-left:4px solid #1f6feb;padding-left:8px}h3{font-size:15px;margin:14px 0 6px}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid #dde3ea;padding:6px 8px;vertical-align:top;text-align:left}th{background:#eef2f7;position:sticky;top:0}
+.badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;white-space:nowrap}.done{background:#d1f2dd;color:#0b6b2f}.evid{background:#fff1c2;color:#7a5600}.dec{background:#fde2e1;color:#9b1c1c}.todo{background:#e5e7eb;color:#374151}
+.P0{background:#9b1c1c;color:#fff}.P1{background:#d97706;color:#fff}.P2{background:#2563eb;color:#fff}
+.wrap{overflow-x:auto}#emps td:nth-child(2){white-space:nowrap}
+.tag{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:6px;padding:0 6px;margin:1px 2px;font-size:12px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}.bar select,.bar button{padding:5px 10px;border:1px solid #cbd5e1;border-radius:6px;background:#fff;font-size:13px;cursor:pointer}
+.kpi{display:flex;gap:10px;flex-wrap:wrap}.kpi div{flex:1;min-width:140px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px}.kpi b{font-size:20px;display:block}
+.warn{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px 12px;margin:8px 0}.note{color:#52606d;font-size:12px}
+ul{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}.chk td:first-child{width:34px;text-align:center}
+@media print{.bar,.noprint{display:none}body{background:#fff}section{box-shadow:none;break-inside:avoid-page}th{position:static}tr{display:table-row!important}}
+</style></head><body>
+<header><h1>Comet Empire 退休与养老风险行动看板</h1><div class="sub">截至 2026-11-07（北京时间）｜版本 v1.0｜状态只按已有证据标注，不预设结论｜公开安全版：员工以A01–A13匿名，不含个人身份信息与金额</div></header><main>
+<section><h2>概览</h2><div class="kpi"><div><b>14</b>行动项</div><div><b>8</b>P0 优先</div><div><b>1</b>已完成子步骤</div><div><b>6</b>待取证</div><div><b>2</b>待决策</div><div><b>5</b>未开始</div><div><b>41</b>表列未缴月数（4人，<u>不是责任上限</u>）</div></div><div class="warn">要点：① 表内“养老参保月数”是公司填报数，不是全国累计数；② 41个月只是表里列出的未缴时段，入职至首次参保的空档（其中两人以“年”计）、低基数、异地参保等都还没算进去；③ 补缴、社保核定、员工确认目前都没有证据，所以没有任何一项标为“办理中”或“已完成”；④ 到了退休年龄不等于公司免责，欠缴本金和滞纳金仍要补，社保机构补办不了导致员工领不到待遇的，员工可以要求赔偿损失（S3 第86条、S6）。</div></section>
+<section><h2>一、行动项目、建议处理方式与实际状态</h2><div class="bar noprint">状态 <select id="fs" onchange="f()"><option value="">全部</option><option>已完成子步骤</option><option>待取证</option><option>待决策</option><option>未开始</option></select> 优先级 <select id="fp" onchange="f()"><option value="">全部</option><option>P0</option><option>P1</option><option>P2</option></select> <span id="cnt" class="note"></span> <button onclick="window.print()">🖨 打印</button></div>
+<table id="acts"><thead><tr><th>编号</th><th>优先级</th><th>实际状态</th><th>具体措施（建议处理方式）</th><th>建议责任岗位<br><span class="note">尚未指派</span></th><th>证据缺口</th><th>验收条件</th><th>依据</th></tr></thead><tbody>
+<tr data-s="已完成子步骤" data-p="P0"><td><b>R01</b></td><td><span class="badge P0">P0</span></td><td><span class="badge done">已完成子步骤</span></td><td>收到13人临退休参保表并完成初筛：已识别表列4人共41个月未缴时段、入职至首次参保空档、2人已到改革后退休年龄、1人异地自行参保。</td><td>HR（建议）</td><td>表内数据仅为公司填报，未与官方缴费记录核对</td><td>初筛清单已建立（本看板）</td><td><a href="#S1">S1</a> <a href="#S3">S3</a></td></tr>
+<tr data-s="待取证" data-p="P0"><td><b>R02</b></td><td><span class="badge P0">P0</span></td><td><span class="badge evid">待取证</span></td><td>为13人逐一调取官方个人参保缴费记录（全国累计，含外地、前单位），作为后续所有判断的基础。</td><td>HR 社保专员（建议）</td><td>全国累计缴费月数、各段缴费基数、中断月份</td><td>每人有盖章或系统打印的参保证明，并已录入私有版</td><td><a href="#S3">S3</a></td></tr>
+<tr data-s="待取证" data-p="P0"><td><b>R03</b></td><td><span class="badge P0">P0</span></td><td><span class="badge evid">待取证</span></td><td>A01、A05已到改革后法定退休年龄（表注“返聘”）：先核实是否已领养老金；是否书面约定过弹性延迟（须提前1个月书面明确）；如属超龄用工，是否签了书面用工协议、是否参加工伤保险，养老保险是否已协商由单位继续缴。</td><td>HR主管+行政（建议）</td><td>退休核定结果、弹性延迟书面协议、用工协议、工伤参保记录</td><td>两人状态均有书面证据；工伤保险已确认在缴；养老续缴方式已书面约定</td><td><a href="#S2">S2</a> <a href="#S8">S8</a></td></tr>
+<tr data-s="待决策" data-p="P0"><td><b>R04</b></td><td><span class="badge P0">P0</span></td><td><span class="badge dec">待决策</span></td><td>表列4人共41个月未缴（A02、A03、A11、A12）：备齐劳动合同和工资流水，向东莞税务或社保确认能否受理补缴、按哪个基数补、滞纳金怎么算，再由Boss决定补缴方案。</td><td>HR+财务（建议）</td><td>劳动合同、当期工资凭证、东莞受理口径、金额测算</td><td>东莞主管部门出具书面或系统受理结果；补缴金额经财务复核，并报Boss批准</td><td><a href="#S3">S3</a> <a href="#S10">S10</a></td></tr>
+<tr data-s="待取证" data-p="P0"><td><b>R05</b></td><td><span class="badge P0">P0</span></td><td><span class="badge evid">待取证</span></td><td>入职至首次参保之间的空档（不限于41个月）：A10、A13的空档以“年”计，要优先核查；A01、A03、A04、A08、A11另有约1~5个月待核。要查清当年的用工主体、户籍参保情况，以及有无其他险种或外地参保。</td><td>HR+法务（建议）</td><td>入职档案、当年劳动合同或用工主体、当年参保记录</td><td>每人的空档逐月判定为“应补/无需补/无法补”，并有依据</td><td><a href="#S3">S3</a></td></tr>
+<tr data-s="待取证" data-p="P0"><td><b>R06</b></td><td><span class="badge P0">P0</span></td><td><span class="badge evid">待取证</span></td><td>A06在家乡自行参保：用人单位依法缴费的义务不能因员工自行参保或承诺而免除（个人承诺无效）。核实她参的是职工养老还是城乡居民养老，再把在职期间的整改方案报Boss。</td><td>HR（建议）</td><td>异地参保凭证（险种、缴费主体、月份）</td><td>缴费主体和险种已核清；整改方案经Boss批准</td><td><a href="#S3">S3</a> <a href="#S7">S7</a></td></tr>
+<tr data-s="待取证" data-p="P1"><td><b>R07</b></td><td><span class="badge P1">P1</span></td><td><span class="badge evid">待取证</span></td><td>缴费基数差额（与欠缴月数分开核）：比对各期实际工资和申报基数，找出低基数的月份。</td><td>财务+HR（建议）</td><td>各月工资总额、申报基数、当期下限</td><td>有逐月差额表；“欠缴月数”和“基数差额”两项分开列示</td><td><a href="#S3">S3</a></td></tr>
+<tr data-s="待取证" data-p="P0"><td><b>R08</b></td><td><span class="badge P0">P0</span></td><td><span class="badge evid">待取证</span></td><td>缴费年限测算：按全国累计记录，加上到退休前的缴费、可补月数，对照各人退休年份的最低年限（2030年起递增）逐人测算。A02按表内数粗算，补回11个月可能正好决定够不够；A11、A12补齐后仍可能不足。</td><td>HR（建议）</td><td>全国累计记录（R02）、退休方式选择</td><td>每人一张测算表，经复核后写入私有版</td><td><a href="#S1">S1</a> <a href="#S2">S2</a></td></tr>
+<tr data-s="未开始" data-p="P1"><td><b>R09</b></td><td><span class="badge P1">P1</span></td><td><span class="badge todo">未开始</span></td><td>原法定退休年龄类别核定：女职工按原50岁（工人）还是原55岁（管理、技术岗）？有无特殊工种？以社保经办机构的认定为准。</td><td>HR（建议）</td><td>岗位档案、过往社保登记的身份类别</td><td>每人的类别都有经办机构口径或档案依据</td><td><a href="#S1">S1</a></td></tr>
+<tr data-s="未开始" data-p="P1"><td><b>R10</b></td><td><span class="badge P1">P1</span></td><td><span class="badge todo">未开始</span></td><td>退休前沟通流程：到龄前书面告知员工的缴费年限状况和可选方案（正常、弹性提前、弹性延迟、延长缴费），不得强制或变相强制员工选择退休年龄。</td><td>HR主管（建议）</td><td>告知书模板、签收记录</td><td>每位员工在到龄前有签收的告知书</td><td><a href="#S2">S2</a></td></tr>
+<tr data-s="未开始" data-p="P1"><td><b>R11</b></td><td><span class="badge P1">P1</span></td><td><span class="badge todo">未开始</span></td><td>劳动关系处理口径：员工开始领养老金时合同终止（劳动合同法44条第2项）；到法定退休年龄可终止（实施条例21条），但年限不足时，裁判上有劳动关系被认定延续的风险。在本单位连续工作满15年、且距法定退休年龄不足5年的员工，受42条第5项解除限制。</td><td>法务或外部律师（建议）</td><td>律师意见、东莞或广东本地裁判口径</td><td>每人的终止、续用方案有书面法律意见</td><td><a href="#S4">S4</a> <a href="#S5">S5</a> <a href="#S7">S7</a></td></tr>
+<tr data-s="未开始" data-p="P0"><td><b>R12</b></td><td><span class="badge P0">P0</span></td><td><span class="badge todo">未开始</span></td><td>全员排查（不只这13人），范围见页面底部第二节。</td><td>HR+财务（建议）</td><td>全员花名册、全员缴费明细、工资表、离职名单</td><td>全员排查表完成，问题人数和月数经复核</td><td><a href="#S3">S3</a></td></tr>
+<tr data-s="未开始" data-p="P2"><td><b>R13</b></td><td><span class="badge P2">P2</span></td><td><span class="badge todo">未开始</span></td><td>医保退休待遇另行核对：退休后免缴医保、享受待遇须达到规定的医保缴费年限（年限另有规定，不等于养老的最低年限）。按广东、东莞现行口径逐人核查。</td><td>HR（建议）</td><td>广东、东莞医保退休年限现行规定及各人医保缴费记录</td><td>每人医保年限的结论单独列出</td><td><a href="#S3">S3</a></td></tr>
+<tr data-s="待决策" data-p="P1"><td><b>R14</b></td><td><span class="badge P1">P1</span></td><td><span class="badge dec">待决策</span></td><td>预算与决策：汇总补缴本金（单位和个人两部分）、滞纳金、潜在的赔偿或补偿风险，由Boss拍板。金额待R02、R04、R07完成后测算，目前不给数字。</td><td>财务（建议）</td><td>R02/R04/R07 的结果</td><td>Boss书面确认方案</td><td><a href="#S3">S3</a> <a href="#S6">S6</a> <a href="#S7">S7</a></td></tr>
+</tbody></table><p class="note">状态说明：已完成子步骤＝只完成了资料接收或初筛；待取证＝缺官方记录或书面证据；待决策＝需要Boss拍板；未开始＝还没启动。补缴、核定、员工确认在拿到证据之前，一律不标“办理中”或“已完成”。</p></section>
+<section><h2>二、13人逐人状态（匿名 A01–A13，按原表顺序编号）</h2><div class="bar noprint">关注点 <select id="ft" onchange="g()"><option value="">全部</option><option>“返聘”/领取状态待核</option><option>入职至参保空档待核</option><option>入职至参保长期空档待核</option><option>已到改革后法定退休年龄</option><option>异地自行参保，公司义务待核</option><option>缴费年限可能取决于补缴</option><option>缴费年限缺口待全国记录核实</option><option>补齐后年限仍可能不足</option><option>表列未缴时段（公司应补）</option></select></div>
+<table id="emps"><thead><tr><th>匿名ID</th><th>初筛关注点</th><th>关联行动</th><th>风险评级</th><th>实际状态</th></tr></thead><tbody>
+<tr data-t='已到改革后法定退休年龄|“返聘”/领取状态待核|入职至参保空档待核'><td><b>A01</b></td><td><span class=tag>已到改革后法定退休年龄</span><span class=tag>“返聘”/领取状态待核</span><span class=tag>入职至参保空档待核</span></td><td>R02,R03,R05,R11</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='表列未缴时段（公司应补）|缴费年限可能取决于补缴'><td><b>A02</b></td><td><span class=tag>表列未缴时段（公司应补）</span><span class=tag>缴费年限可能取决于补缴</span></td><td>R02,R04,R08</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='表列未缴时段（公司应补）|入职至参保空档待核'><td><b>A03</b></td><td><span class=tag>表列未缴时段（公司应补）</span><span class=tag>入职至参保空档待核</span></td><td>R02,R04,R05</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='入职至参保空档待核'><td><b>A04</b></td><td><span class=tag>入职至参保空档待核</span></td><td>R02,R05</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='已到改革后法定退休年龄|“返聘”/领取状态待核|缴费年限缺口待全国记录核实'><td><b>A05</b></td><td><span class=tag>已到改革后法定退休年龄</span><span class=tag>“返聘”/领取状态待核</span><span class=tag>缴费年限缺口待全国记录核实</span></td><td>R02,R03,R08,R11</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='异地自行参保，公司义务待核'><td><b>A06</b></td><td><span class=tag>异地自行参保，公司义务待核</span></td><td>R02,R06</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='缴费年限缺口待全国记录核实'><td><b>A07</b></td><td><span class=tag>缴费年限缺口待全国记录核实</span></td><td>R02,R08</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='入职至参保空档待核|缴费年限缺口待全国记录核实'><td><b>A08</b></td><td><span class=tag>入职至参保空档待核</span><span class=tag>缴费年限缺口待全国记录核实</span></td><td>R02,R05,R08</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='缴费年限缺口待全国记录核实'><td><b>A09</b></td><td><span class=tag>缴费年限缺口待全国记录核实</span></td><td>R02,R08</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='入职至参保长期空档待核'><td><b>A10</b></td><td><span class=tag>入职至参保长期空档待核</span></td><td>R02,R05,R09,R11</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='表列未缴时段（公司应补）|入职至参保空档待核|补齐后年限仍可能不足'><td><b>A11</b></td><td><span class=tag>表列未缴时段（公司应补）</span><span class=tag>入职至参保空档待核</span><span class=tag>补齐后年限仍可能不足</span></td><td>R02,R04,R05,R08</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='表列未缴时段（公司应补）|补齐后年限仍可能不足'><td><b>A12</b></td><td><span class=tag>表列未缴时段（公司应补）</span><span class=tag>补齐后年限仍可能不足</span></td><td>R02,R04,R08</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+<tr data-t='入职至参保长期空档待核'><td><b>A13</b></td><td><span class=tag>入职至参保长期空档待核</span></td><td>R02,R05,R09,R11</td><td>拿到官方记录后再评定</td><td><span class='badge evid'>待取证</span></td></tr>
+</tbody></table><p class="note">公开版不显示姓名、证件号、工号、生日、入职日期、退休月份、缴费月数和金额，逐人明细只在内部版。41个月是4人表列未缴时段的合计，<b>不是公司责任上限</b>。</p></section>
+<section><h2>三、假定确属公司欠缴时的责任（简要）</h2><ul>
+<li><b>补缴本金与滞纳金</b>：社保征收机构责令限期缴纳或补足，并自欠缴之日起按日加收万分之五的滞纳金；逾期仍不缴纳的，处欠缴数额1倍以上3倍以下罚款（S3 第63、86条）。不办理社保登记的，另有责令改正和罚款（S3 第84条）。补缴时个人部分怎么承担、追溯到哪一年、按哪个基数补，要以东莞主管部门的口径为准（待确认）。</li>
+<li><b>待遇损失赔偿</b>：社保机构补办不了、导致员工无法享受社保待遇的，员工可以要求用人单位赔偿损失，属于劳动争议（S6 第1条第5项）。</li>
+<li><b>解除补偿</b>：单位未依法缴社保，员工可以被迫解除合同并要求经济补偿；约定或承诺不缴社保的一律无效；单位依法补缴后，可以请求员工返还已付的这笔补偿（S4 第38、46条；S7 第19条）。</li>
+<li><b>劳动关系终止</b>：员工开始依法享受基本养老保险待遇时，劳动合同终止（S4 第44条第2项）；到法定退休年龄可以终止（S5 第21条）。但缴费年限不足、领不了养老金的情形下，有劳动关系被认定延续的裁判风险，要看本地口径（R11）。</li>
+<li><b>超龄用工</b>（2026-07-01起）：须签书面用工协议，单位须为其缴纳工伤保险；没在领养老金的，可以个人身份继续缴养老保险，也可以经协商由单位缴；弹性延迟退休期间仍适用《劳动合同法》（S8 第6、15、16、23条）。</li></ul></section>
+<section><h2>四、除了这13人，其他人就没问题吗？——不是，需要全员排查（R12）</h2>
+<p>这13人只是“临近退休”的样本，同样的问题可能出现在任何在职或已离职的员工身上，只是还没到退休时点，所以没暴露出来。排查清单：</p><ul>
+<li><b>入职未参保或延迟参保</b>：用工之日起30日内应办理社保登记（S3 第58条），逐人比对入职月份和首次参保月份。</li>
+<li><b>缴费基数偏低</b>：申报基数与实际工资总额（含加班、津贴、奖金等）不一致，或低于当期下限。</li>
+<li><b>异地或居民保替代</b>：员工在家乡参加城乡居民养老或灵活就业参保，不能替代单位缴费义务；员工的“自愿放弃”承诺无效（S7 第19条）。</li>
+<li><b>离职当月或最后几个月漏缴</b>、停保早于离职日期，以及离职后又回来的人员断档。</li>
+<li><b>试用期不缴、实习或临时工不缴</b>、劳务派遣或外包人员的缴费主体不清。</li>
+<li><b>已到龄或返聘人员</b>：领取状态、弹性延迟书面协议、超龄用工协议、工伤保险（S2、S8）。</li>
+<li><b>外籍、港澳台人员</b>的参保义务与证件有效期。</li>
+<li><b>医保与养老分开核</b>：医保退休待遇的年限要求与养老不同（S3 第27条）。</li></ul>
+<p class="note">建议输出：全员一张排查表（每人：入职月、首次参保月、断档月份、基数差、异地参保、离职月与停保月），汇总问题人数和月数，再测算金额，报Boss决策。</p></section>
+<section><h2>五、退休条件是什么？（说明）</h2>
+<p>领取职工基本养老金要同时满足两件事：<b>①达到法定退休年龄</b>（或者在符合条件时选择弹性提前退休）；<b>②累计缴费达到对应年份的最低缴费年限</b>。只满足①不满足②，员工到龄了也不能按月领养老金，需要延长缴费等补救（S3 第16条；S1 第2条）。</p>
+<h3>1. 法定退休年龄（2025-01-01起渐进延迟，S1）</h3><ul>
+<li>男职工：原60岁，每4个月延迟1个月，逐步延到63岁。</li>
+<li>原法定退休年龄55岁的女职工（一般为管理、技术岗）：每4个月延迟1个月，逐步延到58岁。</li>
+<li>原法定退休年龄50岁的女职工（一般为工人岗）：每2个月延迟1个月，逐步延到55岁。</li>
+<li>每个人的具体退休年月按出生年月和原退休年龄类别确定，以人社部“法定退休年龄计算器”和社保经办机构核定为准；女职工属于50还是55，要以档案和经办机构认定为准（R09）。特殊工种等提前退休另有规定（S1 第8条）。</li></ul>
+<h3>2. 最低缴费年限（S1 第2条、附件4；S11 转载表）</h3>
+<table><tr><th>退休年份</th><td>2025</td><td>2026</td><td>2027</td><td>2028</td><td>2029</td><td>2030</td><td>2031</td><td>2032</td><td>2033</td><td>2034</td><td>2035</td><td>2036</td><td>2037</td><td>2038</td><td>2039</td></tr><tr><th>最低年限</th><td>15年</td><td>15年</td><td>15年</td><td>15年</td><td>15年</td><td>15年6个月</td><td>16年</td><td>16年6个月</td><td>17年</td><td>17年6个月</td><td>18年</td><td>18年6个月</td><td>19年</td><td>19年6个月</td><td>20年</td></tr></table>
+<h3>3. 三种退休方式（S2）</h3>
+<table><tr><th>方式</th><th>年龄条件</th><th>缴费年限按哪一年算</th><th>程序</th></tr>
+<tr><td>正常退休</td><td>达到法定退休年龄</td><td>本人法定退休年龄对应年份</td><td>单位应及时办理；不晚于退休当月向社保经办机构申请；审核通过的退休时间次月起领取（第3、8、9条）</td></tr>
+<tr><td>弹性提前退休</td><td>职工自愿；最多比法定退休年龄提前3年，且不得早于原法定退休年龄（男60、女50或55）</td><td><b>所选择退休时间</b>对应年份（第7条），且须先满足最低年限（第1条）</td><td>至少在所选退休时间前<b>3个月</b>书面告知单位（第2条）</td></tr>
+<tr><td>弹性延迟退休</td><td>达到法定退休年龄，单位与职工<b>协商一致</b>；最多延迟3年；确定后不再延长</td><td>本人<b>法定退休年龄</b>对应年份（第7条）</td><td>提前<b>1个月</b>书面明确延迟时间等事项；延迟期间劳动关系延续，单位和职工照常缴社保（第4、5条）；到期终止并办退休，期间协商一致也可提前终止（第6条）</td></tr></table>
+<p class="note">另外：已经领取养老金的人，不再受理弹性退休申请（第10条）；2024-12-31前已达原法定退休年龄的人员不适用这个办法（第14条）；单位不得强制或变相强制职工选择退休年龄（第11条）。</p>
+<h3>4. 到龄了但年限不够怎么办</h3><ul>
+<li>可以延长缴费到最低年限后按月领取；2011-07-01前参保、延长缴费5年后仍不足的，可以一次性缴费到满（S1 第2条；S9 第2条）。</li>
+<li>也可以转入城乡居民养老，或者书面申请终止职工养老关系、一次性领取个人账户余额（S3 第16条；S9 第3条）。</li>
+<li>广东：正常补缴必须以真实劳动关系为前提，由单位向税务或社保申请；不符合补缴条件的可以延缴（S10）。东莞的具体受理口径待确认。</li></ul>
+<h3>5. 医保退休待遇（不要和养老混在一起）</h3>
+<p>到法定退休年龄时，医保累计缴费达到规定年限的，退休后不再缴医保、按规定享受待遇；不够的可以缴到规定年限（S3 第27条）。医保的年限要求另按广东、东莞规定核查（R13），不等于养老的最低年限。</p></section>
+<section><h2>六、退休条件核对表（逐项打勾）</h2><table class="chk"><thead><tr><th>☐</th><th>核对项</th><th>依据</th></tr></thead><tbody>
+<tr><td>☐</td><td>改革后法定退休年龄已确定（出生年月＋原退休年龄类别：男60 / 女50 / 女55；有无特殊工种）</td><td><a href="#S1">S1</a></td></tr>
+<tr><td>☐</td><td>原退休年龄类别有档案或经办机构依据（女职工50/55尤其要核）</td><td><a href="#S1">S1</a> <a href="#S2">S2</a></td></tr>
+<tr><td>☐</td><td>官方全国累计养老缴费月数已调取（不能只看公司表）</td><td><a href="#S3">S3</a></td></tr>
+<tr><td>☐</td><td>退休年份对应的最低年限已对照（2029年及以前15年，2030年起每年加6个月，2039年20年）</td><td><a href="#S1">S1</a> <a href="#S11">S11</a></td></tr>
+<tr><td>☐</td><td>选弹性提前退休的：已满所选退休时间对应年份的最低年限；提前不超过3年、不早于原退休年龄；员工自愿；至少提前3个月书面告知单位</td><td><a href="#S2">S2</a></td></tr>
+<tr><td>☐</td><td>选弹性延迟退休的：单位与职工协商一致，不超过3年；提前1个月书面明确；延迟期间照常缴社保；年限按法定退休年龄对应年份</td><td><a href="#S2">S2</a></td></tr>
+<tr><td>☐</td><td>年限不够的：已评估延长缴费、一次性缴费（限2011-07-01前参保且延缴5年仍不足）、转城乡居民养老等路径</td><td><a href="#S1">S1</a> <a href="#S9">S9</a> <a href="#S3">S3</a></td></tr>
+<tr><td>☐</td><td>单位欠缴月份已逐月判定（应补 / 已补 / 无法补），基数差额另行列示</td><td><a href="#S3">S3</a></td></tr>
+<tr><td>☐</td><td>单位不晚于退休当月提出养老金申领；经办机构审核通过</td><td><a href="#S2">S2</a></td></tr>
+<tr><td>☐</td><td>医保退休年限另行核对</td><td><a href="#S3">S3</a></td></tr>
+<tr><td>☐</td><td>劳动关系：开始领养老金即终止；未能领取的按法律意见处理；超龄用工须签书面协议并缴工伤保险</td><td><a href="#S4">S4</a> <a href="#S5">S5</a> <a href="#S8">S8</a></td></tr>
+</tbody></table></section>
+<section><h2>官方来源（截至 2026-11-07 核对）</h2><table><thead><tr><th>编号</th><th>文件</th><th>日期</th><th>链接</th></tr></thead><tbody>
+<tr id="S1"><td>S1</td><td>全国人大常委会关于实施渐进式延迟法定退休年龄的决定（含国务院办法、附件1-4）</td><td>2024-09-13通过，2025-01-01施行</td><td><a href="http://www.npc.gov.cn/npc/c2/kgfb/202409/t20240913_439534.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S2"><td>S2</td><td>人社部 中组部 财政部《实施弹性退休制度暂行办法》（人社部发〔2024〕94号）</td><td>2024-12-31印发，2025-01-01施行</td><td><a href="https://www.mohrss.gov.cn/SYrlzyhshbzb/shehuibaozhang/zcwj/202501/t20250101_533701.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S3"><td>S3</td><td>《中华人民共和国社会保险法》（2018修正）第16、27、58、60、63、84、86条</td><td>2018-12-29修正</td><td><a href="https://www.gov.cn/guoqing/2021-10/29/content_5647616.htm" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S4"><td>S4</td><td>《中华人民共和国劳动合同法》第38、42、44、46条</td><td>2012-12-28修正</td><td><a href="http://www.npc.gov.cn/npc/c2/c183/c198/201905/t20190522_26978.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S5"><td>S5</td><td>《劳动合同法实施条例》第21条</td><td>2008-09-18公布施行</td><td><a href="https://www.gov.cn/zhengce/zhengceku/2008-09/19/content_6630.htm" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S6"><td>S6</td><td>最高法劳动争议司法解释（一）法释〔2020〕26号 第1条第5项</td><td>2021-01-01施行</td><td><a href="https://www.court.gov.cn/zixun/xiangqing/282121.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S7"><td>S7</td><td>最高法劳动争议司法解释（二）法释〔2025〕12号 第16、19、21条</td><td>2025-09-01施行</td><td><a href="https://www.court.gov.cn/zixun/xiangqing/472691.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S8"><td>S8</td><td>《超龄劳动者基本权益保障暂行规定》（人社部等5部门令第56号）第6、15、16、23条</td><td>2026-05-10公布，2026-07-01施行</td><td><a href="https://www.gov.cn/gongbao/2026/issue_12786/202606/content_7071610.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S9"><td>S9</td><td>人社部令第13号《实施〈社会保险法〉若干规定》第2、3条（北京市政府转载）</td><td>2011-07-01施行</td><td><a href="https://www.beijing.gov.cn/zhengce/zhengcefagui/qtwj/201608/t20160811_776550.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S10"><td>S10</td><td>广东省社会保险基金管理局：正常补缴须以真实劳动关系为前提、由单位向税务或社保申请；不符合可延缴</td><td>2025-06-24</td><td><a href="http://www.panyu.gov.cn/ztzx/qmtjzwgkh/shbxly/content/post_10324247.html" target="_blank" rel="noopener">官方页面</a></td></tr>
+<tr id="S11"><td>S11</td><td>提高最低缴费年限情况表（附件4的政府转载）</td><td>2025-06-30</td><td><a href="https://www.zhuji.gov.cn/art/2025/6/30/art_1229074495_59160348.html?xxgkhide=1" target="_blank" rel="noopener">官方页面</a></td></tr>
+</tbody></table><p class="note">待确认：东莞关于历史补缴的追溯起点、补缴基数、滞纳金承担方式和个人部分处理；广东、东莞医保退休年限；“到龄但年限不足”时劳动关系能否终止的本地裁判口径。以上未确认事项本看板不作结论。本看板为内部管理参考，不构成正式法律意见。</p></section>
+</main><script>
+function f(){var s=document.getElementById('fs').value,p=document.getElementById('fp').value,n=0;
+document.querySelectorAll('#acts tbody tr').forEach(function(r){var ok=(!s||r.dataset.s==s)&&(!p||r.dataset.p==p);r.style.display=ok?'':'none';if(ok)n++});
+document.getElementById('cnt').textContent=n+' 项';}
+function g(){var t=document.getElementById('ft').value;document.querySelectorAll('#emps tbody tr').forEach(function(r){r.style.display=(!t||r.dataset.t.indexOf(t)>=0)?'':'none'})}
+f();</script></body></html>
