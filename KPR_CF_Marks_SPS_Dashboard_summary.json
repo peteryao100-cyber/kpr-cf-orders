@@ -1,9 +1,9 @@
 {
  "total_pos": 95,
  "dedup": {
-  "sps_order_rows": 150,
+  "sps_order_rows": 149,
   "distinct_pos": 95,
-  "multi_version_pos": 43,
+  "multi_version_pos": 42,
   "exact_duplicate_order_rows": 0,
   "asn_rows": 88,
   "distinct_asns": 88,
@@ -54,11 +54,10 @@
   "14744347",
   "14744344",
   "14744348",
-  "14744345",
-  "14686936"
+  "14744345"
  ],
  "action_items": 9,
- "order_rows": 150,
+ "order_rows": 149,
  "asns": 88,
  "invoices": 86,
  "counts": {
@@ -72,17 +71,27 @@
   [
    "14976418",
    "due",
-   "Due in 5d (11-12), no ASN sent / 5天内到期"
+   "Due in 3d (11-12), no ASN sent / 3天内到期"
+  ],
+  [
+   "14946927",
+   "due",
+   "Due in 7d (11-16), no ASN sent / 7天内到期"
+  ],
+  [
+   "14946928",
+   "due",
+   "Due in 7d (11-16), no ASN sent / 7天内到期"
   ],
   [
    "14934994",
    "due",
-   "Due in 5d (11-12), no ASN sent / 5天内到期"
+   "Due in 3d (11-12), no ASN sent / 3天内到期"
   ],
   [
    "14934991",
    "due",
-   "Due in 5d (11-12), no ASN sent / 5天内到期"
+   "Due in 3d (11-12), no ASN sent / 3天内到期"
   ]
  ],
  "need_invoice": [],
@@ -105,7 +114,7 @@
   "OPEN ORDER": 8,
   "ASN OPENED": 1,
   "NEED INVOICE": 0,
-  "Due within 7 days": 3,
+  "Due within 7 days": 5,
   "Late": 0,
   "Special attention": 0,
   "Invoiced (header)": 86
@@ -114,7 +123,7 @@
   "OPEN ORDER": 4034,
   "ASN OPENED": 2272,
   "NEED INVOICE": 0,
-  "Due within 7 days": 4011,
+  "Due within 7 days": 4661,
   "Late": 0,
   "Special attention": 0,
   "Outstanding (Unshipped)": 6306
