@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>美国工厂进口设备用电：和加拿大有何不同（2026-11-11）</title>
+<style>
+body{margin:0;background:#fffdf7;color:#1f2933;font:19px/1.75 -apple-system,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+.wrap{max-width:860px;margin:auto;padding:18px 16px 60px}
+h1{font-size:28px;line-height:1.4;color:#1d4ed8}
+h2{font-size:23px;margin:0 0 10px;color:#0f766e;border-left:6px solid #14b8a6;padding-left:10px}
+section{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:16px 18px;margin:18px 0;box-shadow:0 1px 3px #0001}
+.bridge{background:#eef6ff;border-radius:10px;padding:8px 12px;color:#1e3a8a}
+.key{background:#ecfdf5;border-radius:10px;padding:8px 12px;margin-bottom:4px}
+.next{background:#fff7ed;border-radius:10px;padding:8px 12px;color:#9a3412}
+.note{background:#fef9c3;border-radius:10px;padding:10px 14px;margin:12px 0}
+.dec{background:#eff6ff;border:2px solid #2563eb;border-radius:14px;padding:14px 16px;margin:12px 0}
+.c{color:#047857;font-weight:600}
+.e{color:#b45309;font-weight:600}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:16px;margin:10px 0}
+th,td{border:1px solid #d1d5db;padding:7px 9px;vertical-align:top;text-align:left}
+th{background:#f1f5f9}
+ol,ul{padding-left:1.3em}
+.foot{font-size:14px;color:#6b7280;margin-top:20px}
+@media(max-width:640px){body{font-size:18px}h1{font-size:24px}table{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>美国工厂进口设备用电：和加拿大有何不同</h1>
+<p>2026-11-11（北京时间）· KPR 设厂 · 写给没有学过电气法规的人看 · 工厂地址：3750 E Dale Ave, Henderson, NV</p>
+
+<div class="note">怎么看本文：标 <b><span class="c">【已确认】</span></b> 的，是查过美国或内华达官方条文、本市条例，或实验室官方网页的；标 <b><span class="e">【未核实】</span></b> 的，是还缺原文、报价或现场检查，不能当成事实。本文不是律师意见。全文没有对外联系任何人。</div>
+
+<section>
+<h2>第 0 章　一句话结论，和您要拍板的两件事</h2>
+<p>美国和加拿大不一样。美国海关通常不会因为机器上没有“合格标”就拦住进口。但机器运到 Henderson 装好、要接线通电时，必须过两道关：</p>
+<ol>
+<li>内华达的安全生产部门（Nevada OSHA）按联邦 OSHA 的规矩：工厂里给工人用的电气设备，原则上要经过美国承认的实验室（叫 <b>NRTL</b>）认定是安全的。</li>
+<li>Henderson 市政府的建设与消防安全部门，按 2023 年版国家电气规范（NEC）发许可证、来厂检查。没有美国承认的标志时，通常要请实验室做“现场评估”并贴标，检查员才更容易放行。</li>
+</ol>
+<p>所以：2019 年在加拿大那种“出厂前请电工到中国检查、整改、贴标后再出口”的做法，在美国<b>仍然非常值得做</b>。但美国没有一个全国统一的 ESA。出厂前预检不能代替到厂后再做一次评估，也不能代替本市检查员验收。</p>
+
+<div class="dec">
+<p><b>请 Boss 现在拍板的两件事：</b></p>
+<ol>
+<li>向 DESMA 和中国设备商下单前，合同里要不要强制写清：电压必须是 <b>480V、60Hz</b>；电路按美国工业机械标准 <b>NFPA 79</b> 做；电控柜按 <b>UL 508A</b> 做；如果整机没有美国实验室标志，就必须由指定实验室做“出厂前预检 + 到美国后再贴标”，费用和整改由谁出。</li>
+<li>要不要现在让本地持牌电工去问市政府：接新机器要办哪种电气许可，以及他们认不认 UL、Intertek、CSA、TÜV 的现场评估标签。这次没有对外询问。</li>
+</ol>
+</div>
+<p class="key"><b>这一章的重点</b>：美国可以先进口，但不等于到了工厂就能接电。</p>
+<p class="next"><b>为什么接下一章</b>：先把加拿大和美国的差别摆在一张表里，避免用 2019 年的经验直接套到 Henderson。</p>
+</section>
+
+<section>
+<h2>第 1 章　加拿大和美国，到底差在哪里</h2>
+<p class="bridge"><b>来龙去脉</b>：第 0 章说两国不一样，这一章用对照表把差别说清楚。</p>
+<div class="tw">
+<table>
+<tr><th>要比的事</th><th>加拿大安大略（2019 年你们的做法）</th><th>美国 Henderson（这次查到的）</th></tr>
+<tr><td>谁管“能不能接电”</td><td>全省统一由 ESA 管。设备要先批准，才可以连接。这是官方规则里写明的。<span class="c">【已确认】</span></td><td>没有全国统一的“美国 ESA”。进口后主要是两家各管一段：<b>市政府</b>发证和检查，<b>州安全生产部门</b>管工人安全。<span class="c">【已确认】</span></td></tr>
+<tr><td>进口前必须先贴标吗？</td><td>实务上通常要先有加拿大承认的标志，或先做现场评估。你们当年就是请加拿大电工到中国预检、整改、贴标后再出口。</td><td>这次没有查到“没有实验室标志就不能进口工业机械”的普遍联邦规定。真正卡人的时候，是<b>到厂安装、报许可、通电、工人开始使用</b>。<span class="c">【已确认：未读到进口禁令】</span></td></tr>
+<tr><td>什么标志才算数</td><td>CSA、cUL，或按加拿大办法做的现场评估标签。</td><td>带 <b>US</b> 字样的美国实验室标志，例如 UL、cULus、CSA-US、ETL。欧洲的 <b>CE 标不够</b>。只有加拿大、没有 US 的标志，也不能想当然地拿到美国用。<span class="c">【已确认，OSHA 官方说明】</span></td></tr>
+<tr><td>出厂前检查还要不要做</td><td>必须做，否则到岸后很难接线。</td><td><b>仍然强烈建议做</b>，以免机器到了美国才大改。但还要在 Henderson 装好后再做一次最终评估，并由本市检查员验收。</td></tr>
+</table>
+</div>
+<p class="key"><b>这一章的重点</b>：加拿大是“先批准、再进口、再接线”；美国更像“可以先进口，但没有美国承认的标志，装好后很可能接不了电”。</p>
+<p class="next"><b>为什么接下一章</b>：要知道“美国承认的标志”到底是谁在要求，就不能只看市政府，还要看安全生产部门的联邦规则。</p>
+</section>
+
+<section>
+<h2>第 2 章　联邦规矩：工厂里的电气设备，原则上要经过实验室认定</h2>
+<p class="bridge"><b>来龙去脉</b>：第 1 章提到 Nevada OSHA。这一章用官方条文说明它到底要求什么。</p>
+<p>美国联邦 OSHA 的电气规则写在 29 CFR 1910.303 和 1910.399。简单说：</p>
+<ul>
+<li>工厂里用的电气设备和电线，必须是“已批准”的，才能用。<span class="c">【已确认】</span></li>
+<li>“已批准”通常是指：经 OSHA 承认的实验室（NRTL）认定安全，并在设备上留下该实验室的标志。</li>
+<li>这条规则<b>管工业机械</b>，不只管墙上的电箱。OSHA 2013 年的解释信写得很清楚。<span class="c">【已确认】</span></li>
+</ul>
+<p>有人会说：“我们这是定制设备，厂家出一份试验报告就行了。” OSHA 同一封解释信说：定制设备必须是给<b>某一个客户、独一无二、只做一次</b>的。向很多客户反复卖的设备，不算定制。官方还写过：真正的定制设备“本身就非常少见”。<span class="c">【已确认】</span></p>
+<p>内华达是 OSHA 批准的“州计划”州。州法写明：联邦 OSHA 的标准，视为内华达的标准（除非州另外制定同等保护的替代标准）。所以 Henderson 工厂也要遵守上面这些要求。<span class="c">【已确认，NRS 618.295】</span></p>
+<p>再补一个容易误解的点：只给电控柜做了 UL 认证，<b>不等于整台机器已经认证</b>。UL 自己的文章写过：电柜认证只覆盖电柜，不覆盖它带动的电机、加热器或整机。<span class="c">【已确认】</span></p>
+<p class="key"><b>这一章的重点</b>：DESMA 和中国产制鞋设备，多半不能走“定制、自己出报告就够了”这条路；CE 标也不能替代美国实验室标志。</p>
+<p class="next"><b>为什么接下一章</b>：联邦规则管“员工使用时是否安全”；机器能不能接到厂房电网上，还要过市政府这一关。</p>
+</section>
+
+<section>
+<h2>第 3 章　Henderson 市政府要什么</h2>
+<p class="bridge"><b>来龙去脉</b>：第 2 章讲了安全生产部门。这一章讲本市检查员在接线通电前会看什么。</p>
+<p>工厂在 Henderson 市内，不归 Clark County（县域）直接管电气许可。本市已经采用 <b>2023 年版国家电气规范（NEC）</b>，并同时采用南内华达地区的修正。生效日期是 <b>2026-01-02</b>。这是市议会 Ordinance No. 4086 写明的。<span class="c">【已确认】</span></p>
+<p>按内华达州承包商法：</p>
+<ul>
+<li>没有有效执照就承揽电气工程，是违法的。</li>
+<li>就算金额很小，电气工作也不能按“小修小补”豁免。</li>
+<li>拉电线、做配电、把机器接到电网上，通常要请持 <b>C-2</b> 电气执照的承包商。</li>
+<li>把工业机械用螺栓永久固定在厂房里，另有一类执照叫 <b>C-33</b>。</li>
+</ul>
+<p>这些分类都来自州的官方规定。<span class="c">【已确认】</span></p>
+<p>因此：不要让工厂里没有执照的人，或从中国、德国来的厂家技师，直接做永久电气接线。应请本地持牌电工申请许可、按批准的图纸施工，并约检查。</p>
+<p>还有两件事这次没能从官方文件原文核对，必须标出来：</p>
+<ul>
+<li>市政府有一份电气许可材料清单。该文件本次打不开，所以“600A 电表是否必须出单线图”只能说<b>很可能需要</b>，要以清单和审查人员为准。<span class="e">【未核实原文】</span></li>
+<li>没有查到本市写明“没有实验室标志就一律贴红牌”的内部规定。但检查员完全可以在最终验收时，拒绝批准没有美国标志、又没做他们认可的现场评估的设备。<span class="e">【未核实本市书面政策】</span></li>
+</ul>
+<p>要问就问这里（请本地电工或 Allen 去问，本次未联系）：<br>
+<a href="https://www.cityofhenderson.com/government/departments/building-and-fire-safety">Henderson 建设与消防安全部门官网</a></p>
+<p class="key"><b>这一章的重点</b>：接线必须由内华达持牌电工办许可、接受本市检查；没有美国承认的标志，最终验收可能过不了。</p>
+<p class="next"><b>为什么接下一章</b>：知道了两道关，下一步是比较几条达标的路，并选出对 KPR 最稳的一条。</p>
+</section>
+
+<section>
+<h2>第 4 章　可以走哪几条路</h2>
+<p class="bridge"><b>来龙去脉</b>：第 2、3 章说了“要有美国承认的安全认定”。这一章比较四种常见做法。</p>
+<div class="tw">
+<table>
+<tr><th>做法</th><th>简单说明</th><th>好在哪里</th><th>要注意什么</th></tr>
+<tr><td><b>A. 买已有美国标志的整机</b></td><td>出厂就有带 US 的 UL、cULus、CSA-US 或 ETL 标志，而且标志管的是整台机器，不只电柜。</td><td>最省事，最接近官方要求。</td><td>中国产制鞋设备很少整机已认证。<span class="e">【未核对本项目具体型号】</span></td></tr>
+<tr><td><b>B. 电柜按 UL 508A 做</b></td><td>请有资格的柜厂按美国工业电柜标准做柜子，或把柜子送去再认证。</td><td>电柜本身比较容易过检查，也是后面评估的基础。</td><td>电柜合格不等于整机合格。UL 自己就这样写。</td></tr>
+<tr><td><b>C. 出厂前预检 + 到厂后再贴标</b></td><td>请 UL、Intertek、CSA 或 TÜV 先到德国或中国工厂检查，改完再发运；机器在 Henderson 装好后再做最终评估并贴标。这最像 2019 年加拿大的做法。</td><td>能避免“机器到了美国才发现要大改”。这些实验室的官网都写了可以做发运前预审或预检（UL 去不去中国工厂，其网页没写死，<span class="e">【未核实】</span>）。</td><td>预检不能代替到厂后的最终评估。费用和工期实验室不公开统一价，本次按指示没有询价，<span class="e">【未核实金额】</span>。</td></tr>
+<tr><td><b>D. 只在美国装好后再请人评估</b></td><td>先进口、先安装，再请实验室来厂检查、整改、贴标。</td><td>前期合同简单。</td><td>在美国改电、等人、等复检，往往更贵、更误工。</td></tr>
+</table>
+</div>
+<p><b>建议</b>：能买到 A 就买 A。买不到就走 <b>C</b>，并且电柜同时按 B 来做。不要只走 D，更不要只拿着 CE 说明书去验收。</p>
+<p class="key"><b>这一章的重点</b>：对中国产设备和多数欧洲专用设备，最稳的是“出厂前预检 + 到厂后现场评估贴标”，并在合同里写死。</p>
+<p class="next"><b>为什么接下一章</b>：就算选对了路径，机器本身还常有几处技术硬伤，不在合同里提前写，到了美国一样过不了。</p>
+</section>
+
+<section>
+<h2>第 5 章　中国产和欧洲产机器，最容易在哪里卡住</h2>
+<p class="bridge"><b>来龙去脉</b>：第 4 章选了路径。这一章说明：为什么必须在买机器时就把电压、短路能力和文件写进合同。</p>
+<p>下面这些是美国规范里反复出现、进口设备又经常不符合的点。它们<b>不是</b>对某台尚未看到图纸的机器的鉴定结论。<span class="e">【各台现况未核实】</span></p>
+<ol>
+<li><b>电压和频率不对。</b> 我们厂房是 <b>480V、三相、60Hz、600A</b>。欧洲常见 400V、50Hz，中国常见 380V、50Hz。电机、加热器、变频器如果按那边的电设计，接到这边可能过热或烧坏。合同要写死按本厂电源供货。</li>
+<li><b>短路承受能力（SCCR）不够。</b> 机器电柜能承受的短路电流，必须不小于接电点实际可能出现的短路电流。这个数字要由本地电气工程师算出来，不能让厂家随便填一个小数。UL 的公开问答写过：铭牌上要标 SCCR。<span class="c">【已确认要求本身】</span></li>
+<li><b>电路做法要按美国工业机械标准 NFPA 79。</b> 例如要有能锁定的切断电源开关、英文铭牌和警告、该有的接地和防护。这次没有抄受版权保护的标准全文，具体条目由实验室对照检查。</li>
+<li><b>柜子里的零件要有美国承认的认证。</b> 只符合欧洲 IEC、带 CE 的断路器和接触器，到了美国经常要换掉。</li>
+<li><b>铭牌要有英文</b>，并写上电压、电流、频率和 SCCR。只有中文或德文，检查员可能不放行。</li>
+<li><b>不带电的铝楦、模具</b>一般不必做电气认证。但模具加热、温控是机器电路的一部分，要和主机一起检查。</li>
+</ol>
+<p class="key"><b>这一章的重点</b>：480V / 60Hz、SCCR、美国认可的零件和英文铭牌，要写进采购合同，不要等机器到岸再改。</p>
+<p class="next"><b>为什么接下一章</b>：把上面这些要求收成一份可执行的清单和先后顺序。</p>
+</section>
+
+<section>
+<h2>第 6 章　建议的先后顺序和合同要点</h2>
+<p class="bridge"><b>来龙去脉</b>：前面五章分别讲了差别、联邦规则、本市检查、路径和技术卡点。这一章把它们连成可以照着做的步骤。</p>
+<p><b>建议按这个顺序做：</b></p>
+<ol>
+<li>请本地电气工程师先算出接电点的短路电流，作为合同里的 SCCR 下限。</li>
+<li>在 DESMA 和中国设备商的合同里写明：480V / 60Hz；按 NFPA 79 和 UL 508A；英文铭牌含 SCCR；优先整机美国实验室标志；没有标志就必须做“出厂前预检 + 到厂后贴标”；整改费用由谁承担。</li>
+<li>选定一家市政府可能接受的实验室，先做出发运前预检，改完再装船。</li>
+<li>机器到厂后，由内华达 <b>C-2</b> 持牌电工申请许可、按图接线；如需把设备永久固定在地上，确认是否还要 <b>C-33</b> 执照。</li>
+<li>同一家实验室到 Henderson 做最终评估、贴标、出报告。</li>
+<li>约本市电气检查，通过后再通电生产。报告和图纸要长期保存，以备州安全生产部门检查。</li>
+</ol>
+<p><b>建议现在就向市政府问清、但本次没有去问的问题：</b></p>
+<ol>
+<li>在现有 600A 电表上为 DESMA 加回路，要办哪种许可？要不要注册工程师出图？</li>
+<li>本市认哪些实验室的现场评估标签？</li>
+<li>可不可以先临时通电调试，再完成最终评估？</li>
+<li>已经装好的冷粘线和空压机，当时有没有许可和认证记录？<span class="e">【未核实】</span></li>
+</ol>
+<p class="key"><b>这一章的重点</b>：先算短路电流、再签合同、再出厂预检、再持牌接线、再到厂贴标、最后本市验收通电。</p>
+</section>
+
+<section>
+<h2>第 7 章　这次还没法确认的事项</h2>
+<p class="bridge"><b>来龙去脉</b>：前面给出了建议。这一章把不能装成事实的内容单独列出，避免误用。</p>
+<ul>
+<li>市政府电气许可清单原文（官方文件本次打不开）。</li>
+<li>本市是否书面规定“没有标志就一律不验收”，以及认哪几家实验室。</li>
+<li>各实验室对 DESMA 或中国设备的具体报价和工期。</li>
+<li>DESMA 这一型号有没有现成的整机美国认证可选。</li>
+<li>拟购中国设备目前的电压、零件和铭牌实际情况（还没有看到图纸）。</li>
+<li>现有冷粘线、空压机是否已经办过许可、是否已有标志。</li>
+<li>保险公司和房东有没有另外的要求。</li>
+<li>接电点实际的短路电流是多少千安。</li>
+</ul>
+<p>这些都不构成对外联系的理由。需要问市政府或实验室时，请 Boss 决定由谁去问。</p>
+</section>
+
+<p class="foot">主要依据：美国联邦法规 29 CFR 1910.303、1910.399、1910.7；OSHA 2013-12-16 与 1993-08-24 解释信；OSHA SHIB 02-16-2010；OSHA 内华达州计划页；NRS 618.295、NRS 624、NAC 624.200、NAC 624.500；Henderson Ordinance No. 4086；南内华达 2023 NEC 修正；NFPA 79 / NFPA 791 官方介绍页；UL、Intertek、CSA、TÜV SÜD、TÜV Rheinland 现场评估官方页；安大略 ESA 产品安全条例页。详细出处见同目录的 Markdown 报告。</p>
+</div>
+</body>
+</html>
