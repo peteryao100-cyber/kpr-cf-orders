@@ -7,16 +7,25 @@
   "exact_duplicate_order_rows": 0,
   "asn_rows": 90,
   "distinct_asns": 90,
-  "invoice_rows": 86,
-  "distinct_invoices": 86,
-  "invoiced_pos": 86,
+  "invoice_rows": 89,
+  "distinct_invoices": 89,
+  "invoiced_pos": 88,
   "pos_with_multiple_asns": {
    "14860421": 2
   },
   "asns_with_multiple_invoices": {}
  },
- "special": [],
+ "special": [
+  [
+   "14976418",
+   [
+    "Invoice CFV-2611002 Error in SPS — rejected/error/not sent, check SPS alert / 发票被拒、出错或未发送"
+   ]
+  ]
+ ],
  "housekeeping_invoiced_open_in_sps": [
+  "14934994",
+  "14934991",
   "14934990",
   "14934993",
   "14925449",
@@ -56,14 +65,14 @@
   "14744348",
   "14744345"
  ],
- "action_items": 9,
+ "action_items": 7,
  "order_rows": 149,
  "asns": 90,
- "invoices": 86,
+ "invoices": 89,
  "counts": {
-  "NEED INVOICE": 3,
+  "Special attention": 1,
   "OPEN ORDER": 6,
-  "Invoiced": 86
+  "Invoiced": 88
  },
  "close": [],
  "check": [],
@@ -79,54 +88,38 @@
    "Due in 3d (11-16), no ASN sent / 3天内到期"
   ]
  ],
- "need_invoice": [
-  [
-   "14976418",
-   "332284448",
-   "2026-11-12 00:33"
-  ],
-  [
-   "14934994",
-   "335284448",
-   "2026-11-12 02:28"
-  ],
-  [
-   "14934991",
-   "334284448",
-   "2026-11-12 01:57"
-  ]
- ],
+ "need_invoice": [],
  "bucket_counts": {
   "OPEN ORDER": 6,
   "ASN OPENED": 0,
-  "NEED INVOICE": 3,
-  "Special attention": 0,
-  "Invoiced": 86
+  "NEED INVOICE": 0,
+  "Special attention": 1,
+  "Invoiced": 88
  },
  "bucket_pairs": {
   "OPEN ORDER": 2295,
   "ASN OPENED": 0,
-  "NEED INVOICE": 4011,
-  "Special attention": 0
+  "NEED INVOICE": 0,
+  "Special attention": 121
  },
- "bucket_sum": "6 + 0 + 3 + 0 + 86 = 95 POs",
+ "bucket_sum": "6 + 0 + 0 + 1 + 88 = 95 POs",
  "unmatched_records": 0,
  "tile_counts": {
   "OPEN ORDER": 6,
   "ASN OPENED": 0,
-  "NEED INVOICE": 3,
+  "NEED INVOICE": 0,
   "Due within 7 days": 2,
   "Late": 0,
-  "Special attention": 0,
-  "Invoiced (header)": 86
+  "Special attention": 1,
+  "Invoiced (header)": 88
  },
  "tile_pairs": {
   "OPEN ORDER": 2295,
   "ASN OPENED": 0,
-  "NEED INVOICE": 4011,
+  "NEED INVOICE": 0,
   "Due within 7 days": 650,
   "Late": 0,
-  "Special attention": 0,
+  "Special attention": 121,
   "Outstanding (Unshipped)": 2295
  },
  "outstanding_unshipped": {
@@ -263,37 +256,9 @@
   ]
  },
  "shipped_need_invoice": {
-  "po_count": 3,
-  "total_pairs": 4011,
-  "pos": [
-   {
-    "po": "14934991",
-    "asn": "334284448",
-    "asn_date": "2026-11-12 01:57",
-    "style": "Helly Hansen",
-    "dc": "000155 Brampton",
-    "qty": 2272,
-    "newest_ship": "2026-11-12"
-   },
-   {
-    "po": "14934994",
-    "asn": "335284448",
-    "asn_date": "2026-11-12 02:28",
-    "style": "Helly Hansen",
-    "dc": "000350 Calgary DC",
-    "qty": 1618,
-    "newest_ship": "2026-11-12"
-   },
-   {
-    "po": "14976418",
-    "asn": "332284448",
-    "asn_date": "2026-11-12 00:33",
-    "style": "Helly Hansen",
-    "dc": "000155 Brampton",
-    "qty": 121,
-    "newest_ship": "2026-11-12"
-   }
-  ]
+  "po_count": 0,
+  "total_pairs": 0,
+  "pos": []
  },
  "po_dates": {
   "14976418": {
@@ -307,7 +272,7 @@
    "newest_src": "SPS",
    "sps_newest": "2026-11-12",
    "cancel": "2026-12-12",
-   "pipe": "NEED INVOICE",
+   "pipe": "Special attention",
    "unshipped": false
   },
   "14946927": {
@@ -337,34 +302,6 @@
    "cancel": "2026-12-16",
    "pipe": "OPEN ORDER",
    "unshipped": true
-  },
-  "14934994": {
-   "dc": "000350 Calgary DC",
-   "qty": 1618,
-   "style": "Helly Hansen",
-   "original": "2026-10-30",
-   "amended": "2026-11-02",
-   "changes": "ship 10-30→11-12, cancel 11-29→12-12, qty unchanged",
-   "newest": "2026-11-12",
-   "newest_src": "SPS amendment",
-   "sps_newest": "2026-11-12",
-   "cancel": "2026-12-12",
-   "pipe": "NEED INVOICE",
-   "unshipped": false
-  },
-  "14934991": {
-   "dc": "000155 Brampton",
-   "qty": 2272,
-   "style": "Helly Hansen",
-   "original": "2026-10-30",
-   "amended": "2026-11-02",
-   "changes": "ship 10-30→11-12, cancel 11-29→12-12, qty unchanged",
-   "newest": "2026-11-12",
-   "newest_src": "SPS amendment",
-   "sps_newest": "2026-11-12",
-   "cancel": "2026-12-12",
-   "pipe": "NEED INVOICE",
-   "unshipped": false
   },
   "14960565": {
    "dc": "000155 Brampton",
