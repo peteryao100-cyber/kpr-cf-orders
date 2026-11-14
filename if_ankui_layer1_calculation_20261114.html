@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IF/MSL 安库第1层成品水位试算 新版 2026-11-14（接口实时）</title>
+<style>
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f4f6f9;color:#1d2733;line-height:1.55}
+header{background:#1F4E78;color:#fff;padding:18px 24px} header h1{margin:0;font-size:22px} header p{margin:6px 0 0;opacity:.9;font-size:13px}
+.wrap{padding:16px 24px;max-width:1280px;margin:0 auto}
+.card{background:#fff;border-radius:10px;padding:14px 16px;margin:0 0 14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+h2{margin:0 0 10px;font-size:18px;color:#1F4E78;border-left:4px solid #2E75B6;padding-left:8px}
+h3{margin:0 0 8px;font-size:15px} .small{color:#666;font-size:12px}
+.warn{background:#FFF3CD;border-left:5px solid #d39e00;padding:10px 12px;border-radius:8px;margin-bottom:12px;font-size:13px}
+.okbox{background:#E8F5E9;border-left:5px solid #2e7d32;padding:10px 12px;border-radius:8px;margin-bottom:12px;font-size:13px}
+.choice{background:#E3F2FD;border-left:5px solid #1565c0;padding:10px 12px;border-radius:8px;margin:8px 0;font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:#fff}
+th,td{border:1px solid #e3e7ec;padding:5px 6px;text-align:right;white-space:nowrap}
+th{background:#1F4E78;color:#fff;text-align:center} td:first-child,th:first-child{text-align:left}
+tr.tot td{background:#FFF2CC;font-weight:bold} .bad{background:#F8CBAD;font-weight:bold} .ok{background:#C6EFCE}
+.scroll{overflow-x:auto} ul{margin:6px 0 6px 18px;padding:0} li{margin:3px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:8px 0}
+.kpi{background:#f7fafc;border-radius:8px;padding:8px 10px} .kpi b{display:block;font-size:20px;color:#1F4E78} a{color:#1565c0}
+</style></head><body>
+<header>
+<h1>IF / MSL 安库第1层（成品仓）· 成品水位试算 新版（接口实时）</h1>
+<p>2026-11-14｜库存/占用/销售=Open API 实时（2026-11-14 17:12）｜在制=11/2 Excel（接口5待11/18）｜家庭总量=Boss固定值（不z外推）｜非正式下单｜旧版 <a style='color:#fff' href='if_ankui_layer1_calculation_20261106.html'>11/06</a> 保留｜model=fixed-family-high-no-z</p>
+</header>
+<div class="wrap">
+<div class="okbox"><b>本版变化：</b>成品库存、占用（客户实单 / Dunia订单 / Dunia预算）、分码用销售，全部改用 Open API 实时数；公式与 Boss 家庭总量不变，与 11/06 版同口径可直接对比（见第二节对比表）。</div>
+<div class="warn"><b>仍用 Excel 的部分：</b>在制两段（下线未入库 940、已发鞋面未射出 715）仍是 <b>11/2 快照</b>，Doris 接口5 预计 11/18 给。11/2 的下线未入库很可能已入库、已算进今天的实时库存，所以<b>净位置可能偏高</b>（805H-SB、805H-SP 最明显），请看第二节“在制敏感性”。<br>对客交期：对客承诺建议2天（Bot）；Boss未书面确认，不标已确认；IF→MSL：IF->MSL 当天或1天（Boss 11/2）。<b>不自动开PO。</b></div>
+
+<section class="card"><h2>〇、数据来源（本版）</h2>
+<div class="scroll"><table><tr><th>项目</th><th>来源</th><th>取数时间 / 条数</th><th>口径</th></tr>
+<tr><td>成品库存</td><td>合同逾期接口 statusCode=22 成品库存明细</td><td>2026-11-14 17:12｜14,601双</td><td>入库+备货，不含下线；尺码 s1=EU35…s13=EU47</td></tr>
+<tr><td>库存交叉核对</td><td>成品条码接口 state=入库（1条码=1双）</td><td>2026-11-14 17:13｜14,641双</td><td>按 xh×msId 汇总，与22对比</td></tr>
+<tr><td>占用</td><td>合同逾期接口 statusCode=0 订单/预算明细（欠数）</td><td>2026-11-14 17:12｜交期 2024-11-14~2027-02-28</td><td>Dunia订单/预算 + 客户实单扣；安库单、MSL预算不扣</td></tr>
+<tr><td>分码依据</td><td>MSL 每日销售接口 regularSale（单行&lt;1000）</td><td>2026-11-14 17:15｜2025-11-14~2026-11-13</td><td>正单33,816双；样品(含赠品)207、退货8双不计入分码</td></tr>
+<tr><td>在制</td><td><b>11/2 Excel</b>（IF下线未入库1102 / 排产已发鞋面未生产）</td><td>11/02 快照</td><td>接口5 待 11/18；参考：实时下线条码 482 双</td></tr>
+</table></div>
+<p class="small">合同逾期接口每日限 2 次，本版只调 1 次，原始 JSON 存档 /workspace/pmc/msl/ankui_v2_20261114/raw/。xh 归并规则同 11/06：去掉“(EH)”、U0088E 并入 U0088。</p>
+</section>
+
+<section class="card"><h2>一、算法与规则（同 11/06，未改）</h2>
+<ol>
+<li><b>只算第1层成品</b>：35天档鞋面（026X-SP 4,200 / 805H-SP 3,800 / 026X-SB≈4,000）留第2/3层，不写入成品High。</li>
+<li><b>家庭总量固定（禁止z外推抬高）</b>：026X-SP High=<b>1,300</b>；805H-SP High=<b>1,000</b>；805H-SB High=<b>420</b>（仅MSL）；026X-SB <b>不设成品目标</b>；M8/老款/样品不设目标、不补货。</li>
+<li><b>分码</b>：EU36–47；SP按近12月正常流（单行&lt;1,000）占比、最大余数法，合计=家庭总量。805H-SB样本不足→借用SP正常流（已注明）。大项目单不决定成品安库。</li>
+<li><b>占用</b>：只扣MSL实际客户订单、Dunia订单、Dunia预算。<b>不扣</b>：安库单、MSL内部预算（只定目标）。</li>
+<li><b>位置</b>：可用成品=成品库存−占用；净位置=成品+在制(已发鞋面未射出715+下线未入库940，11/2表)−占用。在制两段只加一次。</li>
+<li><b>补货</b>：款×码净位置≤ROP时补到High；补货量按10取整、单码≥10；每周人工（日后每日）。不自动下PO。</li>
+<li><b>每日闭环（接口后）</b>：取数→正常/赠品/退货分流→现货+在制−占用→比水位→到点×10补到High→同日流水对账（期初+入库−出库+退货±调整=期末）。</li>
+</ol>
+<div class="choice"><b>起订点选择（推荐A，本页采用）：</b>
+<ul>
+<li><b>A</b>：Boss总量=各码High合计；ROP=High−10（High&lt;20则0）。不突破上限。</li>
+<li><b>B</b>：7天档外再加z安全量→High会高于1,300/1,000/420，<b>否决</b>。</li>
+<li><b>C</b>：只有总量不分码ROP→无法出一补一到码。</li>
+</ul>
+<b>EU41–43一码缓冲（可选，默认关）</b>：慢码挪10双到41/42/43，总量不变；表中“High备选”。</div>
+</section>
+
+<section class="card"><h2>二、款式汇总</h2>
+<div class="grid">
+<div class="kpi"><span class="small">成品库存（接口实时）</span><b>14,601</b></div>
+<div class="kpi"><span class="small">下线未入库（11/2表）</span><b>940</b></div>
+<div class="kpi"><span class="small">已发鞋面未射出（11/2表）</span><b>715</b></div>
+<div class="kpi"><span class="small">实时下线条码（参考）</span><b>482</b></div>
+<div class="kpi"><span class="small">安库单未扣</span><b>11,400</b></div>
+<div class="kpi"><span class="small">MSL预算未扣</span><b>11,340</b></div>
+</div>
+<div class="scroll"><table>
+<tr><th>款</th><th>成品High</th><th>7天档</th><th>35天档(非本层)</th><th>库存</th><th>在制</th><th>占用</th><th>净位置</th><th>缺口</th><th>建议补货</th><th>说明</th></tr>
+<tr><td><b>026X-SP</b><br><span class='small'>L8-026/3-SP-04-U0088</span></td><td>1,300</td><td>1,300</td><td>4,200<br><span class='small'>鞋面层</span></td><td>2,585</td><td>90</td><td>1,971</td><td>704</td><td class='bad'>596</td><td>1,190</td><td class='small'>7天档1300=成品High；35天档4200=鞋面储备非成品</td></tr>
+<tr><td><b>805H-SP</b><br><span class='small'>L8-805/S-SP-04-U0088</span></td><td>1,000</td><td>1,000</td><td>3,800<br><span class='small'>鞋面层</span></td><td>1,277</td><td>730</td><td>0</td><td>2,007</td><td class='ok'>-1,007</td><td>0</td><td class='small'>7天档1000=成品High；35天档3800=鞋面储备非成品</td></tr>
+<tr><td><b>805H-SB</b><br><span class='small'>L8-805/S-EH-04-U0088</span></td><td>420</td><td>—</td><td>—<br><span class='small'>—</span></td><td>2,200</td><td>830</td><td>1,800</td><td>1,230</td><td class='ok'>-810</td><td>120</td><td class='small'>仅MSL成品High约420；Dunia占用另计</td></tr>
+<tr><td><b>026X-SB</b><br><span class='small'>L8-026/3-EH-04-U0088</span></td><td>0</td><td>—</td><td>4,000<br><span class='small'>鞋面≈4000(COYE)</span></td><td>3,216</td><td>0</td><td>3,486</td><td>-270</td><td class=''>—</td><td>0</td><td class='small'>不设成品目标；约4000为鞋面储备口径</td></tr>
+</table></div>
+<p class="small">缺口=High−净位置（负=高于目标）。建议补货按分码触发，可大于款级缺口。026X-SB 占用含 EU35 以外码 174 双。</p>
+<h3>与 11/06 版对比（旧｜新｜差）</h3>
+<div class="scroll"><table>
+<tr><th rowspan="2">款</th><th colspan="3">库存</th><th colspan="3">在制</th><th colspan="3">占用</th><th colspan="3">净位置</th><th colspan="3">缺口</th><th colspan="3">建议补货</th></tr>
+<tr><th>旧</th><th>新</th><th>差</th><th>旧</th><th>新</th><th>差</th><th>旧</th><th>新</th><th>差</th><th>旧</th><th>新</th><th>差</th><th>旧</th><th>新</th><th>差</th><th>旧</th><th>新</th><th>差</th></tr>
+<tr><td><b>026X-SP</b></td><td>1,400</td><td>2,585</td><td class='small'>+1,185</td><td>90</td><td>90</td><td class='small'>0</td><td>610</td><td>1,971</td><td class='small'>+1,361</td><td>880</td><td>704</td><td class='small'>-176</td><td>420</td><td>596</td><td class='small'>+176</td><td>1,090</td><td>1,190</td><td class='small'>+100</td></tr>
+<tr><td><b>805H-SP</b></td><td>1,108</td><td>1,277</td><td class='small'>+169</td><td>730</td><td>730</td><td class='small'>0</td><td>810</td><td>0</td><td class='small'>-810</td><td>1,028</td><td>2,007</td><td class='small'>+979</td><td>-28</td><td>-1,007</td><td class='small'>-979</td><td>300</td><td>0</td><td class='small'>-300</td></tr>
+<tr><td><b>805H-SB</b></td><td>2,055</td><td>2,200</td><td class='small'>+145</td><td>830</td><td>830</td><td class='small'>0</td><td>1,830</td><td>1,800</td><td class='small'>-30</td><td>1,055</td><td>1,230</td><td class='small'>+175</td><td>-635</td><td>-810</td><td class='small'>-175</td><td>30</td><td>120</td><td class='small'>+90</td></tr>
+<tr><td><b>026X-SB</b></td><td>2,546</td><td>3,216</td><td class='small'>+670</td><td>0</td><td>0</td><td class='small'>0</td><td>3,486</td><td>3,486</td><td class='small'>0</td><td>-940</td><td>-270</td><td class='small'>+670</td><td>—</td><td>—</td><td class='small'>—</td><td>0</td><td>0</td><td class='small'>0</td></tr>
+</table></div>
+<h3>占用拆分（接口 statusCode=0）</h3>
+<div class="scroll"><table><tr><th>款</th><th>客户实单（扣）</th><th>Dunia订单（扣）</th><th>Dunia预算（扣）</th><th>安库单（不扣）</th><th>MSL预算（不扣）</th></tr>
+<tr><td><b>026X-SP</b></td><td>1,971</td><td>0</td><td>0</td><td>920</td><td>920</td></tr><tr><td><b>805H-SP</b></td><td>0</td><td>0</td><td>0</td><td>1,200</td><td>1,200</td></tr><tr><td><b>805H-SB</b></td><td>0</td><td>420</td><td>1,380</td><td>2,770</td><td>2,770</td></tr><tr><td><b>026X-SB</b></td><td>3,486</td><td>0</td><td>0</td><td>2,110</td><td>2,110</td></tr>
+</table></div>
+<h3>库存交叉核对 + 在制敏感性</h3>
+<div class="scroll"><table><tr><th>款</th><th>库存(22)</th><th>条码入库</th><th>分码核对</th><th>在制(11/2表)</th><th>实时下线条码</th><th>净位置(本版)</th><th>净位置(在制改用实时下线、不含已发鞋面)</th><th>缺口(敏感性)</th></tr>
+<tr><td><b>026X-SP</b></td><td>2,585</td><td>2,585</td><td class='ok'>一致</td><td>90</td><td>0</td><td>704</td><td>614</td><td>686</td></tr>
+<tr><td><b>805H-SP</b></td><td>1,277</td><td>1,277</td><td class='ok'>一致</td><td>730</td><td>80</td><td>2,007</td><td>1,357</td><td>-357</td></tr>
+<tr><td><b>805H-SB</b></td><td>2,200</td><td>2,200</td><td class='ok'>一致</td><td>830</td><td>320</td><td>1,230</td><td>720</td><td>-300</td></tr>
+<tr><td><b>026X-SB</b></td><td>3,216</td><td>3,216</td><td class='ok'>一致</td><td>0</td><td>10</td><td>-270</td><td>-260</td><td>—</td></tr>
+</table></div>
+<p class="small">全厂库存：statusCode 22 合计 14,601 双，条码入库 14,641 双，差 40 双，全部来自 L8-807/5-ASP-04-U0042（条码有、22 无）；四个目标款逐码完全一致。敏感性一栏只作参考，不改本版补货建议。</p>
+</section>
+
+<section class="card"><h2>三、分码明细</h2>
+<section class='card'><h3>026X-SP · 7天档1300=成品High；35天档4200=鞋面储备非成品</h3><p class='small'>分码：正常流(<1000/行)尺码，nb=6945｜High=1,300（最大余数，合计必等）</p><div class='scroll'><table><tr><th>项目</th><th>EU36</th><th>EU37</th><th>EU38</th><th>EU39</th><th>EU40</th><th>EU41</th><th>EU42</th><th>EU43</th><th>EU44</th><th>EU45</th><th>EU46</th><th>EU47</th><th>合计</th></tr><tr><td>成品库存(接口)</td><td>160</td><td>103</td><td>163</td><td>165</td><td>399</td><td>477</td><td>380</td><td>186</td><td>131</td><td>322</td><td>99</td><td>0</td><td class='tot'>2,585</td></tr><tr><td>在制·下线未入库(11/2表)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>在制·已发鞋面未射出(11/2表)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>10</td><td>0</td><td>30</td><td>40</td><td>10</td><td>0</td><td>0</td><td>0</td><td class='tot'>90</td></tr><tr><td>占用·客户实单</td><td>10</td><td>80</td><td>120</td><td>270</td><td>445</td><td>461</td><td>405</td><td>125</td><td>50</td><td>5</td><td>0</td><td>0</td><td class='tot'>1,971</td></tr><tr><td>占用·Dunia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>可用成品</td><td>150</td><td>23</td><td>43</td><td>-105</td><td>-46</td><td>16</td><td>-25</td><td>61</td><td>81</td><td>317</td><td>99</td><td>0</td><td class='tot'>614</td></tr><tr class='tot'><td>净位置</td><td>150</td><td>23</td><td>43</td><td>-105</td><td>-36</td><td>16</td><td>5</td><td>101</td><td>91</td><td>317</td><td>99</td><td>0</td><td class='tot'>704</td></tr><tr class='tot'><td>High</td><td>6</td><td>20</td><td>48</td><td>97</td><td>247</td><td>310</td><td>259</td><td>228</td><td>72</td><td>9</td><td>4</td><td>0</td><td class='tot'>1,300</td></tr><tr><td>ROP</td><td>0</td><td>10</td><td>38</td><td>87</td><td>237</td><td>300</td><td>249</td><td>218</td><td>62</td><td>0</td><td>0</td><td>0</td><td class='tot'>1,201</td></tr><tr><td>缺口High-净</td><td>-144</td><td>-3</td><td>5</td><td>202</td><td>283</td><td>294</td><td>254</td><td>127</td><td>-19</td><td>-308</td><td>-95</td><td>0</td><td class='tot'>596</td></tr><tr><td>建议补货</td><td>0</td><td>0</td><td>0</td><td>210</td><td>290</td><td>300</td><td>260</td><td>130</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>1,190</td></tr><tr><td>High备选(EU41-43各+10，总量不变)</td><td>0</td><td>0</td><td>48</td><td>97</td><td>247</td><td>320</td><td>269</td><td>238</td><td>72</td><td>9</td><td>0</td><td>0</td><td class='tot'>1,300</td></tr></table></div></section>
+<section class='card'><h3>805H-SP · 7天档1000=成品High；35天档3800=鞋面储备非成品</h3><p class='small'>分码：正常流(<1000/行)尺码，nb=10533｜High=1,000（最大余数，合计必等）</p><div class='scroll'><table><tr><th>项目</th><th>EU36</th><th>EU37</th><th>EU38</th><th>EU39</th><th>EU40</th><th>EU41</th><th>EU42</th><th>EU43</th><th>EU44</th><th>EU45</th><th>EU46</th><th>EU47</th><th>合计</th></tr><tr><td>成品库存(接口)</td><td>35</td><td>19</td><td>63</td><td>108</td><td>220</td><td>169</td><td>175</td><td>174</td><td>109</td><td>195</td><td>10</td><td>0</td><td class='tot'>1,277</td></tr><tr><td>在制·下线未入库(11/2表)</td><td>0</td><td>0</td><td>0</td><td>40</td><td>20</td><td>110</td><td>50</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>220</td></tr><tr><td>在制·已发鞋面未射出(11/2表)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>80</td><td>130</td><td>190</td><td>80</td><td>30</td><td>0</td><td>0</td><td>0</td><td class='tot'>510</td></tr><tr><td>占用·客户实单</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>占用·Dunia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>可用成品</td><td>35</td><td>19</td><td>63</td><td>108</td><td>220</td><td>169</td><td>175</td><td>174</td><td>109</td><td>195</td><td>10</td><td>0</td><td class='tot'>1,277</td></tr><tr class='tot'><td>净位置</td><td>35</td><td>19</td><td>63</td><td>148</td><td>320</td><td>409</td><td>415</td><td>254</td><td>139</td><td>195</td><td>10</td><td>0</td><td class='tot'>2,007</td></tr><tr class='tot'><td>High</td><td>4</td><td>10</td><td>35</td><td>105</td><td>149</td><td>209</td><td>243</td><td>168</td><td>63</td><td>14</td><td>0</td><td>0</td><td class='tot'>1,000</td></tr><tr><td>ROP</td><td>0</td><td>0</td><td>25</td><td>95</td><td>139</td><td>199</td><td>233</td><td>158</td><td>53</td><td>0</td><td>0</td><td>0</td><td class='tot'>902</td></tr><tr><td>缺口High-净</td><td>-31</td><td>-9</td><td>-28</td><td>-43</td><td>-171</td><td>-200</td><td>-172</td><td>-86</td><td>-76</td><td>-181</td><td>-10</td><td>0</td><td class='tot'>-1,007</td></tr><tr><td>建议补货</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>High备选(EU41-43各+10，总量不变)</td><td>0</td><td>0</td><td>35</td><td>105</td><td>149</td><td>219</td><td>253</td><td>178</td><td>61</td><td>0</td><td>0</td><td>0</td><td class='tot'>1,000</td></tr></table></div></section>
+<section class='card'><h3>805H-SB · 仅MSL成品High约420；Dunia占用另计</h3><p class='small'>分码：本款正常流仅236双，借用805H-SP正常流 nb=10533｜High=420（最大余数，合计必等）</p><div class='scroll'><table><tr><th>项目</th><th>EU36</th><th>EU37</th><th>EU38</th><th>EU39</th><th>EU40</th><th>EU41</th><th>EU42</th><th>EU43</th><th>EU44</th><th>EU45</th><th>EU46</th><th>EU47</th><th>合计</th></tr><tr><td>成品库存(接口)</td><td>90</td><td>20</td><td>85</td><td>215</td><td>449</td><td>476</td><td>360</td><td>345</td><td>145</td><td>5</td><td>10</td><td>0</td><td class='tot'>2,200</td></tr><tr><td>在制·下线未入库(11/2表)</td><td>0</td><td>0</td><td>10</td><td>20</td><td>150</td><td>250</td><td>290</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>720</td></tr><tr><td>在制·已发鞋面未射出(11/2表)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>20</td><td>40</td><td>30</td><td>20</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>110</td></tr><tr><td>占用·客户实单</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>占用·Dunia</td><td>20</td><td>40</td><td>100</td><td>60</td><td>300</td><td>520</td><td>440</td><td>180</td><td>80</td><td>60</td><td>0</td><td>0</td><td class='tot'>1,800</td></tr><tr><td>可用成品</td><td>70</td><td>-20</td><td>-15</td><td>155</td><td>149</td><td>-44</td><td>-80</td><td>165</td><td>65</td><td>-55</td><td>10</td><td>0</td><td class='tot'>400</td></tr><tr class='tot'><td>净位置</td><td>70</td><td>-20</td><td>-5</td><td>175</td><td>319</td><td>246</td><td>240</td><td>185</td><td>65</td><td>-55</td><td>10</td><td>0</td><td class='tot'>1,230</td></tr><tr class='tot'><td>High</td><td>2</td><td>4</td><td>15</td><td>44</td><td>62</td><td>88</td><td>102</td><td>70</td><td>27</td><td>6</td><td>0</td><td>0</td><td class='tot'>420</td></tr><tr><td>ROP</td><td>0</td><td>0</td><td>0</td><td>34</td><td>52</td><td>78</td><td>92</td><td>60</td><td>17</td><td>0</td><td>0</td><td>0</td><td class='tot'>333</td></tr><tr><td>缺口High-净</td><td>-68</td><td>24</td><td>20</td><td>-131</td><td>-257</td><td>-158</td><td>-138</td><td>-115</td><td>-38</td><td>61</td><td>-10</td><td>0</td><td class='tot'>-810</td></tr><tr><td>建议补货</td><td>0</td><td>30</td><td>20</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>70</td><td>0</td><td>0</td><td class='tot'>120</td></tr><tr><td>High备选(EU41-43各+10，总量不变)</td><td>0</td><td>0</td><td>15</td><td>44</td><td>62</td><td>98</td><td>112</td><td>80</td><td>9</td><td>0</td><td>0</td><td>0</td><td class='tot'>420</td></tr></table></div></section>
+<section class='card'><h3>026X-SB · 不设成品目标；约4000为鞋面储备口径</h3><p class='small'>分码：无成品目标｜High=0（最大余数，合计必等）</p><div class='scroll'><table><tr><th>项目</th><th>EU36</th><th>EU37</th><th>EU38</th><th>EU39</th><th>EU40</th><th>EU41</th><th>EU42</th><th>EU43</th><th>EU44</th><th>EU45</th><th>EU46</th><th>EU47</th><th>合计</th></tr><tr><td>成品库存(接口)</td><td>150</td><td>179</td><td>209</td><td>291</td><td>518</td><td>521</td><td>546</td><td>448</td><td>309</td><td>35</td><td>10</td><td>0</td><td class='tot'>3,216</td></tr><tr><td>在制·下线未入库(11/2表)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>在制·已发鞋面未射出(11/2表)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>占用·客户实单</td><td>246</td><td>348</td><td>348</td><td>279</td><td>279</td><td>348</td><td>348</td><td>348</td><td>348</td><td>246</td><td>174</td><td>0</td><td class='tot'>3,312</td></tr><tr><td>占用·Dunia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>可用成品</td><td>-96</td><td>-169</td><td>-139</td><td>12</td><td>239</td><td>173</td><td>198</td><td>100</td><td>-39</td><td>-211</td><td>-164</td><td>0</td><td class='tot'>-96</td></tr><tr class='tot'><td>净位置</td><td>-96</td><td>-169</td><td>-139</td><td>12</td><td>239</td><td>173</td><td>198</td><td>100</td><td>-39</td><td>-211</td><td>-164</td><td>0</td><td class='tot'>-96</td></tr><tr class='tot'><td>High</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class='tot'>0</td></tr><tr><td>ROP</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class='tot'>0</td></tr><tr><td>缺口High-净</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class='tot'>0</td></tr><tr><td>建议补货</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class='tot'>0</td></tr></table></div></section>
+</section>
+
+<section class="card"><h2>四、无目标款（只列示、不补安库）</h2>
+<div class="scroll"><table><tr><th>鞋型</th><th>库存</th><th>在制</th><th>占用</th><th>净位置</th><th>政策</th></tr>
+<tr><td>I14-775/X-ASP-10-U0088</td><td>8</td><td>0</td><td>0</td><td>8</td><td>无安库目标、不补货</td></tr><tr><td>I14-775/Y-ASP-10-U0088</td><td>8</td><td>0</td><td>0</td><td>8</td><td>无安库目标、不补货</td></tr><tr><td>I14-881/6-SD-17-U0088</td><td>94</td><td>0</td><td>430</td><td>-336</td><td>无安库目标、不补货</td></tr><tr><td>L8-026/2-SD-04-U0042</td><td>160</td><td>0</td><td>2,787</td><td>-2,627</td><td>无安库目标、不补货</td></tr><tr><td>L8-026/W-SD-04-U0042</td><td>70</td><td>0</td><td>3,476</td><td>-3,406</td><td>无安库目标、不补货</td></tr><tr><td>L8-222/Q-AEP-04-U0088</td><td>8</td><td>0</td><td>0</td><td>8</td><td>无安库目标、不补货</td></tr><tr><td>L8-222/T-AEP-04-U0088</td><td>8</td><td>0</td><td>0</td><td>8</td><td>无安库目标、不补货</td></tr><tr><td>L8-706/2-SD-04-U0042</td><td>0</td><td>0</td><td>140</td><td>-140</td><td>无安库目标、不补货</td></tr><tr><td>L8-805/K-ASP-04-U0042</td><td>170</td><td>0</td><td>327</td><td>-157</td><td>无安库目标、不补货</td></tr><tr><td>L8-805/K-SD-04-U0042</td><td>460</td><td>0</td><td>10,120</td><td>-9,660</td><td>无安库目标、不补货</td></tr><tr><td>L8-806/5-SD-04-U0042</td><td>0</td><td>0</td><td>10</td><td>-10</td><td>无安库目标、不补货</td></tr><tr><td>L8-807/5-SD-04-U0042</td><td>3</td><td>0</td><td>130</td><td>-127</td><td>无安库目标、不补货</td></tr><tr><td>L8-807/8-SP-04-U0088</td><td>1,212</td><td>0</td><td>0</td><td>1,212</td><td>无安库目标、不补货</td></tr><tr><td>M11-222/J-AEP-08-U0088</td><td>2</td><td>0</td><td>0</td><td>2</td><td>无安库目标、不补货</td></tr><tr><td>M11-222/L-AEP-08-U0088</td><td>2</td><td>0</td><td>0</td><td>2</td><td>无安库目标、不补货</td></tr><tr><td>M8-026/3-EH-08-U0088</td><td>800</td><td>0</td><td>0</td><td>800</td><td>无安库目标、不补货</td></tr><tr><td>M8-026/3-SP-08-U0088</td><td>443</td><td>0</td><td>0</td><td>443</td><td>无安库目标、不补货</td></tr><tr><td>M8-805/L-AEP-08-U0042</td><td>4</td><td>0</td><td>4</td><td>0</td><td>无安库目标、不补货</td></tr><tr><td>M8-805/L-SP-08-U0042</td><td>2</td><td>0</td><td>2</td><td>0</td><td>无安库目标、不补货</td></tr><tr><td>M8-805/L-ST-08-U0042</td><td>7</td><td>0</td><td>7</td><td>0</td><td>无安库目标、不补货</td></tr><tr><td>M8-805/S-EH-08-U0088</td><td>1,218</td><td>0</td><td>0</td><td>1,218</td><td>无安库目标、不补货</td></tr><tr><td>M8-805/S-SP-08-U0088</td><td>644</td><td>5</td><td>0</td><td>649</td><td>无安库目标、不补货</td></tr>
+</table></div>
+</section>
+
+<section class="card"><h2>五、待补（不编数）</h2>
+<ul>
+<li><b>在制两段实时数</b>：Doris 接口5（下线未入库 + 已发鞋面未射出）预计 11/18；到了即同公式重算。</li>
+<li><b>11/2 在制是否已入库</b>：11/2 下线未入库 940 双与今天实时库存可能重复计算，接口5 到前无法逐双核对。</li>
+<li><b>成品入库流水</b>（接口8）：Doris 说 11/18；到了才能做“期初+入库−出库+退货=期末”对账。</li>
+<li>条码有、22 无的 L8-807/5-ASP-04-U0042 40 双：待 Doris 解释口径。</li>
+</ul>
+<h2>六、仍待Boss点头（同 11/06，未变）</h2>
+<ul>
+<li>对客正式承诺是否采用<b>2天</b>（现为Bot建议）。</li>
+<li>是否启用<b>EU41–43一码缓冲</b>（默认关）。</li>
+<li>805H-SB成品High <b>420</b>是否封顶（分码暂借SP）。</li>
+<li>026X-SB鞋面≈<b>4,000</b>进第2/3层的分码，本页不编造。</li>
+</ul>
+<p class="small">源目录 /workspace/pmc/msl/ankui_v2_20261114/ · 旧版 <a href="if_ankui_layer1_calculation_20261106.html">第1层试算11/06</a> · <a href="if_ankui_data_tracker.html">资料跟踪表</a></p>
+</section>
+</div></body></html>
