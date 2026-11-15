@@ -50,12 +50,22 @@ svg{max-width:100%;height:auto;display:block}
 @media(max-width:800px){
   header{padding:16px 12px 12px}
   header h1{font-size:17px}
-  .sticky-filters{padding:10px 12px}
-  .filters{grid-template-columns:1fr}
+  .sticky-filters{position:static;padding:10px 12px}
+  .mobile-sticky{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--line);padding:8px 12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .filters{grid-template-columns:1fr 1fr}
+  .filters-extra{display:none}
+  .filters-extra.show{display:contents}
   .wrap{padding:10px 10px 36px}
   .panel{padding:10px 12px}
   .card .v{font-size:18px}
   table{font-size:11px}
+  .btn-expand{display:inline-block}
+  .filter-row{flex-wrap:wrap}
+}
+@media(min-width:801px){
+  .mobile-sticky{display:none}
+  .btn-expand{display:none}
+  .filters-extra{display:contents}
 }
 .hidden{display:none!important}
 #loading{text-align:center;padding:40px;color:var(--muted)}
@@ -66,6 +76,10 @@ svg{max-width:100%;height:auto;display:block}
   <h1>尊荣（ZR）完整销售分析</h1>
   <p>第四稿 · 整页由筛选驱动 · 2024 年 — 2026 年 11 月 15 日</p>
 </header>
+
+<div class="mobile-sticky">
+  <div class="filter-summary" id="filter-summary-mobile"></div>
+</div>
 
 <div class="sticky-filters">
   <div class="filters">
@@ -106,17 +120,20 @@ svg{max-width:100%;height:auto;display:block}
         <option value="其它未标品牌（材料/配件）">其它未标品牌（材料/配件）</option>
       </select>
     </label>
-    <label>客户 <input id="f-cust" list="dl-cust" placeholder="全部客户" autocomplete="off"/></label>
-    <label>鞋型 <input id="f-style" list="dl-style" placeholder="全部鞋型" autocomplete="off"/></label>
-    <label>通路/地区
-      <select id="f-ch"><option value="">全部</option></select>
-    </label>
-    <label>品牌
-      <select id="f-brand"><option value="">全部</option></select>
-    </label>
+    <div class="filters-extra" id="filters-extra">
+      <label>客户 <input id="f-cust" list="dl-cust" placeholder="全部客户" autocomplete="off"/></label>
+      <label>鞋型 <input id="f-style" list="dl-style" placeholder="全部鞋型" autocomplete="off"/></label>
+      <label>通路/地区
+        <select id="f-ch"><option value="">全部</option></select>
+      </label>
+      <label>品牌
+        <select id="f-brand"><option value="">全部</option></select>
+      </label>
+    </div>
   </div>
   <div class="filter-row">
     <button class="btn btn-lite" id="btn-reset">重置为默认</button>
+    <button class="btn btn-lite btn-expand" id="btn-expand">更多筛选 ▼</button>
     <div class="filter-summary" id="filter-summary"></div>
   </div>
 </div>
@@ -252,12 +269,24 @@ function filterRows(period, unitSel, custStr, styleStr, chVal, brandVal) {
 
 function aggregate(rows) {
   let qty = 0, fen = 0, rowCount = 0, shoeQty = 0, shoeFen = 0, excQty = 0, excRows = 0;
+  let m3Kouzhao = 0, m3Ersai = 0, m3Qita = 0;
+  let insoleFen = 0, insoleQty = 0;
+  const custSet = new Set(), styleSet = new Set();
   for (const r of rows) {
     rowCount++;
     qty += r[COLS.QTY];
+    custSet.add(r[COLS.CUST]);
+    styleSet.add(r[COLS.STYLE]);
+    const fu = FU[r[COLS.FU]];
+    if (fu === "3M口罩") m3Kouzhao += r[COLS.QTY];
+    else if (fu === "3M耳塞") m3Ersai += r[COLS.QTY];
+    else if (fu === "3M其他") m3Qita += r[COLS.QTY];
     if (r[COLS.SHOE]) {
       shoeQty += r[COLS.QTY];
       if (r[COLS.INC]) shoeFen += r[COLS.FEN];
+    } else if (fu.startsWith("绿安全") && !r[COLS.SHOE]) {
+      insoleQty += r[COLS.QTY];
+      if (r[COLS.INC]) insoleFen += r[COLS.FEN];
     }
     if (r[COLS.INC]) {
       fen += r[COLS.FEN];
@@ -266,7 +295,13 @@ function aggregate(rows) {
       excRows++;
     }
   }
-  return { qty, fen, rowCount, shoeQty, shoeFen, excQty, excRows, yuan: fen / 100, shoeYuan: shoeFen / 100 };
+  return { 
+    qty, fen, rowCount, shoeQty, shoeFen, excQty, excRows, 
+    yuan: fen / 100, shoeYuan: shoeFen / 100,
+    m3Kouzhao, m3Ersai, m3Qita,
+    insoleQty, insoleYuan: insoleFen / 100,
+    custCount: custSet.size, styleCount: styleSet.size
+  };
 }
 
 function byYear(rows) {
@@ -310,14 +345,14 @@ function byFu(rows) {
 }
 
 function fmt(n) { return n.toLocaleString("zh-CN"); }
-function fmtYuan(n) { return n.toLocaleString("zh-CN", { minimumFractionDigits: 0, maximumFractionDigits: 0 }); }
+function fmtYuan(n) { return Math.round(n).toLocaleString("zh-CN"); }
 function fmtWan(n) { return (n / 10000).toLocaleString("zh-CN", { minimumFractionDigits: 1, maximumFractionDigits: 1 }); }
 function fmtYi(n) { return (n / 100000000).toLocaleString("zh-CN", { minimumFractionDigits: 3, maximumFractionDigits: 3 }); }
 function pct(newV, oldV) { return oldV ? ((newV / oldV - 1) * 100).toFixed(1) + "%" : "—"; }
 function pctCls(newV, oldV) { if (!oldV) return ""; const p = newV / oldV - 1; return p > 0.0005 ? "up" : p < -0.0005 ? "down" : ""; }
 
 function canShowQty(unitSel) {
-  if (unitSel === "all") return false;
+  if (unitSel === "all" || unitSel === "3M") return false;
   return true;
 }
 
@@ -391,15 +426,36 @@ function getDisplayYuan(agg, unitSel) {
 function updateSummary(rows, agg, period, unitSel, custStr, styleStr, chVal, brandVal) {
   const parts = [];
   parts.push(`${fmt(rows.length)} 行`);
-  if (canShowQty(unitSel)) {
+  
+  const isCompare = period === "sp_compare" || period === "all";
+  
+  if (isCompare) {
+    parts.push(`${fmt(agg.custCount)} 客户`);
+    parts.push(`${fmt(agg.styleCount)} 鞋型`);
+  } else if (unitSel === "3M") {
+    parts.push(`口罩 ${fmt(agg.m3Kouzhao)} 件`);
+    parts.push(`耳塞 ${fmt(agg.m3Ersai)} 件`);
+    parts.push(`其他 ${fmt(agg.m3Qita)} 件`);
+    parts.push(`${fmtWan(agg.yuan)} 万元`);
+  } else if (unitSel === "绿安全国内" && agg.insoleQty > 0) {
+    parts.push(`${fmt(agg.shoeQty)} 双`);
+    parts.push(`${fmt(agg.insoleQty)} 件鞋垫`);
+    parts.push(`${fmtWan(agg.yuan)} 万元`);
+  } else if (canShowQty(unitSel)) {
     const displayQty = getDisplayQty(agg, unitSel);
     parts.push(`${fmt(displayQty)} ${qtyUnit(unitSel)}`);
+    parts.push(`${fmtWan(getDisplayYuan(agg, unitSel))} 万元`);
+  } else {
+    parts.push(`${fmtWan(getDisplayYuan(agg, unitSel))} 万元`);
   }
-  parts.push(`${fmtWan(getDisplayYuan(agg, unitSel))} 万元`);
+  
   if (agg.excRows > 0) {
     parts.push(`<span class="tag">${agg.excRows} 行/${fmt(agg.excQty)} 未计营业额</span>`);
   }
-  document.getElementById("filter-summary").innerHTML = parts.join(" · ");
+  const summaryHtml = parts.join(" · ");
+  document.getElementById("filter-summary").innerHTML = summaryHtml;
+  const mobileSummary = document.getElementById("filter-summary-mobile");
+  if (mobileSummary) mobileSummary.innerHTML = summaryHtml;
 }
 
 function updateNote(unitSel, agg) {
@@ -436,20 +492,44 @@ function updateKPIs(rows, agg, period, unitSel) {
       const prevAgg = aggregate(prevRows);
       const yYuan = getDisplayYuan(yAgg, unitSel);
       const prevYuan = getDisplayYuan(prevAgg, unitSel);
+      const yQty = getDisplayQty(yAgg, unitSel);
+      const prevQty = getDisplayQty(prevAgg, unitSel);
       
       let label = period === "sp_compare" ? `${y} 同期` : `${y} 年`;
       if (y === 2026 && period === "all") label = "2026 截至 11-15";
       
       let html = `<div class="card"><div class="k">${label}</div>`;
       html += `<div class="v">${fmtWan(yYuan)} 万元</div>`;
-      if (showQty) html += `<div class="s">${fmt(getDisplayQty(yAgg, unitSel))} ${unit}</div>`;
+      if (unitSel === "3M") {
+        html += `<div class="s">口罩 ${fmt(yAgg.m3Kouzhao)} / 耳塞 ${fmt(yAgg.m3Ersai)} / 其他 ${fmt(yAgg.m3Qita)}</div>`;
+      } else if (showQty) {
+        html += `<div class="s">${fmt(yQty)} ${unit}</div>`;
+      }
       if (y > 2024 && prevYuan) {
-        const cls = pctCls(yYuan, prevYuan);
-        html += `<div class="chg ${cls}">${pct(yYuan, prevYuan)}</div>`;
+        const yuanCls = pctCls(yYuan, prevYuan);
+        html += `<div class="chg ${yuanCls}">营业额 ${pct(yYuan, prevYuan)}</div>`;
+        if (showQty && prevQty) {
+          const qtyCls = pctCls(yQty, prevQty);
+          html += `<div class="chg ${qtyCls}">数量 ${pct(yQty, prevQty)}</div>`;
+        }
       }
       html += `</div>`;
       cards.push(html);
     }
+  } else if (unitSel === "3M") {
+    let label = "";
+    if (period === "sp2026") label = "2026 同期（1月–11上）";
+    else if (period === "sp2025") label = "2025 同期";
+    else if (period === "sp2024") label = "2024 同期";
+    else if (period === "fy2025") label = "2025 全年";
+    else if (period === "fy2024") label = "2024 全年";
+    else if (period === "ytd2026") label = "2026 截至 11-15";
+    
+    cards.push(`<div class="card"><div class="k">${label} · 营业额</div><div class="v">${fmtWan(agg.yuan)} 万元</div><div class="s">${fmtYuan(agg.yuan)} 元</div></div>`);
+    cards.push(`<div class="card"><div class="k">${label} · 口罩</div><div class="v">${fmt(agg.m3Kouzhao)} 件</div></div>`);
+    cards.push(`<div class="card"><div class="k">${label} · 耳塞</div><div class="v">${fmt(agg.m3Ersai)} 件</div></div>`);
+    cards.push(`<div class="card"><div class="k">${label} · 其他</div><div class="v">${fmt(agg.m3Qita)} 件</div></div>`);
+    cards.push(`<div class="card"><div class="k">明细行数</div><div class="v">${fmt(rows.length)}</div></div>`);
   } else {
     let label = "";
     if (period === "sp2026") label = "2026 同期（1月–11上）";
@@ -757,6 +837,24 @@ function debounce(fn, ms) {
   };
 }
 
+function toggleFiltersExtra() {
+  const extra = document.getElementById("filters-extra");
+  const btn = document.getElementById("btn-expand");
+  if (extra.classList.contains("show")) {
+    extra.classList.remove("show");
+    btn.textContent = "更多筛选 ▼";
+  } else {
+    extra.classList.add("show");
+    btn.textContent = "收起筛选 ▲";
+  }
+}
+
+function updateMobileSummary() {
+  const el = document.getElementById("filter-summary-mobile");
+  const summary = document.getElementById("filter-summary").innerHTML;
+  el.innerHTML = summary;
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   initDataLists();
   initFxTable();
@@ -768,6 +866,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("f-ch").addEventListener("change", render);
   document.getElementById("f-brand").addEventListener("change", render);
   document.getElementById("btn-reset").addEventListener("click", resetFilters);
+  document.getElementById("btn-expand").addEventListener("click", toggleFiltersExtra);
   
   document.getElementById("loading").classList.add("hidden");
   document.getElementById("main-content").classList.remove("hidden");
