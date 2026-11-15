@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>尊荣（ZR）完整销售分析（2024–2026-11-15）</title>
+<title>尊荣（ZR）完整销售分析（营业额为主，2024–2026-11-15）</title>
 <style>
 :root{--ink:#1a2330;--muted:#5c6770;--line:#e6eaee;--bg:#f4f6f8;--card:#fff;--blue:#1e4d7b;--green:#1f6b4a;--up:#1f6b4a;--down:#b42318;}
 *{box-sizing:border-box}
@@ -17,13 +17,14 @@ header p{margin:0;opacity:.88;font-size:13px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:20px;}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
 .card .k{font-size:12px;color:var(--muted);}
-.card .v{font-size:24px;font-weight:700;margin:4px 0 2px;letter-spacing:-.02em;}
+.card .v{font-size:22px;font-weight:700;margin:4px 0 2px;letter-spacing:-.02em;}
 .card .s{font-size:12px;color:var(--muted);}
 .chg{margin-top:6px;font-size:13px;font-weight:600;}
 .chg.up{color:var(--up)} .chg.down{color:var(--down)} .chg.flat{color:#667}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px;}
 .panel h2{margin:0 0 8px;font-size:16px;}
-.panel h3{margin:0 0 10px;font-size:14px;}
+.panel h3{margin:16px 0 8px;font-size:14px;}
+.panel h3:first-child{margin-top:0;}
 .panel .sub{color:var(--muted);font-size:12px;margin:0 0 12px;}
 .panel p{margin:0 0 8px;font-size:14px;}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -44,547 +45,745 @@ code{font-size:12px;background:#f0f3f6;padding:1px 4px;border-radius:3px;}
 <body>
 <header>
   <h1>尊荣（ZR）完整销售分析</h1>
-  <p>口径：销售月统计 · 类别「全部」　|　对比期间：2024 年 — 2026 年 11 月 15 日　|　制表：2026-11-15（Asia/Shanghai）　|　第一稿</p>
+  <p>主指标：营业额（折人民币）　|　数量只在同一品类或同一事业单元内比较　|　2024 年 — 2026 年 11 月 15 日　|　制表：2026-11-15（Asia/Shanghai）　|　第二稿</p>
 </header>
 <div class="wrap">
   <div class="note">
-    口径为尊荣 ZR 销售月统计的<strong>全部类别</strong>（内销、外销、MIDORI、OEM、3M、钢头、橡胶、其它），不是此前「内销 + 上海绿安全」的窄口径。
-    主指标是销售数量；钢头、橡胶和「其它」（主要是材料调拨）会显著抬高总量，下面各类别一律拆开。
-    2026 年尚未结束。与往年对比一律用「1 月上旬至 11 月上旬」同期（完整旬）。
-    <strong>2026-11中只统计到 11 月 15 日，不是完整旬</strong>（完整中旬应到 20 日），单独标注，不计入同期。
-    数据来源：<code>ZR销售月统计_全部_202401_202512.xlsx</code>（2024–2025 全部）、
-    <code>ZR销售月统计_全部_202601_202610.xlsx</code>（只用到 2026-09下）、
-    <code>ZR销售月统计_20261001-20261115.xlsx</code>（今日 KPR PRO 提取，作为 2026-10上至 11中的权威来源）。重叠旬以最新提取为准，未重复计算。
+    公司合计、年度走势和跨单元比较一律用<strong>营业额</strong>，不再把鞋子、3M 口罩/耳塞、钢头、材料等不同单位的数量加在一起。
+    行金额 =（单价 + 服务费）× 销售数量。美元按所属自然月的月均 USDCNY 折成人民币（来源：Frankfurter，ECB 参考汇率）。人民币与美元原币在表内保留。
+    成品鞋（内销 + 外销 + 绿安全成品 + X）是同一品类，数量可以合并，也拆开看。X 是没有进前三项的成品鞋，见下文定义。
+    同期 = 1 月上旬至 11 月上旬（完整旬）。2026-11中只到 11 月 15 日，不计入同期。
+    13 行（1,074 双，内销 NEWTEX1）币别为空，已从营业额中剔除，数量仍计入内销。
   </div>
 
   <div class="grid">
     <div class="card">
-      <div class="k">2024 全年</div>
-      <div class="v">5,830,135</div>
-      <div class="s">238 个客户 · 全部类别</div>
+      <div class="k">2024 全年营业额</div>
+      <div class="v">1.229 亿元</div>
+      <div class="s">12,289.8 万元（折人民币）</div>
     </div>
     <div class="card">
-      <div class="k">2025 全年</div>
-      <div class="v">5,106,368</div>
-      <div class="s">246 个客户，较 2024</div>
-      <div class="chg down">-12.4%</div>
+      <div class="k">2025 全年营业额</div>
+      <div class="v">1.201 亿元</div>
+      <div class="s">12,013.5 万元，较 2024</div>
+      <div class="chg down">-2.2%</div>
     </div>
     <div class="card">
       <div class="k">同期 2024（1月–11上）</div>
-      <div class="v">4,973,861</div>
-      <div class="s">完整旬窗口</div>
+      <div class="v">1.049 亿元</div>
+      <div class="s">10,487.7 万元</div>
     </div>
     <div class="card">
       <div class="k">同期 2025（1月–11上）</div>
-      <div class="v">4,143,246</div>
-      <div class="s">较 2024 同期</div>
-      <div class="chg down">-16.7%</div>
+      <div class="v">1.011 亿元</div>
+      <div class="s">10,105.2 万元，较 2024 同期</div>
+      <div class="chg down">-3.6%</div>
     </div>
     <div class="card">
       <div class="k">同期 2026（1月–11上）</div>
-      <div class="v">3,885,057</div>
-      <div class="s">较 2025 同期</div>
-      <div class="chg down">-6.2%</div>
+      <div class="v">1.034 亿元</div>
+      <div class="s">10,339.9 万元，较 2025 同期</div>
+      <div class="chg up">+2.3%</div>
     </div>
     <div class="card">
       <div class="k">2026 截至 11 月 15 日</div>
-      <div class="v">3,988,121</div>
-      <div class="s">含 11中不完整 103,064 双，年未完</div>
+      <div class="v">1.060 亿元</div>
+      <div class="s">含 11中不完整 257.4 万元，年未完</div>
     </div>
   </div>
 
   <div class="panel">
     <h2>结论（先看这个）</h2>
-    <p>尊荣「类别全部」销量，2025 全年为 <b>5,106,368</b> 双，比 2024 年的 5,830,135 双下降 <b>-12.4%</b>。放到同一起跑线（都只看到 11 月上旬）：2026 年同期 <b>3,885,057</b> 双，比 2025 同期 4,143,246 双再降 <b>-6.2%</b>，比 2024 同期降 -21.9%。2026-11中截至 15 日另有 103,064 双（其中钢头 73,500 双），旬还没结束，没有算进同期。</p>
-    <p>总量里一半以上不是成品鞋。2025 全年成品（内销 + 外销 + MIDORI + OEM + 3M）占 <b>32.8%</b>，钢头、橡胶和「其它」（主要是材料调拨给 MF / IF / CF）占 <b>67.2%</b>。看总量，必须先看类别。</p>
-    <p>下滑的第一原因是 <b>3M</b>：2024 全年 1,691,819 双，2025 年 865,669 双（-48.8%），2026 同期再降至 633,166 双（较 2025 同期 -14.2%）。3M 几乎全部卖给富士康。另外，2026 年 10 月和 11 月（截至 15 日）的提取里完全没有 3M 记录，而 9 月仍有 56,182 双——是订单空窗还是报表没纳入，需要确认。</p>
-    <p>第二块是「其它」（材料等）：2026 同期 726,857 双，较 2025 同期 1,214,021 双下降 <b>-40.1%</b>。钢头、橡胶则分别上升 +16.0%、+33.9%，部分抵消了材料的下降。</p>
-    <p>若把 3M 和部件材料都拿掉，只看 KPR / 绿安全 / OEM 等成品鞋：2026 同期 <b>747,048</b> 双，比 2025 同期 701,794 双上升 <b>+6.4%</b>，仍低于 2024 同期 772,996 双（-3.4%）。其中内销是主力，2026 同期 410,531 双，较 2025 同期 +12.0%，已回到 2024 同期（407,873 双）附近。外销同期 +3.5%，仍低于 2024。上海绿安全（类别 MIDORI，华南 / 华东 / 华北 + 外贸）同期 39,465 双，较 2025 同期 49,210 双下降 <b>-19.8%</b>，下滑主要在华南（-32.5%）。</p>
-    <p>资料有一处不影响总量、但影响客户和通路分析的问题：2026 年 10 月起，销售月统计里的内销客户几乎全部记在 NEWTEX1（编号 N0002），通路也大量变成「其他」。10 月上旬内销 31,645 双只有 1 个客户名，而 9 月内销 36,545 双仍有 53 个客户。数量看起来还连续，但 10 月以后的内销客户排名和通路结构不能与前期比。下面的内销客户、内销通路改用 2026 年 1–9 月。</p>
+    <p>按营业额（美元已按月均汇率折人民币）看，2025 全年为 <b>1.201 亿元</b>（120,134,951 元），比 2024 年的 1.229 亿元只下降 <b>-2.2%</b>。同期（1 月–11 上）：2026 年为 <b>1.034 亿元</b>，比 2025 同期 1.011 亿元上升 <b>+2.3%</b>，距 2024 同期 1.049 亿元只差 -1.4%。若把不同产品的数量加总，会看到明显下滑；换成金额，公司整体接近走平，2026 同期还略升。2026-11中截至 15 日另有 257.4 万元，未计入同期。</p>
+    <p>人民币原币 69,030,660 元；美元原币 7,112,598 美元，折人民币 51,104,291 元。（2025 全年。）人民币原币 61,246,111 元；美元原币 6,200,877 美元，折人民币 42,152,851 元。（2026 同期。）</p>
+    <p>成品鞋（内销 + 外销 + 绿安全成品 + X）是营业额主力：2025 全年 7,982.5 万元，占公司 66.4%；2026 同期 7,040.9 万元，占 68.1%。这一块的数量可以合并——2026 同期 <b>719,370</b> 双，比 2025 同期 676,319 双 +6.4%，金额 +2.2%。其中内销是主力（同期数量 408,176 双，+12.1%；金额 +9.5%）。外销同期金额 -2.7%。绿安全成品同期 41,820 双、393.4 万元，较 2025 同期数量 -17.5%、金额 -18.0%，下滑主要在华南。</p>
+    <p>3M、钢头、橡胶底、材料的件数都很大，但不能和鞋子加在一起读。3M 2024 年件数远高于 2025 年，但营业额只从 756.9 万元降到 720.2 万元（-4.9%）——因为口罩、耳塞和其他件本来就不是同一单位，便宜的耳塞件数会放大数量波动。2026 年 10–11 月提取中仍未见 3M 记录（最后一笔在 2026-09中）。钢头、橡胶底、材料数量高、单价低，金额占比合计大约两成。</p>
+    <p>内销客户分析仍受资料限制：2026 年 10 月起，销售月统计里的内销客户几乎全部记在 NEWTEX1，通路也大量变成「其他」。内销客户与通路改用 2026 年 1–9 月。</p>
   </div>
 
   <div class="row2">
     <div class="panel">
-      <h3>全年总量（2026 年未结束，只列 2024 / 2025）</h3>
-      <p class="sub">2025 较 2024 -12.4%。单位：双（系统销售数量）</p>
-      <svg viewBox="0 0 640 220" width="100%" role="img">
-<line x1="56" y1="16.0" x2="632" y2="16.0" stroke="#edf0f3"/>
-<text x="48" y="20.0" text-anchor="end" font-size="10" fill="#7a8490">5,830,135</text>
-<line x1="56" y1="58.0" x2="632" y2="58.0" stroke="#edf0f3"/>
-<text x="48" y="62.0" text-anchor="end" font-size="10" fill="#7a8490">4,372,601</text>
-<line x1="56" y1="100.0" x2="632" y2="100.0" stroke="#edf0f3"/>
-<text x="48" y="104.0" text-anchor="end" font-size="10" fill="#7a8490">2,915,068</text>
-<line x1="56" y1="142.0" x2="632" y2="142.0" stroke="#edf0f3"/>
-<text x="48" y="146.0" text-anchor="end" font-size="10" fill="#7a8490">1,457,534</text>
-<line x1="56" y1="184.0" x2="632" y2="184.0" stroke="#edf0f3"/>
-<text x="48" y="188.0" text-anchor="end" font-size="10" fill="#7a8490">0</text>
-<rect x="143.3" y="16.0" width="165.3" height="168.0" rx="2" fill="#1e4d7b"/>
-<text x="225.9" y="208" text-anchor="middle" font-size="11" fill="#4a5560">2024全年</text>
-<text x="225.9" y="12.0" text-anchor="middle" font-size="10" fill="#4a5560">5,830,135</text>
-<rect x="379.4" y="36.9" width="165.3" height="147.1" rx="2" fill="#1e4d7b"/>
-<text x="462.1" y="208" text-anchor="middle" font-size="11" fill="#4a5560">2025全年</text>
-<text x="462.1" y="32.9" text-anchor="middle" font-size="10" fill="#4a5560">5,106,368</text>
+      <h3>全年营业额（2026 年未结束，只列 2024 / 2025）</h3>
+      <p class="sub">单位：万元（折人民币）。2025 较 2024 -2.2%</p>
+      <svg viewBox="0 0 640 230" width="100%" role="img">
+<line x1="64" y1="20.0" x2="632" y2="20.0" stroke="#edf0f3"/>
+<text x="56" y="24.0" text-anchor="end" font-size="10" fill="#7a8490">12,289.8</text>
+<line x1="64" y1="63.5" x2="632" y2="63.5" stroke="#edf0f3"/>
+<text x="56" y="67.5" text-anchor="end" font-size="10" fill="#7a8490">9,217.3</text>
+<line x1="64" y1="107.0" x2="632" y2="107.0" stroke="#edf0f3"/>
+<text x="56" y="111.0" text-anchor="end" font-size="10" fill="#7a8490">6,144.9</text>
+<line x1="64" y1="150.5" x2="632" y2="150.5" stroke="#edf0f3"/>
+<text x="56" y="154.5" text-anchor="end" font-size="10" fill="#7a8490">3,072.4</text>
+<line x1="64" y1="194.0" x2="632" y2="194.0" stroke="#edf0f3"/>
+<text x="56" y="198.0" text-anchor="end" font-size="10" fill="#7a8490">0.0</text>
+<rect x="150.1" y="20.0" width="163.0" height="174.0" rx="2" fill="#1e4d7b"/>
+<text x="231.6" y="218" text-anchor="middle" font-size="11" fill="#4a5560">2024全年</text>
+<text x="231.6" y="16.0" text-anchor="middle" font-size="10" fill="#4a5560">12,289.8</text>
+<rect x="382.9" y="23.9" width="163.0" height="170.1" rx="2" fill="#1e4d7b"/>
+<text x="464.4" y="218" text-anchor="middle" font-size="11" fill="#4a5560">2025全年</text>
+<text x="464.4" y="19.9" text-anchor="middle" font-size="10" fill="#4a5560">12,013.5</text>
+<text x="64" y="12" font-size="10" fill="#8b95a1">万元</text>
 </svg>
     </div>
     <div class="panel">
-      <h3>同期总量（每年 1 月–11 月上旬）</h3>
-      <p class="sub">2026 比 2025 同期 -6.2%，比 2024 同期 -21.9%</p>
-      <svg viewBox="0 0 640 220" width="100%" role="img">
-<line x1="56" y1="16.0" x2="632" y2="16.0" stroke="#edf0f3"/>
-<text x="48" y="20.0" text-anchor="end" font-size="10" fill="#7a8490">4,973,861</text>
-<line x1="56" y1="58.0" x2="632" y2="58.0" stroke="#edf0f3"/>
-<text x="48" y="62.0" text-anchor="end" font-size="10" fill="#7a8490">3,730,396</text>
-<line x1="56" y1="100.0" x2="632" y2="100.0" stroke="#edf0f3"/>
-<text x="48" y="104.0" text-anchor="end" font-size="10" fill="#7a8490">2,486,930</text>
-<line x1="56" y1="142.0" x2="632" y2="142.0" stroke="#edf0f3"/>
-<text x="48" y="146.0" text-anchor="end" font-size="10" fill="#7a8490">1,243,465</text>
-<line x1="56" y1="184.0" x2="632" y2="184.0" stroke="#edf0f3"/>
-<text x="48" y="188.0" text-anchor="end" font-size="10" fill="#7a8490">0</text>
-<rect x="131.5" y="16.0" width="110.2" height="168.0" rx="2" fill="#1e4d7b"/>
-<text x="186.6" y="208" text-anchor="middle" font-size="11" fill="#4a5560">2024同期</text>
-<text x="186.6" y="12.0" text-anchor="middle" font-size="10" fill="#4a5560">4,973,861</text>
-<rect x="288.9" y="44.1" width="110.2" height="139.9" rx="2" fill="#1e4d7b"/>
-<text x="344.0" y="208" text-anchor="middle" font-size="11" fill="#4a5560">2025同期</text>
-<text x="344.0" y="40.1" text-anchor="middle" font-size="10" fill="#4a5560">4,143,246</text>
-<rect x="446.3" y="52.8" width="110.2" height="131.2" rx="2" fill="#1e4d7b"/>
-<text x="501.4" y="208" text-anchor="middle" font-size="11" fill="#4a5560">2026同期</text>
-<text x="501.4" y="48.8" text-anchor="middle" font-size="10" fill="#4a5560">3,885,057</text>
+      <h3>同期营业额（每年 1 月–11 月上旬）</h3>
+      <p class="sub">2026 比 2025 同期 +2.3%，比 2024 同期 -1.4%</p>
+      <svg viewBox="0 0 640 230" width="100%" role="img">
+<line x1="64" y1="20.0" x2="632" y2="20.0" stroke="#edf0f3"/>
+<text x="56" y="24.0" text-anchor="end" font-size="10" fill="#7a8490">10,487.7</text>
+<line x1="64" y1="63.5" x2="632" y2="63.5" stroke="#edf0f3"/>
+<text x="56" y="67.5" text-anchor="end" font-size="10" fill="#7a8490">7,865.8</text>
+<line x1="64" y1="107.0" x2="632" y2="107.0" stroke="#edf0f3"/>
+<text x="56" y="111.0" text-anchor="end" font-size="10" fill="#7a8490">5,243.8</text>
+<line x1="64" y1="150.5" x2="632" y2="150.5" stroke="#edf0f3"/>
+<text x="56" y="154.5" text-anchor="end" font-size="10" fill="#7a8490">2,621.9</text>
+<line x1="64" y1="194.0" x2="632" y2="194.0" stroke="#edf0f3"/>
+<text x="56" y="198.0" text-anchor="end" font-size="10" fill="#7a8490">0.0</text>
+<rect x="138.4" y="20.0" width="108.7" height="174.0" rx="2" fill="#1e4d7b"/>
+<text x="192.7" y="218" text-anchor="middle" font-size="11" fill="#4a5560">2024同期</text>
+<text x="192.7" y="16.0" text-anchor="middle" font-size="10" fill="#4a5560">10,487.7</text>
+<rect x="293.7" y="26.3" width="108.7" height="167.7" rx="2" fill="#1e4d7b"/>
+<text x="348.0" y="218" text-anchor="middle" font-size="11" fill="#4a5560">2025同期</text>
+<text x="348.0" y="22.3" text-anchor="middle" font-size="10" fill="#4a5560">10,105.2</text>
+<rect x="448.9" y="22.5" width="108.7" height="171.5" rx="2" fill="#1e4d7b"/>
+<text x="503.3" y="218" text-anchor="middle" font-size="11" fill="#4a5560">2026同期</text>
+<text x="503.3" y="18.5" text-anchor="middle" font-size="10" fill="#4a5560">10,339.9</text>
+<text x="64" y="12" font-size="10" fill="#8b95a1">万元</text>
 </svg>
     </div>
   </div>
 
   <div class="panel">
-    <h2>类别构成</h2>
-    <p class="sub">成品 = 内销 + 外销 + MIDORI + OEM + 3M；部件材料 = 钢头 + 橡胶 + 其它（材料、鞋垫、其它劳保等）。数量单位沿用系统，部件不一定是成品鞋「双」。</p>
+    <h2>营业额构成（按事业单元，金额可加总）</h2>
+    <p class="sub">这里加的是金额，不是数量。成品鞋四块（内销、外销、绿安全、X）在下一节再拆数量。</p>
     <div class="row2">
       <div>
-        <h3>全年类别构成</h3>
-        <svg viewBox="0 0 640 108" width="100%" role="img">
-<text x="70" y="23.84" text-anchor="end" font-size="11" fill="#4a5560">2024全年</text>
-<rect x="78.0" y="8" width="38.4" height="22" fill="#1e4d7b"/>
-<rect x="116.4" y="8" width="26.7" height="22" fill="#2b6cb0"/>
-<rect x="143.2" y="8" width="5.3" height="22" fill="#1f6b4a"/>
-<rect x="148.4" y="8" width="2.6" height="22" fill="#38a169"/>
-<rect x="151.1" y="8" width="138.1" height="22" fill="#6b46c1"/>
-<rect x="289.2" y="8" width="121.4" height="22" fill="#c05621"/>
-<rect x="410.6" y="8" width="29.1" height="22" fill="#d69e2e"/>
-<rect x="439.7" y="8" width="114.3" height="22" fill="#718096"/>
-<text x="560.0" y="23.84" font-size="11" fill="#4a5560">5,830,135</text>
-<text x="70" y="55.84" text-anchor="end" font-size="11" fill="#4a5560">2025全年</text>
-<rect x="78.0" y="40" width="34.3" height="22" fill="#1e4d7b"/>
-<rect x="112.3" y="40" width="24.7" height="22" fill="#2b6cb0"/>
-<rect x="137.0" y="40" width="4.8" height="22" fill="#1f6b4a"/>
-<rect x="141.8" y="40" width="2.4" height="22" fill="#38a169"/>
-<rect x="144.2" y="40" width="70.7" height="22" fill="#6b46c1"/>
-<rect x="214.9" y="40" width="115.7" height="22" fill="#c05621"/>
-<rect x="330.5" y="40" width="42.1" height="22" fill="#d69e2e"/>
-<rect x="372.6" y="40" width="122.3" height="22" fill="#718096"/>
-<text x="500.9" y="55.84" font-size="11" fill="#4a5560">5,106,368</text>
-<rect x="8" y="84" width="10" height="10" rx="2" fill="#1e4d7b"/>
-<text x="22" y="92" font-size="10" fill="#4a5560">内销</text>
-<rect x="76" y="84" width="10" height="10" rx="2" fill="#2b6cb0"/>
-<text x="90" y="92" font-size="10" fill="#4a5560">外销</text>
-<rect x="144" y="84" width="10" height="10" rx="2" fill="#1f6b4a"/>
-<text x="158" y="92" font-size="10" fill="#4a5560">MIDORI</text>
-<rect x="212" y="84" width="10" height="10" rx="2" fill="#38a169"/>
-<text x="226" y="92" font-size="10" fill="#4a5560">OEM</text>
-<rect x="280" y="84" width="10" height="10" rx="2" fill="#6b46c1"/>
-<text x="294" y="92" font-size="10" fill="#4a5560">3M</text>
-<rect x="348" y="84" width="10" height="10" rx="2" fill="#c05621"/>
-<text x="362" y="92" font-size="10" fill="#4a5560">钢头</text>
-<rect x="416" y="84" width="10" height="10" rx="2" fill="#d69e2e"/>
-<text x="430" y="92" font-size="10" fill="#4a5560">橡胶</text>
-<rect x="484" y="84" width="10" height="10" rx="2" fill="#718096"/>
-<text x="498" y="92" font-size="10" fill="#4a5560">其它</text>
+        <h3>全年</h3>
+        <svg viewBox="0 0 640 120" width="100%" role="img">
+<text x="78" y="23.84" text-anchor="end" font-size="11" fill="#4a5560">2024全年</text>
+<rect x="86.0" y="8" width="174.3" height="22" fill="#1e4d7b"/>
+<rect x="260.3" y="8" width="125.8" height="22" fill="#2b6cb0"/>
+<rect x="386.1" y="8" width="20.2" height="22" fill="#1f6b4a"/>
+<rect x="406.3" y="8" width="6.5" height="22" fill="#38a169"/>
+<rect x="412.8" y="8" width="30.8" height="22" fill="#805ad5"/>
+<rect x="443.6" y="8" width="37.7" height="22" fill="#c05621"/>
+<rect x="481.3" y="8" width="27.6" height="22" fill="#d69e2e"/>
+<rect x="508.9" y="8" width="28.6" height="22" fill="#6b46c1"/>
+<rect x="537.5" y="8" width="10.7" height="22" fill="#718096"/>
+<rect x="548.1" y="8" width="1.2" height="22" fill="#a0aec0"/>
+<rect x="549.4" y="8" width="0.6" height="22" fill="#4a5568"/>
+<rect x="550.0" y="8" width="0.0" height="22" fill="#cbd5e0"/>
+<text x="556.0" y="23.84" font-size="11" fill="#4a5560">12,289.8</text>
+<text x="78" y="55.84" text-anchor="end" font-size="11" fill="#4a5560">2025全年</text>
+<rect x="86.0" y="40" width="154.7" height="22" fill="#1e4d7b"/>
+<rect x="240.7" y="40" width="122.3" height="22" fill="#2b6cb0"/>
+<rect x="363.0" y="40" width="20.9" height="22" fill="#1f6b4a"/>
+<rect x="383.9" y="40" width="3.5" height="22" fill="#38a169"/>
+<rect x="387.4" y="40" width="30.1" height="22" fill="#805ad5"/>
+<rect x="417.5" y="40" width="35.3" height="22" fill="#c05621"/>
+<rect x="452.8" y="40" width="40.3" height="22" fill="#d69e2e"/>
+<rect x="493.1" y="40" width="27.2" height="22" fill="#6b46c1"/>
+<rect x="520.3" y="40" width="15.8" height="22" fill="#718096"/>
+<rect x="536.0" y="40" width="1.5" height="22" fill="#a0aec0"/>
+<rect x="537.5" y="40" width="2.0" height="22" fill="#4a5568"/>
+<rect x="539.6" y="40" width="0.0" height="22" fill="#cbd5e0"/>
+<text x="545.6" y="55.84" font-size="11" fill="#4a5560">12,013.5</text>
+<rect x="8" y="98" width="10" height="10" rx="2" fill="#1e4d7b"/>
+<text x="22" y="106" font-size="10" fill="#4a5560">内销</text>
+<rect x="46" y="98" width="10" height="10" rx="2" fill="#2b6cb0"/>
+<text x="60" y="106" font-size="10" fill="#4a5560">外销</text>
+<rect x="84" y="98" width="10" height="10" rx="2" fill="#1f6b4a"/>
+<text x="98" y="106" font-size="10" fill="#4a5560">绿安全</text>
+<rect x="130" y="98" width="10" height="10" rx="2" fill="#38a169"/>
+<text x="144" y="106" font-size="10" fill="#4a5560">X</text>
+<rect x="168" y="98" width="10" height="10" rx="2" fill="#805ad5"/>
+<text x="182" y="106" font-size="10" fill="#4a5560">OEM鞋面/半成品</text>
+<rect x="262" y="98" width="10" height="10" rx="2" fill="#c05621"/>
+<text x="276" y="106" font-size="10" fill="#4a5560">钢头</text>
+<rect x="300" y="98" width="10" height="10" rx="2" fill="#d69e2e"/>
+<text x="314" y="106" font-size="10" fill="#4a5560">橡胶底</text>
+<rect x="346" y="98" width="10" height="10" rx="2" fill="#6b46c1"/>
+<text x="360" y="106" font-size="10" fill="#4a5560">3M</text>
+<rect x="384" y="98" width="10" height="10" rx="2" fill="#718096"/>
+<text x="398" y="106" font-size="10" fill="#4a5560">材料</text>
+<rect x="422" y="98" width="10" height="10" rx="2" fill="#a0aec0"/>
+<text x="436" y="106" font-size="10" fill="#4a5560">鞋垫</text>
+<rect x="460" y="98" width="10" height="10" rx="2" fill="#4a5568"/>
+<text x="474" y="106" font-size="10" fill="#4a5560">其它劳保</text>
+<rect x="514" y="98" width="10" height="10" rx="2" fill="#cbd5e0"/>
+<text x="528" y="106" font-size="10" fill="#4a5560">其它未标品牌（材料/配件）</text>
 </svg>
       </div>
       <div>
-        <h3>同期类别构成（1月–11上）</h3>
-        <svg viewBox="0 0 640 140" width="100%" role="img">
-<text x="70" y="23.84" text-anchor="end" font-size="11" fill="#4a5560">2024同期</text>
-<rect x="78.0" y="8" width="39.0" height="22" fill="#1e4d7b"/>
-<rect x="117.0" y="8" width="27.5" height="22" fill="#2b6cb0"/>
-<rect x="144.5" y="8" width="4.8" height="22" fill="#1f6b4a"/>
-<rect x="149.4" y="8" width="2.6" height="22" fill="#38a169"/>
-<rect x="152.0" y="8" width="136.4" height="22" fill="#6b46c1"/>
-<rect x="288.4" y="8" width="120.0" height="22" fill="#c05621"/>
-<rect x="408.5" y="8" width="23.3" height="22" fill="#d69e2e"/>
-<rect x="431.8" y="8" width="122.2" height="22" fill="#718096"/>
-<text x="560.0" y="23.84" font-size="11" fill="#4a5560">4,973,861</text>
-<text x="70" y="55.84" text-anchor="end" font-size="11" fill="#4a5560">2025同期</text>
-<rect x="78.0" y="40" width="35.1" height="22" fill="#1e4d7b"/>
-<rect x="113.1" y="40" width="24.5" height="22" fill="#2b6cb0"/>
-<rect x="137.6" y="40" width="4.9" height="22" fill="#1f6b4a"/>
-<rect x="142.4" y="40" width="2.7" height="22" fill="#38a169"/>
-<rect x="145.2" y="40" width="70.6" height="22" fill="#6b46c1"/>
-<rect x="215.8" y="40" width="115.3" height="22" fill="#c05621"/>
-<rect x="331.1" y="40" width="27.2" height="22" fill="#d69e2e"/>
-<rect x="358.3" y="40" width="116.2" height="22" fill="#718096"/>
-<text x="480.5" y="55.84" font-size="11" fill="#4a5560">4,143,246</text>
-<text x="70" y="87.84" text-anchor="end" font-size="11" fill="#4a5560">2026同期</text>
-<rect x="78.0" y="72" width="39.3" height="22" fill="#1e4d7b"/>
-<rect x="117.3" y="72" width="25.4" height="22" fill="#2b6cb0"/>
-<rect x="142.6" y="72" width="4.2" height="22" fill="#1f6b4a"/>
-<rect x="146.8" y="72" width="2.7" height="22" fill="#38a169"/>
-<rect x="149.5" y="72" width="60.6" height="22" fill="#6b46c1"/>
-<rect x="210.1" y="72" width="133.7" height="22" fill="#c05621"/>
-<rect x="343.8" y="72" width="36.5" height="22" fill="#d69e2e"/>
-<rect x="380.2" y="72" width="69.6" height="22" fill="#718096"/>
-<text x="455.8" y="87.84" font-size="11" fill="#4a5560">3,885,057</text>
-<rect x="8" y="116" width="10" height="10" rx="2" fill="#1e4d7b"/>
-<text x="22" y="124" font-size="10" fill="#4a5560">内销</text>
-<rect x="76" y="116" width="10" height="10" rx="2" fill="#2b6cb0"/>
-<text x="90" y="124" font-size="10" fill="#4a5560">外销</text>
-<rect x="144" y="116" width="10" height="10" rx="2" fill="#1f6b4a"/>
-<text x="158" y="124" font-size="10" fill="#4a5560">MIDORI</text>
-<rect x="212" y="116" width="10" height="10" rx="2" fill="#38a169"/>
-<text x="226" y="124" font-size="10" fill="#4a5560">OEM</text>
-<rect x="280" y="116" width="10" height="10" rx="2" fill="#6b46c1"/>
-<text x="294" y="124" font-size="10" fill="#4a5560">3M</text>
-<rect x="348" y="116" width="10" height="10" rx="2" fill="#c05621"/>
-<text x="362" y="124" font-size="10" fill="#4a5560">钢头</text>
-<rect x="416" y="116" width="10" height="10" rx="2" fill="#d69e2e"/>
-<text x="430" y="124" font-size="10" fill="#4a5560">橡胶</text>
-<rect x="484" y="116" width="10" height="10" rx="2" fill="#718096"/>
-<text x="498" y="124" font-size="10" fill="#4a5560">其它</text>
+        <h3>同期（1月–11上）</h3>
+        <svg viewBox="0 0 640 110" width="100%" role="img">
+<text x="78" y="23.84" text-anchor="end" font-size="11" fill="#4a5560">2024同期</text>
+<rect x="86.0" y="8" width="178.5" height="22" fill="#1e4d7b"/>
+<rect x="264.5" y="8" width="129.9" height="22" fill="#2b6cb0"/>
+<rect x="394.4" y="8" width="18.7" height="22" fill="#1f6b4a"/>
+<rect x="413.0" y="8" width="5.6" height="22" fill="#38a169"/>
+<rect x="418.7" y="8" width="30.4" height="22" fill="#805ad5"/>
+<rect x="449.1" y="8" width="37.2" height="22" fill="#c05621"/>
+<rect x="486.2" y="8" width="23.1" height="22" fill="#d69e2e"/>
+<rect x="509.4" y="8" width="27.3" height="22" fill="#6b46c1"/>
+<rect x="536.6" y="8" width="11.3" height="22" fill="#718096"/>
+<rect x="547.9" y="8" width="1.4" height="22" fill="#a0aec0"/>
+<rect x="549.3" y="8" width="0.7" height="22" fill="#4a5568"/>
+<rect x="550.0" y="8" width="0.0" height="22" fill="#cbd5e0"/>
+<text x="556.0" y="23.84" font-size="11" fill="#4a5560">10,487.7</text>
+<text x="78" y="55.84" text-anchor="end" font-size="11" fill="#4a5560">2025同期</text>
+<rect x="86.0" y="40" width="159.4" height="22" fill="#1e4d7b"/>
+<rect x="245.4" y="40" width="120.0" height="22" fill="#2b6cb0"/>
+<rect x="365.5" y="40" width="21.2" height="22" fill="#1f6b4a"/>
+<rect x="386.7" y="40" width="4.1" height="22" fill="#38a169"/>
+<rect x="390.8" y="40" width="34.0" height="22" fill="#805ad5"/>
+<rect x="424.8" y="40" width="35.1" height="22" fill="#c05621"/>
+<rect x="459.9" y="40" width="28.1" height="22" fill="#d69e2e"/>
+<rect x="488.0" y="40" width="26.0" height="22" fill="#6b46c1"/>
+<rect x="514.0" y="40" width="15.2" height="22" fill="#718096"/>
+<rect x="529.2" y="40" width="1.6" height="22" fill="#a0aec0"/>
+<rect x="530.8" y="40" width="2.3" height="22" fill="#4a5568"/>
+<rect x="533.1" y="40" width="0.0" height="22" fill="#cbd5e0"/>
+<text x="539.1" y="55.84" font-size="11" fill="#4a5560">10,105.2</text>
+<text x="78" y="87.84" text-anchor="end" font-size="11" fill="#4a5560">2026同期</text>
+<rect x="86.0" y="72" width="174.6" height="22" fill="#1e4d7b"/>
+<rect x="260.6" y="72" width="116.8" height="22" fill="#2b6cb0"/>
+<rect x="377.4" y="72" width="17.4" height="22" fill="#1f6b4a"/>
+<rect x="394.8" y="72" width="2.7" height="22" fill="#38a169"/>
+<rect x="397.5" y="72" width="32.8" height="22" fill="#805ad5"/>
+<rect x="430.3" y="72" width="38.9" height="22" fill="#c05621"/>
+<rect x="469.2" y="72" width="36.7" height="22" fill="#d69e2e"/>
+<rect x="505.9" y="72" width="25.6" height="22" fill="#6b46c1"/>
+<rect x="531.5" y="72" width="9.7" height="22" fill="#718096"/>
+<rect x="541.2" y="72" width="0.8" height="22" fill="#a0aec0"/>
+<rect x="542.0" y="72" width="1.5" height="22" fill="#4a5568"/>
+<rect x="543.4" y="72" width="0.0" height="22" fill="#cbd5e0"/>
+<text x="549.5" y="87.84" font-size="11" fill="#4a5560">10,339.9</text>
+<rect x="8" y="88" width="10" height="10" rx="2" fill="#1e4d7b"/>
+<text x="22" y="96" font-size="10" fill="#4a5560">内销</text>
+<rect x="46" y="88" width="10" height="10" rx="2" fill="#2b6cb0"/>
+<text x="60" y="96" font-size="10" fill="#4a5560">外销</text>
+<rect x="84" y="88" width="10" height="10" rx="2" fill="#1f6b4a"/>
+<text x="98" y="96" font-size="10" fill="#4a5560">绿安全</text>
+<rect x="130" y="88" width="10" height="10" rx="2" fill="#38a169"/>
+<text x="144" y="96" font-size="10" fill="#4a5560">X</text>
+<rect x="168" y="88" width="10" height="10" rx="2" fill="#805ad5"/>
+<text x="182" y="96" font-size="10" fill="#4a5560">OEM鞋面/半成品</text>
+<rect x="262" y="88" width="10" height="10" rx="2" fill="#c05621"/>
+<text x="276" y="96" font-size="10" fill="#4a5560">钢头</text>
+<rect x="300" y="88" width="10" height="10" rx="2" fill="#d69e2e"/>
+<text x="314" y="96" font-size="10" fill="#4a5560">橡胶底</text>
+<rect x="346" y="88" width="10" height="10" rx="2" fill="#6b46c1"/>
+<text x="360" y="96" font-size="10" fill="#4a5560">3M</text>
+<rect x="384" y="88" width="10" height="10" rx="2" fill="#718096"/>
+<text x="398" y="96" font-size="10" fill="#4a5560">材料</text>
+<rect x="422" y="88" width="10" height="10" rx="2" fill="#a0aec0"/>
+<text x="436" y="96" font-size="10" fill="#4a5560">鞋垫</text>
+<rect x="460" y="88" width="10" height="10" rx="2" fill="#4a5568"/>
+<text x="474" y="96" font-size="10" fill="#4a5560">其它劳保</text>
+<rect x="514" y="88" width="10" height="10" rx="2" fill="#cbd5e0"/>
+<text x="528" y="96" font-size="10" fill="#4a5560">其它未标品牌（材料/配件）</text>
 </svg>
       </div>
     </div>
-    <h3>全年类别表</h3>
     <div class="scroll">
     <table>
       <thead>
-        <tr><th>类别</th><th class="num">2024全年</th><th class="num">占比</th><th class="num">2025全年</th><th class="num">占比</th><th class="num">25/24</th></tr>
+        <tr><th>单元</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr>
       </thead>
       <tbody>
-        <tr><td>内销</td><td class="num">470,936</td><td class="num">8.1%</td><td class="num">420,120</td><td class="num">8.2%</td><td class="num down">-10.8%</td></tr>
-<tr><td>外销</td><td class="num">327,409</td><td class="num">5.6%</td><td class="num">302,952</td><td class="num">5.9%</td><td class="num down">-7.5%</td></tr>
-<tr><td>MIDORI</td><td class="num">64,329</td><td class="num">1.1%</td><td class="num">58,365</td><td class="num">1.1%</td><td class="num down">-9.3%</td></tr>
-<tr><td>OEM</td><td class="num">32,104</td><td class="num">0.6%</td><td class="num">29,395</td><td class="num">0.6%</td><td class="num down">-8.4%</td></tr>
-<tr><td>3M</td><td class="num">1,691,819</td><td class="num">29.0%</td><td class="num">865,669</td><td class="num">17.0%</td><td class="num down">-48.8%</td></tr>
-<tr><td>钢头</td><td class="num">1,487,280</td><td class="num">25.5%</td><td class="num">1,416,570</td><td class="num">27.7%</td><td class="num down">-4.8%</td></tr>
-<tr><td>橡胶</td><td class="num">356,124</td><td class="num">6.1%</td><td class="num">515,670</td><td class="num">10.1%</td><td class="num up">+44.8%</td></tr>
-<tr><td>其它</td><td class="num">1,400,134</td><td class="num">24.0%</td><td class="num">1,497,627</td><td class="num">29.3%</td><td class="num up">+7.0%</td></tr>
-<tr class=""><td>成品小计（含3M）</td><td class="num">2,586,597</td><td class="num">44.4%</td><td class="num">1,676,501</td><td class="num">32.8%</td><td class="num down">-35.2%</td></tr>
-<tr class=""><td>成品不含3M</td><td class="num">894,778</td><td class="num">15.3%</td><td class="num">810,832</td><td class="num">15.9%</td><td class="num down">-9.4%</td></tr>
-<tr class=""><td>部件材料小计</td><td class="num">3,243,538</td><td class="num">55.6%</td><td class="num">3,429,867</td><td class="num">67.2%</td><td class="num up">+5.7%</td></tr>
-<tr class="sum"><td>合计</td><td class="num">5,830,135</td><td class="num">100.0%</td><td class="num">5,106,368</td><td class="num">100.0%</td><td class="num down">-12.4%</td></tr>
+        <tr class=""><td>内销</td><td class="num">46,175,259</td><td class="num">40,968,742</td><td class="num down">-11.3%</td><td class="num">40,350,135</td><td class="num">36,036,284</td><td class="num">39,462,200</td><td class="num up">+9.5%</td><td class="num down">-2.2%</td></tr><tr class=""><td>外销</td><td class="num">33,319,029</td><td class="num">32,395,875</td><td class="num down">-2.8%</td><td class="num">29,351,099</td><td class="num">27,133,867</td><td class="num">26,396,600</td><td class="num down">-2.7%</td><td class="num down">-10.1%</td></tr><tr class=""><td>绿安全</td><td class="num">5,343,179</td><td class="num">5,539,054</td><td class="num up">+3.7%</td><td class="num">4,220,476</td><td class="num">4,797,466</td><td class="num">3,934,253</td><td class="num down">-18.0%</td><td class="num down">-6.8%</td></tr><tr class=""><td>X</td><td class="num">1,725,590</td><td class="num">923,499</td><td class="num down">-46.5%</td><td class="num">1,275,531</td><td class="num">923,499</td><td class="num">616,275</td><td class="num down">-33.3%</td><td class="num down">-51.7%</td></tr><tr class=""><td>OEM鞋面/半成品</td><td class="num">8,149,064</td><td class="num">7,964,572</td><td class="num down">-2.3%</td><td class="num">6,862,315</td><td class="num">7,683,849</td><td class="num">7,411,514</td><td class="num down">-3.5%</td><td class="num up">+8.0%</td></tr><tr class=""><td>钢头</td><td class="num">9,979,204</td><td class="num">9,361,862</td><td class="num down">-6.2%</td><td class="num">8,398,997</td><td class="num">7,938,274</td><td class="num">8,784,384</td><td class="num up">+10.7%</td><td class="num up">+4.6%</td></tr><tr class=""><td>橡胶底</td><td class="num">7,318,022</td><td class="num">10,664,114</td><td class="num up">+45.7%</td><td class="num">5,231,733</td><td class="num">6,352,135</td><td class="num">8,300,397</td><td class="num up">+30.7%</td><td class="num up">+58.7%</td></tr><tr class=""><td>3M</td><td class="num">7,568,946</td><td class="num">7,201,655</td><td class="num down">-4.9%</td><td class="num">6,164,739</td><td class="num">5,880,091</td><td class="num">5,791,919</td><td class="num down">-1.5%</td><td class="num down">-6.0%</td></tr><tr class=""><td>材料</td><td class="num">2,828,010</td><td class="num">4,181,709</td><td class="num up">+47.9%</td><td class="num">2,552,004</td><td class="num">3,438,232</td><td class="num">2,182,297</td><td class="num down">-36.5%</td><td class="num down">-14.5%</td></tr><tr class=""><td>鞋垫</td><td class="num">326,147</td><td class="num">398,544</td><td class="num up">+22.2%</td><td class="num">317,642</td><td class="num">355,341</td><td class="num">186,347</td><td class="num down">-47.6%</td><td class="num down">-41.3%</td></tr><tr class=""><td>其它劳保</td><td class="num">162,714</td><td class="num">535,256</td><td class="num up">+229.0%</td><td class="num">149,562</td><td class="num">512,444</td><td class="num">329,528</td><td class="num down">-35.7%</td><td class="num up">+120.3%</td></tr><tr class=""><td>其它未标品牌（材料/配件）</td><td class="num">2,756</td><td class="num">70</td><td class="num down">-97.5%</td><td class="num">2,756</td><td class="num">70</td><td class="num">3,251</td><td class="num up">+4571.8%</td><td class="num up">+18.0%</td></tr><tr class="sum"><td>公司合计</td><td class="num">122,897,918</td><td class="num">120,134,951</td><td class="num down">-2.2%</td><td class="num">104,876,988</td><td class="num">101,051,552</td><td class="num">103,398,962</td><td class="num up">+2.3%</td><td class="num down">-1.4%</td></tr>
       </tbody>
     </table>
     </div>
-    <h3>同期类别表（1月–11上）</h3>
-    <div class="scroll">
-    <table>
-      <thead>
-        <tr><th>类别</th><th class="num">2024同期</th><th class="num">占比</th><th class="num">2025同期</th><th class="num">占比</th><th class="num">2026同期</th><th class="num">占比</th><th class="num">25/24</th><th class="num">26/25</th><th class="num">26/24</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>内销</td><td class="num">407,873</td><td class="num">8.2%</td><td class="num">366,506</td><td class="num">8.8%</td><td class="num">410,531</td><td class="num">10.6%</td><td class="num down">-10.1%</td><td class="num up">+12.0%</td><td class="num up">+0.7%</td></tr>
-<tr><td>外销</td><td class="num">287,493</td><td class="num">5.8%</td><td class="num">256,028</td><td class="num">6.2%</td><td class="num">264,995</td><td class="num">6.8%</td><td class="num down">-10.9%</td><td class="num up">+3.5%</td><td class="num down">-7.8%</td></tr>
-<tr><td>MIDORI</td><td class="num">50,441</td><td class="num">1.0%</td><td class="num">50,740</td><td class="num">1.2%</td><td class="num">43,435</td><td class="num">1.1%</td><td class="num up">+0.6%</td><td class="num down">-14.4%</td><td class="num down">-13.9%</td></tr>
-<tr><td>OEM</td><td class="num">27,189</td><td class="num">0.5%</td><td class="num">28,520</td><td class="num">0.7%</td><td class="num">28,087</td><td class="num">0.7%</td><td class="num up">+4.9%</td><td class="num down">-1.5%</td><td class="num up">+3.3%</td></tr>
-<tr><td>3M</td><td class="num">1,425,706</td><td class="num">28.7%</td><td class="num">738,169</td><td class="num">17.8%</td><td class="num">633,166</td><td class="num">16.3%</td><td class="num down">-48.2%</td><td class="num down">-14.2%</td><td class="num down">-55.6%</td></tr>
-<tr><td>钢头</td><td class="num">1,254,350</td><td class="num">25.2%</td><td class="num">1,204,690</td><td class="num">29.1%</td><td class="num">1,397,020</td><td class="num">36.0%</td><td class="num down">-4.0%</td><td class="num up">+16.0%</td><td class="num up">+11.4%</td></tr>
-<tr><td>橡胶</td><td class="num">243,874</td><td class="num">4.9%</td><td class="num">284,572</td><td class="num">6.9%</td><td class="num">380,966</td><td class="num">9.8%</td><td class="num up">+16.7%</td><td class="num up">+33.9%</td><td class="num up">+56.2%</td></tr>
-<tr><td>其它</td><td class="num">1,276,935</td><td class="num">25.7%</td><td class="num">1,214,021</td><td class="num">29.3%</td><td class="num">726,857</td><td class="num">18.7%</td><td class="num down">-4.9%</td><td class="num down">-40.1%</td><td class="num down">-43.1%</td></tr>
-<tr class=""><td>成品小计（含3M）</td><td class="num">2,198,702</td><td class="num">44.2%</td><td class="num">1,439,963</td><td class="num">34.8%</td><td class="num">1,380,214</td><td class="num">35.5%</td><td class="num down">-34.5%</td><td class="num down">-4.1%</td><td class="num down">-37.2%</td></tr>
-<tr class=""><td>成品不含3M</td><td class="num">772,996</td><td class="num">15.5%</td><td class="num">701,794</td><td class="num">16.9%</td><td class="num">747,048</td><td class="num">19.2%</td><td class="num down">-9.2%</td><td class="num up">+6.4%</td><td class="num down">-3.4%</td></tr>
-<tr class=""><td>部件材料小计</td><td class="num">2,775,159</td><td class="num">55.8%</td><td class="num">2,703,283</td><td class="num">65.2%</td><td class="num">2,504,843</td><td class="num">64.5%</td><td class="num down">-2.6%</td><td class="num down">-7.3%</td><td class="num down">-9.7%</td></tr>
-<tr class="sum"><td>合计</td><td class="num">4,973,861</td><td class="num">100.0%</td><td class="num">4,143,246</td><td class="num">100.0%</td><td class="num">3,885,057</td><td class="num">100.0%</td><td class="num down">-16.7%</td><td class="num down">-6.2%</td><td class="num down">-21.9%</td></tr>
-      </tbody>
-    </table>
-    </div>
+    <p class="sub">金额单位：元（折人民币）。绿安全金额含少量鞋垫（2025 全年约 1,869 元），成品鞋节只计鞋子。</p>
   </div>
 
   <div class="panel">
-    <h2>月度走势（2024–2026）</h2>
-    <p class="sub">2026 年 11 月含完整上旬，以及中旬截至 15 日，不是完整月。2026 年 10 月已含上 / 中 / 下，是完整月。</p>
+    <h2>月度营业额走势</h2>
+    <p class="sub">单位：万元。2026 年 11 月含完整上旬 + 中旬至 15 日，不是完整月。2026 年 10 月已完整。</p>
     <svg viewBox="0 0 900 270" width="100%" role="img">
-<line x1="58" y1="16.0" x2="884" y2="16.0" stroke="#edf0f3"/>
-<text x="50" y="20.0" text-anchor="end" font-size="10" fill="#7a8490">791,721</text>
-<line x1="58" y1="67.0" x2="884" y2="67.0" stroke="#edf0f3"/>
-<text x="50" y="71.0" text-anchor="end" font-size="10" fill="#7a8490">593,791</text>
-<line x1="58" y1="118.0" x2="884" y2="118.0" stroke="#edf0f3"/>
-<text x="50" y="122.0" text-anchor="end" font-size="10" fill="#7a8490">395,860</text>
-<line x1="58" y1="169.0" x2="884" y2="169.0" stroke="#edf0f3"/>
-<text x="50" y="173.0" text-anchor="end" font-size="10" fill="#7a8490">197,930</text>
-<line x1="58" y1="220.0" x2="884" y2="220.0" stroke="#edf0f3"/>
-<text x="50" y="224.0" text-anchor="end" font-size="10" fill="#7a8490">0</text>
-<line x1="58.0" y1="16" x2="58.0" y2="220" stroke="#d8dee6" stroke-dasharray="3 3"/>
-<text x="62.0" y="28" font-size="10" fill="#8b95a1">2024</text>
-<line x1="349.5" y1="16" x2="349.5" y2="220" stroke="#d8dee6" stroke-dasharray="3 3"/>
-<text x="353.5" y="28" font-size="10" fill="#8b95a1">2025</text>
-<line x1="641.1" y1="16" x2="641.1" y2="220" stroke="#d8dee6" stroke-dasharray="3 3"/>
-<text x="645.1" y="28" font-size="10" fill="#8b95a1">2026</text>
-<polyline fill="none" stroke="#1e4d7b" stroke-width="2.2" points="58.0,117.0 82.3,189.5 106.6,119.4 130.9,80.5 155.2,16.0 179.5,108.5 203.8,121.2 228.1,22.2 252.4,112.3 276.6,118.6 300.9,49.1 325.2,83.6 349.5,62.4 373.8,166.6 398.1,125.7 422.4,105.2 446.7,126.5 471.0,85.1 495.3,120.7 519.6,81.0 543.9,141.9 568.2,139.8 592.5,94.4 616.8,74.9 641.1,80.0 665.4,185.2 689.6,116.1 713.9,95.0 738.2,121.2 762.5,120.1 786.8,125.3 811.1,124.2 835.4,113.2 859.7,132.7 884.0,179.4"/>
-<polyline fill="none" stroke="#c05621" stroke-width="2.2" points="58.0,180.8 82.3,207.7 106.6,171.8 130.9,139.9 155.2,82.6 179.5,176.8 203.8,177.6 228.1,84.9 252.4,168.5 276.6,174.8 300.9,94.8 325.2,144.1 349.5,90.1 373.8,198.2 398.1,160.7 422.4,138.1 446.7,162.2 471.0,119.9 495.3,171.8 519.6,121.6 543.9,181.4 568.2,174.4 592.5,129.7 616.8,108.3 641.1,120.4 665.4,194.4 689.6,152.2 713.9,134.4 738.2,160.4 762.5,161.3 786.8,165.4 811.1,172.6 835.4,147.2 859.7,156.3 884.0,189.6"/>
-<polyline fill="none" stroke="#1f6b4a" stroke-width="2.2" points="58.0,156.2 82.3,201.8 106.6,167.6 130.9,160.6 155.2,153.4 179.5,151.7 203.8,163.6 228.1,157.3 252.4,163.8 276.6,163.8 300.9,174.3 325.2,159.5 349.5,192.4 373.8,188.4 398.1,185.0 422.4,187.1 446.7,184.4 471.0,185.2 495.3,168.9 519.6,179.4 543.9,180.5 568.2,185.5 592.5,184.7 616.8,186.6 641.1,179.6 665.4,210.9 689.6,183.9 713.9,180.6 738.2,180.8 762.5,178.8 786.8,179.9 811.1,171.6 835.4,186.0 859.7,196.4 884.0,209.9"/>
-<circle cx="58.0" cy="117.0" r="2.2" fill="#1e4d7b"/>
-<circle cx="82.3" cy="189.5" r="2.2" fill="#1e4d7b"/>
-<circle cx="106.6" cy="119.4" r="2.2" fill="#1e4d7b"/>
-<circle cx="130.9" cy="80.5" r="2.2" fill="#1e4d7b"/>
-<circle cx="155.2" cy="16.0" r="2.2" fill="#1e4d7b"/>
-<circle cx="179.5" cy="108.5" r="2.2" fill="#1e4d7b"/>
-<circle cx="203.8" cy="121.2" r="2.2" fill="#1e4d7b"/>
-<circle cx="228.1" cy="22.2" r="2.2" fill="#1e4d7b"/>
-<circle cx="252.4" cy="112.3" r="2.2" fill="#1e4d7b"/>
-<circle cx="276.6" cy="118.6" r="2.2" fill="#1e4d7b"/>
-<circle cx="300.9" cy="49.1" r="2.2" fill="#1e4d7b"/>
-<circle cx="325.2" cy="83.6" r="2.2" fill="#1e4d7b"/>
-<circle cx="349.5" cy="62.4" r="2.2" fill="#1e4d7b"/>
-<circle cx="373.8" cy="166.6" r="2.2" fill="#1e4d7b"/>
-<circle cx="398.1" cy="125.7" r="2.2" fill="#1e4d7b"/>
-<circle cx="422.4" cy="105.2" r="2.2" fill="#1e4d7b"/>
-<circle cx="446.7" cy="126.5" r="2.2" fill="#1e4d7b"/>
-<circle cx="471.0" cy="85.1" r="2.2" fill="#1e4d7b"/>
-<circle cx="495.3" cy="120.7" r="2.2" fill="#1e4d7b"/>
-<circle cx="519.6" cy="81.0" r="2.2" fill="#1e4d7b"/>
-<circle cx="543.9" cy="141.9" r="2.2" fill="#1e4d7b"/>
-<circle cx="568.2" cy="139.8" r="2.2" fill="#1e4d7b"/>
-<circle cx="592.5" cy="94.4" r="2.2" fill="#1e4d7b"/>
-<circle cx="616.8" cy="74.9" r="2.2" fill="#1e4d7b"/>
-<circle cx="641.1" cy="80.0" r="2.2" fill="#1e4d7b"/>
-<circle cx="665.4" cy="185.2" r="2.2" fill="#1e4d7b"/>
-<circle cx="689.6" cy="116.1" r="2.2" fill="#1e4d7b"/>
-<circle cx="713.9" cy="95.0" r="2.2" fill="#1e4d7b"/>
-<circle cx="738.2" cy="121.2" r="2.2" fill="#1e4d7b"/>
-<circle cx="762.5" cy="120.1" r="2.2" fill="#1e4d7b"/>
-<circle cx="786.8" cy="125.3" r="2.2" fill="#1e4d7b"/>
-<circle cx="811.1" cy="124.2" r="2.2" fill="#1e4d7b"/>
-<circle cx="835.4" cy="113.2" r="2.2" fill="#1e4d7b"/>
-<circle cx="859.7" cy="132.7" r="2.2" fill="#1e4d7b"/>
-<circle cx="884.0" cy="179.4" r="2.2" fill="#b42318"/>
-<text x="58.0" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/01</text>
-<text x="130.9" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/04</text>
-<text x="203.8" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/07</text>
-<text x="276.6" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/10</text>
-<text x="349.5" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/01</text>
-<text x="422.4" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/04</text>
-<text x="495.3" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/07</text>
-<text x="568.2" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/10</text>
-<text x="641.1" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/01</text>
-<text x="713.9" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/04</text>
-<text x="786.8" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/07</text>
-<text x="859.7" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/10</text>
-<rect x="58" y="252" width="10" height="10" rx="2" fill="#1e4d7b"/>
-<text x="72" y="261" font-size="11" fill="#4a5560">全部类别</text>
-<rect x="168" y="252" width="10" height="10" rx="2" fill="#c05621"/>
-<text x="182" y="261" font-size="11" fill="#4a5560">部件材料（钢头+橡胶+其它）</text>
-<rect x="368" y="252" width="10" height="10" rx="2" fill="#1f6b4a"/>
-<text x="382" y="261" font-size="11" fill="#4a5560">成品（内销+外销+MIDORI+OEM+3M）</text>
-<text x="700" y="261" font-size="10" fill="#b42318">红点 = 2026-11 截至 15 日，月未完</text>
+<line x1="64" y1="16.0" x2="884" y2="16.0" stroke="#edf0f3"/>
+<text x="56" y="20.0" text-anchor="end" font-size="10" fill="#7a8490">1,354.4</text>
+<line x1="64" y1="67.0" x2="884" y2="67.0" stroke="#edf0f3"/>
+<text x="56" y="71.0" text-anchor="end" font-size="10" fill="#7a8490">1,015.8</text>
+<line x1="64" y1="118.0" x2="884" y2="118.0" stroke="#edf0f3"/>
+<text x="56" y="122.0" text-anchor="end" font-size="10" fill="#7a8490">677.2</text>
+<line x1="64" y1="169.0" x2="884" y2="169.0" stroke="#edf0f3"/>
+<text x="56" y="173.0" text-anchor="end" font-size="10" fill="#7a8490">338.6</text>
+<line x1="64" y1="220.0" x2="884" y2="220.0" stroke="#edf0f3"/>
+<text x="56" y="224.0" text-anchor="end" font-size="10" fill="#7a8490">0.0</text>
+<line x1="64.0" y1="16" x2="64.0" y2="220" stroke="#d8dee6" stroke-dasharray="3 3"/>
+<text x="68.0" y="28" font-size="10" fill="#8b95a1">2024</text>
+<line x1="353.4" y1="16" x2="353.4" y2="220" stroke="#d8dee6" stroke-dasharray="3 3"/>
+<text x="357.4" y="28" font-size="10" fill="#8b95a1">2025</text>
+<line x1="642.8" y1="16" x2="642.8" y2="220" stroke="#d8dee6" stroke-dasharray="3 3"/>
+<text x="646.8" y="28" font-size="10" fill="#8b95a1">2026</text>
+<polyline fill="none" stroke="#1e4d7b" stroke-width="2.2" points="64.0,86.2 88.1,162.4 112.2,77.1 136.4,70.1 160.5,40.9 184.6,55.4 208.7,26.2 232.8,16.0 256.9,65.4 281.1,72.3 305.2,79.7 329.3,37.3 353.4,113.5 377.5,122.2 401.6,70.3 425.8,58.7 449.9,84.3 474.0,53.9 498.1,77.5 522.2,22.0 546.4,35.7 570.5,87.3 594.6,61.9 618.7,43.3 642.8,73.3 666.9,161.3 691.1,80.6 715.2,40.2 739.3,48.0 763.4,65.9 787.5,56.3 811.6,64.3 835.8,56.8 859.9,25.3 884.0,152.0"/>
+<polyline fill="none" stroke="#1f6b4a" stroke-width="2.2" points="64.0,117.8 88.1,183.9 112.2,130.2 136.4,107.8 160.5,103.0 184.6,94.3 208.7,64.2 232.8,78.6 256.9,106.3 281.1,111.4 305.2,127.8 329.3,111.0 353.4,164.4 377.5,138.4 401.6,124.8 425.8,111.4 449.9,122.7 474.0,96.1 498.1,115.5 522.2,81.7 546.4,102.1 570.5,133.1 594.6,118.7 618.7,128.8 642.8,127.9 666.9,183.9 691.1,120.2 715.2,99.6 739.3,106.6 763.4,113.0 787.5,102.6 811.6,127.4 835.8,117.1 859.9,64.3 884.0,164.9"/>
+<circle cx="64.0" cy="86.2" r="2.2" fill="#1e4d7b"/>
+<circle cx="88.1" cy="162.4" r="2.2" fill="#1e4d7b"/>
+<circle cx="112.2" cy="77.1" r="2.2" fill="#1e4d7b"/>
+<circle cx="136.4" cy="70.1" r="2.2" fill="#1e4d7b"/>
+<circle cx="160.5" cy="40.9" r="2.2" fill="#1e4d7b"/>
+<circle cx="184.6" cy="55.4" r="2.2" fill="#1e4d7b"/>
+<circle cx="208.7" cy="26.2" r="2.2" fill="#1e4d7b"/>
+<circle cx="232.8" cy="16.0" r="2.2" fill="#1e4d7b"/>
+<circle cx="256.9" cy="65.4" r="2.2" fill="#1e4d7b"/>
+<circle cx="281.1" cy="72.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="305.2" cy="79.7" r="2.2" fill="#1e4d7b"/>
+<circle cx="329.3" cy="37.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="353.4" cy="113.5" r="2.2" fill="#1e4d7b"/>
+<circle cx="377.5" cy="122.2" r="2.2" fill="#1e4d7b"/>
+<circle cx="401.6" cy="70.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="425.8" cy="58.7" r="2.2" fill="#1e4d7b"/>
+<circle cx="449.9" cy="84.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="474.0" cy="53.9" r="2.2" fill="#1e4d7b"/>
+<circle cx="498.1" cy="77.5" r="2.2" fill="#1e4d7b"/>
+<circle cx="522.2" cy="22.0" r="2.2" fill="#1e4d7b"/>
+<circle cx="546.4" cy="35.7" r="2.2" fill="#1e4d7b"/>
+<circle cx="570.5" cy="87.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="594.6" cy="61.9" r="2.2" fill="#1e4d7b"/>
+<circle cx="618.7" cy="43.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="642.8" cy="73.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="666.9" cy="161.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="691.1" cy="80.6" r="2.2" fill="#1e4d7b"/>
+<circle cx="715.2" cy="40.2" r="2.2" fill="#1e4d7b"/>
+<circle cx="739.3" cy="48.0" r="2.2" fill="#1e4d7b"/>
+<circle cx="763.4" cy="65.9" r="2.2" fill="#1e4d7b"/>
+<circle cx="787.5" cy="56.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="811.6" cy="64.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="835.8" cy="56.8" r="2.2" fill="#1e4d7b"/>
+<circle cx="859.9" cy="25.3" r="2.2" fill="#1e4d7b"/>
+<circle cx="884.0" cy="152.0" r="2.2" fill="#b42318"/>
+<text x="64.0" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/01</text>
+<text x="136.4" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/04</text>
+<text x="208.7" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/07</text>
+<text x="281.1" y="246" text-anchor="middle" font-size="10" fill="#4a5560">24/10</text>
+<text x="353.4" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/01</text>
+<text x="425.8" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/04</text>
+<text x="498.1" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/07</text>
+<text x="570.5" y="246" text-anchor="middle" font-size="10" fill="#4a5560">25/10</text>
+<text x="642.8" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/01</text>
+<text x="715.2" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/04</text>
+<text x="787.5" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/07</text>
+<text x="859.9" y="246" text-anchor="middle" font-size="10" fill="#4a5560">26/10</text>
+<rect x="64" y="252" width="10" height="10" rx="2" fill="#1e4d7b"/>
+<text x="78" y="261" font-size="11" fill="#4a5560">公司营业额（折人民币，万元）</text>
+<rect x="280" y="252" width="10" height="10" rx="2" fill="#1f6b4a"/>
+<text x="294" y="261" font-size="11" fill="#4a5560">成品鞋营业额</text>
+<text x="430" y="261" font-size="10" fill="#b42318">红点 = 2026-11 截至 15 日，月未完</text>
 </svg>
     <div class="scroll" style="margin-top:12px">
     <table>
-      <thead>
-        <tr><th></th><th class="num">1月</th><th class="num">2月</th><th class="num">3月</th><th class="num">4月</th><th class="num">5月</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">9月</th><th class="num">10月</th><th class="num">11月</th><th class="num">12月</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>2024 全部</td><td class="num">399,876</td><td class="num">118,525</td><td class="num">390,395</td><td class="num">541,441</td><td class="num">791,721</td><td class="num">432,819</td><td class="num">383,421</td><td class="num">767,672</td><td class="num">417,900</td><td class="num">393,629</td><td class="num">663,226</td><td class="num">529,510</td></tr><tr><td>2025 全部</td><td class="num">611,495</td><td class="num">207,114</td><td class="num">365,857</td><td class="num">445,690</td><td class="num">362,788</td><td class="num">523,613</td><td class="num">385,370</td><td class="num">539,429</td><td class="num">303,232</td><td class="num">311,164</td><td class="num">487,400</td><td class="num">563,216</td></tr><tr><td>2026 全部</td><td class="num">543,146</td><td class="num">135,034</td><td class="num">403,387</td><td class="num">485,140</td><td class="num">383,550</td><td class="num">387,871</td><td class="num">367,438</td><td class="num">371,860</td><td class="num">414,303</td><td class="num">338,892</td><td class="num">157,500 *</td><td class="num">—</td></tr><tr><td>2024 成品不含3M</td><td class="num">68,005</td><td class="num">26,852</td><td class="num">66,973</td><td class="num">77,583</td><td class="num">82,091</td><td class="num">88,929</td><td class="num">92,018</td><td class="num">89,376</td><td class="num">81,430</td><td class="num">77,337</td><td class="num">62,356</td><td class="num">81,828</td></tr><tr><td>2025 成品不含3M</td><td class="num">37,860</td><td class="num">55,697</td><td class="num">67,987</td><td class="num">73,833</td><td class="num">68,148</td><td class="num">81,320</td><td class="num">72,732</td><td class="num">85,238</td><td class="num">79,167</td><td class="num">58,574</td><td class="num">69,163</td><td class="num">61,113</td></tr><tr><td>2026 成品不含3M</td><td class="num">63,007</td><td class="num">26,793</td><td class="num">70,477</td><td class="num">86,948</td><td class="num">81,823</td><td class="num">77,902</td><td class="num">83,642</td><td class="num">73,383</td><td class="num">75,623</td><td class="num">91,687</td><td class="num">39,327 *</td><td class="num">—</td></tr>
-      </tbody>
+      <thead><tr><th></th><th class="num">1月</th><th class="num">2月</th><th class="num">3月</th><th class="num">4月</th><th class="num">5月</th><th class="num">6月</th><th class="num">7月</th><th class="num">8月</th><th class="num">9月</th><th class="num">10月</th><th class="num">11月</th><th class="num">12月</th></tr></thead>
+      <tbody><tr><td>2024 公司营业额</td><td class="num">888.5</td><td class="num">382.7</td><td class="num">948.6</td><td class="num">995.5</td><td class="num">1,189.3</td><td class="num">1,093.0</td><td class="num">1,286.6</td><td class="num">1,354.4</td><td class="num">1,026.2</td><td class="num">980.7</td><td class="num">931.5</td><td class="num">1,212.8</td></tr><tr><td>2025 公司营业额</td><td class="num">707.1</td><td class="num">649.0</td><td class="num">994.0</td><td class="num">1,071.1</td><td class="num">901.2</td><td class="num">1,102.8</td><td class="num">946.2</td><td class="num">1,314.6</td><td class="num">1,223.6</td><td class="num">881.3</td><td class="num">1,049.5</td><td class="num">1,173.0</td></tr><tr><td>2026 公司营业额</td><td class="num">974.1</td><td class="num">390.0</td><td class="num">925.8</td><td class="num">1,193.8</td><td class="num">1,142.3</td><td class="num">1,023.2</td><td class="num">1,086.9</td><td class="num">1,033.7</td><td class="num">1,083.6</td><td class="num">1,292.6</td><td class="num">451.3 *</td><td class="num">—</td></tr><tr><td>2024 成品鞋营业额</td><td class="num">678.4</td><td class="num">239.9</td><td class="num">596.5</td><td class="num">745.1</td><td class="num">777.1</td><td class="num">834.8</td><td class="num">1,034.6</td><td class="num">938.6</td><td class="num">754.7</td><td class="num">721.0</td><td class="num">611.9</td><td class="num">723.7</td></tr><tr><td>2025 成品鞋营业额</td><td class="num">368.8</td><td class="num">541.7</td><td class="num">632.1</td><td class="num">720.8</td><td class="num">646.1</td><td class="num">822.7</td><td class="num">693.8</td><td class="num">918.0</td><td class="num">783.0</td><td class="num">577.0</td><td class="num">672.8</td><td class="num">605.6</td></tr><tr><td>2026 成品鞋营业额</td><td class="num">611.5</td><td class="num">239.9</td><td class="num">662.7</td><td class="num">799.4</td><td class="num">753.0</td><td class="num">710.1</td><td class="num">779.3</td><td class="num">614.8</td><td class="num">683.1</td><td class="num">1,033.7</td><td class="num">365.6 *</td><td class="num">—</td></tr></tbody>
     </table>
     </div>
-    <p class="sub">* 2026 年 11 月截至 15 日，月未完。</p>
+    <p class="sub">表内为万元。* 2026 年 11 月截至 15 日，月未完。</p>
   </div>
 
   <div class="panel">
-    <h2>2026 年旬走势</h2>
-    <p class="sub">02中无记录（春节）按 0。11中半透明、表内高亮，只到 11 月 15 日。</p>
+    <h2>成品鞋（同一品类，可以合并，也可以拆开）</h2>
+    <p class="sub">内销 + 外销 + 绿安全成品 + X。这是本页唯一把数量加在一起的地方。绿安全的鞋垫、OEM 鞋面套装、半成品-KPR 都不在这里。</p>
+    <div class="grid">
+      <div class="card">
+        <div class="k">2025 全年 · 成品鞋营业额</div>
+        <div class="v">7,982.5 万元</div>
+        <div class="s">数量 784,142 双，较 2024 金额</div>
+        <div class="chg down">-7.8%</div>
+      </div>
+      <div class="card">
+        <div class="k">2026 同期 · 成品鞋营业额</div>
+        <div class="v">7,040.9 万元</div>
+        <div class="s">较 2025 同期金额</div>
+        <div class="chg up">+2.2%</div>
+      </div>
+      <div class="card">
+        <div class="k">2026 同期 · 成品鞋数量</div>
+        <div class="v">719,370 双</div>
+        <div class="s">较 2025 同期数量</div>
+        <div class="chg up">+6.4%</div>
+      </div>
+    </div>
+    <h3>成品鞋营业额（元，折人民币）</h3>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>内销</td><td class="num">46,175,259</td><td class="num">40,968,742</td><td class="num down">-11.3%</td><td class="num">40,350,135</td><td class="num">36,036,284</td><td class="num">39,462,200</td><td class="num up">+9.5%</td><td class="num down">-2.2%</td></tr><tr class=""><td>外销</td><td class="num">33,319,029</td><td class="num">32,395,875</td><td class="num down">-2.8%</td><td class="num">29,351,099</td><td class="num">27,133,867</td><td class="num">26,396,600</td><td class="num down">-2.7%</td><td class="num down">-10.1%</td></tr><tr class=""><td>绿安全（成品鞋）</td><td class="num">5,343,179</td><td class="num">5,537,185</td><td class="num up">+3.6%</td><td class="num">4,220,476</td><td class="num">4,796,191</td><td class="num">3,933,999</td><td class="num down">-18.0%</td><td class="num down">-6.8%</td></tr><tr class=""><td>X（其他成品鞋）</td><td class="num">1,725,590</td><td class="num">923,499</td><td class="num down">-46.5%</td><td class="num">1,275,531</td><td class="num">923,499</td><td class="num">616,275</td><td class="num down">-33.3%</td><td class="num down">-51.7%</td></tr><tr class="sum"><td>成品鞋合计</td><td class="num">86,563,057</td><td class="num">79,825,301</td><td class="num down">-7.8%</td><td class="num">75,197,241</td><td class="num">68,889,841</td><td class="num">70,409,073</td><td class="num up">+2.2%</td><td class="num down">-6.4%</td></tr></tbody>
+    </table></div>
+    <h3>成品鞋数量（双）</h3>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>内销</td><td class="num">467,475</td><td class="num">417,287</td><td class="num down">-10.7%</td><td class="num">405,354</td><td class="num">363,964</td><td class="num">408,176</td><td class="num up">+12.1%</td><td class="num up">+0.7%</td></tr><tr class=""><td>外销</td><td class="num">325,624</td><td class="num">300,586</td><td class="num down">-7.7%</td><td class="num">286,148</td><td class="num">254,002</td><td class="num">263,635</td><td class="num up">+3.8%</td><td class="num down">-7.9%</td></tr><tr class=""><td>绿安全（成品鞋）</td><td class="num">56,170</td><td class="num">58,630</td><td class="num up">+4.4%</td><td class="num">44,340</td><td class="num">50,714</td><td class="num">41,820</td><td class="num down">-17.5%</td><td class="num down">-5.7%</td></tr><tr class=""><td>X（其他成品鞋）</td><td class="num">14,471</td><td class="num">7,639</td><td class="num down">-47.2%</td><td class="num">11,075</td><td class="num">7,639</td><td class="num">5,739</td><td class="num down">-24.9%</td><td class="num down">-48.2%</td></tr><tr class="sum"><td>成品鞋合计</td><td class="num">863,740</td><td class="num">784,142</td><td class="num down">-9.2%</td><td class="num">746,917</td><td class="num">676,319</td><td class="num">719,370</td><td class="num up">+6.4%</td><td class="num down">-3.7%</td></tr></tbody>
+    </table></div>
+    <h3>成品鞋月度数量</h3>
     <svg viewBox="0 0 900 250" width="100%" role="img">
-<line x1="58" y1="16.0" x2="890" y2="16.0" stroke="#edf0f3"/>
-<text x="50" y="20.0" text-anchor="end" font-size="10" fill="#7a8490">270,767</text>
-<line x1="58" y1="62.0" x2="890" y2="62.0" stroke="#edf0f3"/>
-<text x="50" y="66.0" text-anchor="end" font-size="10" fill="#7a8490">203,075</text>
-<line x1="58" y1="108.0" x2="890" y2="108.0" stroke="#edf0f3"/>
-<text x="50" y="112.0" text-anchor="end" font-size="10" fill="#7a8490">135,384</text>
-<line x1="58" y1="154.0" x2="890" y2="154.0" stroke="#edf0f3"/>
-<text x="50" y="158.0" text-anchor="end" font-size="10" fill="#7a8490">67,692</text>
-<line x1="58" y1="200.0" x2="890" y2="200.0" stroke="#edf0f3"/>
-<text x="50" y="204.0" text-anchor="end" font-size="10" fill="#7a8490">0</text>
-<rect x="61.6" y="16.0" width="18.7" height="16.5" fill="#1f6b4a"/>
-<rect x="61.6" y="32.5" width="18.7" height="167.5" fill="#c05621"/>
-<text x="71.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">01上</text>
-<rect x="87.6" y="129.1" width="18.7" height="31.8" fill="#1f6b4a"/>
-<rect x="87.6" y="160.9" width="18.7" height="39.1" fill="#c05621"/>
-<rect x="113.6" y="85.8" width="18.7" height="58.2" fill="#1f6b4a"/>
-<rect x="113.6" y="144.0" width="18.7" height="56.0" fill="#c05621"/>
-<rect x="139.6" y="125.8" width="18.7" height="18.2" fill="#1f6b4a"/>
-<rect x="139.6" y="144.0" width="18.7" height="56.0" fill="#c05621"/>
-<text x="149.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">02上</text>
-<rect x="165.6" y="200.0" width="18.7" height="0.0" fill="#1f6b4a"/>
-<rect x="165.6" y="200.0" width="18.7" height="0.0" fill="#c05621"/>
-<text x="175.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">02中</text>
-<rect x="191.6" y="182.5" width="18.7" height="5.9" fill="#1f6b4a"/>
-<rect x="191.6" y="188.4" width="18.7" height="11.6" fill="#c05621"/>
-<rect x="217.6" y="104.3" width="18.7" height="30.9" fill="#1f6b4a"/>
-<rect x="217.6" y="135.3" width="18.7" height="64.7" fill="#c05621"/>
-<text x="227.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">03上</text>
-<rect x="243.6" y="96.6" width="18.7" height="28.2" fill="#1f6b4a"/>
-<rect x="243.6" y="124.8" width="18.7" height="75.2" fill="#c05621"/>
-<rect x="269.6" y="125.0" width="18.7" height="36.1" fill="#1f6b4a"/>
-<rect x="269.6" y="161.1" width="18.7" height="38.9" fill="#c05621"/>
-<rect x="295.6" y="94.0" width="18.7" height="26.7" fill="#1f6b4a"/>
-<rect x="295.6" y="120.7" width="18.7" height="79.3" fill="#c05621"/>
-<text x="305.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">04上</text>
-<rect x="321.6" y="137.2" width="18.7" height="30.4" fill="#1f6b4a"/>
-<rect x="321.6" y="167.6" width="18.7" height="32.4" fill="#c05621"/>
-<rect x="347.6" y="39.1" width="18.7" height="46.8" fill="#1f6b4a"/>
-<rect x="347.6" y="85.9" width="18.7" height="114.1" fill="#c05621"/>
-<rect x="373.6" y="135.5" width="18.7" height="13.4" fill="#1f6b4a"/>
-<rect x="373.6" y="148.9" width="18.7" height="51.1" fill="#c05621"/>
-<text x="383.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">05上</text>
-<rect x="399.6" y="118.6" width="18.7" height="34.3" fill="#1f6b4a"/>
-<rect x="399.6" y="152.9" width="18.7" height="47.1" fill="#c05621"/>
-<rect x="425.6" y="85.2" width="18.7" height="55.7" fill="#1f6b4a"/>
-<rect x="425.6" y="140.9" width="18.7" height="59.1" fill="#c05621"/>
-<rect x="451.6" y="111.3" width="18.7" height="43.2" fill="#1f6b4a"/>
-<rect x="451.6" y="154.4" width="18.7" height="45.6" fill="#c05621"/>
-<text x="461.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">06上</text>
-<rect x="477.6" y="121.7" width="18.7" height="25.6" fill="#1f6b4a"/>
-<rect x="477.6" y="147.3" width="18.7" height="52.7" fill="#c05621"/>
-<rect x="503.6" y="103.5" width="18.7" height="39.9" fill="#1f6b4a"/>
-<rect x="503.6" y="143.4" width="18.7" height="56.6" fill="#c05621"/>
-<rect x="529.6" y="103.7" width="18.7" height="31.9" fill="#1f6b4a"/>
-<rect x="529.6" y="135.6" width="18.7" height="64.4" fill="#c05621"/>
-<text x="539.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">07上</text>
-<rect x="555.6" y="148.1" width="18.7" height="28.1" fill="#1f6b4a"/>
-<rect x="555.6" y="176.2" width="18.7" height="23.8" fill="#c05621"/>
-<rect x="581.6" y="98.4" width="18.7" height="45.8" fill="#1f6b4a"/>
-<rect x="581.6" y="144.3" width="18.7" height="55.7" fill="#c05621"/>
-<rect x="607.6" y="105.4" width="18.7" height="32.9" fill="#1f6b4a"/>
-<rect x="607.6" y="138.3" width="18.7" height="61.7" fill="#c05621"/>
-<text x="617.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">08上</text>
-<rect x="633.6" y="117.6" width="18.7" height="38.2" fill="#1f6b4a"/>
-<rect x="633.6" y="155.8" width="18.7" height="44.2" fill="#c05621"/>
-<rect x="659.6" y="124.3" width="18.7" height="56.5" fill="#1f6b4a"/>
-<rect x="659.6" y="180.8" width="18.7" height="19.2" fill="#c05621"/>
-<rect x="685.6" y="104.6" width="18.7" height="17.8" fill="#1f6b4a"/>
-<rect x="685.6" y="122.4" width="18.7" height="77.6" fill="#c05621"/>
-<text x="695.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">09上</text>
-<rect x="711.6" y="86.8" width="18.7" height="43.8" fill="#1f6b4a"/>
-<rect x="711.6" y="130.6" width="18.7" height="69.4" fill="#c05621"/>
-<rect x="737.6" y="127.1" width="18.7" height="28.0" fill="#1f6b4a"/>
-<rect x="737.6" y="155.1" width="18.7" height="44.9" fill="#c05621"/>
-<rect x="763.6" y="129.6" width="18.7" height="25.5" fill="#1f6b4a"/>
-<rect x="763.6" y="155.1" width="18.7" height="44.9" fill="#c05621"/>
-<text x="773.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">10上</text>
-<rect x="789.6" y="124.0" width="18.7" height="16.0" fill="#1f6b4a"/>
-<rect x="789.6" y="140.0" width="18.7" height="60.0" fill="#c05621"/>
-<rect x="815.6" y="116.1" width="18.7" height="20.8" fill="#1f6b4a"/>
-<rect x="815.6" y="136.9" width="18.7" height="63.1" fill="#c05621"/>
-<rect x="841.6" y="163.0" width="18.7" height="10.7" fill="#1f6b4a"/>
-<rect x="841.6" y="173.7" width="18.7" height="26.3" fill="#c05621"/>
-<text x="851.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">11上</text>
-<rect x="867.6" y="130.0" width="18.7" height="16.0" fill="#1f6b4a" fill-opacity="0.55"/>
-<rect x="867.6" y="146.0" width="18.7" height="54.0" fill="#c05621" fill-opacity="0.55"/>
-<text x="877.0" y="216" text-anchor="middle" font-size="8" fill="#4a5560">11中</text>
-<rect x="58" y="226" width="10" height="10" rx="2" fill="#1f6b4a"/>
-<text x="72" y="235" font-size="11" fill="#4a5560">成品（含3M）</text>
-<rect x="188" y="226" width="10" height="10" rx="2" fill="#c05621"/>
-<text x="202" y="235" font-size="11" fill="#4a5560">部件材料</text>
-<text x="320" y="235" font-size="10" fill="#7a8490">11中半透明 = 只到 11-15，旬未完；02中无记录（春节）按 0</text>
+<line x1="58" y1="16.0" x2="884" y2="16.0" stroke="#edf0f3"/>
+<text x="50" y="20.0" text-anchor="end" font-size="10" fill="#7a8490">91,181</text>
+<line x1="58" y1="64.5" x2="884" y2="64.5" stroke="#edf0f3"/>
+<text x="50" y="68.5" text-anchor="end" font-size="10" fill="#7a8490">68,386</text>
+<line x1="58" y1="113.0" x2="884" y2="113.0" stroke="#edf0f3"/>
+<text x="50" y="117.0" text-anchor="end" font-size="10" fill="#7a8490">45,590</text>
+<line x1="58" y1="161.5" x2="884" y2="161.5" stroke="#edf0f3"/>
+<text x="50" y="165.5" text-anchor="end" font-size="10" fill="#7a8490">22,795</text>
+<line x1="58" y1="210.0" x2="884" y2="210.0" stroke="#edf0f3"/>
+<text x="50" y="214.0" text-anchor="end" font-size="10" fill="#7a8490">0</text>
+<line x1="58.0" y1="16" x2="58.0" y2="210" stroke="#d8dee6" stroke-dasharray="3 3"/>
+<text x="62.0" y="28" font-size="10" fill="#8b95a1">2024</text>
+<line x1="349.5" y1="16" x2="349.5" y2="210" stroke="#d8dee6" stroke-dasharray="3 3"/>
+<text x="353.5" y="28" font-size="10" fill="#8b95a1">2025</text>
+<line x1="641.1" y1="16" x2="641.1" y2="210" stroke="#d8dee6" stroke-dasharray="3 3"/>
+<text x="645.1" y="28" font-size="10" fill="#8b95a1">2026</text>
+<polyline fill="none" stroke="#1a2330" stroke-width="2.1" points="58.0,65.3 82.3,159.0 106.6,80.8 130.9,44.9 155.2,40.3 179.5,24.9 203.8,16.0 228.1,29.5 252.4,41.7 276.6,51.9 300.9,80.7 325.2,47.3 349.5,135.0 373.8,91.5 398.1,71.9 422.4,59.2 446.7,67.2 471.0,37.1 495.3,52.6 519.6,39.1 543.9,57.8 568.2,89.8 592.5,70.7 616.8,80.0 641.1,78.4 665.4,157.6 689.6,63.6 713.9,31.7 738.2,45.8 762.5,48.6 786.8,36.2 811.1,65.8 835.4,55.2 859.7,20.0 884.0,126.3"/>
+<circle cx="58.0" cy="65.3" r="1.8" fill="#1a2330"/>
+<circle cx="82.3" cy="159.0" r="1.8" fill="#1a2330"/>
+<circle cx="106.6" cy="80.8" r="1.8" fill="#1a2330"/>
+<circle cx="130.9" cy="44.9" r="1.8" fill="#1a2330"/>
+<circle cx="155.2" cy="40.3" r="1.8" fill="#1a2330"/>
+<circle cx="179.5" cy="24.9" r="1.8" fill="#1a2330"/>
+<circle cx="203.8" cy="16.0" r="1.8" fill="#1a2330"/>
+<circle cx="228.1" cy="29.5" r="1.8" fill="#1a2330"/>
+<circle cx="252.4" cy="41.7" r="1.8" fill="#1a2330"/>
+<circle cx="276.6" cy="51.9" r="1.8" fill="#1a2330"/>
+<circle cx="300.9" cy="80.7" r="1.8" fill="#1a2330"/>
+<circle cx="325.2" cy="47.3" r="1.8" fill="#1a2330"/>
+<circle cx="349.5" cy="135.0" r="1.8" fill="#1a2330"/>
+<circle cx="373.8" cy="91.5" r="1.8" fill="#1a2330"/>
+<circle cx="398.1" cy="71.9" r="1.8" fill="#1a2330"/>
+<circle cx="422.4" cy="59.2" r="1.8" fill="#1a2330"/>
+<circle cx="446.7" cy="67.2" r="1.8" fill="#1a2330"/>
+<circle cx="471.0" cy="37.1" r="1.8" fill="#1a2330"/>
+<circle cx="495.3" cy="52.6" r="1.8" fill="#1a2330"/>
+<circle cx="519.6" cy="39.1" r="1.8" fill="#1a2330"/>
+<circle cx="543.9" cy="57.8" r="1.8" fill="#1a2330"/>
+<circle cx="568.2" cy="89.8" r="1.8" fill="#1a2330"/>
+<circle cx="592.5" cy="70.7" r="1.8" fill="#1a2330"/>
+<circle cx="616.8" cy="80.0" r="1.8" fill="#1a2330"/>
+<circle cx="641.1" cy="78.4" r="1.8" fill="#1a2330"/>
+<circle cx="665.4" cy="157.6" r="1.8" fill="#1a2330"/>
+<circle cx="689.6" cy="63.6" r="1.8" fill="#1a2330"/>
+<circle cx="713.9" cy="31.7" r="1.8" fill="#1a2330"/>
+<circle cx="738.2" cy="45.8" r="1.8" fill="#1a2330"/>
+<circle cx="762.5" cy="48.6" r="1.8" fill="#1a2330"/>
+<circle cx="786.8" cy="36.2" r="1.8" fill="#1a2330"/>
+<circle cx="811.1" cy="65.8" r="1.8" fill="#1a2330"/>
+<circle cx="835.4" cy="55.2" r="1.8" fill="#1a2330"/>
+<circle cx="859.7" cy="20.0" r="1.8" fill="#1a2330"/>
+<circle cx="884.0" cy="126.3" r="1.8" fill="#b42318"/>
+<polyline fill="none" stroke="#1e4d7b" stroke-width="2.1" points="58.0,135.8 82.3,182.4 106.6,130.1 130.9,121.5 155.2,107.7 179.5,110.8 203.8,102.2 228.1,111.3 252.4,124.7 276.6,137.8 300.9,137.9 325.2,123.4 349.5,174.2 373.8,155.7 398.1,138.2 422.4,123.1 446.7,132.0 471.0,126.1 495.3,118.1 519.6,111.5 543.9,128.7 568.2,147.0 592.5,135.4 616.8,142.1 641.1,145.0 665.4,181.3 689.6,117.1 713.9,96.1 738.2,114.5 762.5,125.7 786.8,129.0 811.1,131.4 835.4,132.5 859.7,79.9 884.0,175.6"/>
+<circle cx="58.0" cy="135.8" r="1.8" fill="#1e4d7b"/>
+<circle cx="82.3" cy="182.4" r="1.8" fill="#1e4d7b"/>
+<circle cx="106.6" cy="130.1" r="1.8" fill="#1e4d7b"/>
+<circle cx="130.9" cy="121.5" r="1.8" fill="#1e4d7b"/>
+<circle cx="155.2" cy="107.7" r="1.8" fill="#1e4d7b"/>
+<circle cx="179.5" cy="110.8" r="1.8" fill="#1e4d7b"/>
+<circle cx="203.8" cy="102.2" r="1.8" fill="#1e4d7b"/>
+<circle cx="228.1" cy="111.3" r="1.8" fill="#1e4d7b"/>
+<circle cx="252.4" cy="124.7" r="1.8" fill="#1e4d7b"/>
+<circle cx="276.6" cy="137.8" r="1.8" fill="#1e4d7b"/>
+<circle cx="300.9" cy="137.9" r="1.8" fill="#1e4d7b"/>
+<circle cx="325.2" cy="123.4" r="1.8" fill="#1e4d7b"/>
+<circle cx="349.5" cy="174.2" r="1.8" fill="#1e4d7b"/>
+<circle cx="373.8" cy="155.7" r="1.8" fill="#1e4d7b"/>
+<circle cx="398.1" cy="138.2" r="1.8" fill="#1e4d7b"/>
+<circle cx="422.4" cy="123.1" r="1.8" fill="#1e4d7b"/>
+<circle cx="446.7" cy="132.0" r="1.8" fill="#1e4d7b"/>
+<circle cx="471.0" cy="126.1" r="1.8" fill="#1e4d7b"/>
+<circle cx="495.3" cy="118.1" r="1.8" fill="#1e4d7b"/>
+<circle cx="519.6" cy="111.5" r="1.8" fill="#1e4d7b"/>
+<circle cx="543.9" cy="128.7" r="1.8" fill="#1e4d7b"/>
+<circle cx="568.2" cy="147.0" r="1.8" fill="#1e4d7b"/>
+<circle cx="592.5" cy="135.4" r="1.8" fill="#1e4d7b"/>
+<circle cx="616.8" cy="142.1" r="1.8" fill="#1e4d7b"/>
+<circle cx="641.1" cy="145.0" r="1.8" fill="#1e4d7b"/>
+<circle cx="665.4" cy="181.3" r="1.8" fill="#1e4d7b"/>
+<circle cx="689.6" cy="117.1" r="1.8" fill="#1e4d7b"/>
+<circle cx="713.9" cy="96.1" r="1.8" fill="#1e4d7b"/>
+<circle cx="738.2" cy="114.5" r="1.8" fill="#1e4d7b"/>
+<circle cx="762.5" cy="125.7" r="1.8" fill="#1e4d7b"/>
+<circle cx="786.8" cy="129.0" r="1.8" fill="#1e4d7b"/>
+<circle cx="811.1" cy="131.4" r="1.8" fill="#1e4d7b"/>
+<circle cx="835.4" cy="132.5" r="1.8" fill="#1e4d7b"/>
+<circle cx="859.7" cy="79.9" r="1.8" fill="#1e4d7b"/>
+<circle cx="884.0" cy="175.6" r="1.8" fill="#b42318"/>
+<polyline fill="none" stroke="#2b6cb0" stroke-width="2.1" points="58.0,155.6 82.3,188.4 106.6,169.3 130.9,144.7 155.2,157.0 179.5,136.2 203.8,137.6 228.1,136.5 252.4,142.9 276.6,137.8 300.9,166.2 325.2,154.9 349.5,178.9 373.8,153.3 398.1,163.6 422.4,156.4 446.7,157.3 471.0,137.4 495.3,155.6 519.6,149.9 543.9,150.6 568.2,164.0 592.5,153.2 616.8,160.3 641.1,154.9 665.4,190.4 689.6,169.0 713.9,159.2 738.2,148.5 762.5,145.0 786.8,134.0 811.1,154.2 835.4,142.1 859.7,154.4 884.0,164.8"/>
+<circle cx="58.0" cy="155.6" r="1.8" fill="#2b6cb0"/>
+<circle cx="82.3" cy="188.4" r="1.8" fill="#2b6cb0"/>
+<circle cx="106.6" cy="169.3" r="1.8" fill="#2b6cb0"/>
+<circle cx="130.9" cy="144.7" r="1.8" fill="#2b6cb0"/>
+<circle cx="155.2" cy="157.0" r="1.8" fill="#2b6cb0"/>
+<circle cx="179.5" cy="136.2" r="1.8" fill="#2b6cb0"/>
+<circle cx="203.8" cy="137.6" r="1.8" fill="#2b6cb0"/>
+<circle cx="228.1" cy="136.5" r="1.8" fill="#2b6cb0"/>
+<circle cx="252.4" cy="142.9" r="1.8" fill="#2b6cb0"/>
+<circle cx="276.6" cy="137.8" r="1.8" fill="#2b6cb0"/>
+<circle cx="300.9" cy="166.2" r="1.8" fill="#2b6cb0"/>
+<circle cx="325.2" cy="154.9" r="1.8" fill="#2b6cb0"/>
+<circle cx="349.5" cy="178.9" r="1.8" fill="#2b6cb0"/>
+<circle cx="373.8" cy="153.3" r="1.8" fill="#2b6cb0"/>
+<circle cx="398.1" cy="163.6" r="1.8" fill="#2b6cb0"/>
+<circle cx="422.4" cy="156.4" r="1.8" fill="#2b6cb0"/>
+<circle cx="446.7" cy="157.3" r="1.8" fill="#2b6cb0"/>
+<circle cx="471.0" cy="137.4" r="1.8" fill="#2b6cb0"/>
+<circle cx="495.3" cy="155.6" r="1.8" fill="#2b6cb0"/>
+<circle cx="519.6" cy="149.9" r="1.8" fill="#2b6cb0"/>
+<circle cx="543.9" cy="150.6" r="1.8" fill="#2b6cb0"/>
+<circle cx="568.2" cy="164.0" r="1.8" fill="#2b6cb0"/>
+<circle cx="592.5" cy="153.2" r="1.8" fill="#2b6cb0"/>
+<circle cx="616.8" cy="160.3" r="1.8" fill="#2b6cb0"/>
+<circle cx="641.1" cy="154.9" r="1.8" fill="#2b6cb0"/>
+<circle cx="665.4" cy="190.4" r="1.8" fill="#2b6cb0"/>
+<circle cx="689.6" cy="169.0" r="1.8" fill="#2b6cb0"/>
+<circle cx="713.9" cy="159.2" r="1.8" fill="#2b6cb0"/>
+<circle cx="738.2" cy="148.5" r="1.8" fill="#2b6cb0"/>
+<circle cx="762.5" cy="145.0" r="1.8" fill="#2b6cb0"/>
+<circle cx="786.8" cy="134.0" r="1.8" fill="#2b6cb0"/>
+<circle cx="811.1" cy="154.2" r="1.8" fill="#2b6cb0"/>
+<circle cx="835.4" cy="142.1" r="1.8" fill="#2b6cb0"/>
+<circle cx="859.7" cy="154.4" r="1.8" fill="#2b6cb0"/>
+<circle cx="884.0" cy="164.8" r="1.8" fill="#b42318"/>
+<polyline fill="none" stroke="#1f6b4a" stroke-width="2.1" points="58.0,193.9 82.3,208.3 106.6,201.4 130.9,202.1 155.2,198.8 179.5,200.3 203.8,202.3 228.1,202.6 252.4,198.8 276.6,198.9 300.9,197.7 325.2,195.3 349.5,201.9 373.8,202.5 398.1,195.3 422.4,199.7 446.7,200.1 471.0,198.2 495.3,201.5 519.6,197.7 543.9,198.6 568.2,199.8 592.5,202.4 616.8,197.6 641.1,198.9 665.4,207.0 689.6,197.4 713.9,199.7 738.2,202.8 762.5,197.9 786.8,193.3 811.1,205.1 835.4,203.1 859.7,205.7 884.0,205.9"/>
+<circle cx="58.0" cy="193.9" r="1.8" fill="#1f6b4a"/>
+<circle cx="82.3" cy="208.3" r="1.8" fill="#1f6b4a"/>
+<circle cx="106.6" cy="201.4" r="1.8" fill="#1f6b4a"/>
+<circle cx="130.9" cy="202.1" r="1.8" fill="#1f6b4a"/>
+<circle cx="155.2" cy="198.8" r="1.8" fill="#1f6b4a"/>
+<circle cx="179.5" cy="200.3" r="1.8" fill="#1f6b4a"/>
+<circle cx="203.8" cy="202.3" r="1.8" fill="#1f6b4a"/>
+<circle cx="228.1" cy="202.6" r="1.8" fill="#1f6b4a"/>
+<circle cx="252.4" cy="198.8" r="1.8" fill="#1f6b4a"/>
+<circle cx="276.6" cy="198.9" r="1.8" fill="#1f6b4a"/>
+<circle cx="300.9" cy="197.7" r="1.8" fill="#1f6b4a"/>
+<circle cx="325.2" cy="195.3" r="1.8" fill="#1f6b4a"/>
+<circle cx="349.5" cy="201.9" r="1.8" fill="#1f6b4a"/>
+<circle cx="373.8" cy="202.5" r="1.8" fill="#1f6b4a"/>
+<circle cx="398.1" cy="195.3" r="1.8" fill="#1f6b4a"/>
+<circle cx="422.4" cy="199.7" r="1.8" fill="#1f6b4a"/>
+<circle cx="446.7" cy="200.1" r="1.8" fill="#1f6b4a"/>
+<circle cx="471.0" cy="198.2" r="1.8" fill="#1f6b4a"/>
+<circle cx="495.3" cy="201.5" r="1.8" fill="#1f6b4a"/>
+<circle cx="519.6" cy="197.7" r="1.8" fill="#1f6b4a"/>
+<circle cx="543.9" cy="198.6" r="1.8" fill="#1f6b4a"/>
+<circle cx="568.2" cy="199.8" r="1.8" fill="#1f6b4a"/>
+<circle cx="592.5" cy="202.4" r="1.8" fill="#1f6b4a"/>
+<circle cx="616.8" cy="197.6" r="1.8" fill="#1f6b4a"/>
+<circle cx="641.1" cy="198.9" r="1.8" fill="#1f6b4a"/>
+<circle cx="665.4" cy="207.0" r="1.8" fill="#1f6b4a"/>
+<circle cx="689.6" cy="197.4" r="1.8" fill="#1f6b4a"/>
+<circle cx="713.9" cy="199.7" r="1.8" fill="#1f6b4a"/>
+<circle cx="738.2" cy="202.8" r="1.8" fill="#1f6b4a"/>
+<circle cx="762.5" cy="197.9" r="1.8" fill="#1f6b4a"/>
+<circle cx="786.8" cy="193.3" r="1.8" fill="#1f6b4a"/>
+<circle cx="811.1" cy="205.1" r="1.8" fill="#1f6b4a"/>
+<circle cx="835.4" cy="203.1" r="1.8" fill="#1f6b4a"/>
+<circle cx="859.7" cy="205.7" r="1.8" fill="#1f6b4a"/>
+<circle cx="884.0" cy="205.9" r="1.8" fill="#b42318"/>
+<polyline fill="none" stroke="#38a169" stroke-width="2.1" points="58.0,210.0 82.3,210.0 106.6,210.0 130.9,206.6 155.2,206.7 179.5,207.6 203.8,203.9 228.1,209.2 252.4,205.3 276.6,207.3 300.9,209.0 325.2,203.6 349.5,210.0 373.8,210.0 398.1,204.8 422.4,210.0 446.7,207.7 471.0,205.4 495.3,207.3 519.6,210.0 543.9,209.8 568.2,208.9 592.5,209.8 616.8,210.0 641.1,209.6 665.4,209.0 689.6,210.0 713.9,206.8 738.2,209.9 762.5,210.0 786.8,210.0 811.1,205.1 835.4,207.5 859.7,210.0 884.0,210.0"/>
+<circle cx="58.0" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="82.3" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="106.6" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="130.9" cy="206.6" r="1.8" fill="#38a169"/>
+<circle cx="155.2" cy="206.7" r="1.8" fill="#38a169"/>
+<circle cx="179.5" cy="207.6" r="1.8" fill="#38a169"/>
+<circle cx="203.8" cy="203.9" r="1.8" fill="#38a169"/>
+<circle cx="228.1" cy="209.2" r="1.8" fill="#38a169"/>
+<circle cx="252.4" cy="205.3" r="1.8" fill="#38a169"/>
+<circle cx="276.6" cy="207.3" r="1.8" fill="#38a169"/>
+<circle cx="300.9" cy="209.0" r="1.8" fill="#38a169"/>
+<circle cx="325.2" cy="203.6" r="1.8" fill="#38a169"/>
+<circle cx="349.5" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="373.8" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="398.1" cy="204.8" r="1.8" fill="#38a169"/>
+<circle cx="422.4" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="446.7" cy="207.7" r="1.8" fill="#38a169"/>
+<circle cx="471.0" cy="205.4" r="1.8" fill="#38a169"/>
+<circle cx="495.3" cy="207.3" r="1.8" fill="#38a169"/>
+<circle cx="519.6" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="543.9" cy="209.8" r="1.8" fill="#38a169"/>
+<circle cx="568.2" cy="208.9" r="1.8" fill="#38a169"/>
+<circle cx="592.5" cy="209.8" r="1.8" fill="#38a169"/>
+<circle cx="616.8" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="641.1" cy="209.6" r="1.8" fill="#38a169"/>
+<circle cx="665.4" cy="209.0" r="1.8" fill="#38a169"/>
+<circle cx="689.6" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="713.9" cy="206.8" r="1.8" fill="#38a169"/>
+<circle cx="738.2" cy="209.9" r="1.8" fill="#38a169"/>
+<circle cx="762.5" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="786.8" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="811.1" cy="205.1" r="1.8" fill="#38a169"/>
+<circle cx="835.4" cy="207.5" r="1.8" fill="#38a169"/>
+<circle cx="859.7" cy="210.0" r="1.8" fill="#38a169"/>
+<circle cx="884.0" cy="210.0" r="1.8" fill="#b42318"/>
+<text x="58.0" y="232" text-anchor="middle" font-size="10" fill="#4a5560">24/01</text>
+<text x="130.9" y="232" text-anchor="middle" font-size="10" fill="#4a5560">24/04</text>
+<text x="203.8" y="232" text-anchor="middle" font-size="10" fill="#4a5560">24/07</text>
+<text x="276.6" y="232" text-anchor="middle" font-size="10" fill="#4a5560">24/10</text>
+<text x="349.5" y="232" text-anchor="middle" font-size="10" fill="#4a5560">25/01</text>
+<text x="422.4" y="232" text-anchor="middle" font-size="10" fill="#4a5560">25/04</text>
+<text x="495.3" y="232" text-anchor="middle" font-size="10" fill="#4a5560">25/07</text>
+<text x="568.2" y="232" text-anchor="middle" font-size="10" fill="#4a5560">25/10</text>
+<text x="641.1" y="232" text-anchor="middle" font-size="10" fill="#4a5560">26/01</text>
+<text x="713.9" y="232" text-anchor="middle" font-size="10" fill="#4a5560">26/04</text>
+<text x="786.8" y="232" text-anchor="middle" font-size="10" fill="#4a5560">26/07</text>
+<text x="859.7" y="232" text-anchor="middle" font-size="10" fill="#4a5560">26/10</text>
+<rect x="58" y="228" width="10" height="10" rx="2" fill="#1a2330"/>
+<text x="72" y="236" font-size="11" fill="#4a5560">成品鞋合计</text>
+<rect x="138" y="228" width="10" height="10" rx="2" fill="#1e4d7b"/>
+<text x="152" y="236" font-size="11" fill="#4a5560">内销</text>
+<rect x="182" y="228" width="10" height="10" rx="2" fill="#2b6cb0"/>
+<text x="196" y="236" font-size="11" fill="#4a5560">外销</text>
+<rect x="226" y="228" width="10" height="10" rx="2" fill="#1f6b4a"/>
+<text x="240" y="236" font-size="11" fill="#4a5560">绿安全</text>
+<rect x="282" y="228" width="10" height="10" rx="2" fill="#38a169"/>
+<text x="296" y="236" font-size="11" fill="#4a5560">X</text>
 </svg>
-    <div class="scroll">
-    <table>
-      <thead><tr><th>旬</th><th class="num">内销</th><th class="num">外销</th><th class="num">MIDORI</th><th class="num">OEM</th><th class="num">3M</th><th class="num">钢头</th><th class="num">橡胶</th><th class="num">其它</th><th class="num">合计</th></tr></thead>
-      <tbody><tr><td>2026-01上</td><td class="num">9,844</td><td class="num">6,409</td><td class="num">960</td><td class="num">0</td><td class="num">7,075</td><td class="num">99,400</td><td class="num">7,910</td><td class="num">139,169</td><td class="num">270,767</td></tr><tr><td>2026-01中</td><td class="num">6,203</td><td class="num">5,610</td><td class="num">3,306</td><td class="num">1,230</td><td class="num">30,403</td><td class="num">38,270</td><td class="num">7,159</td><td class="num">12,156</td><td class="num">104,337</td></tr><tr><td>2026-01下</td><td class="num">14,858</td><td class="num">14,021</td><td class="num">566</td><td class="num">0</td><td class="num">56,261</td><td class="num">65,990</td><td class="num">14,292</td><td class="num">2,054</td><td class="num">168,042</td></tr><tr><td>2026-02上</td><td class="num">9,189</td><td class="num">10,169</td><td class="num">1,120</td><td class="num">1,205</td><td class="num">5,098</td><td class="num">17,310</td><td class="num">20,173</td><td class="num">44,970</td><td class="num">109,234</td></tr><tr><td>2026-02中</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr><tr><td>2026-02下</td><td class="num">4,430</td><td class="num">0</td><td class="num">680</td><td class="num">0</td><td class="num">3,596</td><td class="num">0</td><td class="num">3,430</td><td class="num">13,664</td><td class="num">25,800</td></tr><tr><td>2026-03上</td><td class="num">13,376</td><td class="num">2,470</td><td class="num">2,070</td><td class="num">0</td><td class="num">27,612</td><td class="num">27,000</td><td class="num">13</td><td class="num">68,245</td><td class="num">140,786</td></tr><tr><td>2026-03中</td><td class="num">16,700</td><td class="num">6,948</td><td class="num">570</td><td class="num">1,645</td><td class="num">15,677</td><td class="num">55,250</td><td class="num">9,384</td><td class="num">46,000</td><td class="num">152,174</td></tr><tr><td>2026-03下</td><td class="num">13,846</td><td class="num">9,839</td><td class="num">3,013</td><td class="num">0</td><td class="num">26,415</td><td class="num">43,340</td><td class="num">13,611</td><td class="num">363</td><td class="num">110,427</td></tr><tr><td>2026-04上</td><td class="num">16,003</td><td class="num">6,163</td><td class="num">2,195</td><td class="num">1,250</td><td class="num">13,670</td><td class="num">107,100</td><td class="num">9,337</td><td class="num">294</td><td class="num">156,012</td></tr><tr><td>2026-04中</td><td class="num">12,388</td><td class="num">640</td><td class="num">2,085</td><td class="num">0</td><td class="num">29,671</td><td class="num">310</td><td class="num">15,427</td><td class="num">31,875</td><td class="num">92,396</td></tr><tr><td>2026-04下</td><td class="num">25,195</td><td class="num">17,207</td><td class="num">902</td><td class="num">2,920</td><td class="num">22,620</td><td class="num">59,800</td><td class="num">21,525</td><td class="num">86,563</td><td class="num">236,732</td></tr><tr><td>2026-05上</td><td class="num">10,952</td><td class="num">4,245</td><td class="num">0</td><td class="num">1,915</td><td class="num">2,556</td><td class="num">35,800</td><td class="num">19,228</td><td class="num">20,151</td><td class="num">94,847</td></tr><tr><td>2026-05中</td><td class="num">12,893</td><td class="num">12,144</td><td class="num">2,127</td><td class="num">0</td><td class="num">23,361</td><td class="num">40,400</td><td class="num">14,266</td><td class="num">14,589</td><td class="num">119,780</td></tr><tr><td>2026-05下</td><td class="num">21,281</td><td class="num">12,511</td><td class="num">995</td><td class="num">2,760</td><td class="num">44,346</td><td class="num">68,000</td><td class="num">14,652</td><td class="num">4,378</td><td class="num">168,923</td></tr><tr><td>2026-06上</td><td class="num">15,864</td><td class="num">16,942</td><td class="num">2,731</td><td class="num">2,065</td><td class="num">25,909</td><td class="num">54,400</td><td class="num">6,710</td><td class="num">5,965</td><td class="num">130,586</td></tr><tr><td>2026-06中</td><td class="num">13,366</td><td class="num">6,743</td><td class="num">1,740</td><td class="num">0</td><td class="num">15,884</td><td class="num">27,600</td><td class="num">15,446</td><td class="num">34,461</td><td class="num">115,240</td></tr><tr><td>2026-06下</td><td class="num">10,961</td><td class="num">6,880</td><td class="num">610</td><td class="num">0</td><td class="num">40,331</td><td class="num">60,650</td><td class="num">15,109</td><td class="num">7,504</td><td class="num">142,045</td></tr><tr><td>2026-07上</td><td class="num">14,813</td><td class="num">15,390</td><td class="num">1,855</td><td class="num">0</td><td class="num">14,821</td><td class="num">56,550</td><td class="num">9,394</td><td class="num">28,823</td><td class="num">141,646</td></tr><tr><td>2026-07中</td><td class="num">7,646</td><td class="num">6,030</td><td class="num">1,895</td><td class="num">1,975</td><td class="num">23,790</td><td class="num">21,800</td><td class="num">6,727</td><td class="num">6,483</td><td class="num">76,346</td></tr><tr><td>2026-07下</td><td class="num">16,060</td><td class="num">14,323</td><td class="num">3,655</td><td class="num">0</td><td class="num">33,395</td><td class="num">60,600</td><td class="num">15,757</td><td class="num">5,656</td><td class="num">149,446</td></tr><tr><td>2026-08上</td><td class="num">13,118</td><td class="num">7,650</td><td class="num">10</td><td class="num">2,950</td><td class="num">24,683</td><td class="num">44,550</td><td class="num">36,677</td><td class="num">9,525</td><td class="num">139,163</td></tr><tr><td>2026-08中</td><td class="num">11,262</td><td class="num">12,190</td><td class="num">730</td><td class="num">0</td><td class="num">32,092</td><td class="num">50,200</td><td class="num">14,507</td><td class="num">271</td><td class="num">121,252</td></tr><tr><td>2026-08下</td><td class="num">12,729</td><td class="num">6,399</td><td class="num">3,710</td><td class="num">2,635</td><td class="num">57,718</td><td class="num">800</td><td class="num">5,363</td><td class="num">22,091</td><td class="num">111,445</td></tr><tr><td>2026-09上</td><td class="num">11,054</td><td class="num">2,487</td><td class="num">1,415</td><td class="num">2</td><td class="num">11,212</td><td class="num">30,200</td><td class="num">21,590</td><td class="num">62,460</td><td class="num">140,420</td></tr><tr><td>2026-09中</td><td class="num">18,477</td><td class="num">19,646</td><td class="num">730</td><td class="num">2,370</td><td class="num">23,211</td><td class="num">80,300</td><td class="num">7,834</td><td class="num">14,003</td><td class="num">166,571</td></tr><tr><td>2026-09下</td><td class="num">7,014</td><td class="num">9,788</td><td class="num">1,750</td><td class="num">890</td><td class="num">21,759</td><td class="num">30,000</td><td class="num">15,463</td><td class="num">20,648</td><td class="num">107,312</td></tr><tr><td>2026-10上</td><td class="num">31,645</td><td class="num">4,924</td><td class="num">950</td><td class="num">0</td><td class="num">0</td><td class="num">58,800</td><td class="num">7,147</td><td class="num">184</td><td class="num">103,650</td></tr><tr><td>2026-10中</td><td class="num">12,470</td><td class="num">8,415</td><td class="num">375</td><td class="num">2,275</td><td class="num">0</td><td class="num">58,400</td><td class="num">7,931</td><td class="num">21,922</td><td class="num">111,788</td></tr><tr><td>2026-10下</td><td class="num">17,051</td><td class="num">12,902</td><td class="num">680</td><td class="num">0</td><td class="num">0</td><td class="num">73,200</td><td class="num">17,305</td><td class="num">2,316</td><td class="num">123,454</td></tr><tr><td>2026-11上</td><td class="num">9,843</td><td class="num">5,910</td><td class="num">10</td><td class="num">0</td><td class="num">0</td><td class="num">31,000</td><td class="num">7,599</td><td class="num">74</td><td class="num">54,436</td></tr><tr class="hi"><td>2026-11中（截至15日）</td><td class="num">6,314</td><td class="num">15,330</td><td class="num">1,920</td><td class="num">0</td><td class="num">0</td><td class="num">73,500</td><td class="num">0</td><td class="num">6,000</td><td class="num">103,064</td></tr></tbody>
-    </table>
-    </div>
+    <p>口径简述：<b>内销</b> = typ=内销，但上海绿安全* 改入绿安全，半成品-KPR 改入 OEM 鞋面/半成品。
+    <b>外销</b> = typ=外销，同样剔除半成品-KPR。
+    <b>绿安全</b> = 客户简称匹配「上海绿安全」「上海外贸绿安全」，成品数量只计 typ=MIDORI 与 typ=内销（2024–2025 档中 typ=内销绿安全 5,256 双，合并后累计 typ=内销绿安全 7,611 双，避免重复计算）。
+    <b>X</b> = 还没进上面三项的成品鞋：品牌=外购鞋；非上海的 typ=MIDORI（客户 MIDORI、NEWTEX1）；品牌误植为 KRP、鞋型 I-985、售予 CF 的 414 双；typ=其它未标品牌且鞋型 A3-089 的 81 双。X 在下表拆开。</p>
   </div>
 
   <div class="panel">
-    <h2>上海绿安全（在全部口径中的位置）</h2>
-    <p class="sub">此处只计类别 = MIDORI（品牌 OEM-MIDORI）的上海绿安全华南 / 华东 / 华北，以及外贸（「上海绿安全外贸」与「上海外贸绿安全」合并）。这与此前「内销 + 绿安全」分析中的绿安全成品口径一致。华南名下另有内销和少量其它，已计在对应类别，不重复加进本表合计。客户简称「MIDORI」「NEWTEX1」的 MIDORI 数量不算上海绿安全。</p>
-    <p>2025 全年绿安全成品 56,835 双，较 2024 年 52,709 双 +7.8%。2026 同期 39,465 双，较 2025 同期 -19.8%；下滑主要在华南（15,597 vs 23,106，-32.5%），华东 -9.8%，华北 -13.4%。2026-11中截至 15 日另有绿安全 1,920 双，未计入同期。2026 同期绿安全占「成品不含 3M」的 5.3%，占全部同期总量的 1.0%。</p>
-    <div class="scroll">
-    <table>
-      <thead>
-        <tr><th>区域</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25同期</th></tr>
-      </thead>
-      <tbody><tr><td>上海绿安全（华南）</td><td class="num">25,256</td><td class="num">28,096</td><td class="num up">+11.2%</td><td class="num">19,936</td><td class="num">23,106</td><td class="num">15,597</td><td class="num down">-32.5%</td></tr><tr><td>上海绿安全（华东）</td><td class="num">18,444</td><td class="num">20,529</td><td class="num up">+11.3%</td><td class="num">15,093</td><td class="num">18,474</td><td class="num">16,663</td><td class="num down">-9.8%</td></tr><tr><td>上海绿安全（华北）</td><td class="num">8,409</td><td class="num">8,210</td><td class="num down">-2.4%</td><td class="num">6,192</td><td class="num">7,630</td><td class="num">6,605</td><td class="num down">-13.4%</td></tr><tr><td>上海绿安全（外贸）</td><td class="num">600</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">600</td><td class="num">0</td><td class="num">600</td><td class="num">—</td></tr><tr class="sum"><td>绿安全合计（类别 MIDORI）</td><td class="num">52,709</td><td class="num">56,835</td><td class="num up">+7.8%</td><td class="num">41,821</td><td class="num">49,210</td><td class="num">39,465</td><td class="num down">-19.8%</td></tr></tbody>
-    </table>
-    </div>
+    <h2>内销</h2>
+    <p class="sub">数量单位：双。客户与通路：2026 年只用 1–9 月，因 10 月起户名塌缩为 NEWTEX1。1,074 双币别为空，数量计入、金额不计。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">467,475</td><td class="num">417,287</td><td class="num down">-10.7%</td><td class="num">405,354</td><td class="num">363,964</td><td class="num">408,176</td><td class="num up">+12.1%</td><td class="num up">+0.7%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">46,175,259</td><td class="num">40,968,742</td><td class="num down">-11.3%</td><td class="num">40,350,135</td><td class="num">36,036,284</td><td class="num">39,462,200</td><td class="num up">+9.5%</td><td class="num down">-2.2%</td></tr></tbody>
+    </table></div>
+    <h3>主要客户（数量，双）</h3>
+    <div class="scroll"><table><thead><tr><th>客户</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">2025同期</th><th class="num">2026年1–9月</th><th class="num">25/24全年</th><th class="num">26/25</th></tr></thead><tbody><tr><td>富士康科技集团</td><td class="num">88,644</td><td class="num">82,657</td><td class="num">72,128</td><td class="num">70,039</td><td class="num down">-6.8%</td><td class="num down">-2.9%</td></tr><tr><td>东莞通荣</td><td class="num">38,952</td><td class="num">32,167</td><td class="num">28,819</td><td class="num">22,294</td><td class="num down">-17.4%</td><td class="num down">-22.6%</td></tr><tr><td>中资环绿纤（华润环保）</td><td class="num">17,170</td><td class="num">22,065</td><td class="num">20,425</td><td class="num">2,440</td><td class="num up">+28.5%</td><td class="num down">-88.1%</td></tr><tr><td>上海欣安</td><td class="num">24,022</td><td class="num">21,019</td><td class="num">16,227</td><td class="num">19,345</td><td class="num down">-12.5%</td><td class="num up">+19.2%</td></tr><tr><td>东北船舶物资</td><td class="num">21,640</td><td class="num">18,690</td><td class="num">18,690</td><td class="num">0</td><td class="num down">-13.6%</td><td class="num down">-100.0%</td></tr><tr><td>中国船舶物资</td><td class="num">19,723</td><td class="num">16,169</td><td class="num">14,556</td><td class="num">14,144</td><td class="num down">-18.0%</td><td class="num down">-2.8%</td></tr><tr><td>东莞市弘赢商贸</td><td class="num">14,392</td><td class="num">16,079</td><td class="num">13,791</td><td class="num">16,607</td><td class="num up">+11.7%</td><td class="num up">+20.4%</td></tr><tr><td>佛山市斯八达</td><td class="num">16,302</td><td class="num">15,428</td><td class="num">13,607</td><td class="num">12,059</td><td class="num down">-5.4%</td><td class="num down">-11.4%</td></tr><tr><td>湖北东恩</td><td class="num">12,386</td><td class="num">14,962</td><td class="num">13,090</td><td class="num">12,920</td><td class="num up">+20.8%</td><td class="num down">-1.3%</td></tr><tr><td>恒力石化</td><td class="num">0</td><td class="num">14,224</td><td class="num">12,019</td><td class="num">28,525</td><td class="num">—</td><td class="num up">+137.3%</td></tr><tr><td>青岛明成德泰供应链</td><td class="num">16,354</td><td class="num">14,112</td><td class="num">10,767</td><td class="num">11,359</td><td class="num down">-13.7%</td><td class="num up">+5.5%</td></tr><tr><td>珠海三滴水</td><td class="num">14,479</td><td class="num">13,989</td><td class="num">11,949</td><td class="num">11,981</td><td class="num down">-3.4%</td><td class="num up">+0.3%</td></tr><tr><td>安迪顺泉州</td><td class="num">14,290</td><td class="num">11,848</td><td class="num">9,321</td><td class="num">14,134</td><td class="num down">-17.1%</td><td class="num up">+51.6%</td></tr><tr><td>理文造纸</td><td class="num">12,473</td><td class="num">6,625</td><td class="num">5,536</td><td class="num">8,558</td><td class="num down">-46.9%</td><td class="num up">+54.6%</td></tr></tbody></table></div>
+    <h3>主要客户（营业额，元）</h3>
+    <div class="scroll"><table><thead><tr><th>客户</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">2025同期</th><th class="num">2026年1–9月</th><th class="num">25/24全年</th><th class="num">26/25</th></tr></thead><tbody><tr><td>富士康科技集团</td><td class="num">7,897,080</td><td class="num">7,264,017</td><td class="num">6,330,593</td><td class="num">6,124,605</td><td class="num down">-8.0%</td><td class="num down">-3.3%</td></tr><tr><td>东莞通荣</td><td class="num">3,048,469</td><td class="num">2,510,498</td><td class="num">2,256,609</td><td class="num">1,762,608</td><td class="num down">-17.6%</td><td class="num down">-21.9%</td></tr><tr><td>中资环绿纤（华润环保）</td><td class="num">1,375,442</td><td class="num">1,767,431</td><td class="num">1,636,434</td><td class="num">196,066</td><td class="num up">+28.5%</td><td class="num down">-88.0%</td></tr><tr><td>上海欣安</td><td class="num">2,452,768</td><td class="num">2,134,276</td><td class="num">1,645,464</td><td class="num">1,917,791</td><td class="num down">-13.0%</td><td class="num up">+16.6%</td></tr><tr><td>东北船舶物资</td><td class="num">4,905,253</td><td class="num">4,069,616</td><td class="num">4,069,616</td><td class="num">0</td><td class="num down">-17.0%</td><td class="num down">-100.0%</td></tr><tr><td>中国船舶物资</td><td class="num">1,675,882</td><td class="num">1,376,439</td><td class="num">1,238,915</td><td class="num">1,209,616</td><td class="num down">-17.9%</td><td class="num down">-2.4%</td></tr><tr><td>东莞市弘赢商贸</td><td class="num">1,380,607</td><td class="num">1,463,362</td><td class="num">1,252,854</td><td class="num">1,513,300</td><td class="num up">+6.0%</td><td class="num up">+20.8%</td></tr><tr><td>佛山市斯八达</td><td class="num">1,246,340</td><td class="num">1,183,199</td><td class="num">1,043,248</td><td class="num">922,014</td><td class="num down">-5.1%</td><td class="num down">-11.6%</td></tr><tr><td>湖北东恩</td><td class="num">1,051,896</td><td class="num">1,260,514</td><td class="num">1,104,204</td><td class="num">1,057,364</td><td class="num up">+19.8%</td><td class="num down">-4.2%</td></tr><tr><td>恒力石化</td><td class="num">0</td><td class="num">1,331,980</td><td class="num">1,103,815</td><td class="num">2,639,774</td><td class="num">—</td><td class="num up">+139.2%</td></tr><tr><td>青岛明成德泰供应链</td><td class="num">1,615,289</td><td class="num">1,381,386</td><td class="num">1,058,368</td><td class="num">1,077,959</td><td class="num down">-14.5%</td><td class="num up">+1.9%</td></tr><tr><td>珠海三滴水</td><td class="num">1,118,125</td><td class="num">1,073,070</td><td class="num">914,230</td><td class="num">928,420</td><td class="num down">-4.0%</td><td class="num up">+1.6%</td></tr><tr><td>安迪顺泉州</td><td class="num">1,191,135</td><td class="num">1,003,880</td><td class="num">780,924</td><td class="num">1,179,464</td><td class="num down">-15.7%</td><td class="num up">+51.0%</td></tr><tr><td>理文造纸</td><td class="num">1,198,145</td><td class="num">642,650</td><td class="num">536,106</td><td class="num">825,512</td><td class="num down">-46.4%</td><td class="num up">+54.0%</td></tr></tbody></table></div>
+    <h3>通路（数量，2026 年为 1–9 月）</h3>
+    <div class="scroll"><table><thead><tr><th>通路 / 地区</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">2025年1–9月</th><th class="num">2026年1–9月</th><th class="num">25/24全年</th><th class="num">26/25</th></tr></thead><tbody><tr><td>大客户</td><td class="num">135,579</td><td class="num">145,736</td><td class="num">113,254</td><td class="num">121,120</td><td class="num up">+7.5%</td><td class="num up">+6.9%</td></tr><tr><td>终端客户</td><td class="num">93,600</td><td class="num">52,135</td><td class="num">40,641</td><td class="num">40,896</td><td class="num down">-44.3%</td><td class="num up">+0.6%</td></tr><tr><td>一类-金牌分销商</td><td class="num">90,873</td><td class="num">81,301</td><td class="num">64,113</td><td class="num">65,041</td><td class="num down">-10.5%</td><td class="num up">+1.4%</td></tr><tr><td>中间商</td><td class="num">64,645</td><td class="num">54,552</td><td class="num">41,585</td><td class="num">25,823</td><td class="num down">-15.6%</td><td class="num down">-37.9%</td></tr><tr><td>二类-核心经销商</td><td class="num">61,320</td><td class="num">61,025</td><td class="num">43,759</td><td class="num">57,052</td><td class="num down">-0.5%</td><td class="num up">+30.4%</td></tr><tr><td>三类-签约经销商</td><td class="num">10,825</td><td class="num">11,852</td><td class="num">9,060</td><td class="num">10,035</td><td class="num up">+9.5%</td><td class="num up">+10.8%</td></tr><tr><td>四类-合作经销</td><td class="num">10,621</td><td class="num">10,670</td><td class="num">8,285</td><td class="num">6,826</td><td class="num up">+0.5%</td><td class="num down">-17.6%</td></tr><tr><td>电商</td><td class="num">12</td><td class="num">16</td><td class="num">12</td><td class="num">10</td><td class="num up">+33.3%</td><td class="num down">-16.7%</td></tr><tr><td>其他</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">6,392</td><td class="num">—</td><td class="num">—</td></tr><tr><td>（空）</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">3,972</td><td class="num">—</td><td class="num">—</td></tr><tr class="sum"><td>合计</td><td class="num">467,475</td><td class="num">417,287</td><td class="num">320,709</td><td class="num">337,167</td><td class="num down">-10.7%</td><td class="num up">+5.1%</td></tr></tbody></table></div>
   </div>
 
   <div class="panel">
-    <h2>主要客户（全部类别）</h2>
-    <p class="sub">2025 全年：246 个客户，前 5 名占 50%、前 11 名占 80%、前 19 名占 90%。 2026 同期：191 个客户，前 6 名占 50%、前 13 名占 80%、前 20 名占 90%。 名单按 2025 全年与 2026 同期前 12 名并集。这一视角会被富士康（含 3M）、钢头厂和材料调拨（MF / IF / CF）主导。NEWTEX1 在 2026 同期靠前，是因为 10 月起内销被记在该名称下，不代表真实客户集中，已做标记。</p>
-    <div class="scroll">
-    <table>
-      <thead><tr><th>客户</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">25/24全年</th><th class="num">26/25同期</th></tr></thead><tbody><tr><td>富士康科技集团</td><td class="num">1,633,660</td><td class="num">943,206</td><td class="num">1,355,933</td><td class="num">806,463</td><td class="num">701,230</td><td class="num down">-42.3%</td><td class="num down">-13.0%</td></tr><tr><td>MF</td><td class="num">652,833</td><td class="num">608,043</td><td class="num">652,829</td><td class="num">419,736</td><td class="num">182,475</td><td class="num down">-6.9%</td><td class="num down">-56.5%</td></tr><tr><td>IF</td><td class="num">407,551</td><td class="num">533,963</td><td class="num">407,420</td><td class="num">449,182</td><td class="num">229,356</td><td class="num up">+31.0%</td><td class="num down">-48.9%</td></tr><tr><td>金劲台</td><td class="num">459,800</td><td class="num">407,600</td><td class="num">375,200</td><td class="num">344,200</td><td class="num">301,200</td><td class="num down">-11.4%</td><td class="num down">-12.5%</td></tr><tr><td>FORTUNE WORLD LIMITE</td><td class="num">218,688</td><td class="num">351,587</td><td class="num">188,950</td><td class="num">271,015</td><td class="num">282,937</td><td class="num up">+60.8%</td><td class="num up">+4.4%</td></tr><tr><td>CF</td><td class="num">312,215</td><td class="num">305,879</td><td class="num">187,777</td><td class="num">297,859</td><td class="num">281,707</td><td class="num down">-2.0%</td><td class="num down">-5.4%</td></tr><tr><td>森国RMB</td><td class="num">250,200</td><td class="num">263,480</td><td class="num">230,600</td><td class="num">237,480</td><td class="num">214,800</td><td class="num up">+5.3%</td><td class="num down">-9.6%</td></tr><tr><td>广州品源鞋业有限公司</td><td class="num">60,200</td><td class="num">255,600</td><td class="num">21,400</td><td class="num">214,400</td><td class="num">200</td><td class="num up">+324.6%</td><td class="num down">-99.9%</td></tr><tr><td>GOLDEN HONEST</td><td class="num">247,800</td><td class="num">231,400</td><td class="num">207,800</td><td class="num">202,600</td><td class="num">47,900</td><td class="num down">-6.6%</td><td class="num down">-76.4%</td></tr><tr><td>本厂橡胶大底</td><td class="num">136,887</td><td class="num">148,255</td><td class="num">55,375</td><td class="num">0</td><td class="num">96,109</td><td class="num up">+8.3%</td><td class="num">—</td></tr><tr><td>Just Gold Limited</td><td class="num">135,200</td><td class="num">107,200</td><td class="num">97,200</td><td class="num">106,200</td><td class="num">0</td><td class="num down">-20.7%</td><td class="num down">-100.0%</td></tr><tr><td>上海汉佑</td><td class="num">61,780</td><td class="num">89,640</td><td class="num">52,650</td><td class="num">62,560</td><td class="num">175,970</td><td class="num up">+45.1%</td><td class="num up">+181.3%</td></tr><tr><td>尚佳晟贸易公司</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">257,000</td><td class="num">—</td><td class="num">—</td></tr><tr><td>品原鞋业USD</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">243,000</td><td class="num">—</td><td class="num">—</td></tr><tr><td>嘉越鞋材</td><td class="num">0</td><td class="num">24,400</td><td class="num">0</td><td class="num">0</td><td class="num">137,100</td><td class="num">—</td><td class="num">—</td></tr></tbody>
-    </table>
-    </div>
+    <h2>外销</h2>
+    <p class="sub">数量单位：双。已剔除半成品-KPR（改入 OEM 鞋面/半成品）。地区在 2026 年 10–11 月仍可辨，2026 列为同期。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">325,624</td><td class="num">300,586</td><td class="num down">-7.7%</td><td class="num">286,148</td><td class="num">254,002</td><td class="num">263,635</td><td class="num up">+3.8%</td><td class="num down">-7.9%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">33,319,029</td><td class="num">32,395,875</td><td class="num down">-2.8%</td><td class="num">29,351,099</td><td class="num">27,133,867</td><td class="num">26,396,600</td><td class="num down">-2.7%</td><td class="num down">-10.1%</td></tr></tbody>
+    </table></div>
+    <h3>外销地区（数量）</h3>
+    <div class="scroll"><table><thead><tr><th>通路 / 地区</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">25/24同期</th><th class="num">26/25同期</th></tr></thead><tbody><tr><td>TAIWAN台湾</td><td class="num">74,881</td><td class="num">66,576</td><td class="num">72,089</td><td class="num down">-11.1%</td><td class="num up">+8.3%</td></tr><tr><td>Philippines菲律宾</td><td class="num">63,054</td><td class="num">51,474</td><td class="num">57,083</td><td class="num down">-18.4%</td><td class="num up">+10.9%</td></tr><tr><td>Singapore新加坡</td><td class="num">47,511</td><td class="num">36,401</td><td class="num">52,821</td><td class="num down">-23.4%</td><td class="num up">+45.1%</td></tr><tr><td>Vietnam越南</td><td class="num">34,148</td><td class="num">43,712</td><td class="num">43,935</td><td class="num up">+28.0%</td><td class="num up">+0.5%</td></tr><tr><td>Hong Kong</td><td class="num">15,207</td><td class="num">11,640</td><td class="num">9,730</td><td class="num down">-23.5%</td><td class="num down">-16.4%</td></tr><tr><td>Qatar卡塔尔</td><td class="num">12,062</td><td class="num">10,173</td><td class="num">0</td><td class="num down">-15.7%</td><td class="num down">-100.0%</td></tr><tr><td>UAE阿拉伯联合酋长国</td><td class="num">8,650</td><td class="num">13,474</td><td class="num">7,066</td><td class="num up">+55.8%</td><td class="num down">-47.6%</td></tr><tr><td>Thailand泰国</td><td class="num">7,299</td><td class="num">755</td><td class="num">449</td><td class="num down">-89.7%</td><td class="num down">-40.5%</td></tr><tr><td>Fiji 斐济</td><td class="num">4,780</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>Uganda乌干达</td><td class="num">4,160</td><td class="num">4,180</td><td class="num">4,220</td><td class="num up">+0.5%</td><td class="num up">+1.0%</td></tr><tr><td>Canada加拿大</td><td class="num">3,655</td><td class="num">8,713</td><td class="num">13,923</td><td class="num up">+138.4%</td><td class="num up">+59.8%</td></tr><tr><td>Bahrain巴林</td><td class="num">2,851</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>MYANMAR缅甸</td><td class="num">2,500</td><td class="num">2,160</td><td class="num">0</td><td class="num down">-13.6%</td><td class="num down">-100.0%</td></tr><tr><td>Nigeria尼日利亚</td><td class="num">2,325</td><td class="num">2,800</td><td class="num">515</td><td class="num up">+20.4%</td><td class="num down">-81.6%</td></tr><tr><td>Brunei文莱</td><td class="num">1,380</td><td class="num">652</td><td class="num">920</td><td class="num down">-52.8%</td><td class="num up">+41.1%</td></tr><tr><td>Africa非洲</td><td class="num">650</td><td class="num">52</td><td class="num">0</td><td class="num down">-92.0%</td><td class="num down">-100.0%</td></tr><tr><td>Indonesia印度尼西亚</td><td class="num">610</td><td class="num">1,060</td><td class="num">570</td><td class="num up">+73.8%</td><td class="num down">-46.2%</td></tr><tr><td>Kazakhstan哈萨克斯坦</td><td class="num">260</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>Middle East中东</td><td class="num">165</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>尊荣</td><td class="num">0</td><td class="num">180</td><td class="num">314</td><td class="num">—</td><td class="num up">+74.4%</td></tr><tr class="sum"><td>合计</td><td class="num">286,148</td><td class="num">254,002</td><td class="num">263,635</td><td class="num down">-11.2%</td><td class="num up">+3.8%</td></tr></tbody></table></div>
   </div>
 
   <div class="panel">
-    <h2>主要客户（成品鞋，不含 3M）</h2>
-    <p class="sub">2025 全年：230 个客户，前 8 名占 50%、前 24 名占 80%、前 38 名占 90%。 2026 年 1–9 月：176 个客户，前 8 名占 50%、前 22 名占 80%、前 34 名占 90%。 口径：内销 + 外销 + MIDORI + OEM。3M（几乎全是富士康）另见上表。为避免 10 月起内销户名塌缩，2026 年客户比较另给「1–9 月」列；若看含 10–11 上的同期，内销部分会集中出现在 NEWTEX1。</p>
-    <div class="scroll">
-    <table>
-      <thead><tr><th>客户</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">2025同期</th><th class="num">2026年1–9月</th><th class="num">25/24全年</th><th class="num">26/25</th></tr></thead><tbody><tr><td>富士康科技集团</td><td class="num">88,644</td><td class="num">82,657</td><td class="num">72,128</td><td class="num">70,039</td><td class="num down">-6.8%</td><td class="num down">-2.9%</td></tr><tr><td>KAAN NEOU JIA</td><td class="num">94,891</td><td class="num">80,419</td><td class="num">66,576</td><td class="num">57,283</td><td class="num down">-15.3%</td><td class="num down">-14.0%</td></tr><tr><td>KPR SINGAPORE</td><td class="num">54,637</td><td class="num">49,064</td><td class="num">36,401</td><td class="num">48,111</td><td class="num down">-10.2%</td><td class="num up">+32.2%</td></tr><tr><td>BENEDICT</td><td class="num">55,085</td><td class="num">46,459</td><td class="num">40,389</td><td class="num">39,303</td><td class="num down">-15.7%</td><td class="num down">-2.7%</td></tr><tr><td>CF</td><td class="num">38,088</td><td class="num">43,232</td><td class="num">39,259</td><td class="num">40,360</td><td class="num up">+13.5%</td><td class="num up">+2.8%</td></tr><tr><td>VINH THAI CO.Ltd</td><td class="num">29,267</td><td class="num">42,800</td><td class="num">36,430</td><td class="num">22,110</td><td class="num up">+46.2%</td><td class="num down">-39.3%</td></tr><tr><td>东莞通荣</td><td class="num">38,952</td><td class="num">32,167</td><td class="num">28,819</td><td class="num">22,294</td><td class="num down">-17.4%</td><td class="num down">-22.6%</td></tr><tr><td>上海绿安全(华南)</td><td class="num">28,717</td><td class="num">29,891</td><td class="num">24,610</td><td class="num">17,557</td><td class="num up">+4.1%</td><td class="num down">-28.7%</td></tr><tr><td>中资环绿纤（华润环保）</td><td class="num">17,170</td><td class="num">22,065</td><td class="num">20,425</td><td class="num">2,440</td><td class="num up">+28.5%</td><td class="num down">-88.1%</td></tr><tr><td>上海欣安</td><td class="num">24,022</td><td class="num">21,019</td><td class="num">16,227</td><td class="num">19,345</td><td class="num down">-12.5%</td><td class="num up">+19.2%</td></tr><tr><td>上海绿安全(华东)</td><td class="num">18,444</td><td class="num">20,529</td><td class="num">18,474</td><td class="num">15,313</td><td class="num up">+11.3%</td><td class="num down">-17.1%</td></tr><tr><td>东北船舶物资</td><td class="num">21,640</td><td class="num">18,690</td><td class="num">18,690</td><td class="num">0</td><td class="num down">-13.6%</td><td class="num down">-100.0%</td></tr><tr><td>恒力石化</td><td class="num">0</td><td class="num">14,224</td><td class="num">12,019</td><td class="num">28,525</td><td class="num">—</td><td class="num up">+137.3%</td></tr><tr><td>东莞市弘赢商贸</td><td class="num">14,392</td><td class="num">16,079</td><td class="num">13,791</td><td class="num">16,780</td><td class="num up">+11.7%</td><td class="num up">+21.7%</td></tr><tr><td>上海绿安全(华北)</td><td class="num">8,409</td><td class="num">8,210</td><td class="num">7,630</td><td class="num">6,335</td><td class="num down">-2.4%</td><td class="num down">-17.0%</td></tr></tbody>
-    </table>
-    </div>
+    <h2>绿安全</h2>
+    <p class="sub">客户：上海绿安全（华南 / 华东 / 华北）以及外贸（「上海绿安全外贸」与「上海外贸绿安全」合并）。成品鞋数量 = typ=MIDORI + typ=内销。名下另有鞋垫，数量单独列，不与成品鞋相加；金额可计入绿安全单元。</p>
+    <h3>成品鞋数量（双）</h3>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>上海绿安全（华南）</td><td class="num">28,717</td><td class="num">29,891</td><td class="num up">+4.1%</td><td class="num">22,455</td><td class="num">24,610</td><td class="num">17,952</td><td class="num down">-27.1%</td><td class="num down">-20.1%</td></tr><tr class=""><td>上海绿安全（华东）</td><td class="num">18,444</td><td class="num">20,529</td><td class="num up">+11.3%</td><td class="num">15,093</td><td class="num">18,474</td><td class="num">16,663</td><td class="num down">-9.8%</td><td class="num up">+10.4%</td></tr><tr class=""><td>上海绿安全（华北）</td><td class="num">8,409</td><td class="num">8,210</td><td class="num down">-2.4%</td><td class="num">6,192</td><td class="num">7,630</td><td class="num">6,605</td><td class="num down">-13.4%</td><td class="num up">+6.7%</td></tr><tr class=""><td>上海绿安全（外贸）</td><td class="num">600</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">600</td><td class="num">0</td><td class="num">600</td><td class="num">—</td><td class="num flat">+0.0%</td></tr><tr class="sum"><td>绿安全成品鞋合计</td><td class="num">56,170</td><td class="num">58,630</td><td class="num up">+4.4%</td><td class="num">44,340</td><td class="num">50,714</td><td class="num">41,820</td><td class="num down">-17.5%</td><td class="num down">-5.7%</td></tr></tbody>
+    </table></div>
+    <h3>成品鞋营业额（元）</h3>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>上海绿安全（华南）</td><td class="num">2,702,999</td><td class="num">2,796,598</td><td class="num up">+3.5%</td><td class="num">2,112,319</td><td class="num">2,307,023</td><td class="num">1,660,511</td><td class="num down">-28.0%</td><td class="num down">-21.4%</td></tr><tr class=""><td>上海绿安全（华东）</td><td class="num">1,775,602</td><td class="num">1,956,706</td><td class="num up">+10.2%</td><td class="num">1,453,530</td><td class="num">1,760,510</td><td class="num">1,580,547</td><td class="num down">-10.2%</td><td class="num up">+8.7%</td></tr><tr class=""><td>上海绿安全（华北）</td><td class="num">808,932</td><td class="num">783,881</td><td class="num down">-3.1%</td><td class="num">598,981</td><td class="num">728,658</td><td class="num">623,256</td><td class="num down">-14.5%</td><td class="num up">+4.1%</td></tr><tr class=""><td>上海绿安全（外贸）</td><td class="num">55,646</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">55,646</td><td class="num">0</td><td class="num">69,684</td><td class="num">—</td><td class="num up">+25.2%</td></tr><tr class="sum"><td>绿安全成品鞋合计</td><td class="num">5,343,179</td><td class="num">5,537,185</td><td class="num up">+3.6%</td><td class="num">4,220,476</td><td class="num">4,796,191</td><td class="num">3,933,999</td><td class="num down">-18.0%</td><td class="num down">-6.8%</td></tr></tbody>
+    </table></div>
+    <p>绿安全名下鞋垫：2024 年 0 件，2025 全年 220 件、1,869 元；2026 同期 30 件、255 元。2026-11中截至 15 日另有绿安全成品 1,920 双，未计入同期。</p>
   </div>
 
   <div class="panel">
-    <h2>内销主要客户</h2>
-    <p class="sub">2025 全年：199 个客户，前 8 名占 50%、前 19 名占 80%、前 36 名占 90%。 2026 年 1–9 月：153 个客户，前 6 名占 50%、前 17 名占 80%、前 28 名占 90%。 2026 年列只用到 9 月，因 10 月起内销几乎全部记在 NEWTEX1。富士康此处仅为内销 KPR，不含 3M。</p>
-    <div class="scroll">
-    <table>
-      <thead><tr><th>客户</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">2025同期</th><th class="num">2026年1–9月</th><th class="num">25/24全年</th><th class="num">26/25</th></tr></thead><tbody><tr><td>富士康科技集团</td><td class="num">88,644</td><td class="num">82,657</td><td class="num">72,128</td><td class="num">70,039</td><td class="num down">-6.8%</td><td class="num down">-2.9%</td></tr><tr><td>东莞通荣</td><td class="num">38,952</td><td class="num">32,167</td><td class="num">28,819</td><td class="num">22,294</td><td class="num down">-17.4%</td><td class="num down">-22.6%</td></tr><tr><td>中资环绿纤（华润环保）</td><td class="num">17,170</td><td class="num">22,065</td><td class="num">20,425</td><td class="num">2,440</td><td class="num up">+28.5%</td><td class="num down">-88.1%</td></tr><tr><td>上海欣安</td><td class="num">24,022</td><td class="num">21,019</td><td class="num">16,227</td><td class="num">19,345</td><td class="num down">-12.5%</td><td class="num up">+19.2%</td></tr><tr><td>东北船舶物资</td><td class="num">21,640</td><td class="num">18,690</td><td class="num">18,690</td><td class="num">0</td><td class="num down">-13.6%</td><td class="num down">-100.0%</td></tr><tr><td>中国船舶物资</td><td class="num">19,723</td><td class="num">16,169</td><td class="num">14,556</td><td class="num">14,144</td><td class="num down">-18.0%</td><td class="num down">-2.8%</td></tr><tr><td>东莞市弘赢商贸</td><td class="num">14,392</td><td class="num">16,079</td><td class="num">13,791</td><td class="num">16,607</td><td class="num up">+11.7%</td><td class="num up">+20.4%</td></tr><tr><td>佛山市斯八达</td><td class="num">16,302</td><td class="num">15,428</td><td class="num">13,607</td><td class="num">12,059</td><td class="num down">-5.4%</td><td class="num down">-11.4%</td></tr><tr><td>湖北东恩</td><td class="num">12,386</td><td class="num">14,962</td><td class="num">13,090</td><td class="num">12,920</td><td class="num up">+20.8%</td><td class="num down">-1.3%</td></tr><tr><td>恒力石化</td><td class="num">0</td><td class="num">14,224</td><td class="num">12,019</td><td class="num">28,525</td><td class="num">—</td><td class="num up">+137.3%</td></tr><tr><td>青岛明成德泰供应链</td><td class="num">16,354</td><td class="num">14,112</td><td class="num">10,767</td><td class="num">11,359</td><td class="num down">-13.7%</td><td class="num up">+5.5%</td></tr><tr><td>珠海三滴水</td><td class="num">14,479</td><td class="num">13,989</td><td class="num">11,949</td><td class="num">11,981</td><td class="num down">-3.4%</td><td class="num up">+0.3%</td></tr><tr><td>安迪顺泉州</td><td class="num">14,290</td><td class="num">11,848</td><td class="num">9,321</td><td class="num">14,134</td><td class="num down">-17.1%</td><td class="num up">+51.6%</td></tr><tr><td>理文造纸</td><td class="num">12,473</td><td class="num">6,625</td><td class="num">5,536</td><td class="num">8,558</td><td class="num down">-46.9%</td><td class="num up">+54.6%</td></tr></tbody>
-    </table>
-    </div>
+    <h2>X（其他成品鞋）</h2>
+    <p class="sub">未计入内销、外销、上海绿安全，但属于成品鞋的部分。数量单位：双。非上海的 Midori（客户简称 MIDORI、以及 typ=MIDORI 的 NEWTEX1）记在「其他成品（非上海绿安全）」，不并入绿安全。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">14,471</td><td class="num">7,639</td><td class="num down">-47.2%</td><td class="num">11,075</td><td class="num">7,639</td><td class="num">5,739</td><td class="num down">-24.9%</td><td class="num down">-48.2%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">1,725,590</td><td class="num">923,499</td><td class="num down">-46.5%</td><td class="num">1,275,531</td><td class="num">923,499</td><td class="num">616,275</td><td class="num down">-33.3%</td><td class="num down">-51.7%</td></tr><tr class=""><td>其他成品（其它未标品牌，鞋型A3-089）</td><td class="num">74</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">0</td><td class="num">0</td><td class="num">7</td><td class="num">—</td><td class="num">—</td></tr><tr class=""><td>其他成品（非上海绿安全）</td><td class="num">11,620</td><td class="num">1,530</td><td class="num down">-86.8%</td><td class="num">8,620</td><td class="num">1,530</td><td class="num">3,970</td><td class="num up">+159.5%</td><td class="num down">-53.9%</td></tr><tr class=""><td>外购鞋</td><td class="num">2,777</td><td class="num">6,109</td><td class="num up">+120.0%</td><td class="num">2,455</td><td class="num">6,109</td><td class="num">1,348</td><td class="num down">-77.9%</td><td class="num down">-45.1%</td></tr><tr class=""><td>其他成品（品牌KRP，售CF）</td><td class="num">0</td><td class="num">0</td><td class="num">—</td><td class="num">0</td><td class="num">0</td><td class="num">414</td><td class="num">—</td><td class="num">—</td></tr></tbody>
+    </table></div>
+    <p class="sub">上表「数量」行为 X 合计；下面几行是构成，不要再和鞋子以外的单元相加。</p>
+  </div>
+
+  <div class="panel">
+    <h2>OEM 鞋面 / 半成品</h2>
+    <p class="sub">不是成品鞋，不进入上面的成品鞋合计。typ=OEM 全部是售予 CF 的 Marks HH / DAK 鞋面套装；另含原记在内销、外销里的半成品-KPR（Shoe Uppers）。数量只在本单元内看。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">33,889</td><td class="num">32,799</td><td class="num down">-3.2%</td><td class="num">28,534</td><td class="num">31,584</td><td class="num">29,447</td><td class="num down">-6.8%</td><td class="num up">+3.2%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">8,149,064</td><td class="num">7,964,572</td><td class="num down">-2.3%</td><td class="num">6,862,315</td><td class="num">7,683,849</td><td class="num">7,411,514</td><td class="num down">-3.5%</td><td class="num up">+8.0%</td></tr><tr class=""><td>typ=OEM（CF 鞋面套装）</td><td class="num">32,104</td><td class="num">29,395</td><td class="num down">-8.4%</td><td class="num">27,189</td><td class="num">28,520</td><td class="num">28,087</td><td class="num down">-1.5%</td><td class="num up">+3.3%</td></tr><tr class=""><td>半成品-KPR（原记外销）</td><td class="num">1,785</td><td class="num">2,366</td><td class="num up">+32.5%</td><td class="num">1,345</td><td class="num">2,026</td><td class="num">1,360</td><td class="num down">-32.9%</td><td class="num up">+1.1%</td></tr><tr class=""><td>半成品-KPR（原记内销）</td><td class="num">0</td><td class="num">1,038</td><td class="num">—</td><td class="num">0</td><td class="num">1,038</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr></tbody>
+    </table></div>
   </div>
 
   <div class="row2">
     <div class="panel">
-      <h3>内销通路</h3>
-      <p class="sub">2026 年只用 1–9 月，并与 2025 年 1–9 月对比。10 月起通路大量变为「其他」，不可比。2026 年 1–9 月内销有 3,972 双通路为空。</p>
-      <div class="scroll">
-      <table>
-        <thead><tr><th>通路 / 地区</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">2025年1–9月</th><th class="num">2026年1–9月</th><th class="num">25/24全年</th><th class="num">26/25</th></tr></thead><tbody><tr><td>大客户</td><td class="num">135,579</td><td class="num">145,736</td><td class="num">113,254</td><td class="num">121,120</td><td class="num up">+7.5%</td><td class="num up">+6.9%</td></tr><tr><td>终端客户</td><td class="num">93,600</td><td class="num">52,135</td><td class="num">40,641</td><td class="num">40,896</td><td class="num down">-44.3%</td><td class="num up">+0.6%</td></tr><tr><td>一类-金牌分销商</td><td class="num">90,873</td><td class="num">81,301</td><td class="num">64,113</td><td class="num">65,041</td><td class="num down">-10.5%</td><td class="num up">+1.4%</td></tr><tr><td>中间商</td><td class="num">64,645</td><td class="num">54,552</td><td class="num">41,585</td><td class="num">25,823</td><td class="num down">-15.6%</td><td class="num down">-37.9%</td></tr><tr><td>二类-核心经销商</td><td class="num">61,320</td><td class="num">61,025</td><td class="num">43,759</td><td class="num">57,052</td><td class="num down">-0.5%</td><td class="num up">+30.4%</td></tr><tr><td>三类-签约经销商</td><td class="num">10,825</td><td class="num">11,852</td><td class="num">9,060</td><td class="num">10,035</td><td class="num up">+9.5%</td><td class="num up">+10.8%</td></tr><tr><td>四类-合作经销</td><td class="num">10,621</td><td class="num">10,670</td><td class="num">8,285</td><td class="num">6,826</td><td class="num up">+0.5%</td><td class="num down">-17.6%</td></tr><tr><td>其他</td><td class="num">3,461</td><td class="num">2,833</td><td class="num">2,289</td><td class="num">8,747</td><td class="num down">-18.1%</td><td class="num up">+282.1%</td></tr><tr><td>电商</td><td class="num">12</td><td class="num">16</td><td class="num">12</td><td class="num">10</td><td class="num up">+33.3%</td><td class="num down">-16.7%</td></tr><tr><td>（空）</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">3,972</td><td class="num">—</td><td class="num">—</td></tr><tr class="sum"><td>合计</td><td class="num">470,936</td><td class="num">420,120</td><td class="num">322,998</td><td class="num">339,522</td><td class="num down">-10.8%</td><td class="num up">+5.1%</td></tr></tbody>
-      </table>
-      </div>
+      <h2>钢头</h2>
+      <p class="sub">typ=钢头。数量只在本单元内看，单位是件，不与鞋子相加。</p>
+      <div class="scroll"><table>
+        <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+        <tbody><tr class=""><td>数量</td><td class="num">1,487,280</td><td class="num">1,416,570</td><td class="num down">-4.8%</td><td class="num">1,254,350</td><td class="num">1,204,690</td><td class="num">1,397,020</td><td class="num up">+16.0%</td><td class="num up">+11.4%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">9,979,204</td><td class="num">9,361,862</td><td class="num down">-6.2%</td><td class="num">8,398,997</td><td class="num">7,938,274</td><td class="num">8,784,384</td><td class="num up">+10.7%</td><td class="num up">+4.6%</td></tr></tbody>
+      </table></div>
     </div>
     <div class="panel">
-      <h3>外销地区（国别/通路）</h3>
-      <p class="sub">外销客户和地区在 2026 年 10–11 月仍然可辨。三列均为同期（1月–11上），可直接对比。</p>
-      <div class="scroll">
-      <table>
-        <thead><tr><th>通路 / 地区</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">25/24同期</th><th class="num">26/25同期</th></tr></thead><tbody><tr><td>TAIWAN台湾</td><td class="num">74,881</td><td class="num">66,576</td><td class="num">72,089</td><td class="num down">-11.1%</td><td class="num up">+8.3%</td></tr><tr><td>Philippines菲律宾</td><td class="num">63,054</td><td class="num">51,474</td><td class="num">57,083</td><td class="num down">-18.4%</td><td class="num up">+10.9%</td></tr><tr><td>Singapore新加坡</td><td class="num">47,511</td><td class="num">36,401</td><td class="num">52,821</td><td class="num down">-23.4%</td><td class="num up">+45.1%</td></tr><tr><td>Vietnam越南</td><td class="num">34,148</td><td class="num">43,712</td><td class="num">43,935</td><td class="num up">+28.0%</td><td class="num up">+0.5%</td></tr><tr><td>Hong Kong</td><td class="num">15,207</td><td class="num">11,640</td><td class="num">9,730</td><td class="num down">-23.5%</td><td class="num down">-16.4%</td></tr><tr><td>Qatar卡塔尔</td><td class="num">12,062</td><td class="num">10,173</td><td class="num">0</td><td class="num down">-15.7%</td><td class="num down">-100.0%</td></tr><tr><td>UAE阿拉伯联合酋长国</td><td class="num">8,650</td><td class="num">13,474</td><td class="num">7,066</td><td class="num up">+55.8%</td><td class="num down">-47.6%</td></tr><tr><td>Thailand泰国</td><td class="num">7,299</td><td class="num">755</td><td class="num">449</td><td class="num down">-89.7%</td><td class="num down">-40.5%</td></tr><tr><td>Canada加拿大</td><td class="num">5,000</td><td class="num">10,739</td><td class="num">15,283</td><td class="num up">+114.8%</td><td class="num up">+42.3%</td></tr><tr><td>Fiji 斐济</td><td class="num">4,780</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>Uganda乌干达</td><td class="num">4,160</td><td class="num">4,180</td><td class="num">4,220</td><td class="num up">+0.5%</td><td class="num up">+1.0%</td></tr><tr><td>Bahrain巴林</td><td class="num">2,851</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>MYANMAR缅甸</td><td class="num">2,500</td><td class="num">2,160</td><td class="num">0</td><td class="num down">-13.6%</td><td class="num down">-100.0%</td></tr><tr><td>Nigeria尼日利亚</td><td class="num">2,325</td><td class="num">2,800</td><td class="num">515</td><td class="num up">+20.4%</td><td class="num down">-81.6%</td></tr><tr><td>Brunei文莱</td><td class="num">1,380</td><td class="num">652</td><td class="num">920</td><td class="num down">-52.8%</td><td class="num up">+41.1%</td></tr><tr><td>Africa非洲</td><td class="num">650</td><td class="num">52</td><td class="num">0</td><td class="num down">-92.0%</td><td class="num down">-100.0%</td></tr><tr><td>Indonesia印度尼西亚</td><td class="num">610</td><td class="num">1,060</td><td class="num">570</td><td class="num up">+73.8%</td><td class="num down">-46.2%</td></tr><tr><td>Kazakhstan哈萨克斯坦</td><td class="num">260</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>Middle East中东</td><td class="num">165</td><td class="num">0</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">—</td></tr><tr><td>尊荣</td><td class="num">0</td><td class="num">180</td><td class="num">314</td><td class="num">—</td><td class="num up">+74.4%</td></tr><tr class="sum"><td>合计</td><td class="num">287,493</td><td class="num">256,028</td><td class="num">264,995</td><td class="num down">-10.9%</td><td class="num up">+3.5%</td></tr></tbody>
-      </table>
-      </div>
+      <h2>橡胶底</h2>
+      <p class="sub">typ=橡胶。数量只在本单元内看，不与鞋子或钢头相加。</p>
+      <div class="scroll"><table>
+        <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+        <tbody><tr class=""><td>数量</td><td class="num">356,124</td><td class="num">515,670</td><td class="num up">+44.8%</td><td class="num">243,874</td><td class="num">284,572</td><td class="num">380,966</td><td class="num up">+33.9%</td><td class="num up">+56.2%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">7,318,022</td><td class="num">10,664,114</td><td class="num up">+45.7%</td><td class="num">5,231,733</td><td class="num">6,352,135</td><td class="num">8,300,397</td><td class="num up">+30.7%</td><td class="num up">+58.7%</td></tr></tbody>
+      </table></div>
     </div>
   </div>
 
   <div class="panel">
-    <h3>品牌</h3>
-    <p class="sub">钢头全部记在「（无品牌）」。2026 列为同期（1月–11上），不宜与全年直接比绝对量。品牌「KRP」仅 414 双，疑为 KPR 误植。</p>
-    <div class="scroll">
-    <table>
-      <thead>
-        <tr><th>品牌</th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2026同期</th></tr>
-      </thead>
-      <tbody><tr><td>（无品牌）</td><td class="num">1,781,804</td><td class="num">1,878,045</td><td class="num up">+5.4%</td><td class="num">1,751,628</td></tr><tr><td>3M</td><td class="num">1,691,819</td><td class="num">865,669</td><td class="num down">-48.8%</td><td class="num">633,166</td></tr><tr><td>材料</td><td class="num">1,221,900</td><td class="num">1,279,933</td><td class="num up">+4.7%</td><td class="num">646,553</td></tr><tr><td>KPR</td><td class="num">827,230</td><td class="num">739,397</td><td class="num down">-10.6%</td><td class="num">682,346</td></tr><tr><td>鞋垫</td><td class="num">128,700</td><td class="num">149,702</td><td class="num up">+16.3%</td><td class="num">34,874</td></tr><tr><td>OEM-MIDORI</td><td class="num">64,329</td><td class="num">58,365</td><td class="num down">-9.3%</td><td class="num">43,435</td></tr><tr><td>其它劳保</td><td class="num">46,573</td><td class="num">61,873</td><td class="num up">+32.9%</td><td class="num">43,526</td></tr><tr><td>OEM-华润-佳连威</td><td class="num">17,180</td><td class="num">22,065</td><td class="num up">+28.4%</td><td class="num">6,580</td></tr><tr><td>半成品-OEM-MARKS-HH</td><td class="num">13,769</td><td class="num">12,535</td><td class="num down">-9.0%</td><td class="num">12,030</td></tr><tr><td>半成品-OEM-MARKS-DAK</td><td class="num">11,875</td><td class="num">14,910</td><td class="num up">+25.6%</td><td class="num">9,765</td></tr><tr><td>HH</td><td class="num">11,455</td><td class="num">11,815</td><td class="num up">+3.1%</td><td class="num">11,740</td></tr><tr><td>OEM-MARKS-DAK</td><td class="num">6,460</td><td class="num">0</td><td class="num down">-100.0%</td><td class="num">4,925</td></tr><tr><td>外购鞋</td><td class="num">2,777</td><td class="num">6,109</td><td class="num up">+120.0%</td><td class="num">1,348</td></tr><tr><td>半成品-KPR</td><td class="num">1,785</td><td class="num">3,404</td><td class="num up">+90.7%</td><td class="num">1,360</td></tr><tr><td>OEM-华润-润护佳</td><td class="num">1,469</td><td class="num">96</td><td class="num down">-93.5%</td><td class="num">0</td></tr><tr><td>OEM-全景消防</td><td class="num">1,010</td><td class="num">500</td><td class="num down">-50.5%</td><td class="num">0</td></tr><tr><td>OEM-MARKS-HH</td><td class="num">0</td><td class="num">1,950</td><td class="num">—</td><td class="num">1,367</td></tr><tr><td>KRP</td><td class="num">0</td><td class="num">0</td><td class="num">—</td><td class="num">414</td></tr></tbody>
-    </table>
-    </div>
+    <h2>3M</h2>
+    <p class="sub">数量按口罩、耳塞（含耳罩）、其他（百洁布、眼镜、滤毒盒、防护服等）分开列，三者单位不同，<strong>不要把件数加总当结论</strong>。营业额可以加总。2026 年 10–11 月提取中无 3M 记录，最后一笔在 2026-09中，9 月仍有销量，需确认是订单空窗还是报表未纳入。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>口罩</td><td class="num">166,789</td><td class="num">39,634</td><td class="num down">-76.2%</td><td class="num">159,586</td><td class="num">32,133</td><td class="num">30,719</td><td class="num down">-4.4%</td><td class="num down">-80.8%</td></tr><tr class=""><td>耳塞</td><td class="num">1,468,532</td><td class="num">766,269</td><td class="num down">-47.8%</td><td class="num">1,221,777</td><td class="num">657,655</td><td class="num">542,854</td><td class="num down">-17.5%</td><td class="num down">-55.6%</td></tr><tr class=""><td>其他</td><td class="num">56,498</td><td class="num">59,766</td><td class="num up">+5.8%</td><td class="num">44,343</td><td class="num">48,381</td><td class="num">59,593</td><td class="num up">+23.2%</td><td class="num up">+34.4%</td></tr><tr class="sum"><td>3M 营业额合计</td><td class="num">7,568,946</td><td class="num">7,201,655</td><td class="num down">-4.9%</td><td class="num">6,164,739</td><td class="num">5,880,091</td><td class="num">5,791,919</td><td class="num down">-1.5%</td><td class="num down">-6.0%</td></tr></tbody>
+    </table></div>
+  </div>
+
+  <div class="panel">
+    <h2>材料、鞋垫、其它劳保（typ=其它拆开）</h2>
+    <p class="sub">这三类数量单位不同，不能相加。材料主要是调拨给 MF / IF / CF，也有新加坡、本厂橡胶大底等。鞋垫单元不含已计入绿安全的 250 件。提取中没有 typ=模厂；模具相关只出现在客户名称里，行仍留在原 typ。</p>
+    <h3>材料</h3>
+    <p class="sub">2025 全年主要对象：MF 537,803、IF 485,503、CF 239,087、KPR SINGAPORE 15,302、KAAN NEOU JIA 2,236。2026 同期：CF 237,548、IF 224,266、MF 161,985、本厂橡胶大底 10,080、KPR SINGAPORE 10,014。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">1,221,900</td><td class="num">1,279,933</td><td class="num up">+4.7%</td><td class="num">1,101,354</td><td class="num">1,015,150</td><td class="num">646,553</td><td class="num down">-36.3%</td><td class="num down">-41.3%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">2,828,010</td><td class="num">4,181,709</td><td class="num up">+47.9%</td><td class="num">2,552,004</td><td class="num">3,438,232</td><td class="num">2,182,297</td><td class="num down">-36.5%</td><td class="num down">-14.5%</td></tr></tbody>
+    </table></div>
+    <h3>鞋垫</h3>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">128,700</td><td class="num">149,482</td><td class="num up">+16.1%</td><td class="num">127,161</td><td class="num">135,834</td><td class="num">34,844</td><td class="num down">-74.3%</td><td class="num down">-72.6%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">326,147</td><td class="num">398,544</td><td class="num up">+22.2%</td><td class="num">317,642</td><td class="num">355,341</td><td class="num">186,347</td><td class="num down">-47.6%</td><td class="num down">-41.3%</td></tr></tbody>
+    </table></div>
+    <h3>其它劳保</h3>
+    <p class="sub">手套、安全帽、毛巾、洗衣粉等，数量只在本单元内看。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">46,573</td><td class="num">61,873</td><td class="num up">+32.9%</td><td class="num">45,855</td><td class="num">56,768</td><td class="num">43,526</td><td class="num down">-23.3%</td><td class="num down">-5.1%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">162,714</td><td class="num">535,256</td><td class="num up">+229.0%</td><td class="num">149,562</td><td class="num">512,444</td><td class="num">329,528</td><td class="num down">-35.7%</td><td class="num up">+120.3%</td></tr></tbody>
+    </table></div>
+    <h3>其它未标品牌（材料 / 配件）</h3>
+    <p class="sub">4 行未标品牌：售予 CF 的橡胶饰条、售予 MF 的万向接头。未并入材料数量。</p>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th class="num">2024全年</th><th class="num">2025全年</th><th class="num">25/24</th><th class="num">2024同期</th><th class="num">2025同期</th><th class="num">2026同期</th><th class="num">26/25</th><th class="num">26/24</th></tr></thead>
+      <tbody><tr class=""><td>数量</td><td class="num">110</td><td class="num">10</td><td class="num down">-90.9%</td><td class="num">110</td><td class="num">10</td><td class="num">135</td><td class="num up">+1250.0%</td><td class="num up">+22.7%</td></tr><tr class="sum"><td>营业额（元）</td><td class="num">2,756</td><td class="num">70</td><td class="num down">-97.5%</td><td class="num">2,756</td><td class="num">70</td><td class="num">3,251</td><td class="num up">+4571.8%</td><td class="num up">+18.0%</td></tr></tbody>
+    </table></div>
+  </div>
+
+  <div class="panel">
+    <h2>汇率表（美元 → 人民币月均）</h2>
+    <p class="sub">来源：Frankfurter（ECB 参考汇率）。请求 <code>https://api.frankfurter.app/YYYY-01-01..YYYY-12-31?from=USD&amp;to=CNY</code>（2026 年截止 11-15），主机重定向至 api.frankfurter.dev。月均 = 该自然月内每日汇率简单平均。2026-11 仅含至 11-13 的 10 个交易日（14–15 为周末）。</p>
+    <div class="scroll"><table>
+      <thead><tr><th>月份</th><th class="num">交易日</th><th class="num">月均</th><th class="num">最低</th><th class="num">最高</th><th>区间</th></tr></thead>
+      <tbody><tr><td>2024-01</td><td class="num">22</td><td class="num">7.1711</td><td class="num">7.1435</td><td class="num">7.1952</td><td>2024-01-02 — 2024-01-31</td></tr><tr><td>2024-02</td><td class="num">21</td><td class="num">7.1934</td><td class="num">7.1773</td><td class="num">7.1990</td><td>2024-02-01 — 2024-02-29</td></tr><tr><td>2024-03</td><td class="num">20</td><td class="num">7.2016</td><td class="num">7.1775</td><td class="num">7.2295</td><td>2024-03-01 — 2024-03-28</td></tr><tr><td>2024-04</td><td class="num">21</td><td class="num">7.2390</td><td class="num">7.2328</td><td class="num">7.2469</td><td>2024-04-02 — 2024-04-30</td></tr><tr><td>2024-05</td><td class="num">22</td><td class="num">7.2331</td><td class="num">7.2069</td><td class="num">7.2493</td><td>2024-05-02 — 2024-05-31</td></tr><tr><td>2024-06</td><td class="num">20</td><td class="num">7.2545</td><td class="num">7.2370</td><td class="num">7.2686</td><td>2024-06-03 — 2024-06-28</td></tr><tr><td>2024-07</td><td class="num">23</td><td class="num">7.2620</td><td class="num">7.2188</td><td class="num">7.2764</td><td>2024-07-01 — 2024-07-31</td></tr><tr><td>2024-08</td><td class="num">22</td><td class="num">7.1501</td><td class="num">7.0880</td><td class="num">7.2484</td><td>2024-08-01 — 2024-08-30</td></tr><tr><td>2024-09</td><td class="num">21</td><td class="num">7.0784</td><td class="num">7.0111</td><td class="num">7.1241</td><td>2024-09-02 — 2024-09-30</td></tr><tr><td>2024-10</td><td class="num">23</td><td class="num">7.0870</td><td class="num">7.0185</td><td class="num">7.1371</td><td>2024-10-01 — 2024-10-31</td></tr><tr><td>2024-11</td><td class="num">21</td><td class="num">7.2081</td><td class="num">7.0949</td><td class="num">7.2497</td><td>2024-11-01 — 2024-11-29</td></tr><tr><td>2024-12</td><td class="num">20</td><td class="num">7.2813</td><td class="num">7.2532</td><td class="num">7.2994</td><td>2024-12-02 — 2024-12-31</td></tr><tr><td>2025-01</td><td class="num">22</td><td class="num">7.2981</td><td class="num">7.2465</td><td class="num">7.3322</td><td>2025-01-02 — 2025-01-31</td></tr><tr><td>2025-02</td><td class="num">20</td><td class="num">7.2749</td><td class="num">7.2500</td><td class="num">7.3090</td><td>2025-02-03 — 2025-02-28</td></tr><tr><td>2025-03</td><td class="num">21</td><td class="num">7.2505</td><td class="num">7.2272</td><td class="num">7.2892</td><td>2025-03-03 — 2025-03-31</td></tr><tr><td>2025-04</td><td class="num">20</td><td class="num">7.2990</td><td class="num">7.2659</td><td class="num">7.3498</td><td>2025-04-01 — 2025-04-30</td></tr><tr><td>2025-05</td><td class="num">21</td><td class="num">7.2130</td><td class="num">7.1849</td><td class="num">7.2714</td><td>2025-05-02 — 2025-05-30</td></tr><tr><td>2025-06</td><td class="num">21</td><td class="num">7.1813</td><td class="num">7.1647</td><td class="num">7.1998</td><td>2025-06-02 — 2025-06-30</td></tr><tr><td>2025-07</td><td class="num">23</td><td class="num">7.1727</td><td class="num">7.1574</td><td class="num">7.1947</td><td>2025-07-01 — 2025-07-31</td></tr><tr><td>2025-08</td><td class="num">21</td><td class="num">7.1739</td><td class="num">7.1314</td><td class="num">7.2118</td><td>2025-08-01 — 2025-08-29</td></tr><tr><td>2025-09</td><td class="num">22</td><td class="num">7.1245</td><td class="num">7.1042</td><td class="num">7.1456</td><td>2025-09-01 — 2025-09-30</td></tr><tr><td>2025-10</td><td class="num">23</td><td class="num">7.1202</td><td class="num">7.0994</td><td class="num">7.1400</td><td>2025-10-01 — 2025-10-31</td></tr><tr><td>2025-11</td><td class="num">20</td><td class="num">7.1062</td><td class="num">7.0756</td><td class="num">7.1271</td><td>2025-11-03 — 2025-11-28</td></tr><tr><td>2025-12</td><td class="num">21</td><td class="num">7.0453</td><td class="num">6.9929</td><td class="num">7.0718</td><td>2025-12-01 — 2025-12-31</td></tr><tr><td>2026-01</td><td class="num">21</td><td class="num">6.9693</td><td class="num">6.9462</td><td class="num">6.9937</td><td>2026-01-02 — 2026-01-30</td></tr><tr><td>2026-02</td><td class="num">20</td><td class="num">6.9081</td><td class="num">6.8413</td><td class="num">6.9434</td><td>2026-02-02 — 2026-02-27</td></tr><tr><td>2026-03</td><td class="num">22</td><td class="num">6.8957</td><td class="num">6.8662</td><td class="num">6.9173</td><td>2026-03-02 — 2026-03-31</td></tr><tr><td>2026-04</td><td class="num">20</td><td class="num">6.8344</td><td class="num">6.8158</td><td class="num">6.8976</td><td>2026-04-01 — 2026-04-30</td></tr><tr><td>2026-05</td><td class="num">20</td><td class="num">6.7978</td><td class="num">6.7668</td><td class="num">6.8303</td><td>2026-05-04 — 2026-05-29</td></tr><tr><td>2026-06</td><td class="num">22</td><td class="num">6.7760</td><td class="num">6.7564</td><td class="num">6.8109</td><td>2026-06-01 — 2026-06-30</td></tr><tr><td>2026-07</td><td class="num">23</td><td class="num">6.7765</td><td class="num">6.7513</td><td class="num">6.8002</td><td>2026-07-01 — 2026-07-31</td></tr><tr><td>2026-08</td><td class="num">21</td><td class="num">6.7361</td><td class="num">6.7197</td><td class="num">6.7535</td><td>2026-08-03 — 2026-08-31</td></tr><tr><td>2026-09</td><td class="num">22</td><td class="num">6.7089</td><td class="num">6.6954</td><td class="num">6.7223</td><td>2026-09-01 — 2026-09-30</td></tr><tr><td>2026-10</td><td class="num">22</td><td class="num">6.6850</td><td class="num">6.6529</td><td class="num">6.7046</td><td>2026-10-01 — 2026-10-30</td></tr><tr><td>2026-11</td><td class="num">10</td><td class="num">6.6687</td><td class="num">6.6483</td><td class="num">6.6728</td><td>2026-11-02 — 2026-11-13</td></tr></tbody>
+    </table></div>
   </div>
 
   <div class="note warn">
-    <strong>资料注意（不影响已核对的总量）：</strong>
-    2026 年 10–11 月提取中无 3M 记录（最后一笔在 2026-09中，9 月合计 56,182 双）；
-    2026 年 10 月起内销客户名塌缩为 NEWTEX1、通路大量为「其他」；
-    缺旬 2025-01下、2026-02中按春节停工视为 0；
-    币别人民币与美元混用，13 行（1,074 双）币别为空，本页不以金额做结论。
+    <strong>资料与口径注意：</strong>
+    营业额未计入 13 行币别为空的内销（NEWTEX1，1,074 双；若按人民币试算约 88,583 元）。
+    10上与旧档重叠的 1 行单价采用今日提取（16.03 对 15.65 美元），行金额多计 USD 3.80，按 2026-10 月均约合人民币 25.40 元。
+    2026 年 10 月起内销客户名塌缩为 NEWTEX1；2026 年 10–11 月提取无 3M。
+    缺旬 2025-01下、2026-02中按春节停工视为 0。
   </div>
 
   <footer>
-    口径：尊荣 ZR 销售月统计，类别 = 全部。同期 = 该年 1 月上旬至 11 月上旬（完整旬）。2026-11中截至 2026-11-15，未计入同期。
-    合并：2024–2025 用 <code>ZR销售月统计_全部_202401_202512.xlsx</code>；2026 年 1–9 月用 <code>ZR销售月统计_全部_202601_202610.xlsx</code>（剔除该档 10上及不完整的 10中）；
-    2026-10-01 至 11-15 用今日 KPR PRO 提取 <code>ZR销售月统计_20261001-20261115.xlsx</code>，重叠旬以该档为准。
-    核对：10-01 至 11-15 全部数量 496,392 双；10上 / 10中 / 10下 / 11上 / 11中 = 103,650 / 111,788 / 123,454 / 54,436 / 103,064。全部通过。
-    上海绿安全只计类别 MIDORI；与此前窄口径「2024 内销 + 绿安全 = 523,645、2025 = 476,955」可衔接（内销全年 + 本页绿安全全年合计）。
-    本页为第一稿，供审阅后再沉淀为取数与分析 Skill。未发布到网页。
+    主指标为营业额：行金额 =（单价 + 服务费）× 销售数量；美元按 Frankfurter（ECB 参考汇率）当月平均 USDCNY 折人民币。未自造汇率。
+    数量只在单一事业单元或成品鞋品类内比较，页面没有跨类别的「总双数」。
+    同期 = 1 月上旬至 11 月上旬。2026-11中截至 2026-11-15，未计入同期。
+    合并规则同前：2024–2025 用 <code>ZR销售月统计_全部_202401_202512.xlsx</code>；2026 年 1–9 月用 <code>ZR销售月统计_全部_202601_202610.xlsx</code>；
+    2026-10-01 至 11-15 用 <code>ZR销售月统计_20261001-20261115.xlsx</code>，重叠旬以该档为准。数量核对 496,392 及各旬数字全部通过。
+    本页为第二稿，尚未发布到网页。
   </footer>
 </div>
 </body>
