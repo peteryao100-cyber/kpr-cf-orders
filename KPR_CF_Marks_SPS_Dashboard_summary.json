@@ -9,20 +9,13 @@
   "distinct_asns": 90,
   "invoice_rows": 89,
   "distinct_invoices": 89,
-  "invoiced_pos": 88,
+  "invoiced_pos": 89,
   "pos_with_multiple_asns": {
    "14860421": 2
   },
   "asns_with_multiple_invoices": {}
  },
- "special": [
-  [
-   "14976418",
-   [
-    "Invoice CFV-2611002 Error in SPS — rejected/error/not sent, check SPS alert / 发票被拒、出错或未发送"
-   ]
-  ]
- ],
+ "special": [],
  "housekeeping_invoiced_open_in_sps": [
   "14934994",
   "14934991",
@@ -65,14 +58,13 @@
   "14744348",
   "14744345"
  ],
- "action_items": 7,
+ "action_items": 6,
  "order_rows": 149,
  "asns": 90,
  "invoices": 89,
  "counts": {
-  "Special attention": 1,
-  "OPEN ORDER": 6,
-  "Invoiced": 88
+  "Invoiced": 89,
+  "OPEN ORDER": 6
  },
  "close": [],
  "check": [],
@@ -80,12 +72,12 @@
   [
    "14946927",
    "due",
-   "Due in 2d (11-16), no ASN sent / 2天内到期"
+   "Due in 0d (11-16), no ASN sent / 0天内到期"
   ],
   [
    "14946928",
    "due",
-   "Due in 2d (11-16), no ASN sent / 2天内到期"
+   "Due in 0d (11-16), no ASN sent / 0天内到期"
   ]
  ],
  "need_invoice": [],
@@ -93,16 +85,16 @@
   "OPEN ORDER": 6,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
-  "Special attention": 1,
-  "Invoiced": 88
+  "Special attention": 0,
+  "Invoiced": 89
  },
  "bucket_pairs": {
   "OPEN ORDER": 2295,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
-  "Special attention": 121
+  "Special attention": 0
  },
- "bucket_sum": "6 + 0 + 0 + 1 + 88 = 95 POs",
+ "bucket_sum": "6 + 0 + 0 + 0 + 89 = 95 POs",
  "unmatched_records": 0,
  "tile_counts": {
   "OPEN ORDER": 6,
@@ -110,8 +102,8 @@
   "NEED INVOICE": 0,
   "Due within 7 days": 2,
   "Late": 0,
-  "Special attention": 1,
-  "Invoiced (header)": 88
+  "Special attention": 0,
+  "Invoiced (header)": 89
  },
  "tile_pairs": {
   "OPEN ORDER": 2295,
@@ -119,7 +111,7 @@
   "NEED INVOICE": 0,
   "Due within 7 days": 650,
   "Late": 0,
-  "Special attention": 121,
+  "Special attention": 0,
   "Outstanding (Unshipped)": 2295
  },
  "outstanding_unshipped": {
@@ -261,20 +253,6 @@
   "pos": []
  },
  "po_dates": {
-  "14976418": {
-   "dc": "000155 Brampton",
-   "qty": 121,
-   "style": "Helly Hansen",
-   "original": "2026-11-12",
-   "amended": "",
-   "changes": "",
-   "newest": "2026-11-12",
-   "newest_src": "SPS",
-   "sps_newest": "2026-11-12",
-   "cancel": "2026-12-12",
-   "pipe": "Special attention",
-   "unshipped": false
-  },
   "14946927": {
    "dc": "000155 Brampton",
    "qty": 415,
