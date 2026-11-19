@@ -1,15 +1,15 @@
 {
- "total_pos": 95,
+ "total_pos": 91,
  "dedup": {
-  "sps_order_rows": 149,
-  "distinct_pos": 95,
+  "sps_order_rows": 145,
+  "distinct_pos": 91,
   "multi_version_pos": 42,
   "exact_duplicate_order_rows": 0,
-  "asn_rows": 92,
-  "distinct_asns": 92,
-  "invoice_rows": 89,
-  "distinct_invoices": 89,
-  "invoiced_pos": 89,
+  "asn_rows": 88,
+  "distinct_asns": 88,
+  "invoice_rows": 87,
+  "distinct_invoices": 87,
+  "invoiced_pos": 87,
   "pos_with_multiple_asns": {
    "14860421": 2
   },
@@ -17,6 +17,8 @@
  },
  "special": [],
  "housekeeping_invoiced_open_in_sps": [
+  "14946927",
+  "14946928",
   "14934994",
   "14934991",
   "14934990",
@@ -58,58 +60,46 @@
   "14744348",
   "14744345"
  ],
- "action_items": 6,
- "order_rows": 149,
- "asns": 92,
- "invoices": 89,
+ "action_items": 4,
+ "order_rows": 145,
+ "asns": 88,
+ "invoices": 87,
  "counts": {
-  "Invoiced": 89,
-  "NEED INVOICE": 2,
+  "Invoiced": 87,
   "OPEN ORDER": 4
  },
  "close": [],
  "check": [],
  "date_flags": [],
- "need_invoice": [
-  [
-   "14946927",
-   "336284448",
-   "2026-11-16 22:42"
-  ],
-  [
-   "14946928",
-   "337284448",
-   "2026-11-16 23:13"
-  ]
- ],
+ "need_invoice": [],
  "bucket_counts": {
   "OPEN ORDER": 4,
   "ASN OPENED": 0,
-  "NEED INVOICE": 2,
+  "NEED INVOICE": 0,
   "Special attention": 0,
-  "Invoiced": 89
+  "Invoiced": 87
  },
  "bucket_pairs": {
   "OPEN ORDER": 1645,
   "ASN OPENED": 0,
-  "NEED INVOICE": 650,
+  "NEED INVOICE": 0,
   "Special attention": 0
  },
- "bucket_sum": "4 + 0 + 2 + 0 + 89 = 95 POs",
+ "bucket_sum": "4 + 0 + 0 + 0 + 87 = 91 POs",
  "unmatched_records": 0,
  "tile_counts": {
   "OPEN ORDER": 4,
   "ASN OPENED": 0,
-  "NEED INVOICE": 2,
+  "NEED INVOICE": 0,
   "Due within 7 days": 0,
   "Late": 0,
   "Special attention": 0,
-  "Invoiced (header)": 89
+  "Invoiced (header)": 87
  },
  "tile_pairs": {
   "OPEN ORDER": 1645,
   "ASN OPENED": 0,
-  "NEED INVOICE": 650,
+  "NEED INVOICE": 0,
   "Due within 7 days": 0,
   "Late": 0,
   "Special attention": 0,
@@ -211,58 +201,11 @@
   ]
  },
  "shipped_need_invoice": {
-  "po_count": 2,
-  "total_pairs": 650,
-  "pos": [
-   {
-    "po": "14946927",
-    "asn": "336284448",
-    "asn_date": "2026-11-16 22:42",
-    "style": "Dakota",
-    "dc": "000155 Brampton",
-    "qty": 415,
-    "newest_ship": "2026-11-16"
-   },
-   {
-    "po": "14946928",
-    "asn": "337284448",
-    "asn_date": "2026-11-16 23:13",
-    "style": "Dakota",
-    "dc": "000350 Calgary DC",
-    "qty": 235,
-    "newest_ship": "2026-11-16"
-   }
-  ]
+  "po_count": 0,
+  "total_pairs": 0,
+  "pos": []
  },
  "po_dates": {
-  "14946927": {
-   "dc": "000155 Brampton",
-   "qty": 415,
-   "style": "Dakota",
-   "original": "2026-11-01",
-   "amended": "2026-11-02",
-   "changes": "ship 11-01→11-16, cancel 12-01→12-16, qty unchanged",
-   "newest": "2026-11-16",
-   "newest_src": "SPS amendment",
-   "sps_newest": "2026-11-16",
-   "cancel": "2026-12-16",
-   "pipe": "NEED INVOICE",
-   "unshipped": false
-  },
-  "14946928": {
-   "dc": "000350 Calgary DC",
-   "qty": 235,
-   "style": "Dakota",
-   "original": "2026-11-01",
-   "amended": "2026-11-02",
-   "changes": "ship 11-01→11-16, cancel 12-01→12-16, qty unchanged",
-   "newest": "2026-11-16",
-   "newest_src": "SPS amendment",
-   "sps_newest": "2026-11-16",
-   "cancel": "2026-12-16",
-   "pipe": "NEED INVOICE",
-   "unshipped": false
-  },
   "14960565": {
    "dc": "000155 Brampton",
    "qty": 635,
