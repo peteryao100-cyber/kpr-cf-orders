@@ -70,7 +70,18 @@
  },
  "close": [],
  "check": [],
- "date_flags": [],
+ "date_flags": [
+  [
+   "14950926",
+   "due",
+   "Due in 7d (11-30), no ASN sent / 7天内到期"
+  ],
+  [
+   "14950927",
+   "due",
+   "Due in 7d (11-30), no ASN sent / 7天内到期"
+  ]
+ ],
  "need_invoice": [],
  "bucket_counts": {
   "OPEN ORDER": 4,
@@ -91,7 +102,7 @@
   "OPEN ORDER": 4,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
-  "Due within 7 days": 0,
+  "Due within 7 days": 2,
   "Late": 0,
   "Special attention": 0,
   "Invoiced (header)": 87
@@ -100,7 +111,7 @@
   "OPEN ORDER": 1645,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
-  "Due within 7 days": 0,
+  "Due within 7 days": 560,
   "Late": 0,
   "Special attention": 0,
   "Outstanding (Unshipped)": 1645
