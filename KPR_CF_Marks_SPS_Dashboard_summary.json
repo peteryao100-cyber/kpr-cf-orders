@@ -15,14 +15,7 @@
   },
   "asns_with_multiple_invoices": {}
  },
- "special": [
-  [
-   "14950926",
-   [
-    "SPS status New / SPS状态New"
-   ]
-  ]
- ],
+ "special": [],
  "housekeeping_invoiced_open_in_sps": [
   "14946927",
   "14946928",
@@ -72,8 +65,7 @@
  "asns": 88,
  "invoices": 87,
  "counts": {
-  "Special attention": 1,
-  "OPEN ORDER": 5,
+  "OPEN ORDER": 6,
   "Invoiced": 87
  },
  "close": [],
@@ -92,44 +84,44 @@
  ],
  "need_invoice": [],
  "bucket_counts": {
-  "OPEN ORDER": 5,
+  "OPEN ORDER": 6,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
-  "Special attention": 1,
+  "Special attention": 0,
   "Invoiced": 87
  },
  "bucket_pairs": {
-  "OPEN ORDER": 1360,
+  "OPEN ORDER": 1645,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
-  "Special attention": 285
+  "Special attention": 0
  },
- "bucket_sum": "5 + 0 + 0 + 1 + 87 = 93 POs",
+ "bucket_sum": "6 + 0 + 0 + 0 + 87 = 93 POs",
  "unmatched_records": 0,
  "tile_counts": {
-  "OPEN ORDER": 5,
+  "OPEN ORDER": 6,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
   "Due within 7 days": 2,
   "Late": 0,
-  "Special attention": 1,
+  "Special attention": 0,
   "Invoiced (header)": 87
  },
  "tile_pairs": {
-  "OPEN ORDER": 1360,
+  "OPEN ORDER": 1645,
   "ASN OPENED": 0,
   "NEED INVOICE": 0,
   "Due within 7 days": 470,
   "Late": 0,
-  "Special attention": 285,
+  "Special attention": 0,
   "Outstanding (Unshipped)": 1645
  },
  "outstanding_unshipped": {
   "definition": "Outstanding = unshipped POs (no sent ASN and not invoiced: OPEN ORDER + ASN OPENED + any unshipped Special attention)",
   "po_count": 6,
   "total_pairs": 1645,
-  "open_order_pos": 5,
-  "open_order_pairs": 1360,
+  "open_order_pos": 6,
+  "open_order_pairs": 1645,
   "asn_opened_draft_pos": 0,
   "asn_opened_draft_pairs": 0,
   "missing_qty_pos": [],
@@ -143,7 +135,7 @@
   "pos": [
    {
     "po": "14950926",
-    "pipe": "Special attention",
+    "pipe": "OPEN ORDER",
     "style": "Dakota",
     "scode": "DAK",
     "style_codes": "5ANADK6-8100, 5ANADK6-8110, 5ANBDK6-6200",
@@ -272,7 +264,7 @@
    "newest_src": "SPS amendment",
    "sps_newest": "2026-11-30",
    "cancel": "2026-12-30",
-   "pipe": "Special attention",
+   "pipe": "OPEN ORDER",
    "unshipped": true
   },
   "14950927": {
